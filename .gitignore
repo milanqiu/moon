@@ -1,3 +1,13 @@
+*.tmp
+*.tgs
+*.tgw
+ModelSupport
+dunit.ini
+
+
+
+# Delphi.gitignore
+
 # Uncomment these types if you want even more clean repository. But be careful.
 # It can make harm to an existing project source. Read explanations below.
 #
@@ -59,6 +69,7 @@
 
 # Delphi history and backups
 __history/
+__recovery/
 *.~*
 
 # Castalia statistics file (since XE7 Castalia is distributed with Delphi)
