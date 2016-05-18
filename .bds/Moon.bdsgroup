@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<PersonalityInfo>
+		<Option>
+			<Option Name="Personality">Default.Personality</Option>
+			<Option Name="ProjectType"></Option>
+			<Option Name="Version">1.0</Option>
+			<Option Name="GUID">{F6E7C006-76AB-44B9-BEDC-5263DB308516}</Option>
+		</Option>
+	</PersonalityInfo>
+	<Default.Personality>  <Projects>
+      <Projects Name="Moon_Utilities.bpl">Moon_Utilities.bdsproj</Projects>
+      <Projects Name="Moon_Components.bpl">Moon_Components.bdsproj</Projects>
+      <Projects Name="Moon_IOTA.bpl">Moon_IOTA.bdsproj</Projects>
+      <Projects Name="Moon_TestUnit.exe">Moon_TestUnit.bdsproj</Projects>
+      <Projects Name="Moon_TestApp.exe">Moon_TestApp.bdsproj</Projects>
+      <Projects Name="Targets">Moon_Utilities.bpl Moon_Components.bpl Moon_IOTA.bpl Moon_TestUnit.exe Moon_TestApp.exe</Projects>
+    </Projects>
+    <Dependencies/>
+  </Default.Personality>
+</BorlandProject>
