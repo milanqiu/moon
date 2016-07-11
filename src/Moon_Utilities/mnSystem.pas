@@ -4,13 +4,13 @@ interface
 
 var
 {--------------------------------
-  The path which the current application locates in.
+  应用程序所在路径，也就是被执行的exe的路径。
   Tested in TestUnit.
  --------------------------------}
   mnAppPath: string;
 
 {--------------------------------
-  Returns the absolute path from the relative path of sub directory or sub file in application path.
+  基于应用程序所在路径，从其下的子目录或子文件的相对路径得到其绝对路径。
   Tested in TestUnit.
  --------------------------------}
 function mnAppPathSub(const SubName: string): string; overload;
