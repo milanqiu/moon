@@ -18,6 +18,8 @@ del dcu\Moon_Components\*.dcu
 del dcu\Moon_IOTA\*.dcu
 del dcu\Moon_TestUnit\*.dcu
 del dcu\Moon_TestApp\*.dcu
+del src\Moon_Utilities\*.dcu
+del src\Moon_Components\*.dcu
 
 del files\test_out\*.tmp /q
 
