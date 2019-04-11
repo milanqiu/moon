@@ -23,4 +23,12 @@ del src\Moon_Components\*.dcu
 
 del files\test_out\*.tmp /q
 
+@echo off
+echo.
+echo Deleting histories...
+for /f "delims=" %%a in ('dir /s /b /ad __history') do (
+    echo Delete %%a
+    rd /s /q "%%a"
+)
+
 pause
