@@ -1,0 +1,3 @@
+brcc32 mnTestCaseWizard\mnTestCaseWizard.rc
+
+pause

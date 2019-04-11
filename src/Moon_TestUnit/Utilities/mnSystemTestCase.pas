@@ -1,4 +1,4 @@
-unit mnSystemTestCase;
+﻿unit mnSystemTestCase;
 {
 
   Delphi DUnit Test Case
@@ -23,11 +23,291 @@ type
   published
     procedure testAppSub;
     procedure testAppPathSub;
+
+    procedure testProjectConvention_GetProjectGroupPath;
+    procedure testProjectConvention_GetProjectGroupPathSub;
+    procedure testProjectConvention_GetFilesPath;
+    procedure testProjectConvention_GetFilesPathSub;
+    procedure testProjectConvention_GetTestTempPath;
+    procedure testProjectConvention_GetTestTempPathSub;
+    procedure testProjectConvention_GetTestOutPath;
+    procedure testProjectConvention_GetTestOutPathSub;
+
+    procedure testCharIsSeries;
+    procedure testStrIsSeries;
+    procedure testCreateError;
+    procedure testCreateErrorIf;
+    procedure testRelationalOpToStr;
+    procedure testReverseRelation;
+    procedure testRelationalSeries;
+    procedure testBetweenSeries;
+    procedure testChooseSeries;
+    procedure testChangeSeries;
+    procedure testFloatIsInt;
+    procedure testStrToOleVar;
+    procedure testCompareVarSeries;
+    procedure testVarToSeries;
+    procedure testToVarSeries;
+    procedure testABStrToSeries;
+    procedure testABToStrSeries;
+    procedure testFloatCurrToStr;
+    procedure testToTSStrSeries;
+    procedure testTSStrToSeries;
+    procedure testToPercentStrSeries;
+    procedure testPercentStrToSeries;
+    procedure testLLStrToSeries;
+    procedure testBoolIntConvertors;
+    procedure testBoolToStr;
+    procedure testCharDigitIntConvertors;
+    procedure testCharHexIntConvertors;
+    procedure testCharDigletIntConvertors;
+    procedure testUpperLowerCase;
+    procedure testCheckStrConstraint;
+    procedure testPointerSeries;
+    procedure testFreeObjects;
+    procedure testClearStrings;
+    procedure testClearTreeNodes;
+    procedure testTreeNodesToStrings;
+    procedure testTreeNodeFullText;
+    procedure testArrayToStrings;
+    procedure testCounterSeries;
+    procedure testCircleSeries;
+    procedure testCircle;
+    procedure testNewGUID;
+    procedure testHasMethodByName;
+    procedure testExecMethodByName;
+    procedure testStreamTurbo_PosAndSizeSeries;
+    procedure testStreamTurbo_BookmarkSeries;
+    procedure testStreamTurbo_ReadWriteSeries;
+    procedure testPointerList;
+
+    procedure testVarList_Items;
+    procedure testVarList_StatSeries;
+    procedure testVarList_IndexOf;
+    procedure testVarList_First;
+    procedure testVarList_Last;
+    procedure testVarList_Add;
+    procedure testVarList_Insert;
+    procedure testVarList_Extract;
+    procedure testVarList_Remove;
+    procedure testVarList_RemoveAll;
+    procedure testVarList_SortNormal;
+    procedure testVarList_IsUnique;
+    procedure testVarList_MakeUnique;
+    procedure testVarList_Equals;
+    procedure testVarList_Compare;
+    procedure testVarList_Link;
+    procedure testVarList_LinkStrs;
+    procedure testVarList_Assign;
+    procedure testVarList_SaveLoadStreamTurbo;
+    procedure testVarList_SaveLoadStream;
+    procedure testVarList_SaveLoadStreamFile;
+    procedure testVarList_SaveLoadFile;
+    procedure testVarList_SaveLoadArray;
+    procedure testVarList_SaveLoadVA;
+    procedure testVarList_Combine;
+    procedure testVarList_Split;
+    procedure testVarList_GetEnumerator;
+    procedure testVarList_Duplicates;
+
+    procedure testIntList_Items;
+    procedure testIntList_StatSeries;
+    procedure testIntList_IndexOf;
+    procedure testIntList_First;
+    procedure testIntList_Last;
+    procedure testIntList_Add;
+    procedure testIntList_Insert;
+    procedure testIntList_Extract;
+    procedure testIntList_Remove;
+    procedure testIntList_RemoveAll;
+    procedure testIntList_SortNormal;
+    procedure testIntList_IsUnique;
+    procedure testIntList_MakeUnique;
+    procedure testIntList_Equals;
+    procedure testIntList_Compare;
+    procedure testIntList_Link;
+    procedure testIntList_LinkStrs;
+    procedure testIntList_Assign;
+    procedure testIntList_SaveLoadStreamTurbo;
+    procedure testIntList_SaveLoadStream;
+    procedure testIntList_SaveLoadStreamFile;
+    procedure testIntList_SaveLoadFile;
+    procedure testIntList_SaveLoadArray;
+    procedure testIntList_SaveLoadVA;
+    procedure testIntList_Combine;
+    procedure testIntList_Split;
+    procedure testIntList_GetEnumerator;
+    procedure testIntList_Duplicates;
+
+    procedure testFloatList_Items;
+    procedure testFloatList_StatSeries;
+    procedure testFloatList_IndexOf;
+    procedure testFloatList_First;
+    procedure testFloatList_Last;
+    procedure testFloatList_Add;
+    procedure testFloatList_Insert;
+    procedure testFloatList_Extract;
+    procedure testFloatList_Remove;
+    procedure testFloatList_RemoveAll;
+    procedure testFloatList_SortNormal;
+    procedure testFloatList_IsUnique;
+    procedure testFloatList_MakeUnique;
+    procedure testFloatList_Equals;
+    procedure testFloatList_Compare;
+    procedure testFloatList_Link;
+    procedure testFloatList_LinkStrs;
+    procedure testFloatList_Assign;
+    procedure testFloatList_SaveLoadStreamTurbo;
+    procedure testFloatList_SaveLoadStream;
+    procedure testFloatList_SaveLoadStreamFile;
+    procedure testFloatList_SaveLoadFile;
+    procedure testFloatList_SaveLoadArray;
+    procedure testFloatList_SaveLoadVA;
+    procedure testFloatList_Combine;
+    procedure testFloatList_Split;
+    procedure testFloatList_GetEnumerator;
+    procedure testFloatList_Duplicates;
+
+    procedure testDTList_Items;
+    procedure testDTList_StatSeries;
+    procedure testDTList_IndexOf;
+    procedure testDTList_First;
+    procedure testDTList_Last;
+    procedure testDTList_Add;
+    procedure testDTList_Insert;
+    procedure testDTList_Extract;
+    procedure testDTList_Remove;
+    procedure testDTList_RemoveAll;
+    procedure testDTList_SortNormal;
+    procedure testDTList_IsUnique;
+    procedure testDTList_MakeUnique;
+    procedure testDTList_Equals;
+    procedure testDTList_Compare;
+    procedure testDTList_Link;
+    procedure testDTList_LinkStrs;
+    procedure testDTList_Assign;
+    procedure testDTList_SaveLoadStreamTurbo;
+    procedure testDTList_SaveLoadStream;
+    procedure testDTList_SaveLoadStreamFile;
+    procedure testDTList_SaveLoadFile;
+    procedure testDTList_SaveLoadArray;
+    procedure testDTList_SaveLoadVA;
+    procedure testDTList_Combine;
+    procedure testDTList_Split;
+    procedure testDTList_GetEnumerator;
+    procedure testDTList_Duplicates;
+
+    procedure testCurrList_Items;
+    procedure testCurrList_StatSeries;
+    procedure testCurrList_IndexOf;
+    procedure testCurrList_First;
+    procedure testCurrList_Last;
+    procedure testCurrList_Add;
+    procedure testCurrList_Insert;
+    procedure testCurrList_Extract;
+    procedure testCurrList_Remove;
+    procedure testCurrList_RemoveAll;
+    procedure testCurrList_SortNormal;
+    procedure testCurrList_IsUnique;
+    procedure testCurrList_MakeUnique;
+    procedure testCurrList_Equals;
+    procedure testCurrList_Compare;
+    procedure testCurrList_Link;
+    procedure testCurrList_LinkStrs;
+    procedure testCurrList_Assign;
+    procedure testCurrList_SaveLoadStreamTurbo;
+    procedure testCurrList_SaveLoadStream;
+    procedure testCurrList_SaveLoadStreamFile;
+    procedure testCurrList_SaveLoadFile;
+    procedure testCurrList_SaveLoadArray;
+    procedure testCurrList_SaveLoadVA;
+    procedure testCurrList_Combine;
+    procedure testCurrList_Split;
+    procedure testCurrList_GetEnumerator;
+    procedure testCurrList_Duplicates;
+
+    procedure testBoolList_Items;
+    procedure testBoolList_StatSeries;
+    procedure testBoolList_IndexOf;
+    procedure testBoolList_First;
+    procedure testBoolList_Last;
+    procedure testBoolList_Add;
+    procedure testBoolList_Insert;
+    procedure testBoolList_Extract;
+    procedure testBoolList_Remove;
+    procedure testBoolList_RemoveAll;
+    procedure testBoolList_SortNormal;
+    procedure testBoolList_IsUnique;
+    procedure testBoolList_MakeUnique;
+    procedure testBoolList_Equals;
+    procedure testBoolList_Compare;
+    procedure testBoolList_Link;
+    procedure testBoolList_LinkStrs;
+    procedure testBoolList_Assign;
+    procedure testBoolList_SaveLoadStreamTurbo;
+    procedure testBoolList_SaveLoadStream;
+    procedure testBoolList_SaveLoadStreamFile;
+    procedure testBoolList_SaveLoadFile;
+    procedure testBoolList_SaveLoadArray;
+    procedure testBoolList_SaveLoadVA;
+    procedure testBoolList_Combine;
+    procedure testBoolList_Split;
+    procedure testBoolList_GetEnumerator;
+    procedure testBoolList_Duplicates;
+    procedure testBoolList_SaveLoadByBit;
+
+    procedure testStrList_StatSeries;
+    procedure testStrList_AppendF;
+    procedure testStrList_First;
+    procedure testStrList_Last;
+    procedure testStrList_Extract;
+    procedure testStrList_Remove;
+    procedure testStrList_RemoveAll;
+    procedure testStrList_Concat;
+    procedure testStrList_ConcatToLast;
+    procedure testStrList_CountItem;
+    procedure testStrList_SortNormal;
+    procedure testStrList_SortInNumberStyle;
+    procedure testStrList_IsUnique;
+    procedure testStrList_MakeUnique;
+    procedure testStrList_Compare;
+    procedure testStrList_AssignByOp;
+    procedure testStrList_SaveLoadStreamTurbo;
+    procedure testStrList_SaveLoadStreamBin;
+    procedure testStrList_SaveLoadStreamFile;
+    procedure testStrList_SaveLoadArray;
+    procedure testStrList_SaveLoadVA;
+    procedure testStrList_AppendToFile;
+    procedure testStrList_Combine;
+    procedure testStrList_CombinePart;
+    procedure testStrList_Split;
+
+    procedure testObjList_EngraveAndDrop;
+
+    procedure testFieldNamesSeries;
+    procedure testTimeUnitToStr;
+    procedure testRectSeries;
+    procedure testAdjustSeries;
+
+    procedure testCoordinatesTable_AddColumns;
+    procedure testCoordinatesTable_AddRows;
+    procedure testCoordinatesTable_InsertColumns;
+    procedure testCoordinatesTable_InsertRows;
+    procedure testCoordinatesTable_DeleteColumns;
+    procedure testCoordinatesTable_DeleteRows;
+    procedure testCoordinatesTable_GetX;
+    procedure testCoordinatesTable_GetY;
+
+    procedure testLog;
+    procedure testDelphiTypeConvertors;
+    procedure testPpStrs;
   end;
 
 implementation
 
-uses mnSystem, SysUtils;
+uses mnSystem, SysUtils, mnString, mnDebug, UTestConsts, Variants, mnMath,
+  mnResStrsU, ComCtrls, Forms, Classes, Windows, mnFile, Math, RTLConsts, Types,
+  cxMemo;
 
 { TmnSystemTestCase }
 
@@ -46,8 +326,7001 @@ end;
 
 procedure TmnSystemTestCase.testAppPathSub;
 begin
-  CheckEquals(mnAppPathSub('APath\AFile.txt'),                mnAppPath + 'APath\AFile.txt');
-  CheckEquals(mnAppPathSub('APath\%d-%s.txt', [100, 'AStr']), mnAppPath + 'APath\100-AStr.txt');
+  CheckEquals(mnAppPathSub('SomePath\SomeFile.txt'), mnAppPath + 'SomePath\SomeFile.txt');
+  CheckEquals(mnAppPathSub('SomePath\%d-%s.txt', [1, 'qiugc']), mnAppPath + 'SomePath\1-qiugc.txt');
+end;
+
+procedure TmnSystemTestCase.testProjectConvention_GetProjectGroupPath;
+begin
+  CheckEquals(mnTProjectConvention.GetProjectGroupPath, mnTruncRightOver('moon', mnAppPath) + 'moon\');
+end;
+
+procedure TmnSystemTestCase.testProjectConvention_GetProjectGroupPathSub;
+begin
+  CheckEquals(mnTProjectConvention.GetProjectGroupPathSub('aaa'), mnTruncRightOver('moon', mnAppPath) + 'moon\aaa');
+end;
+
+procedure TmnSystemTestCase.testProjectConvention_GetFilesPath;
+begin
+  CheckEquals(mnTProjectConvention.GetFilesPath, mnTruncRightOver('moon', mnAppPath) + 'moon\files\');
+end;
+
+procedure TmnSystemTestCase.testProjectConvention_GetFilesPathSub;
+begin
+  CheckEquals(mnTProjectConvention.GetFilesPathSub('aaa'), mnTruncRightOver('moon', mnAppPath) + 'moon\files\aaa');
+end;
+
+procedure TmnSystemTestCase.testProjectConvention_GetTestTempPath;
+begin
+  CheckEquals(mnTProjectConvention.GetTestTempPath, mnTruncRightOver('moon', mnAppPath) + 'moon\files\test_temp\');
+end;
+
+procedure TmnSystemTestCase.testProjectConvention_GetTestTempPathSub;
+begin
+  CheckEquals(mnTProjectConvention.GetTestTempPathSub('aaa'), mnTruncRightOver('moon', mnAppPath) + 'moon\files\test_temp\aaa');
+end;
+
+procedure TmnSystemTestCase.testProjectConvention_GetTestOutPath;
+begin
+  CheckEquals(mnTProjectConvention.GetTestOutPath, mnTruncRightOver('moon', mnAppPath) + 'moon\files\test_out\');
+end;
+
+procedure TmnSystemTestCase.testProjectConvention_GetTestOutPathSub;
+begin
+  CheckEquals(mnTProjectConvention.GetTestOutPathSub('aaa'), mnTruncRightOver('moon', mnAppPath) + 'moon\files\test_out\aaa');
+end;
+
+procedure TmnSystemTestCase.testCharIsSeries;
+begin
+  // mnIsUpperCase
+  Check(mnIsUpperCase('A'));
+  CheckFalse(mnIsUpperCase('a'));
+
+  // mnIsLowerCase
+  Check(mnIsLowerCase('a'));
+  CheckFalse(mnIsLowerCase('A'));
+
+  // mnIsLetter
+  Check(mnIsLetter('a'));
+  Check(mnIsLetter('A'));
+  CheckFalse(mnIsLetter('3'));
+
+  // mnIsDigit
+  Check(mnIsDigit('3'));
+  CheckFalse(mnIsDigit('a'));
+  CheckFalse(mnIsDigit('A'));
+
+  // mnIsHex
+  Check(mnIsHex('1'));
+  Check(mnIsHex('a'));
+  Check(mnIsHex('A'));
+  CheckFalse(mnIsHex('g'));
+  CheckFalse(mnIsHex('G'));
+
+  // mnIsLetterOrDigit
+  Check(mnIsLetterOrDigit('1'));
+  Check(mnIsLetterOrDigit('a'));
+  Check(mnIsLetterOrDigit('A'));
+  CheckFalse(mnIsLetterOrDigit(';'));
+  CheckFalse(mnIsLetterOrDigit('@'));
+end;
+
+procedure TmnSystemTestCase.testStrIsSeries;
+begin
+  // mnIsIdentifier
+  Check(mnIsIdentifier('a'));
+  Check(mnIsIdentifier('a0'));
+  Check(mnIsIdentifier('a_'));
+  Check(mnIsIdentifier('_0'));
+  CheckFalse(mnIsIdentifier(''));
+  CheckFalse(mnIsIdentifier('%'));
+  CheckFalse(mnIsIdentifier('8a'));
+  CheckFalse(mnIsIdentifier('$a'));
+  CheckFalse(mnIsIdentifier('abcd*'));
+
+  // mnIsInteger
+  Check(mnIsInteger('123'));
+  CheckFalse(mnIsInteger('123.4'));
+
+  // mnIsFloat
+  Check(mnIsFloat('123.4'));
+  CheckFalse(mnIsFloat('a'));
+
+  // mnIsDateTime
+  Check(mnIsDateTime('1982-08-29'));
+  CheckFalse(mnIsDateTime('a'));
+  CheckFalse(mnIsDateTime('123.4'));
+
+  // mnIsCurrency
+  Check(mnIsCurrency('123.4'));
+  CheckFalse(mnIsCurrency('a'));
+end;
+
+type
+  ECustomException = class(Exception);
+
+procedure TmnSystemTestCase.testCreateError;
+begin
+  // overload form 1
+  try
+    mnCreateError('this is an error');
+    mnNeverGoesHere;
+  except
+    on E: Exception do
+      CheckEquals(E.Message, 'this is an error');
+  end;
+
+  // overload form 2
+  try
+    mnCreateError('%d %s', [5, 'errors']);
+    mnNeverGoesHere;
+  except
+    on E: Exception do
+      CheckEquals(E.Message, '5 errors');
+  end;
+
+  // overload form 3
+  try
+    mnCreateError(ECustomException, 'this is a custom error');
+    mnNeverGoesHere;
+  except
+    on E: Exception do
+    begin
+      Check(E is ECustomException);
+      CheckEquals(E.Message, 'this is a custom error');
+    end;
+  end;
+
+  // overload form 4
+  try
+    mnCreateError(ECustomException, '%d %s', [5, 'custom errors']);
+    mnNeverGoesHere;
+  except
+    on E: Exception do
+    begin
+      Check(E is ECustomException);
+      CheckEquals(E.Message, '5 custom errors');
+    end;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCreateErrorIf;
+begin
+  // overload form 1
+  try
+    mnCreateErrorIf(1=2, 'shouldn''t create an error');
+    mnCreateErrorIf(1=1, 'this is an error');
+    mnNeverGoesHere;
+  except
+    on E: Exception do
+      CheckEquals(E.Message, 'this is an error');
+  end;
+
+  // overload form 2
+  try
+    mnCreateErrorIf(1=2, 'shouldn''t create %d %s', [5, 'errors']);
+    mnCreateErrorIf(1=1, '%d %s', [5, 'errors']);
+    mnNeverGoesHere;
+  except
+    on E: Exception do
+      CheckEquals(E.Message, '5 errors');
+  end;
+
+  // overload form 3
+  try
+    mnCreateErrorIf(1=2, ECustomException, 'shouldn''t create an error');
+    mnCreateErrorIf(1=1, ECustomException, 'this is a custom error');
+    mnNeverGoesHere;
+  except
+    on E: Exception do
+    begin
+      Check(E is ECustomException);
+      CheckEquals(E.Message, 'this is a custom error');
+    end;
+  end;
+
+  // overload form 4
+  try
+    mnCreateErrorIf(1=2, ECustomException, 'shouldn''t create %d %s', [5, 'custom errors']);
+    mnCreateErrorIf(1=1, ECustomException, '%d %s', [5, 'custom errors']);
+    mnNeverGoesHere;
+  except
+    on E: Exception do
+    begin
+      Check(E is ECustomException);
+      CheckEquals(E.Message, '5 custom errors');
+    end;
+  end;
+end;
+
+procedure TmnSystemTestCase.testRelationalOpToStr;
+begin
+  Check(mnRelationalOpToStr(roEQ) = '=');
+  Check(mnRelationalOpToStr(roNE) = '<>');
+  Check(mnRelationalOpToStr(roLT) = '<');
+  Check(mnRelationalOpToStr(roLE) = '<=');
+  Check(mnRelationalOpToStr(roGT) = '>');
+  Check(mnRelationalOpToStr(roGE) = '>=');
+end;
+
+procedure TmnSystemTestCase.testReverseRelation;
+begin
+  Check(mnReverseRelation(roEQ) = roNE);
+  Check(mnReverseRelation(roNE) = roEQ);
+  Check(mnReverseRelation(roLT) = roGE);
+  Check(mnReverseRelation(roLE) = roGT);
+  Check(mnReverseRelation(roGT) = roLE);
+  Check(mnReverseRelation(roGE) = roLT);
+end;
+
+procedure TmnSystemTestCase.testRelationalSeries;
+begin
+  // mnRelationalStr
+  Check(mnRelationalStr('1', '1', roEQ));
+  Check(mnRelationalStr('1', '3', roNE));
+  Check(mnRelationalStr('1', '2', roLT));
+  Check(mnRelationalStr('1', '1', roLE));
+  Check(mnRelationalStr('1', '2', roLE));
+  Check(mnRelationalStr('2', '1', roGT));
+  Check(mnRelationalStr('2', '1', roGE));
+  Check(mnRelationalStr('2', '2', roGE));
+
+  CheckFalse(mnRelationalStr('1', '3', roEQ));
+  CheckFalse(mnRelationalStr('1', '1', roNE));
+  CheckFalse(mnRelationalStr('1', '1', roLT));
+  CheckFalse(mnRelationalStr('2', '1', roLT));
+  CheckFalse(mnRelationalStr('2', '1', roLE));
+  CheckFalse(mnRelationalStr('1', '1', roGT));
+  CheckFalse(mnRelationalStr('1', '2', roGT));
+  CheckFalse(mnRelationalStr('1', '2', roGE));
+
+  // mnRelationalInt
+  Check(mnRelationalInt(1, 1, roEQ));
+  Check(mnRelationalInt(1, 3, roNE));
+  Check(mnRelationalInt(1, 2, roLT));
+  Check(mnRelationalInt(1, 1, roLE));
+  Check(mnRelationalInt(1, 2, roLE));
+  Check(mnRelationalInt(2, 1, roGT));
+  Check(mnRelationalInt(2, 1, roGE));
+  Check(mnRelationalInt(2, 2, roGE));
+
+  CheckFalse(mnRelationalInt(1, 3, roEQ));
+  CheckFalse(mnRelationalInt(1, 1, roNE));
+  CheckFalse(mnRelationalInt(1, 1, roLT));
+  CheckFalse(mnRelationalInt(2, 1, roLT));
+  CheckFalse(mnRelationalInt(2, 1, roLE));
+  CheckFalse(mnRelationalInt(1, 1, roGT));
+  CheckFalse(mnRelationalInt(1, 2, roGT));
+  CheckFalse(mnRelationalInt(1, 2, roGE));
+
+  // mnRelationalFloat, mnRelationalDT, mnRelationalCurr and mnRelationalBool are ignored
+end;
+
+procedure TmnSystemTestCase.testBetweenSeries;
+begin
+  // mnBetweenII
+  Check(mnBetweenII(1, 1, 3));
+  Check(mnBetweenII(2, 1, 3));
+  Check(mnBetweenII(3, 1, 3));
+
+  // mnBetweenIE
+  Check(mnBetweenIE(1, 1, 3));
+  Check(mnBetweenIE(2, 1, 3));
+  CheckFalse(mnBetweenIE(3, 1, 3));
+
+  // mnBetweenEI
+  CheckFalse(mnBetweenEI(1, 1, 3));
+  Check(mnBetweenEI(2, 1, 3));
+  Check(mnBetweenEI(3, 1, 3));
+
+  // mnBetweenEE
+  CheckFalse(mnBetweenEE(1, 1, 3));
+  Check(mnBetweenEE(2, 1, 3));
+  CheckFalse(mnBetweenEE(3, 1, 3));
+end;
+
+procedure TmnSystemTestCase.testChooseSeries;
+begin
+  // mnChooseVar, overload form 1
+  Check(mnChooseVar(1=1, Var_0, Var_1) = Var_0);
+  Check(mnChooseVar(1=2, Var_0, Var_1) = Var_1);
+
+  // mnChooseVar, overload form 2
+  Check(mnChooseVar(2, 1, Var_0, Var_1, Var_2) = Var_0);
+  Check(mnChooseVar(1, 1, Var_0, Var_1, Var_2) = Var_1);
+  Check(mnChooseVar(1, 2, Var_0, Var_1, Var_2) = Var_2);
+
+  // mnChooseVar, overload form 3
+  Check(mnChooseVar(2.1, 1.1, Var_0, Var_1, Var_2) = Var_0);
+  Check(mnChooseVar(1.1, 1.1, Var_0, Var_1, Var_2) = Var_1);
+  Check(mnChooseVar(1.1, 2.1, Var_0, Var_1, Var_2) = Var_2);
+
+  // mnChooseVar, overload form 4
+  Check(mnChooseVar('b', 'a', Var_0, Var_1, Var_2) = Var_0);
+  Check(mnChooseVar('a', 'a', Var_0, Var_1, Var_2) = Var_1);
+  Check(mnChooseVar('a', 'b', Var_0, Var_1, Var_2) = Var_2);
+
+  // mnChooseInt, overload form 1
+  CheckEquals(mnChooseInt(1=1, Int_0, Int_1), Int_0);
+  CheckEquals(mnChooseInt(1=2, Int_0, Int_1), Int_1);
+
+  // mnChooseInt, overload form 2
+  CheckEquals(mnChooseInt(2, 1, Int_0, Int_1, Int_2), Int_0);
+  CheckEquals(mnChooseInt(1, 1, Int_0, Int_1, Int_2), Int_1);
+  CheckEquals(mnChooseInt(1, 2, Int_0, Int_1, Int_2), Int_2);
+
+  // mnChooseInt, overload form 3
+  CheckEquals(mnChooseInt(2.1, 1.1, Int_0, Int_1, Int_2), Int_0);
+  CheckEquals(mnChooseInt(1.1, 1.1, Int_0, Int_1, Int_2), Int_1);
+  CheckEquals(mnChooseInt(1.1, 2.1, Int_0, Int_1, Int_2), Int_2);
+
+  // mnChooseInt, overload form 4
+  CheckEquals(mnChooseInt('b', 'a', Int_0, Int_1, Int_2), Int_0);
+  CheckEquals(mnChooseInt('a', 'a', Int_0, Int_1, Int_2), Int_1);
+  CheckEquals(mnChooseInt('a', 'b', Int_0, Int_1, Int_2), Int_2);
+
+  // mnChooseStr, mnChooseFloat, mnChooseDT, mnChooseCurr and mnChooseBool are ignored
+end;
+
+procedure TmnSystemTestCase.testChangeSeries;
+begin
+  // mnChangeInt
+  CheckEquals(mnChangeInt(1, roLT, 0, Int_0), 1);
+  CheckEquals(mnChangeInt(1, roGE, 0, Int_0), Int_0);
+
+  // mnChangeFloat
+  CheckEquals(mnChangeFloat(1.1, roLT, 0, Float_0), 1.1);
+  CheckEquals(mnChangeFloat(1.1, roGE, 0, Float_0), Float_0);
+
+  // mnChangeDT, mnChangeCurr and mnChangeStr are ignored
+end;
+
+procedure TmnSystemTestCase.testFloatIsInt;
+begin
+  Check(mnFloatIsInt(0));
+  Check(mnFloatIsInt(29));
+  Check(mnFloatIsInt(-123));
+  CheckFalse(mnFloatIsInt(123.45));
+  CheckFalse(mnFloatIsInt(0.000000000000001));
+end;
+
+procedure TmnSystemTestCase.testStrToOleVar;
+var
+  str: string;
+  i: Integer;
+  OleVar: OleVariant;
+begin
+  str := '';
+  for i := 0 to 255 do
+    str := str + Chr(i);
+
+  OleVar := mnStrToOleVar(str);
+  for i := 0 to 255 do
+    Check(OleVar[i] = i);
+end;
+
+procedure TmnSystemTestCase.testCompareVarSeries;
+var
+  VarA, VarB: Variant;
+begin
+  VarA := 1.0;
+  VarB := 1.0;
+  Check(VarA = VarB);
+  Check(mnCompareVarStrict(VarA, VarB));
+  Check(mnCompareVarLoose(VarA, VarB));
+
+  VarA := 1.0;
+  VarB := 1;
+  Check(VarA = VarB);
+  CheckFalse(mnCompareVarStrict(VarA, VarB));
+  Check(mnCompareVarLoose(VarA, VarB));
+
+  VarA := 1.0;
+  VarB := '1.0';
+  Check(VarA = VarB);
+  CheckFalse(mnCompareVarStrict(VarA, VarB));
+  CheckFalse(mnCompareVarLoose(VarA, VarB));
+
+  VarA := 1.0;
+  VarB := 2.0;
+  CheckFalse(VarA = VarB);
+  CheckFalse(mnCompareVarStrict(VarA, VarB));
+  CheckFalse(mnCompareVarLoose(VarA, VarB));
+
+  VarA := '';
+  VarB := Null;
+  CheckFalse(VarA = VarB);
+  CheckFalse(mnCompareVarStrict(VarA, VarB));
+  Check(mnCompareVarLoose(VarA, VarB));
+
+  VarA := 0;
+  VarB := Null;
+  CheckFalse(VarA = VarB);
+  CheckFalse(mnCompareVarStrict(VarA, VarB));
+  CheckFalse(mnCompareVarLoose(VarA, VarB));
+end;
+
+procedure TmnSystemTestCase.testVarToSeries;
+var
+  V: Variant;
+begin
+  // mnVarToStr
+  V := Null;
+  CheckEquals(mnVarToStr(V), '');
+  V := Str_0;
+  CheckEquals(mnVarToStr(V), Str_0);
+  V := Int_0;
+  CheckEquals(mnVarToStr(V), Str_Of_Int_0);
+  V := Float_0;
+  CheckEquals(mnVarToStr(V), Str_Of_Float_0);
+  V := DT_0;
+  CheckEquals(mnVarToStr(V), Str_Of_DT_0);
+  V := Curr_0;
+  CheckEquals(mnVarToStr(V), Str_Of_Curr_0);
+
+  // mnVarToInt
+  V := Null;
+  CheckEquals(mnVarToInt(V), 0);
+  V := Int_0;
+  CheckEquals(mnVarToInt(V), Int_0);
+  V := Str_Of_Int_0;
+  CheckEquals(mnVarToInt(V), Int_0);
+
+  // mnVarToFloat
+  V := Null;
+  CheckEquals(mnVarToFloat(V), 0);
+  V := Float_0;
+  CheckEquals(mnVarToFloat(V), Float_0);
+  V := Str_Of_Float_0;
+  CheckEquals(mnVarToFloat(V), Float_0);
+
+  // mnVarToDT
+  V := Null;
+  CheckEquals(mnVarToDT(V), 0);
+  V := DT_0;
+  CheckEquals(mnVarToDT(V), DT_0, mnParticle);
+  V := Str_Of_DT_0;
+  CheckEquals(mnVarToDT(V), DT_0, mnParticle);
+
+  // mnVarToCurr
+  V := Null;
+  CheckEquals(mnVarToCurr(V), 0);
+  V := Curr_0;
+  CheckEquals(mnVarToCurr(V), Curr_0);
+  V := Str_Of_Curr_0;
+  CheckEquals(mnVarToCurr(V), Curr_0);
+end;
+
+procedure TmnSystemTestCase.testToVarSeries;
+begin
+  // mnStrToVar
+  Check(mnStrToVar('') = Null);
+  Check(mnStrToVar(Str_0) = Str_0);
+
+  // mnIntToVar
+  Check(mnIntToVar(0) = Null);
+  Check(mnIntToVar(Int_0) = Int_0);
+
+  // mnFloatToVar
+  Check(mnFloatToVar(0) = Null);
+  Check(mnFloatToVar(Float_0) = Float_0);
+
+  // mnDTToVar
+  Check(mnDTToVar(0) = Null);
+  Check(mnDTToVar(DT_0) = DT_0);
+
+  // mnCurrToVar
+  Check(mnCurrToVar(0) = Null);
+  Check(mnCurrToVar(Curr_0) = Curr_0);
+end;
+
+procedure TmnSystemTestCase.testABStrToSeries;
+begin
+  // mnABStrToInt
+  CheckEquals(mnABStrToInt(''), 0);
+  CheckEquals(mnABStrToInt(Str_Of_Int_0), Int_0);
+
+  // mnABStrToFloat
+  CheckEquals(mnABStrToFloat(''), 0);
+  CheckEquals(mnABStrToFloat(Str_Of_Float_0), Float_0);
+
+  // mnABStrToDT
+  CheckEquals(mnABStrToDT(''), 0);
+  CheckEquals(mnABStrToDT(Str_Of_DT_0), DT_0, mnParticle);
+
+  // mnABStrToCurr
+  CheckEquals(mnABStrToCurr(''), 0);
+  CheckEquals(mnABStrToCurr(Str_Of_Curr_0), Curr_0);
+end;
+
+procedure TmnSystemTestCase.testABToStrSeries;
+begin
+  // mnABIntToStr
+  CheckEquals(mnABIntToStr(0), '');
+  CheckEquals(mnABIntToStr(Int_0), Str_Of_Int_0);
+
+  // mnABFloatToStr
+  CheckEquals(mnABFloatToStr(0), '');
+  CheckEquals(mnABFloatToStr(Float_0), Str_Of_Float_0);
+
+  // mnABDTToStr
+  CheckEquals(mnABDTToStr(0), '');
+  CheckEquals(mnABDTToStr(DT_0), Str_Of_DT_0);
+
+  // mnABCurrToStr
+  CheckEquals(mnABCurrToStr(0), '');
+  CheckEquals(mnABCurrToStr(Curr_0), Str_Of_Curr_0);
+end;
+
+procedure TmnSystemTestCase.testFloatCurrToStr;
+begin
+  // mnFloatToStr
+  CheckEquals(mnFloatToStr(1.1), '1.1');
+  CheckEquals(mnFloatToStr(1.1, 0), '1');
+  CheckEquals(mnFloatToStr(1.1, 3), '1.100');
+  CheckEquals(mnFloatToStr(1111.11111, 3), '1111.111');
+  CheckEquals(mnFloatToStr(8888.88888, 3), '8888.889');
+  CheckEquals(mnFloatToStr(-1.1, 0), '-1');
+  CheckEquals(mnFloatToStr(-1.1, 3), '-1.100');
+  CheckEquals(mnFloatToStr(-1111.11111, 3), '-1111.111');
+  CheckEquals(mnFloatToStr(-8888.88888, 3), '-8888.889');
+
+  CheckEquals(mnFloatToStr(1.1, 0, True), '+1');
+  CheckEquals(mnFloatToStr(-1.1, 0, True), '-1');
+
+  // mnCurrToStr
+  CheckEquals(mnCurrToStr(1.1), '1.1');
+  CheckEquals(mnCurrToStr(1.1, 0), '1');
+  CheckEquals(mnCurrToStr(1.1, 3), '1.100');
+  CheckEquals(mnCurrToStr(1111.11111, 3), '1111.111');
+  CheckEquals(mnCurrToStr(8888.88888, 3), '8888.889');
+  CheckEquals(mnCurrToStr(-1.1, 0), '-1');
+  CheckEquals(mnCurrToStr(-1.1, 3), '-1.100');
+  CheckEquals(mnCurrToStr(-1111.11111, 3), '-1111.111');
+  CheckEquals(mnCurrToStr(-8888.88888, 3), '-8888.889');
+
+  CheckEquals(mnCurrToStr(1.1, 0, True), '+1');
+  CheckEquals(mnCurrToStr(-1.1, 0, True), '-1');
+end;
+
+procedure TmnSystemTestCase.testToTSStrSeries;
+begin
+  // mnIntToTSStr
+  CheckEquals(mnIntToTSStr(0), '0');
+  CheckEquals(mnIntToTSStr(1), '1');
+  CheckEquals(mnIntToTSStr(11), '11');
+  CheckEquals(mnIntToTSStr(1111), '1,111');
+  CheckEquals(mnIntToTSStr(11111111), '11,111,111');
+  CheckEquals(mnIntToTSStr(-1), '-1');
+  CheckEquals(mnIntToTSStr(-11), '-11');
+  CheckEquals(mnIntToTSStr(-1111), '-1,111');
+  CheckEquals(mnIntToTSStr(-11111111), '-11,111,111');
+
+  CheckEquals(mnIntToTSStr(1111, True), '+1,111');
+  CheckEquals(mnIntToTSStr(-1111, True), '-1,111');
+
+  // mnFloatToTSStr
+  CheckEquals(mnFloatToTSStr(0), '0');
+  CheckEquals(mnFloatToTSStr(1), '1');
+  CheckEquals(mnFloatToTSStr(1111), '1,111');
+  CheckEquals(mnFloatToTSStr(-1), '-1');
+  CheckEquals(mnFloatToTSStr(-11111111), '-11,111,111');
+  CheckEquals(mnFloatToTSStr(1.1), '1.1');
+  CheckEquals(mnFloatToTSStr(1111.11111), '1,111.11111');
+  CheckEquals(mnFloatToTSStr(-1.1), '-1.1');
+  CheckEquals(mnFloatToTSStr(-1111.11111), '-1,111.11111');
+  CheckEquals(mnFloatToTSStr(1.1, 0), '1');
+  CheckEquals(mnFloatToTSStr(1.1, 3), '1.100');
+  CheckEquals(mnFloatToTSStr(1111.11111, 3), '1,111.111');
+  CheckEquals(mnFloatToTSStr(-1.1, 0), '-1');
+  CheckEquals(mnFloatToTSStr(-1.1, 3), '-1.100');
+  CheckEquals(mnFloatToTSStr(-1111.11111, 3), '-1,111.111');
+
+  CheckEquals(mnFloatToTSStr(1111.11111, 3, True), '+1,111.111');
+  CheckEquals(mnFloatToTSStr(-1111.11111, 3, True), '-1,111.111');
+
+  // mnCurrToTSStr
+  CheckEquals(mnCurrToTSStr(0), '0');
+  CheckEquals(mnCurrToTSStr(1), '1');
+  CheckEquals(mnCurrToTSStr(1111), '1,111');
+  CheckEquals(mnCurrToTSStr(-1), '-1');
+  CheckEquals(mnCurrToTSStr(-11111111), '-11,111,111');
+  CheckEquals(mnCurrToTSStr(1.1), '1.1');
+  CheckEquals(mnCurrToTSStr(1111.1111), '1,111.1111');
+  CheckEquals(mnCurrToTSStr(-1.1), '-1.1');
+  CheckEquals(mnCurrToTSStr(-1111.1111), '-1,111.1111');
+  CheckEquals(mnCurrToTSStr(1.1, 0), '1');
+  CheckEquals(mnCurrToTSStr(1.1, 3), '1.100');
+  CheckEquals(mnCurrToTSStr(1111.1111, 3), '1,111.111');
+  CheckEquals(mnCurrToTSStr(-1.1, 0), '-1');
+  CheckEquals(mnCurrToTSStr(-1.1, 3), '-1.100');
+  CheckEquals(mnCurrToTSStr(-1111.1111, 3), '-1,111.111');
+
+  CheckEquals(mnCurrToTSStr(1111.1111, 3, True), '+1,111.111');
+  CheckEquals(mnCurrToTSStr(-1111.1111, 3, True), '-1,111.111');
+end;
+
+procedure TmnSystemTestCase.testTSStrToSeries;
+begin
+  // mnTSStrToInt
+  CheckEquals(mnTSStrToInt('0'), 0);
+  CheckEquals(mnTSStrToInt('1'), 1);
+  CheckEquals(mnTSStrToInt('11'), 11);
+  CheckEquals(mnTSStrToInt('1,111'), 1111);
+  CheckEquals(mnTSStrToInt('11,111,111'), 11111111);
+  CheckEquals(mnTSStrToInt('-1'), -1);
+  CheckEquals(mnTSStrToInt('-11'), -11);
+  CheckEquals(mnTSStrToInt('-1,111'), -1111);
+  CheckEquals(mnTSStrToInt('-11,111,111'), -11111111);
+
+  // mnTSStrToFloat
+  CheckEquals(mnTSStrToFloat('0'), 0);
+  CheckEquals(mnTSStrToFloat('1'), 1);
+  CheckEquals(mnTSStrToFloat('1,111'), 1111);
+  CheckEquals(mnTSStrToFloat('-1'), -1);
+  CheckEquals(mnTSStrToFloat('-11,111,111'), -11111111);
+  CheckEquals(mnTSStrToFloat('1.1'), 1.1);
+  CheckEquals(mnTSStrToFloat('1,111.11111'), 1111.11111);
+  CheckEquals(mnTSStrToFloat('-1.1'), -1.1);
+  CheckEquals(mnTSStrToFloat('-11,111,111.11111'), -11111111.11111);
+
+  // mnTSStrToCurr
+  CheckEquals(mnTSStrToCurr('0'), 0);
+  CheckEquals(mnTSStrToCurr('1'), 1);
+  CheckEquals(mnTSStrToCurr('1,111'), 1111);
+  CheckEquals(mnTSStrToCurr('-1'), -1);
+  CheckEquals(mnTSStrToCurr('-11,111,111'), -11111111);
+  CheckEquals(mnTSStrToCurr('1.1'), 1.1, mnParticle);
+  CheckEquals(mnTSStrToCurr('1,111.1111'), 1111.1111, mnParticle);
+  CheckEquals(mnTSStrToCurr('-1.1'), -1.1, mnParticle);
+  CheckEquals(mnTSStrToCurr('-11,111,111.1111'), -11111111.1111, mnParticle);
+end;
+
+procedure TmnSystemTestCase.testToPercentStrSeries;
+begin
+  // mnFloatToPercentStr
+  CheckEquals(mnFloatToPercentStr(1), '100%');
+  CheckEquals(mnFloatToPercentStr(56.789), '5678.9%');
+  CheckEquals(mnFloatToPercentStr(0.000012), '0.0012%');
+  CheckEquals(mnFloatToPercentStr(56.789, 0), '5679%');
+  CheckEquals(mnFloatToPercentStr(56.789, 2), '5678.90%');
+  CheckEquals(mnFloatToPercentStr(0.000012, 2), '0.00%');
+  CheckEquals(mnFloatToPercentStr(-1), '-100%');
+  CheckEquals(mnFloatToPercentStr(-56.789), '-5678.9%');
+  CheckEquals(mnFloatToPercentStr(-0.000012), '-0.0012%');
+  CheckEquals(mnFloatToPercentStr(-56.789, 0), '-5679%');
+  CheckEquals(mnFloatToPercentStr(-56.789, 2), '-5678.90%');
+  CheckEquals(mnFloatToPercentStr(-0.000012, 2), '0.00%');
+
+  CheckEquals(mnFloatToPercentStr(0.000012, 2, True), '+0.00%');
+  CheckEquals(mnFloatToPercentStr(-0.000012, 2, True), '0.00%');
+
+  // mnCurrToPercentStr
+  CheckEquals(mnCurrToPercentStr(1), '100%');
+  CheckEquals(mnCurrToPercentStr(56.789), '5678.9%');
+  CheckEquals(mnCurrToPercentStr(0.0012), '0.12%');
+  CheckEquals(mnCurrToPercentStr(56.789, 0), '5679%');
+  CheckEquals(mnCurrToPercentStr(56.789, 2), '5678.90%');
+  CheckEquals(mnCurrToPercentStr(0.0012, 0), '0%');
+  CheckEquals(mnCurrToPercentStr(-1), '-100%');
+  CheckEquals(mnCurrToPercentStr(-56.789), '-5678.9%');
+  CheckEquals(mnCurrToPercentStr(-0.0012), '-0.12%');
+  CheckEquals(mnCurrToPercentStr(-56.789, 0), '-5679%');
+  CheckEquals(mnCurrToPercentStr(-56.789, 2), '-5678.90%');
+  CheckEquals(mnCurrToPercentStr(-0.0012, 0), '0%');
+
+  CheckEquals(mnCurrToPercentStr(0.0012, 0, True), '+0%');
+  CheckEquals(mnCurrToPercentStr(-0.0012, 0, True), '0%');
+end;
+
+procedure TmnSystemTestCase.testPercentStrToSeries;
+begin
+  // mnPercentStrToFloat
+  CheckEquals(mnPercentStrToFloat('100%'), 1);
+  CheckEquals(mnPercentStrToFloat('5,678.9%'), 56.789, mnParticle);
+  CheckEquals(mnPercentStrToFloat('0.0012%'), 0.000012, mnParticle);
+  CheckEquals(mnPercentStrToFloat('-100%'), -1);
+  CheckEquals(mnPercentStrToFloat('-5,678.9%'), -56.789, mnParticle);
+  CheckEquals(mnPercentStrToFloat('-0.0012%'), -0.000012, mnParticle);
+  CheckEquals(mnPercentStrToFloat('100 %'), 1);
+  try
+    mnPercentStrToFloat('100');
+    mnNeverGoesHere;
+  except
+    on E: Exception do CheckEquals(E.Message, Format(SWrongPercentStrTail, ['100']));
+  end;
+
+  // mnPercentStrToCurr
+  CheckEquals(mnPercentStrToCurr('100%'), 1);
+  CheckEquals(mnPercentStrToCurr('5,678.9%'), 56.789, mnParticle);
+  CheckEquals(mnPercentStrToCurr('0.0012%'), 0, mnParticle);
+  CheckEquals(mnPercentStrToCurr('-100%'), -1);
+  CheckEquals(mnPercentStrToCurr('-5,678.9%'), -56.789, mnParticle);
+  CheckEquals(mnPercentStrToCurr('-0.0012%'), 0, mnParticle);
+  CheckEquals(mnPercentStrToCurr('100 %'), 1);
+  try
+    mnPercentStrToCurr('100');
+    mnNeverGoesHere;
+  except
+    on E: Exception do CheckEquals(E.Message, Format(SWrongPercentStrTail, ['100']));
+  end;
+end;
+
+procedure TmnSystemTestCase.testLLStrToSeries;
+begin
+  // mnLLStrToInt
+  CheckEquals(mnLLStrToInt('32'), 32);
+  CheckEquals(mnLLStrToInt('32.5'), 32);
+  CheckEquals(mnLLStrToInt('32a'), 32);
+  CheckEquals(mnLLStrToInt('3a2'), 3);
+  try
+    mnLLStrToInt('-32');
+    mnNeverGoesHere;
+  except
+    on E: Exception do CheckEquals(E.Message, Format(SIllegalLLStrForInt, ['-32']));
+  end;
+
+  // mnLLStrToFloat
+  CheckEquals(mnLLStrToFloat('32'), 32);
+  CheckEquals(mnLLStrToFloat('32.5'), 32.5);
+  CheckEquals(mnLLStrToFloat('32.5a'), 32.5);
+  CheckEquals(mnLLStrToFloat('3a2.5'), 3);
+  CheckEquals(mnLLStrToFloat('32.5.3'), 32.5);
+  try
+    mnLLStrToFloat('-32');
+    mnNeverGoesHere;
+  except
+    on E: Exception do CheckEquals(E.Message, Format(SIllegalLLStrForFloat, ['-32']));
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolIntConvertors;
+begin
+  // mnBoolToInt
+  CheckEquals(mnBoolToInt(True), 1);
+  CheckEquals(mnBoolToInt(False), 0);
+
+  // mnIntToBool
+  CheckEquals(mnIntToBool(1), True);
+  CheckEquals(mnIntToBool(0), False);
+  CheckEquals(mnIntToBool(2), True);
+  CheckEquals(mnIntToBool(-1), True);
+end;
+
+procedure TmnSystemTestCase.testBoolToStr;
+begin
+  CheckEquals(mnBoolToStr(True), 'True');
+  CheckEquals(mnBoolToStr(False), 'False');
+end;
+
+procedure TmnSystemTestCase.testCharDigitIntConvertors;
+begin
+  // mnDigitIntToChar
+  CheckEquals(mnDigitIntToChar(0), '0');
+  CheckEquals(mnDigitIntToChar(9), '9');
+
+  // mnCharToDigitInt
+  CheckEquals(mnCharToDigitInt('0'), 0);
+  CheckEquals(mnCharToDigitInt('9'), 9);
+
+  // mnDigitIntToByte
+  CheckEquals(mnDigitIntToByte(0), Ord('0'));
+  CheckEquals(mnDigitIntToByte(9), Ord('9'));
+
+  // mnByteToDigitInt
+  CheckEquals(mnByteToDigitInt(Ord('0')), 0);
+  CheckEquals(mnByteToDigitInt(Ord('9')), 9);
+end;
+
+procedure TmnSystemTestCase.testCharHexIntConvertors;
+begin
+  // mnHexIntToChar
+  CheckEquals(mnHexIntToChar(0), '0');
+  CheckEquals(mnHexIntToChar(9), '9');
+  CheckEquals(mnHexIntToChar(10), 'A');
+  CheckEquals(mnHexIntToChar(15), 'F');
+  CheckEquals(mnHexIntToChar(16), 'G');
+
+  CheckEquals(mnHexIntToChar(10, False), 'a');
+  CheckEquals(mnHexIntToChar(15, False), 'f');
+  CheckEquals(mnHexIntToChar(16, False), 'g');
+
+  // mnCharToHexInt
+  CheckEquals(mnCharToHexInt('0'), 0);
+  CheckEquals(mnCharToHexInt('9'), 9);
+  CheckEquals(mnCharToHexInt('A'), 10);
+  CheckEquals(mnCharToHexInt('F'), 15);
+  CheckEquals(mnCharToHexInt('G'), 0);
+
+  CheckEquals(mnCharToHexInt('a'), 10);
+  CheckEquals(mnCharToHexInt('f'), 15);
+  CheckEquals(mnCharToHexInt('g'), 0);
+
+  // mnHexIntToByte
+  CheckEquals(mnHexIntToByte(0), Ord('0'));
+  CheckEquals(mnHexIntToByte(9), Ord('9'));
+  CheckEquals(mnHexIntToByte(10), Ord('A'));
+  CheckEquals(mnHexIntToByte(15), Ord('F'));
+  CheckEquals(mnHexIntToByte(16), Ord('G'));
+
+  CheckEquals(mnHexIntToByte(10, False), Ord('a'));
+  CheckEquals(mnHexIntToByte(15, False), Ord('f'));
+  CheckEquals(mnHexIntToByte(16, False), Ord('g'));
+
+  // mnByteToHexInt
+  CheckEquals(mnByteToHexInt(Ord('0')), 0);
+  CheckEquals(mnByteToHexInt(Ord('9')), 9);
+  CheckEquals(mnByteToHexInt(Ord('A')), 10);
+  CheckEquals(mnByteToHexInt(Ord('F')), 15);
+  CheckEquals(mnByteToHexInt(Ord('G')), 0);
+
+  CheckEquals(mnByteToHexInt(Ord('a')), 10);
+  CheckEquals(mnByteToHexInt(Ord('f')), 15);
+  CheckEquals(mnByteToHexInt(Ord('g')), 0);
+end;
+
+procedure TmnSystemTestCase.testCharDigletIntConvertors;
+begin
+  // mnDigletIntToChar
+  CheckEquals(mnDigletIntToChar(0), '0');
+  CheckEquals(mnDigletIntToChar(9), '9');
+  CheckEquals(mnDigletIntToChar(10), 'A');
+  CheckEquals(mnDigletIntToChar(35), 'Z');
+
+  CheckEquals(mnDigletIntToChar(10, False), 'a');
+  CheckEquals(mnDigletIntToChar(35, False), 'z');
+
+  // mnCharToDigletInt
+  CheckEquals(mnCharToDigletInt('0'), 0);
+  CheckEquals(mnCharToDigletInt('9'), 9);
+  CheckEquals(mnCharToDigletInt('A'), 10);
+  CheckEquals(mnCharToDigletInt('Z'), 35);
+
+  CheckEquals(mnCharToDigletInt('a'), 10);
+  CheckEquals(mnCharToDigletInt('z'), 35);
+
+  // mnDigletIntToByte
+  CheckEquals(mnDigletIntToByte(0), Ord('0'));
+  CheckEquals(mnDigletIntToByte(9), Ord('9'));
+  CheckEquals(mnDigletIntToByte(10), Ord('A'));
+  CheckEquals(mnDigletIntToByte(35), Ord('Z'));
+
+  CheckEquals(mnDigletIntToByte(10, False), Ord('a'));
+  CheckEquals(mnDigletIntToByte(35, False), Ord('z'));
+
+  // mnByteToDigletInt
+  CheckEquals(mnByteToDigletInt(Ord('0')), 0);
+  CheckEquals(mnByteToDigletInt(Ord('9')), 9);
+  CheckEquals(mnByteToDigletInt(Ord('A')), 10);
+  CheckEquals(mnByteToDigletInt(Ord('Z')), 35);
+
+  CheckEquals(mnByteToDigletInt(Ord('a')), 10);
+  CheckEquals(mnByteToDigletInt(Ord('z')), 35);
+end;
+
+procedure TmnSystemTestCase.testUpperLowerCase;
+begin
+  // mnUpperCase
+  CheckEquals(mnUpperCase('a'), 'A');
+  CheckEquals(mnUpperCase('z'), 'Z');
+  CheckEquals(mnUpperCase('A'), 'A');
+  CheckEquals(mnUpperCase(';'), ';');
+
+  // mnLowerCase
+  CheckEquals(mnLowerCase('A'), 'a');
+  CheckEquals(mnLowerCase('Z'), 'z');
+  CheckEquals(mnLowerCase('a'), 'a');
+  CheckEquals(mnLowerCase(';'), ';');
+end;
+
+procedure TmnSystemTestCase.testCheckStrConstraint;
+begin
+  Check(mnCheckStrConstraint('', scAny));
+  Check(mnCheckStrConstraint(Str_0, scAny));
+
+  CheckFalse(mnCheckStrConstraint('', scNotEmpty));
+  Check(mnCheckStrConstraint('   ', scNotEmpty));
+  Check(mnCheckStrConstraint('　　　', scNotEmpty));
+  Check(mnCheckStrConstraint(Str_0, scNotEmpty));
+
+  CheckFalse(mnCheckStrConstraint('', scNotEmptyAbs));
+  CheckFalse(mnCheckStrConstraint('   ', scNotEmptyAbs));
+  Check(mnCheckStrConstraint('　　　', scNotEmptyAbs));
+  Check(mnCheckStrConstraint(Str_0, scNotEmptyAbs));
+
+  Check(mnCheckStrConstraint(Str_Of_Int_0, scIsInt));
+  CheckFalse(mnCheckStrConstraint(Str_0, scIsInt));
+
+  Check(mnCheckStrConstraint(Str_Of_Float_0, scIsFloat));
+  CheckFalse(mnCheckStrConstraint(Str_0, scIsFloat));
+
+  Check(mnCheckStrConstraint(Str_Of_DT_0, scIsDT));
+  CheckFalse(mnCheckStrConstraint(Str_0, scIsDT));
+
+  Check(mnCheckStrConstraint(Str_Of_Curr_0, scIsCurr));
+  CheckFalse(mnCheckStrConstraint(Str_0, scIsCurr));
+
+  Check(mnCheckStrConstraint('1.0', scNE0));
+  CheckFalse(mnCheckStrConstraint('0.0', scNE0));
+  Check(mnCheckStrConstraint('-1.0', scNE0));
+
+  CheckFalse(mnCheckStrConstraint('1.0', scLT0));
+  CheckFalse(mnCheckStrConstraint('0.0', scLT0));
+  Check(mnCheckStrConstraint('-1.0', scLT0));
+
+  CheckFalse(mnCheckStrConstraint('1.0', scLE0));
+  Check(mnCheckStrConstraint('0.0', scLE0));
+  Check(mnCheckStrConstraint('-1.0', scLE0));
+
+  Check(mnCheckStrConstraint('1.0', scGT0));
+  CheckFalse(mnCheckStrConstraint('0.0', scGT0));
+  CheckFalse(mnCheckStrConstraint('-1.0', scGT0));
+
+  Check(mnCheckStrConstraint('1.0', scGE0));
+  Check(mnCheckStrConstraint('0.0', scGE0));
+  CheckFalse(mnCheckStrConstraint('-1.0', scGE0));
+end;
+
+procedure TmnSystemTestCase.testPointerSeries;
+var
+  P: Pointer;
+begin
+  // VarPointer series: New, Read, Write, Free
+  P := mnNewVarPointer(Var_0);
+  Check(P <> nil);
+  Check(mnCompareVarStrict(mnReadVarPointer(P), Var_0));
+  mnWriteVarPointer(P, Var_1);
+  Check(mnCompareVarStrict(mnReadVarPointer(P), Var_1));
+  mnFreeAndNilPointer(P, ptVariant);
+  Check(P = nil);
+
+  P := mnNewVarPointer(Var_2);
+  Check(P <> nil);
+  Check(mnCompareVarStrict(mnReadVarPointer(P), Var_2));
+  mnWriteVarPointer(P, Var_3);
+  Check(mnCompareVarStrict(mnReadVarPointer(P), Var_3));
+  mnFreePointer(P, ptVariant);
+  Check(P <> nil);
+
+  // StrPointer series: New, Read, Write, Free
+  P := mnNewStrPointer(Str_0);
+  Check(P <> nil);
+  CheckEquals(mnReadStrPointer(P), Str_0);
+  mnWriteStrPointer(P, Str_1);
+  CheckEquals(mnReadStrPointer(P), Str_1);
+  mnFreePointer(P, ptString);
+  Check(P <> nil);
+
+  // IntPointer series: New, Read, Write, Free
+  P := mnNewIntPointer(Int_0);
+  Check(P <> nil);
+  CheckEquals(mnReadIntPointer(P), Int_0);
+  mnWriteIntPointer(P, Int_1);
+  CheckEquals(mnReadIntPointer(P), Int_1);
+  mnFreeAndNilPointer(P);
+  Check(P = nil);
+
+  // FloatPointer series: New, Read, Write, Free
+  P := mnNewFloatPointer(Float_0);
+  Check(P <> nil);
+  CheckEquals(mnReadFloatPointer(P), Float_0);
+  mnWriteFloatPointer(P, Float_1);
+  CheckEquals(mnReadFloatPointer(P), Float_1);
+  mnFreePointer(P);
+  Check(P <> nil);
+
+  // DTPointer series: New, Read, Write, Free
+  P := mnNewDTPointer(DT_0);
+  Check(P <> nil);
+  CheckEquals(mnReadDTPointer(P), DT_0);
+  mnWriteDTPointer(P, DT_1);
+  CheckEquals(mnReadDTPointer(P), DT_1);
+  mnFreeAndNilPointer(P);
+  Check(P = nil);
+
+  // CurrPointer series: New, Read, Write, Free
+  P := mnNewCurrPointer(Curr_0);
+  Check(P <> nil);
+  CheckEquals(mnReadCurrPointer(P), Curr_0);
+  mnWriteCurrPointer(P, Curr_1);
+  CheckEquals(mnReadCurrPointer(P), Curr_1);
+  mnFreeAndNilPointer(P);
+  Check(P = nil);
+
+  // BoolPointer series: New, Read, Write, Free
+  P := mnNewBoolPointer(Bool_0);
+  Check(P <> nil);
+  CheckEquals(mnReadBoolPointer(P), Bool_0);
+  mnWriteBoolPointer(P, Bool_1);
+  CheckEquals(mnReadBoolPointer(P), Bool_1);
+  mnFreeAndNilPointer(P);
+  Check(P = nil);
+end;
+
+procedure TmnSystemTestCase.testFreeObjects;
+var
+  strs: mnTStrList;
+  TreeView: TTreeView;
+  Form: TForm;
+begin
+  // overload form 1
+  strs := mnTStrList.Create;
+  try
+    strs.AddObject('1', mnNewIntPointer(Int_0));
+    strs.Add('2');
+    Check(strs.Objects[0] <> nil);
+    Check(strs.Objects[1] = nil);
+    mnFreeObjects(strs);
+    Check(strs.Objects[0] = nil);
+    Check(strs.Objects[1] = nil);
+    CheckEquals(strs.Count, 2);
+  finally
+    strs.Free;
+  end;
+
+  // overload form 2
+  Form := TForm.Create(nil);
+  TreeView := TTreeView.Create(Form);
+  try
+    TreeView.Parent := Form;
+    TreeView.Items.AddObject(nil, '1', mnNewIntPointer(Int_0));
+    TreeView.Items.Add(nil, '2');
+    Check(TreeView.Items[0].Data <> nil);
+    Check(TreeView.Items[1].Data = nil);
+    mnFreeObjects(TreeView.Items);
+    Check(TreeView.Items[0].Data = nil);
+    Check(TreeView.Items[1].Data = nil);
+    CheckEquals(TreeView.Items.Count, 2);
+  finally
+    TreeView.Free;
+    Form.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testClearStrings;
+var
+  strs: mnTStrList;
+begin
+  strs := mnTStrList.Create;
+  try
+    strs.AddObject('1', mnNewIntPointer(Int_0));
+    strs.Add('2');
+    Check(strs.Objects[0] <> nil);
+    Check(strs.Objects[1] = nil);
+    mnClearStrings(strs);
+    CheckEquals(strs.Count, 0);
+  finally
+    strs.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testClearTreeNodes;
+var
+  TreeView: TTreeView;
+  Form: TForm;
+begin
+  Form := TForm.Create(nil);
+  TreeView := TTreeView.Create(Form);
+  try
+    TreeView.Parent := Form;
+    TreeView.Items.AddObject(nil, '1', mnNewIntPointer(Int_0));
+    TreeView.Items.Add(nil, '2');
+    Check(TreeView.Items[0].Data <> nil);
+    Check(TreeView.Items[1].Data = nil);
+    mnClearTreeNodes(TreeView.Items);
+    CheckEquals(TreeView.Items.Count, 0);
+  finally
+    TreeView.Free;
+    Form.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testTreeNodesToStrings;
+var
+  TreeView: TTreeView;
+  Form: TForm;
+  strs: mnTStrList;
+begin
+  Form := TForm.Create(nil);
+  TreeView := TTreeView.Create(Form);
+  strs := mnTStrList.Create;
+  try
+    TreeView.Parent := Form;
+    TreeView.Items.AddObject(nil, '1', mnNewIntPointer(Int_0));
+    TreeView.Items.Add(nil, '2');
+    TreeView.Items.AddChildObject(TreeView.Items[0], '11', mnNewCurrPointer(Curr_0));
+    TreeView.Items.AddChild(TreeView.Items[0], '12');
+
+    mnTreeNodesToStrings(TreeView.Items, strs);
+    CheckEquals(strs.Count, 4);
+    CheckEquals(strs[0], '1');
+    CheckEquals(strs[1], ' 11');
+    CheckEquals(strs[2], ' 12');
+    CheckEquals(strs[3], '2');
+    Check(strs.Objects[0] <> nil);
+    Check(strs.Objects[1] <> nil);
+    Check(strs.Objects[2] = nil);
+    Check(strs.Objects[3] = nil);
+    CheckEquals(mnReadIntPointer(strs.Objects[0]), Int_0);
+    CheckEquals(mnReadCurrPointer(strs.Objects[1]), Curr_0);
+
+    mnClearStrings(strs);
+  finally
+    strs.Free;
+    TreeView.Free;
+    Form.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testTreeNodeFullText;
+var
+  TreeView: TTreeView;
+  Form: TForm;
+begin
+  Form := TForm.Create(nil);
+  TreeView := TTreeView.Create(Form);
+  try
+    TreeView.Parent := Form;
+    TreeView.Items.AddObject(nil, '1', mnNewIntPointer(Int_0));
+    TreeView.Items.Add(nil, '2');
+    TreeView.Items.AddChildObject(TreeView.Items[0], '11', mnNewCurrPointer(Curr_0));
+    TreeView.Items.AddChild(TreeView.Items[0], '12');
+
+    CheckEquals(mnTreeNodeFullText(TreeView.Items[0]), '1');
+    CheckEquals(mnTreeNodeFullText(TreeView.Items[1]), '1->11');
+    CheckEquals(mnTreeNodeFullText(TreeView.Items[2]), '1->12');
+    CheckEquals(mnTreeNodeFullText(TreeView.Items[3]), '2');
+
+    mnClearTreeNodes(TreeView.Items);
+  finally
+    TreeView.Free;
+    Form.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testArrayToStrings;
+var
+  Strs: TStrings;
+  StaArr: array [4..6] of string;
+begin
+  Strs := TStringList.Create;
+  try
+    mnArrayToStrings([Str_0, Str_1, Str_2], Strs);
+    CheckEquals(Strs.Count, 3);
+    Check(Strs[0] = Str_0);
+    Check(Strs[1] = Str_1);
+    Check(Strs[2] = Str_2);
+
+    StaArr[4] := Str_0;
+    StaArr[5] := Str_1;
+    StaArr[6] := Str_2;
+    mnArrayToStrings(StaArr, Strs);
+    Check(Strs[0] = Str_0);
+    Check(Strs[1] = Str_1);
+    Check(Strs[2] = Str_2);
+    Check(Strs[3] = Str_0);
+    Check(Strs[4] = Str_1);
+    Check(Strs[5] = Str_2);
+  finally
+    Strs.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCounterSeries;
+begin
+  mnInitCounter(2);
+  CheckEquals(mnGetCounter, 2);
+  mnAddCounter;
+  CheckEquals(mnGetCounter, 3);
+  mnAddCounter(5);
+  CheckEquals(mnGetCounter, 8);
+end;
+
+procedure TmnSystemTestCase.testCircleSeries;
+begin
+  mnInitCircle(1, 5, 3);            // Pos -> 3
+  CheckEquals(mnGetCirclePos, 3);
+  Check(not mnGoCircle);            // Pos -> 4
+  CheckEquals(mnGetCirclePos, 4);
+  Check(not mnGoCircle);            // Pos -> 5
+  CheckEquals(mnGetCirclePos, 5);
+  Check(mnGoCircle);                // Pos -> 1
+  CheckEquals(mnGetCirclePos, 1);
+  Check(not mnGoCircle);            // Pos -> 2
+  CheckEquals(mnGetCirclePos, 2);
+  Check(not mnGoCircle);            // Pos -> 3
+  CheckEquals(mnGetCirclePos, 3);
+  Check(not mnGoCircle);            // Pos -> 4
+  CheckEquals(mnGetCirclePos, 4);
+  Check(not mnGoCircle);            // Pos -> 5
+  CheckEquals(mnGetCirclePos, 5);
+  Check(mnGoCircle);                // Pos -> 1
+  CheckEquals(mnGetCirclePos, 1);
+
+  mnInitCircle(11, 15, 13);         // Pos -> 13
+  CheckEquals(mnGetCirclePos, 13);
+  Check(not mnGoCircle(2));         // Pos -> 15
+  CheckEquals(mnGetCirclePos, 15);
+  Check(mnGoCircle(10));            // Pos -> 15
+  CheckEquals(mnGetCirclePos, 15);
+  Check(mnGoCircle(-5));            // Pos -> 15
+  CheckEquals(mnGetCirclePos, 15);
+  Check(mnGoCircle(1));             // Pos -> 11
+  CheckEquals(mnGetCirclePos, 11);
+end;
+
+procedure TmnSystemTestCase.testCircle;
+begin
+  CheckEquals(mnCircle(1, 5, 3, 1), 4);
+  CheckEquals(mnCircle(1, 5, 3, 2), 5);
+  CheckEquals(mnCircle(1, 5, 3, 3), 1);
+  CheckEquals(mnCircle(1, 5, 3, 4), 2);
+
+  CheckEquals(mnCircle(11, 15, 13, 2), 15);
+  CheckEquals(mnCircle(11, 15, 13, 12), 15);
+  CheckEquals(mnCircle(11, 15, 13, -3), 15);
+  CheckEquals(mnCircle(11, 15, 13, 3), 11);
+end;
+
+procedure TmnSystemTestCase.testNewGUID;
+var
+  GUID: string;
+  i: Integer;
+begin
+  GUID := mnNewGUID;
+  Check(Length(GUID) = 38);
+  Check(GUID[1] = '{');
+  Check(GUID[38] = '}');
+  for i := 2 to 37 do
+  begin
+    if (i = 10) or (i = 15) or (i = 20) or (i = 25) then
+      Check(GUID[i] = '-')
+    else
+      Check(mnIsHex(GUID[i]));
+  end;
+end;
+
+var
+  PTest: Pointer = Pointer(2);
+
+type
+  TExecMethodByName = class
+  published
+    function Seven: Integer;
+    function AddByOne(Value: Integer): Integer;
+    function GetPointer: Pointer;
+    procedure ChangePointer(NewPTest: Pointer);
+  end;
+
+{ TExecMethodByName }
+
+function TExecMethodByName.Seven: Integer;
+begin
+  Result := 7;
+end;
+
+function TExecMethodByName.AddByOne(Value: Integer): Integer;
+begin
+  Result := Value + 1;
+end;
+
+function TExecMethodByName.GetPointer: Pointer;
+begin
+  Result := PTest;
+end;
+
+procedure TExecMethodByName.ChangePointer(NewPTest: Pointer);
+begin
+  PTest := NewPTest;
+end;
+
+procedure TmnSystemTestCase.testHasMethodByName;
+var
+  EMBN: TExecMethodByName;
+begin
+  EMBN := TExecMethodByName.Create;
+  try
+    Check(mnHasMethodByName(EMBN, 'Seven'));
+    Check(mnHasMethodByName(EMBN, 'AddByOne'));
+    Check(mnHasMethodByName(EMBN, 'GetPointer'));
+    Check(mnHasMethodByName(EMBN, 'ChangePointer'));
+    Check(mnHasMethodByName(EMBN, 'GetPointer'));
+
+    CheckFalse(mnHasMethodByName(EMBN, 'FakeMember'));
+  finally
+    EMBN.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testExecMethodByName;
+var
+  EMBN: TExecMethodByName;
+begin
+  EMBN := TExecMethodByName.Create;
+  try
+    Check(mnExecMethodByName(EMBN, 'Seven', []) = 7);
+    Check(mnExecMethodByName(EMBN, 'AddByOne', [4]) = 5);
+    Check(mnExecMethodByName(EMBN, 'GetPointer', []) = DWORD(PTest));
+    mnExecMethodByName(EMBN, 'ChangePointer', [Int_0]);
+    Check(mnExecMethodByName(EMBN, 'GetPointer', []) = DWORD(Int_0));
+
+    try
+      mnExecMethodByName(EMBN, 'FakeMember', []);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(SMethodNotFound, ['FakeMember', 'TExecMethodByName']));
+    end;
+  finally
+    EMBN.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStreamTurbo_PosAndSizeSeries;
+var
+  FileStream: TFileStream;
+  StreamTurbo: mnTStreamTurbo;
+begin
+  FileStream := TFileStream.Create(mnAppPathSub('dunit.ini'), fmOpenRead or fmShareDenyWrite);
+  StreamTurbo := mnTStreamTurbo.Create(FileStream);
+  try
+    StreamTurbo.Seek(0, soEnd);
+    Check(StreamTurbo.IsEnd);
+    StreamTurbo.Reset;
+    Check(StreamTurbo.Tell = 0);
+    Check(StreamTurbo.Skip(10) = 10);
+    Check(StreamTurbo.Tell = 10);
+    Check(StreamTurbo.Seek(30) = 30);
+    Check(StreamTurbo.Tell = 30);
+    Check(StreamTurbo.Seek(40, soCurrent) = 70);
+    Check(StreamTurbo.Tell = 70);
+    CheckEquals(StreamTurbo.Seek(-50, soEnd), StreamTurbo.GetSize - 50);
+    Check(StreamTurbo.Tell = StreamTurbo.GetSize - 50);
+    Check(StreamTurbo.GetLeavingSize = 50);
+  finally
+    StreamTurbo.Free;
+    FileStream.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStreamTurbo_BookmarkSeries;
+var
+  FileStream: TFileStream;
+  StreamTurbo: mnTStreamTurbo;
+begin
+  FileStream := TFileStream.Create(mnAppPathSub('dunit.ini'), fmOpenRead or fmShareDenyWrite);
+  StreamTurbo := mnTStreamTurbo.Create(FileStream);
+  try
+    StreamTurbo.Seek(30);
+    StreamTurbo.PutBookmark(Int_0);
+    Check(StreamTurbo.GetBookmark(Int_0) = 30);
+    StreamTurbo.Seek(40, soCurrent);
+    StreamTurbo.PutBookmark(Int_0);
+    Check(StreamTurbo.GetBookmark(Int_0) = 70);
+    StreamTurbo.Seek(50, soCurrent);
+    Check(StreamTurbo.Tell = 120);
+    Check(StreamTurbo.GotoBookmark(Int_0));
+    Check(StreamTurbo.Tell = 70);
+    CheckFalse(StreamTurbo.GotoBookmark(Int_1));
+  finally
+    StreamTurbo.Free;
+    FileStream.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStreamTurbo_ReadWriteSeries;
+const
+  Int8s:       array [1..5] of Shortint   = (0, $40,       High(Shortint), Low(Shortint), -1);
+  Int16s:      array [1..5] of Smallint   = (0, $80,       High(Smallint), Low(Smallint), -1);
+  Int32s:      array [1..5] of Longint    = (0, $8000,     High(Longint),  Low(Longint),  -1);
+  Int64s:      array [1..5] of Int64      = (0, $80000000, High(Int64),    Low(Int64),    -1);
+  UInt8s:      array [1..4] of Byte       = (0, $80,       High(Byte),     Low(Byte));
+  UInt16s:     array [1..4] of Word       = (0, $FF,       High(Word),     Low(Word));
+  UInt32s:     array [1..4] of Longword   = (0, $FFFF,     High(Longword), Low(Longword));
+  Singles:     array [1..5] of Single     = (0, 123.45,    MaxSingle,      MinSingle,     -123.45);
+  Doubles:     array [1..5] of Double     = (0, 123.45,    MaxDouble,      MinDouble,     -123.45);
+  Extendeds:   array [1..5] of Extended   = (0, 123.45,    MaxExtended,    MinExtended,   -123.45);
+  Currencys:   array [1..5] of Currency   = (0, 123.45,    922337203685477.5807, -922337203685477.5807, -123.45);
+  DateTimes:   array [1..5] of TDateTime  = (0, 123.45,    MaxDouble,      MinDouble,     -123.45);
+  Booleans:    array [1..2] of Boolean    = (False, True);
+  Strings:     array [1..4] of string     = ('qiugc', '', 'milanqiu', '米兰');
+  WideStrings: array [1..4] of WideString = ('qiugc', '', 'æəŋɔ', '米兰');
+var
+  FileStream: TFileStream;
+  StringStream: TStringStream;
+  StreamTurbo: mnTStreamTurbo;
+  Buffer: Pointer;
+  LittleEndian: Boolean;
+  i: Integer;
+  S: string;
+  Index: Integer;
+
+  procedure CheckBytes(const Bytes: array of Byte);
+  var
+    B: Byte;
+  begin
+    for B in Bytes do
+    begin
+      Check(Ord(S[Index]) = B);
+      Inc(Index);
+    end;
+  end;
+
+  procedure CheckChars(const Chars: array of Char);
+  var
+    C: Char;
+  begin
+    for C in Chars do
+    begin
+      Check(S[Index] = C);
+      Inc(Index);
+    end;
+  end;
+
+begin
+  // write stream by all styles
+  FileStream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('StreamTurbo.bin'), fmCreate);
+  StreamTurbo := mnTStreamTurbo.Create(FileStream);
+  Buffer := AllocMem(256);
+  for i := 0 to 255 do (PByte(Integer(Buffer)+i))^ := i;
+  try
+    StreamTurbo.WriteBuffer(Buffer^, 256);
+    for LittleEndian := False to True do
+    begin
+      StreamTurbo.LittleEndian := LittleEndian;
+      for i := Low(Int8s)   to High(Int8s)   do StreamTurbo.WriteInt8(Int8s[i]);
+      for i := Low(Int16s)  to High(Int16s)  do StreamTurbo.WriteInt16(Int16s[i]);
+      for i := Low(Int32s)  to High(Int32s)  do StreamTurbo.WriteInt32(Int32s[i]);
+      for i := Low(Int64s)  to High(Int64s)  do StreamTurbo.WriteInt64(Int64s[i]);
+      for i := Low(UInt8s)  to High(UInt8s)  do StreamTurbo.WriteUInt8(UInt8s[i]);
+      for i := Low(UInt16s) to High(UInt16s) do StreamTurbo.WriteUInt16(UInt16s[i]);
+      for i := Low(UInt32s) to High(UInt32s) do StreamTurbo.WriteUInt32(UInt32s[i]);
+    end;
+    for i := Low(Singles)     to High(Singles)     do StreamTurbo.WriteSingle(Singles[i]);
+    for i := Low(Doubles)     to High(Doubles)     do StreamTurbo.WriteDouble(Doubles[i]);
+    for i := Low(Extendeds)   to High(Extendeds)   do StreamTurbo.WriteExtended(Extendeds[i]);
+    for i := Low(Currencys)   to High(Currencys)   do StreamTurbo.WriteCurrency(Currencys[i]);
+    for i := Low(DateTimes)   to High(DateTimes)   do StreamTurbo.WriteDateTime(DateTimes[i]);
+    for i := Low(Booleans)    to High(Booleans)    do StreamTurbo.WriteBoolean(Booleans[i]);
+    for i := Low(Strings)     to High(Strings)     do StreamTurbo.WriteShortString(Strings[i]);
+    for i := Low(Strings)     to High(Strings)     do StreamTurbo.WriteSmallString(Strings[i]);
+    for i := Low(Strings)     to High(Strings)     do StreamTurbo.WriteString(Strings[i]);
+    for i := Low(WideStrings) to High(WideStrings) do StreamTurbo.WriteWideString(WideStrings[i]);
+    for i := Low(Strings)     to High(Strings)     do StreamTurbo.WriteText(Strings[i]);
+    for i := Low(WideStrings) to High(WideStrings) do StreamTurbo.WriteWideText(WideStrings[i]);
+  finally
+    FreeMem(Buffer);
+    StreamTurbo.Free;
+    FileStream.Free;
+  end;
+
+  // read stream by all styles
+  StringStream := TStringStream.Create(mnLoadStrFromFile(mnTProjectConvention.GetTestTempPathSub('StreamTurbo.bin')));
+  StreamTurbo := mnTStreamTurbo.Create(StringStream);
+  Buffer := AllocMem(256);
+  try
+    StreamTurbo.ReadBuffer(Buffer^, 256);
+    for i := 0 to 255 do Check((PByte(Integer(Buffer)+i))^ = i);
+    for LittleEndian := False to True do
+    begin
+      StreamTurbo.LittleEndian := LittleEndian;
+      for i := Low(Int8s)   to High(Int8s)   do Check(StreamTurbo.ReadInt8   = Int8s[i]);
+      for i := Low(Int16s)  to High(Int16s)  do Check(StreamTurbo.ReadInt16  = Int16s[i]);
+      for i := Low(Int32s)  to High(Int32s)  do Check(StreamTurbo.ReadInt32  = Int32s[i]);
+      for i := Low(Int64s)  to High(Int64s)  do Check(StreamTurbo.ReadInt64  = Int64s[i]);
+      for i := Low(UInt8s)  to High(UInt8s)  do Check(StreamTurbo.ReadUInt8  = UInt8s[i]);
+      for i := Low(UInt16s) to High(UInt16s) do Check(StreamTurbo.ReadUInt16 = UInt16s[i]);
+      for i := Low(UInt32s) to High(UInt32s) do Check(StreamTurbo.ReadUInt32 = UInt32s[i]);
+    end;
+    for i := Low(Singles)     to High(Singles)     do Check(StreamTurbo.ReadSingle      = Singles[i]);
+    for i := Low(Doubles)     to High(Doubles)     do Check(StreamTurbo.ReadDouble      = Doubles[i]);
+    for i := Low(Extendeds)   to High(Extendeds)   do Check(StreamTurbo.ReadExtended    = Extendeds[i]);
+    for i := Low(Currencys)   to High(Currencys)   do Check(StreamTurbo.ReadCurrency    = Currencys[i]);
+    for i := Low(DateTimes)   to High(DateTimes)   do Check(StreamTurbo.ReadDateTime    = DateTimes[i]);
+    for i := Low(Booleans)    to High(Booleans)    do Check(StreamTurbo.ReadBoolean     = Booleans[i]);
+    for i := Low(Strings)     to High(Strings)     do Check(StreamTurbo.ReadShortString = Strings[i]);
+    for i := Low(Strings)     to High(Strings)     do Check(StreamTurbo.ReadSmallString = Strings[i]);
+    for i := Low(Strings)     to High(Strings)     do Check(StreamTurbo.ReadString      = Strings[i]);
+    for i := Low(WideStrings) to High(WideStrings) do Check(StreamTurbo.ReadWideString  = WideStrings[i]);
+    Check(StreamTurbo.ReadText = mnCombine(Strings, '') +
+                                 mnExpressWideString(WideStrings[1]) +
+                                 mnExpressWideString(WideStrings[2]) +
+                                 mnExpressWideString(WideStrings[3]) +
+                                 mnExpressWideString(WideStrings[4]));
+    StreamTurbo.Skip(0 - Length(WideStrings[1] + WideStrings[2] + WideStrings[3] + WideStrings[4]) * SizeOf(WideChar));
+    Check(StreamTurbo.ReadWideText = WideStrings[1] + WideStrings[2] + WideStrings[3] + WideStrings[4]);
+
+    Check(StreamTurbo.IsEnd);
+  finally
+    FreeMem(Buffer);
+    StreamTurbo.Free;
+    StringStream.Free;
+  end;
+
+  // check stream content
+  S := mnLoadStrFromFile(mnTProjectConvention.GetTestTempPathSub('StreamTurbo.bin'));
+  Index := 1;
+
+  // Buffer
+  for i := 0 to 255 do CheckBytes([i]);
+
+  // big-endian: Int8s
+  CheckBytes([$00]); // big-endian: 0
+  CheckBytes([$40]); // big-endian: $40
+  CheckBytes([$7F]); // big-endian: High(Shortint)
+  CheckBytes([$80]); // big-endian: Low(Shortint)
+  CheckBytes([$FF]); // big-endian: -1
+  // big-endian: Int16s
+  CheckBytes([$00, $00]); // big-endian: 0
+  CheckBytes([$00, $80]); // big-endian: $80
+  CheckBytes([$7F, $FF]); // big-endian: High(Smallint)
+  CheckBytes([$80, $00]); // big-endian: Low(Smallint)
+  CheckBytes([$FF, $FF]); // big-endian: -1
+  // big-endian: Int32s
+  CheckBytes([$00, $00, $00, $00]); // big-endian: 0
+  CheckBytes([$00, $00, $80, $00]); // big-endian: $8000
+  CheckBytes([$7F, $FF, $FF, $FF]); // big-endian: High(Longint)
+  CheckBytes([$80, $00, $00, $00]); // big-endian: Low(Longint)
+  CheckBytes([$FF, $FF, $FF, $FF]); // big-endian: -1
+  // big-endian: Int64s
+  CheckBytes([$00, $00, $00, $00, $00, $00, $00, $00]); // big-endian: 0
+  CheckBytes([$00, $00, $00, $00, $80, $00, $00, $00]); // big-endian: $80000000
+  CheckBytes([$7F, $FF, $FF, $FF, $FF, $FF, $FF, $FF]); // big-endian: High(Int64)
+  CheckBytes([$80, $00, $00, $00, $00, $00, $00, $00]); // big-endian: Low(Int64)
+  CheckBytes([$FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF]); // big-endian: -1
+  // big-endian: UInt8s
+  CheckBytes([$00]); // big-endian: 0
+  CheckBytes([$80]); // big-endian: $80
+  CheckBytes([$FF]); // big-endian: High(Byte)
+  CheckBytes([$00]); // big-endian: Low(Byte)
+  // big-endian: UInt16s
+  CheckBytes([$00, $00]); // big-endian: 0
+  CheckBytes([$00, $FF]); // big-endian: $FF
+  CheckBytes([$FF, $FF]); // big-endian: High(Word)
+  CheckBytes([$00, $00]); // big-endian: Low(Word)
+  // big-endian: UInt32s
+  CheckBytes([$00, $00, $00, $00]); // big-endian: 0
+  CheckBytes([$00, $00, $FF, $FF]); // big-endian: $FFFF
+  CheckBytes([$FF, $FF, $FF, $FF]); // big-endian: High(Longword)
+  CheckBytes([$00, $00, $00, $00]); // big-endian: Low(Longword)
+
+  // little-endian: Int8s
+  CheckBytes([$00]); // little-endian: 0
+  CheckBytes([$40]); // little-endian: $40
+  CheckBytes([$7F]); // little-endian: High(Shortint)
+  CheckBytes([$80]); // little-endian: Low(Shortint)
+  CheckBytes([$FF]); // little-endian: -1
+  // little-endian: Int16s
+  CheckBytes([$00, $00]); // little-endian: 0
+  CheckBytes([$80, $00]); // little-endian: $80
+  CheckBytes([$FF, $7F]); // little-endian: High(Smallint)
+  CheckBytes([$00, $80]); // little-endian: Low(Smallint)
+  CheckBytes([$FF, $FF]); // little-endian: -1
+  // little-endian: Int32s
+  CheckBytes([$00, $00, $00, $00]); // little-endian: 0
+  CheckBytes([$00, $80, $00, $00]); // little-endian: $8000
+  CheckBytes([$FF, $FF, $FF, $7F]); // little-endian: High(Longint)
+  CheckBytes([$00, $00, $00, $80]); // little-endian: Low(Longint)
+  CheckBytes([$FF, $FF, $FF, $FF]); // little-endian: -1
+  // little-endian: Int64s
+  CheckBytes([$00, $00, $00, $00, $00, $00, $00, $00]); // little-endian: 0
+  CheckBytes([$00, $00, $00, $80, $00, $00, $00, $00]); // little-endian: $80000000
+  CheckBytes([$FF, $FF, $FF, $FF, $FF, $FF, $FF, $7F]); // little-endian: High(Int64)
+  CheckBytes([$00, $00, $00, $00, $00, $00, $00, $80]); // little-endian: Low(Int64)
+  CheckBytes([$FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF]); // little-endian: -1
+  // little-endian: UInt8s
+  CheckBytes([$00]); // little-endian: 0
+  CheckBytes([$80]); // little-endian: $80
+  CheckBytes([$FF]); // little-endian: High(Byte)
+  CheckBytes([$00]); // little-endian: Low(Byte)
+  // little-endian: UInt16s
+  CheckBytes([$00, $00]); // little-endian: 0
+  CheckBytes([$FF, $00]); // little-endian: $FF
+  CheckBytes([$FF, $FF]); // little-endian: High(Word)
+  CheckBytes([$00, $00]); // little-endian: Low(Word)
+  // little-endian: UInt32s
+  CheckBytes([$00, $00, $00, $00]); // little-endian: 0
+  CheckBytes([$FF, $FF, $00, $00]); // little-endian: $FFFF
+  CheckBytes([$FF, $FF, $FF, $FF]); // little-endian: High(Longword)
+  CheckBytes([$00, $00, $00, $00]); // little-endian: Low(Longword)
+
+  // Singles
+  CheckBytes([$00, $00, $00, $00]); // 0
+  CheckBytes([$66, $E6, $F6, $42]); // 123.45
+  CheckBytes([$9E, $C9, $7F, $7F]); // MaxSingle
+  CheckBytes([$01, $00, $00, $00]); // MinSingle
+  CheckBytes([$66, $E6, $F6, $C2]); // -123.45
+  // Doubles
+  CheckBytes([$00, $00, $00, $00, $00, $00, $00, $00]); // 0
+  CheckBytes([$CD, $CC, $CC, $CC, $CC, $DC, $5E, $40]); // 123.45
+  CheckBytes([$76, $3B, $77, $30, $D1, $42, $EE, $7F]); // MaxDouble
+  CheckBytes([$01, $00, $00, $00, $00, $00, $00, $00]); // MinDouble
+  CheckBytes([$CD, $CC, $CC, $CC, $CC, $DC, $5E, $C0]); // -123.45
+  // Extendeds
+  CheckBytes([$00, $00, $00, $00, $00, $00, $00, $00, $00, $00]); // 0
+  CheckBytes([$66, $66, $66, $66, $66, $66, $E6, $F6, $05, $40]); // 123.45
+  CheckBytes([$E1, $75, $58, $7F, $ED, $2A, $B1, $EC, $FE, $7F]); // MaxExtended
+  CheckBytes([$64, $91, $8E, $05, $78, $5A, $71, $81, $01, $00]); // MinExtended
+  CheckBytes([$66, $66, $66, $66, $66, $66, $E6, $F6, $05, $C0]); // -123.45
+  // Currencys
+  CheckBytes([$00, $00, $00, $00, $00, $00, $00, $00]); // 0
+  CheckBytes([$44, $D6, $12, $00, $00, $00, $00, $00]); // 123.45
+  CheckBytes([$FF, $FF, $FF, $FF, $FF, $FF, $FF, $7F]); // 922337203685477.5807
+  CheckBytes([$01, $00, $00, $00, $00, $00, $00, $80]); // -922337203685477.5807
+  CheckBytes([$BC, $29, $ED, $FF, $FF, $FF, $FF, $FF]); // -123.45
+  // DateTimes
+  CheckBytes([$00, $00, $00, $00, $00, $00, $00, $00]); // 0
+  CheckBytes([$CD, $CC, $CC, $CC, $CC, $DC, $5E, $40]); // 123.45
+  CheckBytes([$76, $3B, $77, $30, $D1, $42, $EE, $7F]); // MaxDouble
+  CheckBytes([$01, $00, $00, $00, $00, $00, $00, $00]); // MinDouble
+  CheckBytes([$CD, $CC, $CC, $CC, $CC, $DC, $5E, $C0]); // -123.45
+  // Booleans
+  CheckBytes([$00]); // False
+  CheckBytes([$01]); // True
+
+  // ShortStrings
+  CheckBytes([$05]); CheckChars(['q', 'i', 'u', 'g', 'c']);                // 'qiugc'
+  CheckBytes([$00]); CheckChars([]);                                       // ''
+  CheckBytes([$08]); CheckChars(['m', 'i', 'l', 'a', 'n', 'q', 'i', 'u']); // 'milanqiu'
+  CheckBytes([$04]); CheckBytes([$C3, $D7, $C0, $BC]);                     // '米兰'
+  // SmallStrings
+  CheckBytes([$05, $00]); CheckChars(['q', 'i', 'u', 'g', 'c']);                // 'qiugc'
+  CheckBytes([$00, $00]); CheckChars([]);                                       // ''
+  CheckBytes([$08, $00]); CheckChars(['m', 'i', 'l', 'a', 'n', 'q', 'i', 'u']); // 'milanqiu'
+  CheckBytes([$04, $00]); CheckBytes([$C3, $D7, $C0, $BC]);                     // '米兰'
+  // Strings
+  CheckBytes([$05, $00, $00, $00]); CheckChars(['q', 'i', 'u', 'g', 'c']);                // 'qiugc'
+  CheckBytes([$00, $00, $00, $00]); CheckChars([]);                                       // ''
+  CheckBytes([$08, $00, $00, $00]); CheckChars(['m', 'i', 'l', 'a', 'n', 'q', 'i', 'u']); // 'milanqiu'
+  CheckBytes([$04, $00, $00, $00]); CheckBytes([$C3, $D7, $C0, $BC]);                     // '米兰'
+  // WideStrings
+  CheckBytes([$0A, $00, $00, $00]); CheckChars(['q', #0, 'i', #0, 'u', #0, 'g', #0, 'c', #0]); // 'qiugc'
+  CheckBytes([$00, $00, $00, $00]); CheckChars([]);                                            // ''
+  CheckBytes([$08, $00, $00, $00]); CheckBytes([$E6, $00, $59, $02, $4B, $01, $54, $02]);      // 'æəŋɔ'
+  CheckBytes([$04, $00, $00, $00]); CheckBytes([$73, $7C, $70, $51]);                          // '米兰'
+  // Texts
+  CheckChars(['q', 'i', 'u', 'g', 'c']);                // 'qiugc'
+  CheckChars([]);                                       // ''
+  CheckChars(['m', 'i', 'l', 'a', 'n', 'q', 'i', 'u']); // 'milanqiu'
+  CheckBytes([$C3, $D7, $C0, $BC]);                     // '米兰'
+  // WideTexts
+  CheckChars(['q', #0, 'i', #0, 'u', #0, 'g', #0, 'c', #0]); // 'qiugc'
+  CheckChars([]);                                            // ''
+  CheckBytes([$E6, $00, $59, $02, $4B, $01, $54, $02]);      // 'æəŋɔ'
+  CheckBytes([$73, $7C, $70, $51]);                          // '米兰'
+
+  CheckEquals(Index, Length(S)+1);
+
+  Check(mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('StreamTurbo.bin')));
+end;
+
+procedure TmnSystemTestCase.testPointerList;
+var
+  PointerList: mnTPointerList;
+begin
+  PointerList := mnTPointerList.Create;
+  try
+    Check(PointerList.PointerType = ptSimple);
+    PointerList.Add(mnNewVarPointer(Var_0));
+    PointerList.Add(mnNewStrPointer(Str_0));
+    PointerList.Add(mnNewIntPointer(Int_0));
+    PointerList.Add(mnNewFloatPointer(Float_0));
+    PointerList.PointerType := ptString;
+    PointerList.Delete(1);
+    PointerList.PointerType := ptVariant;
+    PointerList.Delete(0);
+    PointerList.PointerType := ptSimple;
+    PointerList.Clear;
+  finally
+     PointerList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_Items;
+var
+  VarList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    Check(VarList.Items[0] = Var_0);
+    Check(VarList.Items[1] = Var_1);
+    Check(VarList.Items[2] = Var_2);
+
+    VarList.Items[1] := Var_3;
+    Check(VarList.Items[0] = Var_0);
+    Check(VarList.Items[1] = Var_3);
+    Check(VarList.Items[2] = Var_2);
+  finally
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_StatSeries;
+var
+  VarList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2, Var_3, Var_4]);
+    CheckEquals(VarList.Min, VarToStr(Var_2));
+    CheckEquals(VarList.Max, VarToStr(Var_0));
+  finally
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_IndexOf;
+var
+  VarList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    CheckEquals(VarList.IndexOf(Var_0), 0);
+    CheckEquals(VarList.IndexOf(Var_1), 1);
+    CheckEquals(VarList.IndexOf(Var_2), 2);
+
+    CheckEquals(VarList.IndexOf(Var_3), -1);
+    CheckEquals(VarList.IndexOf(VarToStr(Var_1)), -1);
+    CheckEquals(VarList.IndexOf(VarToStr(Var_2)), -1);
+  finally
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_First;
+var
+  VarList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    Check(VarList.First = Var_0);
+  finally
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_Last;
+var
+  VarList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    Check(VarList.Last = Var_2);
+  finally
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_Add;
+var
+  VarList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  try
+    CheckEquals(VarList.Add(Var_0), 0);
+    CheckEquals(VarList.Add(Var_1), 1);
+    CheckEquals(VarList.Add(Var_2), 2);
+    CheckEquals(VarList.Count, 3);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = Var_2);
+  finally
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_Insert;
+var
+  VarList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    VarList.Insert(1, Var_3);
+    CheckEquals(VarList.Count, 4);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_3);
+    Check(VarList[2] = Var_1);
+    Check(VarList[3] = Var_2);
+  finally
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_Extract;
+var
+  VarList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    Check(VarList.Extract(1) = Var_1);
+    CheckEquals(VarList.Count, 2);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_2);
+
+    try
+      VarList.Extract(2);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(SListIndexError, [2]));
+    end;
+  finally
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_Remove;
+var
+  VarList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    CheckEquals(VarList.Remove(Var_1), 1);
+    CheckEquals(VarList.Count, 2);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_2);
+
+    CheckEquals(VarList.Remove(Var_3), -1);
+    CheckEquals(VarList.Remove(VarToStr(Var_1)), -1);
+    CheckEquals(VarList.Remove(VarToStr(Var_2)), -1);
+  finally
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_RemoveAll;
+var
+  VarList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2, Var_1, Var_2, Var_1, Var_2]);
+    CheckEquals(VarList.RemoveAll(Var_2), 3);
+    CheckEquals(VarList.Count, 4);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = Var_1);
+    Check(VarList[3] = Var_1);
+  finally
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_SortNormal;
+var
+  VarList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2, Var_3]);
+
+    VarList.SortNormal(osAsc);
+    CheckEquals(VarList.Count, 4);
+    Check(VarList[0] = Var_2);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = Var_3);
+    Check(VarList[3] = Var_0);
+
+    VarList.SortNormal(osDesc);
+    CheckEquals(VarList.Count, 4);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_3);
+    Check(VarList[2] = Var_1);
+    Check(VarList[3] = Var_2);
+  finally
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_IsUnique;
+var
+  VarList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2, Var_1]);
+    CheckFalse(VarList.IsUnique);
+    VarList.LoadFromArray([Var_0, Var_1, Var_2, Var_3]);
+    Check(VarList.IsUnique);
+  finally
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_MakeUnique;
+var
+  VarList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2, Var_1, Var_2, Var_1, Var_2]);
+    VarList.MakeUnique;
+    CheckEquals(VarList.Count, 3);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = Var_2);
+  finally
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_Equals;
+var
+  VarList, AnotherList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  AnotherList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    AnotherList.LoadFromArray([Var_0, Var_1, Var_2]);
+    Check(VarList.Equals(AnotherList));
+
+    AnotherList[1] := Var_3;
+    CheckFalse(VarList.Equals(AnotherList));
+    AnotherList[1] := VarToStr(Var_1);
+    CheckFalse(VarList.Equals(AnotherList));
+  finally
+    AnotherList.Free;
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_Compare;
+var
+  VarList, AnotherList, VarListSolo, AnotherListSolo: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  AnotherList := mnTVarList.Create;
+  VarListSolo := mnTVarList.Create;
+  AnotherListSolo := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    AnotherList.LoadFromArray([Var_3, Var_2, Var_4, Var_1]);
+
+    VarList.Compare(AnotherList, VarListSolo, AnotherListSolo);
+    CheckEquals(VarListSolo.Count, 1);
+    Check(VarListSolo[0] = Var_0);
+    CheckEquals(AnotherListSolo.Count, 2);
+    Check(AnotherListSolo[0] = Var_3);
+    Check(AnotherListSolo[1] = Var_4);
+  finally
+    AnotherListSolo.Free;
+    VarListSolo.Free;
+    AnotherList.Free;
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_Link;
+var
+  VarList, AnotherList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  AnotherList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    AnotherList.LoadFromArray([Var_3, Var_2, Var_4]);
+
+    VarList.Link(AnotherList);
+    CheckEquals(VarList.Count, 6);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = Var_2);
+    Check(VarList[3] = Var_3);
+    Check(VarList[4] = Var_2);
+    Check(VarList[5] = Var_4);
+  finally
+    AnotherList.Free;
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_LinkStrs;
+var
+  VarList: mnTVarList;
+  Strs: mnTStrList;
+begin
+  VarList := mnTVarList.Create;
+  Strs := mnTStrList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    Strs.LoadFromArray([VarToStr(Var_3), VarToStr(Var_4)]);
+
+    VarList.LinkStrs(Strs);
+    CheckEquals(VarList.Count, 5);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = Var_2);
+    Check(VarList[3] = Var_3);
+    Check(VarList[4] = Var_4);
+  finally
+    Strs.Free;
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_Assign;
+var
+  VarList, AnotherList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  AnotherList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    AnotherList.LoadFromArray([Var_3, Var_2, Var_4, Var_1]);
+
+    VarList.Assign(AnotherList, laCopy);
+    CheckEquals(VarList.Count, 4);
+    Check(VarList[0] = Var_3);
+    Check(VarList[1] = Var_2);
+    Check(VarList[2] = Var_4);
+    Check(VarList[3] = Var_1);
+
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    VarList.Assign(AnotherList, laAnd);
+    CheckEquals(VarList.Count, 2);
+    Check(VarList[0] = Var_1);
+    Check(VarList[1] = Var_2);
+
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    VarList.Assign(AnotherList, laOr);
+    CheckEquals(VarList.Count, 5);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = Var_2);
+    Check(VarList[3] = Var_3);
+    Check(VarList[4] = Var_4);
+
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    VarList.Assign(AnotherList, laXor);
+    CheckEquals(VarList.Count, 3);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_3);
+    Check(VarList[2] = Var_4);
+
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    VarList.Assign(AnotherList, laSrcUnique);
+    CheckEquals(VarList.Count, 1);
+    Check(VarList[0] = Var_0);
+
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    VarList.Assign(AnotherList, laDestUnique);
+    CheckEquals(VarList.Count, 2);
+    Check(VarList[0] = Var_3);
+    Check(VarList[1] = Var_4);
+  finally
+    AnotherList.Free;
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_SaveLoadStreamTurbo;
+var
+  VarList: mnTVarList;
+  Stream: TFileStream;
+  StreamTurbo: mnTStreamTurbo;
+begin
+  VarList := mnTVarList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('VarList.bin'), fmCreate);
+  StreamTurbo := mnTStreamTurbo.Create(Stream);
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2, Var_3, Var_4]);
+    VarList.SaveToStreamTurbo(StreamTurbo);
+  finally
+    StreamTurbo.Free;
+    Stream.Free;
+    VarList.Free;
+  end;
+
+  VarList := mnTVarList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('VarList.bin'), fmOpenRead or fmShareDenyWrite);
+  StreamTurbo := mnTStreamTurbo.Create(Stream);
+  try
+    VarList.LoadFromStreamTurbo(StreamTurbo);
+    CheckEquals(VarList.Count, 5);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = Var_2);
+    Check(VarList[3] = Var_3);
+    Check(VarList[4] = Var_4);
+  finally
+    StreamTurbo.Free;
+    Stream.Free;
+    VarList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('VarList.bin'));
+end;
+
+procedure TmnSystemTestCase.testVarList_SaveLoadStream;
+var
+  VarList: mnTVarList;
+  Stream: TFileStream;
+begin
+  VarList := mnTVarList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('VarList.bin'), fmCreate);
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2, Var_3, Var_4]);
+    VarList.SaveToStream(Stream);
+  finally
+    Stream.Free;
+    VarList.Free;
+  end;
+
+  VarList := mnTVarList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('VarList.bin'), fmOpenRead or fmShareDenyWrite);
+  try
+    VarList.LoadFromStream(Stream);
+    CheckEquals(VarList.Count, 5);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = Var_2);
+    Check(VarList[3] = Var_3);
+    Check(VarList[4] = Var_4);
+  finally
+    Stream.Free;
+    VarList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('VarList.bin'));
+end;
+
+procedure TmnSystemTestCase.testVarList_SaveLoadStreamFile;
+var
+  VarList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2, Var_3, Var_4]);
+    VarList.SaveToStreamFile(mnTProjectConvention.GetTestTempPathSub('VarList.bin'));
+  finally
+    VarList.Free;
+  end;
+
+  VarList := mnTVarList.Create;
+  try
+    VarList.LoadFromStreamFile(mnTProjectConvention.GetTestTempPathSub('VarList.bin'));
+    CheckEquals(VarList.Count, 5);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = Var_2);
+    Check(VarList[3] = Var_3);
+    Check(VarList[4] = Var_4);
+  finally
+    VarList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('VarList.bin'));
+end;
+
+procedure TmnSystemTestCase.testVarList_SaveLoadFile;
+var
+  VarList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2, Var_3, Var_4]);
+    VarList.SaveToFile(mnTProjectConvention.GetTestTempPathSub('VarList.txt'));
+  finally
+    VarList.Free;
+  end;
+
+  VarList := mnTVarList.Create;
+  try
+    VarList.LoadFromFile(mnTProjectConvention.GetTestTempPathSub('VarList.txt'));
+    CheckEquals(VarList.Count, 5);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = Var_2);
+    Check(VarList[3] = Var_3);
+    Check(VarList[4] = Var_4);
+  finally
+    VarList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('VarList.txt'));
+end;
+
+procedure TmnSystemTestCase.testVarList_SaveLoadArray;
+var
+  VarList: mnTVarList;
+  DynArr: array of Variant;
+  StaArr: array [4..6] of Variant;
+begin
+  VarList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    CheckEquals(VarList.Count, 3);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = Var_2);
+
+    SetLength(DynArr, 1);
+    try
+      VarList.SaveToArray(DynArr);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, SArrayTooShortForList);
+    end;
+
+    SetLength(DynArr, VarList.Count);
+    VarList.SaveToArray(DynArr);
+    Check(DynArr[0] = Var_0);
+    Check(DynArr[1] = Var_1);
+    Check(DynArr[2] = Var_2);
+
+    VarList.SaveToArray(StaArr);
+    Check(StaArr[4] = Var_0);
+    Check(StaArr[5] = Var_1);
+    Check(StaArr[6] = Var_2);
+  finally
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_SaveLoadVA;
+var
+  VarList: mnTVarList;
+  VA: Variant;
+begin
+  VarList := mnTVarList.Create;
+  try
+    VA := VarArrayCreate([1, 10, 8, 29], varVariant);
+    try
+      VarList.LoadFromVA(VA);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, SVANotDim1);
+    end;
+
+    VA := VarArrayOf([Var_0, Var_1, Var_2]);
+    VarList.LoadFromVA(VA);
+    CheckEquals(VarList.Count, 3);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = Var_2);
+
+    VA := Unassigned;
+    VA := VarList.SaveToVA;
+    CheckEquals(VarArrayDimCount(VA), 1);
+    CheckEquals(VarArrayLowBound(VA, 1), 1);
+    CheckEquals(VarArrayHighBound(VA, 1), 3);
+    Check(VarArrayGet(VA, [1]) = Var_0);
+    Check(VarArrayGet(VA, [2]) = Var_1);
+    Check(VarArrayGet(VA, [3]) = Var_2);
+  finally
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_Combine;
+var
+  VarList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    CheckEquals(VarList.Combine, Str_Of_Var_0 + '```' + Str_Of_Var_1 + '```' + Str_Of_Var_2);
+    CheckEquals(VarList.Combine(', '), Str_Of_Var_0 + ', ' + Str_Of_Var_1 + ', ' + Str_Of_Var_2);
+    CheckEquals(VarList.Combine(', ', True), ', ' + Str_Of_Var_0 + ', ' + Str_Of_Var_1 + ', ' + Str_Of_Var_2 + ', ');
+
+    VarList.LoadFromArray([]);
+    CheckEquals(VarList.Combine(', '), '');
+  finally
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_Split;
+var
+  VarList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  try
+    // Split
+    CheckEquals(VarList.Split(VarToStr(Var_0) + '```' + VarToStr(Var_1)), 2);
+    CheckEquals(VarList.Count, 2);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+
+    CheckEquals(VarList.Split('一二三一二三', '欢'), 3);
+    CheckEquals(VarList.Count, 5);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = #210);
+    Check(VarList[3] = #254'三'#210);
+    Check(VarList[4] = #254'三');
+
+    // AnsiSplit
+    VarList.Clear;
+    CheckEquals(VarList.AnsiSplit(VarToStr(Var_0) + '```' + VarToStr(Var_1)), 2);
+    CheckEquals(VarList.Count, 2);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+
+    CheckEquals(VarList.AnsiSplit('一二三一二三', '欢'), 1);
+    CheckEquals(VarList.Count, 3);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = '一二三一二三');
+  finally
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_GetEnumerator;
+var
+  VarList: mnTVarList;
+  Item: Variant;
+  Ticker: Integer;
+begin
+  VarList := mnTVarList.Create;
+  try
+    VarList.LoadFromArray([Var_0, Var_1, Var_2]);
+    Ticker := 0;
+    for Item in VarList do
+    begin
+      Inc(Ticker);
+      case Ticker of
+        1: Check(Item = Var_0);
+        2: Check(Item = Var_1);
+        3: Check(Item = Var_2);
+        4: mnNeverGoesHere;
+      end;
+    end;
+  finally
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testVarList_Duplicates;
+var
+  VarList: mnTVarList;
+begin
+  VarList := mnTVarList.Create;
+  try
+    // dupIgnore
+    VarList.LoadFromArray([Var_0, Var_1]);
+    VarList.Duplicates := dupIgnore;
+    VarList.Add(Var_2);
+    CheckEquals(VarList.Count, 3);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = Var_2);
+    VarList.Add(Var_1);
+    CheckEquals(VarList.Count, 3);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = Var_2);
+
+    // dupAccept
+    VarList.LoadFromArray([Var_0, Var_1]);
+    VarList.Duplicates := dupAccept;
+    VarList.Add(Var_2);
+    CheckEquals(VarList.Count, 3);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = Var_2);
+    VarList.Add(Var_1);
+    CheckEquals(VarList.Count, 4);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = Var_2);
+    Check(VarList[3] = Var_1);
+
+    // dupError
+    VarList.LoadFromArray([Var_0, Var_1]);
+    VarList.Duplicates := dupError;
+    VarList.Add(Var_2);
+    CheckEquals(VarList.Count, 3);
+    Check(VarList[0] = Var_0);
+    Check(VarList[1] = Var_1);
+    Check(VarList[2] = Var_2);
+    try
+      VarList.Add(Var_1);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(STryToAddDuplicateItem, [VarToStr(Var_1)]));
+    end;
+  finally
+    VarList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_Items;
+var
+  IntList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    Check(IntList.Items[0] = Int_0);
+    Check(IntList.Items[1] = Int_1);
+    Check(IntList.Items[2] = Int_2);
+
+    IntList.Items[1] := Int_3;
+    Check(IntList.Items[0] = Int_0);
+    Check(IntList.Items[1] = Int_3);
+    Check(IntList.Items[2] = Int_2);
+  finally
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_StatSeries;
+var
+  IntList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2, Int_3, Int_4]);
+    CheckEquals(IntList.Min, Int_1);
+    CheckEquals(IntList.Max, Int_0);
+    CheckEquals(IntList.Sum, Int_0+Int_1+Int_2+Int_3+Int_4);
+    CheckEquals(IntList.Avg, (Int_0+Int_1+Int_2+Int_3+Int_4)/5);
+    CheckEquals(IntList.Product, Int_0*Int_1*Int_2*Int_3*Int_4);
+  finally
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_IndexOf;
+var
+  IntList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    CheckEquals(IntList.IndexOf(Int_0), 0);
+    CheckEquals(IntList.IndexOf(Int_1), 1);
+    CheckEquals(IntList.IndexOf(Int_2), 2);
+
+    CheckEquals(IntList.IndexOf(Int_3), -1);
+  finally
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_First;
+var
+  IntList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    Check(IntList.First = Int_0);
+  finally
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_Last;
+var
+  IntList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    Check(IntList.Last = Int_2);
+  finally
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_Add;
+var
+  IntList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  try
+    CheckEquals(IntList.Add(Int_0), 0);
+    CheckEquals(IntList.Add(Int_1), 1);
+    CheckEquals(IntList.Add(Int_2), 2);
+    CheckEquals(IntList.Count, 3);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_1);
+    Check(IntList[2] = Int_2);
+  finally
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_Insert;
+var
+  IntList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    IntList.Insert(1, Int_3);
+    CheckEquals(IntList.Count, 4);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_3);
+    Check(IntList[2] = Int_1);
+    Check(IntList[3] = Int_2);
+  finally
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_Extract;
+var
+  IntList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    Check(IntList.Extract(1) = Int_1);
+    CheckEquals(IntList.Count, 2);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_2);
+
+    try
+      IntList.Extract(2);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(SListIndexError, [2]));
+    end;
+  finally
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_Remove;
+var
+  IntList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    CheckEquals(IntList.Remove(Int_1), 1);
+    CheckEquals(IntList.Count, 2);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_2);
+
+    CheckEquals(IntList.Remove(Int_3), -1);
+  finally
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_RemoveAll;
+var
+  IntList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2, Int_1, Int_2, Int_1, Int_2]);
+    CheckEquals(IntList.RemoveAll(Int_2), 3);
+    CheckEquals(IntList.Count, 4);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_1);
+    Check(IntList[2] = Int_1);
+    Check(IntList[3] = Int_1);
+  finally
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_SortNormal;
+var
+  IntList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2, Int_3]);
+
+    IntList.SortNormal(osAsc);
+    CheckEquals(IntList.Count, 4);
+    Check(IntList[0] = Int_1);
+    Check(IntList[1] = Int_2);
+    Check(IntList[2] = Int_3);
+    Check(IntList[3] = Int_0);
+
+    IntList.SortNormal(osDesc);
+    CheckEquals(IntList.Count, 4);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_3);
+    Check(IntList[2] = Int_2);
+    Check(IntList[3] = Int_1);
+  finally
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_IsUnique;
+var
+  IntList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2, Int_1]);
+    CheckFalse(IntList.IsUnique);
+    IntList.LoadFromArray([Int_0, Int_1, Int_2, Int_3]);
+    Check(IntList.IsUnique);
+  finally
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_MakeUnique;
+var
+  IntList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2, Int_1, Int_2, Int_1, Int_2]);
+    IntList.MakeUnique;
+    CheckEquals(IntList.Count, 3);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_1);
+    Check(IntList[2] = Int_2);
+  finally
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_Equals;
+var
+  IntList, AnotherList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  AnotherList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    AnotherList.LoadFromArray([Int_0, Int_1, Int_2]);
+    Check(IntList.Equals(AnotherList));
+
+    AnotherList[1] := Int_3;
+    CheckFalse(IntList.Equals(AnotherList));
+  finally
+    AnotherList.Free;
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_Compare;
+var
+  IntList, AnotherList, IntListSolo, AnotherListSolo: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  AnotherList := mnTIntList.Create;
+  IntListSolo := mnTIntList.Create;
+  AnotherListSolo := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    AnotherList.LoadFromArray([Int_3, Int_2, Int_4, Int_1]);
+
+    IntList.Compare(AnotherList, IntListSolo, AnotherListSolo);
+    CheckEquals(IntListSolo.Count, 1);
+    Check(IntListSolo[0] = Int_0);
+    CheckEquals(AnotherListSolo.Count, 2);
+    Check(AnotherListSolo[0] = Int_3);
+    Check(AnotherListSolo[1] = Int_4);
+  finally
+    AnotherListSolo.Free;
+    IntListSolo.Free;
+    AnotherList.Free;
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_Link;
+var
+  IntList, AnotherList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  AnotherList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    AnotherList.LoadFromArray([Int_3, Int_2, Int_4]);
+
+    IntList.Link(AnotherList);
+    CheckEquals(IntList.Count, 6);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_1);
+    Check(IntList[2] = Int_2);
+    Check(IntList[3] = Int_3);
+    Check(IntList[4] = Int_2);
+    Check(IntList[5] = Int_4);
+  finally
+    AnotherList.Free;
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_LinkStrs;
+var
+  IntList: mnTIntList;
+  Strs: mnTStrList;
+begin
+  IntList := mnTIntList.Create;
+  Strs := mnTStrList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    Strs.LoadFromArray([IntToStr(Int_3), IntToStr(Int_4)]);
+
+    IntList.LinkStrs(Strs);
+    CheckEquals(IntList.Count, 5);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_1);
+    Check(IntList[2] = Int_2);
+    Check(IntList[3] = Int_3);
+    Check(IntList[4] = Int_4);
+  finally
+    Strs.Free;
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_Assign;
+var
+  IntList, AnotherList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  AnotherList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    AnotherList.LoadFromArray([Int_3, Int_2, Int_4, Int_1]);
+
+    IntList.Assign(AnotherList, laCopy);
+    CheckEquals(IntList.Count, 4);
+    Check(IntList[0] = Int_3);
+    Check(IntList[1] = Int_2);
+    Check(IntList[2] = Int_4);
+    Check(IntList[3] = Int_1);
+
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    IntList.Assign(AnotherList, laAnd);
+    CheckEquals(IntList.Count, 2);
+    Check(IntList[0] = Int_1);
+    Check(IntList[1] = Int_2);
+
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    IntList.Assign(AnotherList, laOr);
+    CheckEquals(IntList.Count, 5);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_1);
+    Check(IntList[2] = Int_2);
+    Check(IntList[3] = Int_3);
+    Check(IntList[4] = Int_4);
+
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    IntList.Assign(AnotherList, laXor);
+    CheckEquals(IntList.Count, 3);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_3);
+    Check(IntList[2] = Int_4);
+
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    IntList.Assign(AnotherList, laSrcUnique);
+    CheckEquals(IntList.Count, 1);
+    Check(IntList[0] = Int_0);
+
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    IntList.Assign(AnotherList, laDestUnique);
+    CheckEquals(IntList.Count, 2);
+    Check(IntList[0] = Int_3);
+    Check(IntList[1] = Int_4);
+  finally
+    AnotherList.Free;
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_SaveLoadStreamTurbo;
+var
+  IntList: mnTIntList;
+  Stream: TFileStream;
+  StreamTurbo: mnTStreamTurbo;
+begin
+  IntList := mnTIntList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('IntList.bin'), fmCreate);
+  StreamTurbo := mnTStreamTurbo.Create(Stream);
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2, Int_3, Int_4]);
+    IntList.SaveToStreamTurbo(StreamTurbo);
+  finally
+    StreamTurbo.Free;
+    Stream.Free;
+    IntList.Free;
+  end;
+
+  IntList := mnTIntList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('IntList.bin'), fmOpenRead or fmShareDenyWrite);
+  StreamTurbo := mnTStreamTurbo.Create(Stream);
+  try
+    IntList.LoadFromStreamTurbo(StreamTurbo);
+    CheckEquals(IntList.Count, 5);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_1);
+    Check(IntList[2] = Int_2);
+    Check(IntList[3] = Int_3);
+    Check(IntList[4] = Int_4);
+  finally
+    StreamTurbo.Free;
+    Stream.Free;
+    IntList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('IntList.bin'));
+end;
+
+procedure TmnSystemTestCase.testIntList_SaveLoadStream;
+var
+  IntList: mnTIntList;
+  Stream: TFileStream;
+begin
+  IntList := mnTIntList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('IntList.bin'), fmCreate);
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2, Int_3, Int_4]);
+    IntList.SaveToStream(Stream);
+  finally
+    Stream.Free;
+    IntList.Free;
+  end;
+
+  IntList := mnTIntList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('IntList.bin'), fmOpenRead or fmShareDenyWrite);
+  try
+    IntList.LoadFromStream(Stream);
+    CheckEquals(IntList.Count, 5);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_1);
+    Check(IntList[2] = Int_2);
+    Check(IntList[3] = Int_3);
+    Check(IntList[4] = Int_4);
+  finally
+    Stream.Free;
+    IntList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('IntList.bin'));
+end;
+
+procedure TmnSystemTestCase.testIntList_SaveLoadStreamFile;
+var
+  IntList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2, Int_3, Int_4]);
+    IntList.SaveToStreamFile(mnTProjectConvention.GetTestTempPathSub('IntList.bin'));
+  finally
+    IntList.Free;
+  end;
+
+  IntList := mnTIntList.Create;
+  try
+    IntList.LoadFromStreamFile(mnTProjectConvention.GetTestTempPathSub('IntList.bin'));
+    CheckEquals(IntList.Count, 5);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_1);
+    Check(IntList[2] = Int_2);
+    Check(IntList[3] = Int_3);
+    Check(IntList[4] = Int_4);
+  finally
+    IntList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('IntList.bin'));
+end;
+
+procedure TmnSystemTestCase.testIntList_SaveLoadFile;
+var
+  IntList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2, Int_3, Int_4]);
+    IntList.SaveToFile(mnTProjectConvention.GetTestTempPathSub('IntList.txt'));
+  finally
+    IntList.Free;
+  end;
+
+  IntList := mnTIntList.Create;
+  try
+    IntList.LoadFromFile(mnTProjectConvention.GetTestTempPathSub('IntList.txt'));
+    CheckEquals(IntList.Count, 5);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_1);
+    Check(IntList[2] = Int_2);
+    Check(IntList[3] = Int_3);
+    Check(IntList[4] = Int_4);
+  finally
+    IntList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('IntList.txt'));
+end;
+
+procedure TmnSystemTestCase.testIntList_SaveLoadArray;
+var
+  IntList: mnTIntList;
+  DynArr: array of Integer;
+  StaArr: array [4..6] of Integer;
+begin
+  IntList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    CheckEquals(IntList.Count, 3);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_1);
+    Check(IntList[2] = Int_2);
+
+    SetLength(DynArr, 1);
+    try
+      IntList.SaveToArray(DynArr);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, SArrayTooShortForList);
+    end;
+
+    SetLength(DynArr, IntList.Count);
+    IntList.SaveToArray(DynArr);
+    Check(DynArr[0] = Int_0);
+    Check(DynArr[1] = Int_1);
+    Check(DynArr[2] = Int_2);
+
+    IntList.SaveToArray(StaArr);
+    Check(StaArr[4] = Int_0);
+    Check(StaArr[5] = Int_1);
+    Check(StaArr[6] = Int_2);
+  finally
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_SaveLoadVA;
+var
+  IntList: mnTIntList;
+  VA: Variant;
+begin
+  IntList := mnTIntList.Create;
+  try
+    VA := VarArrayCreate([1, 10, 8, 29], varVariant);
+    try
+      IntList.LoadFromVA(VA);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, SVANotDim1);
+    end;
+
+    VA := VarArrayOf([Int_0, Int_1, Int_2]);
+    IntList.LoadFromVA(VA);
+    CheckEquals(IntList.Count, 3);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_1);
+    Check(IntList[2] = Int_2);
+
+    VA := Unassigned;
+    VA := IntList.SaveToVA;
+    CheckEquals(VarArrayDimCount(VA), 1);
+    CheckEquals(VarArrayLowBound(VA, 1), 1);
+    CheckEquals(VarArrayHighBound(VA, 1), 3);
+    Check(VarArrayGet(VA, [1]) = Int_0);
+    Check(VarArrayGet(VA, [2]) = Int_1);
+    Check(VarArrayGet(VA, [3]) = Int_2);
+  finally
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_Combine;
+var
+  IntList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    CheckEquals(IntList.Combine, Str_Of_Int_0 + '```' + Str_Of_Int_1 + '```' + Str_Of_Int_2);
+    CheckEquals(IntList.Combine(', '), Str_Of_Int_0 + ', ' + Str_Of_Int_1 + ', ' + Str_Of_Int_2);
+    CheckEquals(IntList.Combine(', ', True), ', ' + Str_Of_Int_0 + ', ' + Str_Of_Int_1 + ', ' + Str_Of_Int_2 + ', ');
+
+    IntList.LoadFromArray([]);
+    CheckEquals(IntList.Combine(', '), '');
+  finally
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_Split;
+var
+  IntList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  try
+    // Split
+    CheckEquals(IntList.Split(IntToStr(Int_0) + '```' + IntToStr(Int_1)), 2);
+    CheckEquals(IntList.Count, 2);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_1);
+
+    // AnsiSplit
+    CheckEquals(IntList.AnsiSplit(IntToStr(Int_0) + '```' + IntToStr(Int_1)), 2);
+    CheckEquals(IntList.Count, 4);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_1);
+    Check(IntList[2] = Int_0);
+    Check(IntList[3] = Int_1);
+  finally
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_GetEnumerator;
+var
+  IntList: mnTIntList;
+  Item: Integer;
+  Ticker: Integer;
+begin
+  IntList := mnTIntList.Create;
+  try
+    IntList.LoadFromArray([Int_0, Int_1, Int_2]);
+    Ticker := 0;
+    for Item in IntList do
+    begin
+      Inc(Ticker);
+      case Ticker of
+        1: Check(Item = Int_0);
+        2: Check(Item = Int_1);
+        3: Check(Item = Int_2);
+        4: mnNeverGoesHere;
+      end;
+    end;
+  finally
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testIntList_Duplicates;
+var
+  IntList: mnTIntList;
+begin
+  IntList := mnTIntList.Create;
+  try
+    // dupIgnore
+    IntList.LoadFromArray([Int_0, Int_1]);
+    IntList.Duplicates := dupIgnore;
+    IntList.Add(Int_2);
+    CheckEquals(IntList.Count, 3);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_1);
+    Check(IntList[2] = Int_2);
+    IntList.Add(Int_1);
+    CheckEquals(IntList.Count, 3);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_1);
+    Check(IntList[2] = Int_2);
+
+    // dupAccept
+    IntList.LoadFromArray([Int_0, Int_1]);
+    IntList.Duplicates := dupAccept;
+    IntList.Add(Int_2);
+    CheckEquals(IntList.Count, 3);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_1);
+    Check(IntList[2] = Int_2);
+    IntList.Add(Int_1);
+    CheckEquals(IntList.Count, 4);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_1);
+    Check(IntList[2] = Int_2);
+    Check(IntList[3] = Int_1);
+
+    // dupError
+    IntList.LoadFromArray([Int_0, Int_1]);
+    IntList.Duplicates := dupError;
+    IntList.Add(Int_2);
+    CheckEquals(IntList.Count, 3);
+    Check(IntList[0] = Int_0);
+    Check(IntList[1] = Int_1);
+    Check(IntList[2] = Int_2);
+    try
+      IntList.Add(Int_1);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(STryToAddDuplicateItem, [IntToStr(Int_1)]));
+    end;
+  finally
+    IntList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_Items;
+var
+  FloatList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    Check(FloatList.Items[0] = Float_0);
+    Check(FloatList.Items[1] = Float_1);
+    Check(FloatList.Items[2] = Float_2);
+
+    FloatList.Items[1] := Float_3;
+    Check(FloatList.Items[0] = Float_0);
+    Check(FloatList.Items[1] = Float_3);
+    Check(FloatList.Items[2] = Float_2);
+  finally
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_StatSeries;
+var
+  FloatList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2, Float_3, Float_4]);
+    CheckEquals(FloatList.Min, Float_1);
+    CheckEquals(FloatList.Max, Float_0);
+    CheckEquals(FloatList.Sum, Float_0+Float_1+Float_2+Float_3+Float_4);
+    CheckEquals(FloatList.Avg, (Float_0+Float_1+Float_2+Float_3+Float_4)/5);
+    CheckEquals(FloatList.Product, Float_0*Float_1*Float_2*Float_3*Float_4);
+  finally
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_IndexOf;
+var
+  FloatList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    CheckEquals(FloatList.IndexOf(Float_0), 0);
+    CheckEquals(FloatList.IndexOf(Float_1), 1);
+    CheckEquals(FloatList.IndexOf(Float_2), 2);
+
+    CheckEquals(FloatList.IndexOf(Float_3), -1);
+  finally
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_First;
+var
+  FloatList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    Check(FloatList.First = Float_0);
+  finally
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_Last;
+var
+  FloatList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    Check(FloatList.Last = Float_2);
+  finally
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_Add;
+var
+  FloatList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    CheckEquals(FloatList.Add(Float_0), 0);
+    CheckEquals(FloatList.Add(Float_1), 1);
+    CheckEquals(FloatList.Add(Float_2), 2);
+    CheckEquals(FloatList.Count, 3);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_1);
+    Check(FloatList[2] = Float_2);
+  finally
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_Insert;
+var
+  FloatList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    FloatList.Insert(1, Float_3);
+    CheckEquals(FloatList.Count, 4);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_3);
+    Check(FloatList[2] = Float_1);
+    Check(FloatList[3] = Float_2);
+  finally
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_Extract;
+var
+  FloatList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    Check(FloatList.Extract(1) = Float_1);
+    CheckEquals(FloatList.Count, 2);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_2);
+
+    try
+      FloatList.Extract(2);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(SListIndexError, [2]));
+    end;
+  finally
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_Remove;
+var
+  FloatList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    CheckEquals(FloatList.Remove(Float_1), 1);
+    CheckEquals(FloatList.Count, 2);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_2);
+
+    CheckEquals(FloatList.Remove(Float_3), -1);
+  finally
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_RemoveAll;
+var
+  FloatList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2, Float_1, Float_2, Float_1, Float_2]);
+    CheckEquals(FloatList.RemoveAll(Float_2), 3);
+    CheckEquals(FloatList.Count, 4);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_1);
+    Check(FloatList[2] = Float_1);
+    Check(FloatList[3] = Float_1);
+  finally
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_SortNormal;
+var
+  FloatList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2, Float_3]);
+
+    FloatList.SortNormal(osAsc);
+    CheckEquals(FloatList.Count, 4);
+    Check(FloatList[0] = Float_1);
+    Check(FloatList[1] = Float_2);
+    Check(FloatList[2] = Float_3);
+    Check(FloatList[3] = Float_0);
+
+    FloatList.SortNormal(osDesc);
+    CheckEquals(FloatList.Count, 4);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_3);
+    Check(FloatList[2] = Float_2);
+    Check(FloatList[3] = Float_1);
+  finally
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_IsUnique;
+var
+  FloatList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2, Float_1]);
+    CheckFalse(FloatList.IsUnique);
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2, Float_3]);
+    Check(FloatList.IsUnique);
+  finally
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_MakeUnique;
+var
+  FloatList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2, Float_1, Float_2, Float_1, Float_2]);
+    FloatList.MakeUnique;
+    CheckEquals(FloatList.Count, 3);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_1);
+    Check(FloatList[2] = Float_2);
+  finally
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_Equals;
+var
+  FloatList, AnotherList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  AnotherList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    AnotherList.LoadFromArray([Float_0, Float_1, Float_2]);
+    Check(FloatList.Equals(AnotherList));
+
+    AnotherList[1] := Float_3;
+    CheckFalse(FloatList.Equals(AnotherList));
+  finally
+    AnotherList.Free;
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_Compare;
+var
+  FloatList, AnotherList, FloatListSolo, AnotherListSolo: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  AnotherList := mnTFloatList.Create;
+  FloatListSolo := mnTFloatList.Create;
+  AnotherListSolo := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    AnotherList.LoadFromArray([Float_3, Float_2, Float_4, Float_1]);
+
+    FloatList.Compare(AnotherList, FloatListSolo, AnotherListSolo);
+    CheckEquals(FloatListSolo.Count, 1);
+    Check(FloatListSolo[0] = Float_0);
+    CheckEquals(AnotherListSolo.Count, 2);
+    Check(AnotherListSolo[0] = Float_3);
+    Check(AnotherListSolo[1] = Float_4);
+  finally
+    AnotherListSolo.Free;
+    FloatListSolo.Free;
+    AnotherList.Free;
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_Link;
+var
+  FloatList, AnotherList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  AnotherList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    AnotherList.LoadFromArray([Float_3, Float_2, Float_4]);
+
+    FloatList.Link(AnotherList);
+    CheckEquals(FloatList.Count, 6);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_1);
+    Check(FloatList[2] = Float_2);
+    Check(FloatList[3] = Float_3);
+    Check(FloatList[4] = Float_2);
+    Check(FloatList[5] = Float_4);
+  finally
+    AnotherList.Free;
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_LinkStrs;
+var
+  FloatList: mnTFloatList;
+  Strs: mnTStrList;
+begin
+  FloatList := mnTFloatList.Create;
+  Strs := mnTStrList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    Strs.LoadFromArray([FloatToStr(Float_3), FloatToStr(Float_4)]);
+
+    FloatList.LinkStrs(Strs);
+    CheckEquals(FloatList.Count, 5);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_1);
+    Check(FloatList[2] = Float_2);
+    Check(FloatList[3] = Float_3);
+    Check(FloatList[4] = Float_4);
+  finally
+    Strs.Free;
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_Assign;
+var
+  FloatList, AnotherList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  AnotherList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    AnotherList.LoadFromArray([Float_3, Float_2, Float_4, Float_1]);
+
+    FloatList.Assign(AnotherList, laCopy);
+    CheckEquals(FloatList.Count, 4);
+    Check(FloatList[0] = Float_3);
+    Check(FloatList[1] = Float_2);
+    Check(FloatList[2] = Float_4);
+    Check(FloatList[3] = Float_1);
+
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    FloatList.Assign(AnotherList, laAnd);
+    CheckEquals(FloatList.Count, 2);
+    Check(FloatList[0] = Float_1);
+    Check(FloatList[1] = Float_2);
+
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    FloatList.Assign(AnotherList, laOr);
+    CheckEquals(FloatList.Count, 5);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_1);
+    Check(FloatList[2] = Float_2);
+    Check(FloatList[3] = Float_3);
+    Check(FloatList[4] = Float_4);
+
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    FloatList.Assign(AnotherList, laXor);
+    CheckEquals(FloatList.Count, 3);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_3);
+    Check(FloatList[2] = Float_4);
+
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    FloatList.Assign(AnotherList, laSrcUnique);
+    CheckEquals(FloatList.Count, 1);
+    Check(FloatList[0] = Float_0);
+
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    FloatList.Assign(AnotherList, laDestUnique);
+    CheckEquals(FloatList.Count, 2);
+    Check(FloatList[0] = Float_3);
+    Check(FloatList[1] = Float_4);
+  finally
+    AnotherList.Free;
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_SaveLoadStreamTurbo;
+var
+  FloatList: mnTFloatList;
+  Stream: TFileStream;
+  StreamTurbo: mnTStreamTurbo;
+begin
+  FloatList := mnTFloatList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('FloatList.bin'), fmCreate);
+  StreamTurbo := mnTStreamTurbo.Create(Stream);
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2, Float_3, Float_4]);
+    FloatList.SaveToStreamTurbo(StreamTurbo);
+  finally
+    StreamTurbo.Free;
+    Stream.Free;
+    FloatList.Free;
+  end;
+
+  FloatList := mnTFloatList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('FloatList.bin'), fmOpenRead or fmShareDenyWrite);
+  StreamTurbo := mnTStreamTurbo.Create(Stream);
+  try
+    FloatList.LoadFromStreamTurbo(StreamTurbo);
+    CheckEquals(FloatList.Count, 5);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_1);
+    Check(FloatList[2] = Float_2);
+    Check(FloatList[3] = Float_3);
+    Check(FloatList[4] = Float_4);
+  finally
+    StreamTurbo.Free;
+    Stream.Free;
+    FloatList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('FloatList.bin'));
+end;
+
+procedure TmnSystemTestCase.testFloatList_SaveLoadStream;
+var
+  FloatList: mnTFloatList;
+  Stream: TFileStream;
+begin
+  FloatList := mnTFloatList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('FloatList.bin'), fmCreate);
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2, Float_3, Float_4]);
+    FloatList.SaveToStream(Stream);
+  finally
+    Stream.Free;
+    FloatList.Free;
+  end;
+
+  FloatList := mnTFloatList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('FloatList.bin'), fmOpenRead or fmShareDenyWrite);
+  try
+    FloatList.LoadFromStream(Stream);
+    CheckEquals(FloatList.Count, 5);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_1);
+    Check(FloatList[2] = Float_2);
+    Check(FloatList[3] = Float_3);
+    Check(FloatList[4] = Float_4);
+  finally
+    Stream.Free;
+    FloatList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('FloatList.bin'));
+end;
+
+procedure TmnSystemTestCase.testFloatList_SaveLoadStreamFile;
+var
+  FloatList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2, Float_3, Float_4]);
+    FloatList.SaveToStreamFile(mnTProjectConvention.GetTestTempPathSub('FloatList.bin'));
+  finally
+    FloatList.Free;
+  end;
+
+  FloatList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromStreamFile(mnTProjectConvention.GetTestTempPathSub('FloatList.bin'));
+    CheckEquals(FloatList.Count, 5);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_1);
+    Check(FloatList[2] = Float_2);
+    Check(FloatList[3] = Float_3);
+    Check(FloatList[4] = Float_4);
+  finally
+    FloatList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('FloatList.bin'));
+end;
+
+procedure TmnSystemTestCase.testFloatList_SaveLoadFile;
+var
+  FloatList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2, Float_3, Float_4]);
+    FloatList.SaveToFile(mnTProjectConvention.GetTestTempPathSub('FloatList.txt'));
+  finally
+    FloatList.Free;
+  end;
+
+  FloatList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromFile(mnTProjectConvention.GetTestTempPathSub('FloatList.txt'));
+    CheckEquals(FloatList.Count, 5);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_1);
+    Check(FloatList[2] = Float_2);
+    Check(FloatList[3] = Float_3);
+    Check(FloatList[4] = Float_4);
+  finally
+    FloatList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('FloatList.txt'));
+end;
+
+procedure TmnSystemTestCase.testFloatList_SaveLoadArray;
+var
+  FloatList: mnTFloatList;
+  DynArr: array of Extended;
+  StaArr: array [4..6] of Extended;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    CheckEquals(FloatList.Count, 3);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_1);
+    Check(FloatList[2] = Float_2);
+
+    SetLength(DynArr, 1);
+    try
+      FloatList.SaveToArray(DynArr);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, SArrayTooShortForList);
+    end;
+
+    SetLength(DynArr, FloatList.Count);
+    FloatList.SaveToArray(DynArr);
+    Check(DynArr[0] = Float_0);
+    Check(DynArr[1] = Float_1);
+    Check(DynArr[2] = Float_2);
+
+    FloatList.SaveToArray(StaArr);
+    Check(StaArr[4] = Float_0);
+    Check(StaArr[5] = Float_1);
+    Check(StaArr[6] = Float_2);
+  finally
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_SaveLoadVA;
+var
+  FloatList: mnTFloatList;
+  VA: Variant;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    VA := VarArrayCreate([1, 10, 8, 29], varVariant);
+    try
+      FloatList.LoadFromVA(VA);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, SVANotDim1);
+    end;
+
+    VA := VarArrayOf([Float_0, Float_1, Float_2]);
+    FloatList.LoadFromVA(VA);
+    CheckEquals(FloatList.Count, 3);
+    Check(mnFloatEQ(FloatList[0], Float_0));
+    Check(mnFloatEQ(FloatList[1], Float_1));
+    Check(mnFloatEQ(FloatList[2], Float_2));
+
+    VA := Unassigned;
+    VA := FloatList.SaveToVA;
+    CheckEquals(VarArrayDimCount(VA), 1);
+    CheckEquals(VarArrayLowBound(VA, 1), 1);
+    CheckEquals(VarArrayHighBound(VA, 1), 3);
+    Check(VarArrayGet(VA, [1]) = Float_0);
+    Check(VarArrayGet(VA, [2]) = Float_1);
+    Check(VarArrayGet(VA, [3]) = Float_2);
+  finally
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_Combine;
+var
+  FloatList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    CheckEquals(FloatList.Combine, Str_Of_Float_0 + '```' + Str_Of_Float_1 + '```' + Str_Of_Float_2);
+    CheckEquals(FloatList.Combine(', '), Str_Of_Float_0 + ', ' + Str_Of_Float_1 + ', ' + Str_Of_Float_2);
+    CheckEquals(FloatList.Combine(', ', True), ', ' + Str_Of_Float_0 + ', ' + Str_Of_Float_1 + ', ' + Str_Of_Float_2 + ', ');
+
+    FloatList.LoadFromArray([]);
+    CheckEquals(FloatList.Combine(', '), '');
+  finally
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_Split;
+var
+  FloatList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    // Split
+    CheckEquals(FloatList.Split(FloatToStr(Float_0) + '```' + FloatToStr(Float_1)), 2);
+    CheckEquals(FloatList.Count, 2);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_1);
+
+    // AnsiSplit
+    CheckEquals(FloatList.AnsiSplit(FloatToStr(Float_0) + '```' + FloatToStr(Float_1)), 2);
+    CheckEquals(FloatList.Count, 4);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_1);
+    Check(FloatList[2] = Float_0);
+    Check(FloatList[3] = Float_1);
+  finally
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_GetEnumerator;
+var
+  FloatList: mnTFloatList;
+  Item: Extended;
+  Ticker: Integer;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
+    Ticker := 0;
+    for Item in FloatList do
+    begin
+      Inc(Ticker);
+      case Ticker of
+        1: Check(Item = Float_0);
+        2: Check(Item = Float_1);
+        3: Check(Item = Float_2);
+        4: mnNeverGoesHere;
+      end;
+    end;
+  finally
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFloatList_Duplicates;
+var
+  FloatList: mnTFloatList;
+begin
+  FloatList := mnTFloatList.Create;
+  try
+    // dupIgnore
+    FloatList.LoadFromArray([Float_0, Float_1]);
+    FloatList.Duplicates := dupIgnore;
+    FloatList.Add(Float_2);
+    CheckEquals(FloatList.Count, 3);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_1);
+    Check(FloatList[2] = Float_2);
+    FloatList.Add(Float_1);
+    CheckEquals(FloatList.Count, 3);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_1);
+    Check(FloatList[2] = Float_2);
+
+    // dupAccept
+    FloatList.LoadFromArray([Float_0, Float_1]);
+    FloatList.Duplicates := dupAccept;
+    FloatList.Add(Float_2);
+    CheckEquals(FloatList.Count, 3);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_1);
+    Check(FloatList[2] = Float_2);
+    FloatList.Add(Float_1);
+    CheckEquals(FloatList.Count, 4);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_1);
+    Check(FloatList[2] = Float_2);
+    Check(FloatList[3] = Float_1);
+
+    // dupError
+    FloatList.LoadFromArray([Float_0, Float_1]);
+    FloatList.Duplicates := dupError;
+    FloatList.Add(Float_2);
+    CheckEquals(FloatList.Count, 3);
+    Check(FloatList[0] = Float_0);
+    Check(FloatList[1] = Float_1);
+    Check(FloatList[2] = Float_2);
+    try
+      FloatList.Add(Float_1);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(STryToAddDuplicateItem, [FloatToStr(Float_1)]));
+    end;
+  finally
+    FloatList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_Items;
+var
+  DTList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    Check(DTList.Items[0] = DT_0);
+    Check(DTList.Items[1] = DT_1);
+    Check(DTList.Items[2] = DT_2);
+
+    DTList.Items[1] := DT_3;
+    Check(DTList.Items[0] = DT_0);
+    Check(DTList.Items[1] = DT_3);
+    Check(DTList.Items[2] = DT_2);
+  finally
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_StatSeries;
+var
+  DTList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2, DT_3, DT_4]);
+    CheckEquals(DTList.Min, DT_2);
+    CheckEquals(DTList.Max, DT_4);
+  finally
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_IndexOf;
+var
+  DTList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    CheckEquals(DTList.IndexOf(DT_0), 0);
+    CheckEquals(DTList.IndexOf(DT_1), 1);
+    CheckEquals(DTList.IndexOf(DT_2), 2);
+
+    CheckEquals(DTList.IndexOf(DT_3), -1);
+  finally
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_First;
+var
+  DTList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    Check(DTList.First = DT_0);
+  finally
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_Last;
+var
+  DTList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    Check(DTList.Last = DT_2);
+  finally
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_Add;
+var
+  DTList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  try
+    CheckEquals(DTList.Add(DT_0), 0);
+    CheckEquals(DTList.Add(DT_1), 1);
+    CheckEquals(DTList.Add(DT_2), 2);
+    CheckEquals(DTList.Count, 3);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_1);
+    Check(DTList[2] = DT_2);
+  finally
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_Insert;
+var
+  DTList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    DTList.Insert(1, DT_3);
+    CheckEquals(DTList.Count, 4);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_3);
+    Check(DTList[2] = DT_1);
+    Check(DTList[3] = DT_2);
+  finally
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_Extract;
+var
+  DTList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    Check(DTList.Extract(1) = DT_1);
+    CheckEquals(DTList.Count, 2);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_2);
+
+    try
+      DTList.Extract(2);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(SListIndexError, [2]));
+    end;
+  finally
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_Remove;
+var
+  DTList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    CheckEquals(DTList.Remove(DT_1), 1);
+    CheckEquals(DTList.Count, 2);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_2);
+
+    CheckEquals(DTList.Remove(DT_3), -1);
+  finally
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_RemoveAll;
+var
+  DTList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2, DT_1, DT_2, DT_1, DT_2]);
+    CheckEquals(DTList.RemoveAll(DT_2), 3);
+    CheckEquals(DTList.Count, 4);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_1);
+    Check(DTList[2] = DT_1);
+    Check(DTList[3] = DT_1);
+  finally
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_SortNormal;
+var
+  DTList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2, DT_3]);
+
+    DTList.SortNormal(osAsc);
+    CheckEquals(DTList.Count, 4);
+    Check(DTList[0] = DT_2);
+    Check(DTList[1] = DT_0);
+    Check(DTList[2] = DT_3);
+    Check(DTList[3] = DT_1);
+
+    DTList.SortNormal(osDesc);
+    CheckEquals(DTList.Count, 4);
+    Check(DTList[0] = DT_1);
+    Check(DTList[1] = DT_3);
+    Check(DTList[2] = DT_0);
+    Check(DTList[3] = DT_2);
+  finally
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_IsUnique;
+var
+  DTList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2, DT_1]);
+    CheckFalse(DTList.IsUnique);
+    DTList.LoadFromArray([DT_0, DT_1, DT_2, DT_3]);
+    Check(DTList.IsUnique);
+  finally
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_MakeUnique;
+var
+  DTList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2, DT_1, DT_2, DT_1, DT_2]);
+    DTList.MakeUnique;
+    CheckEquals(DTList.Count, 3);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_1);
+    Check(DTList[2] = DT_2);
+  finally
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_Equals;
+var
+  DTList, AnotherList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  AnotherList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    AnotherList.LoadFromArray([DT_0, DT_1, DT_2]);
+    Check(DTList.Equals(AnotherList));
+
+    AnotherList[1] := DT_3;
+    CheckFalse(DTList.Equals(AnotherList));
+  finally
+    AnotherList.Free;
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_Compare;
+var
+  DTList, AnotherList, DTListSolo, AnotherListSolo: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  AnotherList := mnTDTList.Create;
+  DTListSolo := mnTDTList.Create;
+  AnotherListSolo := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    AnotherList.LoadFromArray([DT_3, DT_2, DT_4, DT_1]);
+
+    DTList.Compare(AnotherList, DTListSolo, AnotherListSolo);
+    CheckEquals(DTListSolo.Count, 1);
+    Check(DTListSolo[0] = DT_0);
+    CheckEquals(AnotherListSolo.Count, 2);
+    Check(AnotherListSolo[0] = DT_3);
+    Check(AnotherListSolo[1] = DT_4);
+  finally
+    AnotherListSolo.Free;
+    DTListSolo.Free;
+    AnotherList.Free;
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_Link;
+var
+  DTList, AnotherList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  AnotherList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    AnotherList.LoadFromArray([DT_3, DT_2, DT_4]);
+
+    DTList.Link(AnotherList);
+    CheckEquals(DTList.Count, 6);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_1);
+    Check(DTList[2] = DT_2);
+    Check(DTList[3] = DT_3);
+    Check(DTList[4] = DT_2);
+    Check(DTList[5] = DT_4);
+  finally
+    AnotherList.Free;
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_LinkStrs;
+var
+  DTList: mnTDTList;
+  Strs: mnTStrList;
+begin
+  DTList := mnTDTList.Create;
+  Strs := mnTStrList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    Strs.LoadFromArray([DateTimeToStr(DT_3), DateTimeToStr(DT_4)]);
+
+    DTList.LinkStrs(Strs);
+    CheckEquals(DTList.Count, 5);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_1);
+    Check(DTList[2] = DT_2);
+    Check(DTList[3] = DT_3);
+    Check(mnFloatEQ(DTList[4], DT_4));
+  finally
+    Strs.Free;
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_Assign;
+var
+  DTList, AnotherList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  AnotherList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    AnotherList.LoadFromArray([DT_3, DT_2, DT_4, DT_1]);
+
+    DTList.Assign(AnotherList, laCopy);
+    CheckEquals(DTList.Count, 4);
+    Check(DTList[0] = DT_3);
+    Check(DTList[1] = DT_2);
+    Check(DTList[2] = DT_4);
+    Check(DTList[3] = DT_1);
+
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    DTList.Assign(AnotherList, laAnd);
+    CheckEquals(DTList.Count, 2);
+    Check(DTList[0] = DT_1);
+    Check(DTList[1] = DT_2);
+
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    DTList.Assign(AnotherList, laOr);
+    CheckEquals(DTList.Count, 5);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_1);
+    Check(DTList[2] = DT_2);
+    Check(DTList[3] = DT_3);
+    Check(DTList[4] = DT_4);
+
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    DTList.Assign(AnotherList, laXor);
+    CheckEquals(DTList.Count, 3);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_3);
+    Check(DTList[2] = DT_4);
+
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    DTList.Assign(AnotherList, laSrcUnique);
+    CheckEquals(DTList.Count, 1);
+    Check(DTList[0] = DT_0);
+
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    DTList.Assign(AnotherList, laDestUnique);
+    CheckEquals(DTList.Count, 2);
+    Check(DTList[0] = DT_3);
+    Check(DTList[1] = DT_4);
+  finally
+    AnotherList.Free;
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_SaveLoadStreamTurbo;
+var
+  DTList: mnTDTList;
+  Stream: TFileStream;
+  StreamTurbo: mnTStreamTurbo;
+begin
+  DTList := mnTDTList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('DTList.bin'), fmCreate);
+  StreamTurbo := mnTStreamTurbo.Create(Stream);
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2, DT_3, DT_4]);
+    DTList.SaveToStreamTurbo(StreamTurbo);
+  finally
+    StreamTurbo.Free;
+    Stream.Free;
+    DTList.Free;
+  end;
+
+  DTList := mnTDTList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('DTList.bin'), fmOpenRead or fmShareDenyWrite);
+  StreamTurbo := mnTStreamTurbo.Create(Stream);
+  try
+    DTList.LoadFromStreamTurbo(StreamTurbo);
+    CheckEquals(DTList.Count, 5);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_1);
+    Check(DTList[2] = DT_2);
+    Check(DTList[3] = DT_3);
+    Check(DTList[4] = DT_4);
+  finally
+    StreamTurbo.Free;
+    Stream.Free;
+    DTList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('DTList.bin'));
+end;
+
+procedure TmnSystemTestCase.testDTList_SaveLoadStream;
+var
+  DTList: mnTDTList;
+  Stream: TFileStream;
+begin
+  DTList := mnTDTList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('DTList.bin'), fmCreate);
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2, DT_3, DT_4]);
+    DTList.SaveToStream(Stream);
+  finally
+    Stream.Free;
+    DTList.Free;
+  end;
+
+  DTList := mnTDTList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('DTList.bin'), fmOpenRead or fmShareDenyWrite);
+  try
+    DTList.LoadFromStream(Stream);
+    CheckEquals(DTList.Count, 5);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_1);
+    Check(DTList[2] = DT_2);
+    Check(DTList[3] = DT_3);
+    Check(DTList[4] = DT_4);
+  finally
+    Stream.Free;
+    DTList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('DTList.bin'));
+end;
+
+procedure TmnSystemTestCase.testDTList_SaveLoadStreamFile;
+var
+  DTList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2, DT_3, DT_4]);
+    DTList.SaveToStreamFile(mnTProjectConvention.GetTestTempPathSub('DTList.bin'));
+  finally
+    DTList.Free;
+  end;
+
+  DTList := mnTDTList.Create;
+  try
+    DTList.LoadFromStreamFile(mnTProjectConvention.GetTestTempPathSub('DTList.bin'));
+    CheckEquals(DTList.Count, 5);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_1);
+    Check(DTList[2] = DT_2);
+    Check(DTList[3] = DT_3);
+    Check(DTList[4] = DT_4);
+  finally
+    DTList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('DTList.bin'));
+end;
+
+procedure TmnSystemTestCase.testDTList_SaveLoadFile;
+var
+  DTList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2, DT_3, DT_4]);
+    DTList.SaveToFile(mnTProjectConvention.GetTestTempPathSub('DTList.txt'));
+  finally
+    DTList.Free;
+  end;
+
+  DTList := mnTDTList.Create;
+  try
+    DTList.LoadFromFile(mnTProjectConvention.GetTestTempPathSub('DTList.txt'));
+    CheckEquals(DTList.Count, 5);
+    Check(mnFloatEQ(DTList[0], DT_0));
+    Check(mnFloatEQ(DTList[1], DT_1));
+    Check(mnFloatEQ(DTList[2], DT_2));
+    Check(mnFloatEQ(DTList[3], DT_3));
+    Check(mnFloatEQ(DTList[4], DT_4));
+  finally
+    DTList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('DTList.txt'));
+end;
+
+procedure TmnSystemTestCase.testDTList_SaveLoadArray;
+var
+  DTList: mnTDTList;
+  DynArr: array of TDateTime;
+  StaArr: array [4..6] of TDateTime;
+begin
+  DTList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    CheckEquals(DTList.Count, 3);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_1);
+    Check(DTList[2] = DT_2);
+
+    SetLength(DynArr, 1);
+    try
+      DTList.SaveToArray(DynArr);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, SArrayTooShortForList);
+    end;
+
+    SetLength(DynArr, DTList.Count);
+    DTList.SaveToArray(DynArr);
+    Check(DynArr[0] = DT_0);
+    Check(DynArr[1] = DT_1);
+    Check(DynArr[2] = DT_2);
+
+    DTList.SaveToArray(StaArr);
+    Check(StaArr[4] = DT_0);
+    Check(StaArr[5] = DT_1);
+    Check(StaArr[6] = DT_2);
+  finally
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_SaveLoadVA;
+var
+  DTList: mnTDTList;
+  VA: Variant;
+begin
+  DTList := mnTDTList.Create;
+  try
+    VA := VarArrayCreate([1, 10, 8, 29], varVariant);
+    try
+      DTList.LoadFromVA(VA);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, SVANotDim1);
+    end;
+
+    VA := VarArrayOf([DT_0, DT_1, DT_2]);
+    DTList.LoadFromVA(VA);
+    CheckEquals(DTList.Count, 3);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_1);
+    Check(DTList[2] = DT_2);
+
+    VA := Unassigned;
+    VA := DTList.SaveToVA;
+    CheckEquals(VarArrayDimCount(VA), 1);
+    CheckEquals(VarArrayLowBound(VA, 1), 1);
+    CheckEquals(VarArrayHighBound(VA, 1), 3);
+    Check(VarArrayGet(VA, [1]) = DT_0);
+    Check(VarArrayGet(VA, [2]) = DT_1);
+    Check(VarArrayGet(VA, [3]) = DT_2);
+  finally
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_Combine;
+var
+  DTList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    CheckEquals(DTList.Combine, Str_Of_DT_0 + '```' + Str_Of_DT_1 + '```' + Str_Of_DT_2);
+    CheckEquals(DTList.Combine(', '), Str_Of_DT_0 + ', ' + Str_Of_DT_1 + ', ' + Str_Of_DT_2);
+    CheckEquals(DTList.Combine(', ', True), ', ' + Str_Of_DT_0 + ', ' + Str_Of_DT_1 + ', ' + Str_Of_DT_2 + ', ');
+
+    DTList.LoadFromArray([]);
+    CheckEquals(DTList.Combine(', '), '');
+  finally
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_Split;
+var
+  DTList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  try
+    // Split
+    CheckEquals(DTList.Split(DateTimeToStr(DT_0) + '```' + DateTimeToStr(DT_1)), 2);
+    CheckEquals(DTList.Count, 2);
+    Check(mnFloatEQ(DTList[0], DT_0));
+    Check(mnFloatEQ(DTList[1], DT_1));
+
+    // AnsiSplit
+    CheckEquals(DTList.AnsiSplit(DateTimeToStr(DT_0) + '```' + DateTimeToStr(DT_1)), 2);
+    CheckEquals(DTList.Count, 4);
+    Check(mnFloatEQ(DTList[0], DT_0));
+    Check(mnFloatEQ(DTList[1], DT_1));
+    Check(mnFloatEQ(DTList[2], DT_0));
+    Check(mnFloatEQ(DTList[3], DT_1));
+  finally
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_GetEnumerator;
+var
+  DTList: mnTDTList;
+  Item: TDateTime;
+  Ticker: Integer;
+begin
+  DTList := mnTDTList.Create;
+  try
+    DTList.LoadFromArray([DT_0, DT_1, DT_2]);
+    Ticker := 0;
+    for Item in DTList do
+    begin
+      Inc(Ticker);
+      case Ticker of
+        1: Check(Item = DT_0);
+        2: Check(Item = DT_1);
+        3: Check(Item = DT_2);
+        4: mnNeverGoesHere;
+      end;
+    end;
+  finally
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDTList_Duplicates;
+var
+  DTList: mnTDTList;
+begin
+  DTList := mnTDTList.Create;
+  try
+    // dupIgnore
+    DTList.LoadFromArray([DT_0, DT_1]);
+    DTList.Duplicates := dupIgnore;
+    DTList.Add(DT_2);
+    CheckEquals(DTList.Count, 3);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_1);
+    Check(DTList[2] = DT_2);
+    DTList.Add(DT_1);
+    CheckEquals(DTList.Count, 3);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_1);
+    Check(DTList[2] = DT_2);
+
+    // dupAccept
+    DTList.LoadFromArray([DT_0, DT_1]);
+    DTList.Duplicates := dupAccept;
+    DTList.Add(DT_2);
+    CheckEquals(DTList.Count, 3);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_1);
+    Check(DTList[2] = DT_2);
+    DTList.Add(DT_1);
+    CheckEquals(DTList.Count, 4);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_1);
+    Check(DTList[2] = DT_2);
+    Check(DTList[3] = DT_1);
+
+    // dupError
+    DTList.LoadFromArray([DT_0, DT_1]);
+    DTList.Duplicates := dupError;
+    DTList.Add(DT_2);
+    CheckEquals(DTList.Count, 3);
+    Check(DTList[0] = DT_0);
+    Check(DTList[1] = DT_1);
+    Check(DTList[2] = DT_2);
+    try
+      DTList.Add(DT_1);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(STryToAddDuplicateItem, [DateTimeToStr(DT_1)]));
+    end;
+  finally
+    DTList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_Items;
+var
+  CurrList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    Check(CurrList.Items[0] = Curr_0);
+    Check(CurrList.Items[1] = Curr_1);
+    Check(CurrList.Items[2] = Curr_2);
+
+    CurrList.Items[1] := Curr_3;
+    Check(CurrList.Items[0] = Curr_0);
+    Check(CurrList.Items[1] = Curr_3);
+    Check(CurrList.Items[2] = Curr_2);
+  finally
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_StatSeries;
+var
+  CurrList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2, Curr_3, Curr_4]);
+    CheckEquals(CurrList.Min, Curr_0);
+    CheckEquals(CurrList.Max, Curr_2);
+    CheckEquals(CurrList.Sum, Curr_0+Curr_1+Curr_2+Curr_3+Curr_4);
+    CheckEquals(CurrList.Avg, RoundTo((Curr_0+Curr_1+Curr_2+Curr_3+Curr_4)/5, -4), mnParticle);
+    // overflow: CheckEquals(CurrList.Product, Curr_0*Curr_1*Curr_2*Curr_3*Curr_4);
+  finally
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_IndexOf;
+var
+  CurrList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    CheckEquals(CurrList.IndexOf(Curr_0), 0);
+    CheckEquals(CurrList.IndexOf(Curr_1), 1);
+    CheckEquals(CurrList.IndexOf(Curr_2), 2);
+
+    CheckEquals(CurrList.IndexOf(Curr_3), -1);
+  finally
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_First;
+var
+  CurrList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    Check(CurrList.First = Curr_0);
+  finally
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_Last;
+var
+  CurrList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    Check(CurrList.Last = Curr_2);
+  finally
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_Add;
+var
+  CurrList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    CheckEquals(CurrList.Add(Curr_0), 0);
+    CheckEquals(CurrList.Add(Curr_1), 1);
+    CheckEquals(CurrList.Add(Curr_2), 2);
+    CheckEquals(CurrList.Count, 3);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+    Check(CurrList[2] = Curr_2);
+  finally
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_Insert;
+var
+  CurrList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    CurrList.Insert(1, Curr_3);
+    CheckEquals(CurrList.Count, 4);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_3);
+    Check(CurrList[2] = Curr_1);
+    Check(CurrList[3] = Curr_2);
+  finally
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_Extract;
+var
+  CurrList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    Check(CurrList.Extract(1) = Curr_1);
+    CheckEquals(CurrList.Count, 2);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_2);
+
+    try
+      CurrList.Extract(2);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(SListIndexError, [2]));
+    end;
+  finally
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_Remove;
+var
+  CurrList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    CheckEquals(CurrList.Remove(Curr_1), 1);
+    CheckEquals(CurrList.Count, 2);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_2);
+
+    CheckEquals(CurrList.Remove(Curr_3), -1);
+  finally
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_RemoveAll;
+var
+  CurrList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2, Curr_1, Curr_2, Curr_1, Curr_2]);
+    CheckEquals(CurrList.RemoveAll(Curr_2), 3);
+    CheckEquals(CurrList.Count, 4);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+    Check(CurrList[2] = Curr_1);
+    Check(CurrList[3] = Curr_1);
+  finally
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_SortNormal;
+var
+  CurrList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2, Curr_3]);
+
+    CurrList.SortNormal(osAsc);
+    CheckEquals(CurrList.Count, 4);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+    Check(CurrList[2] = Curr_3);
+    Check(CurrList[3] = Curr_2);
+
+    CurrList.SortNormal(osDesc);
+    CheckEquals(CurrList.Count, 4);
+    Check(CurrList[0] = Curr_2);
+    Check(CurrList[1] = Curr_3);
+    Check(CurrList[2] = Curr_1);
+    Check(CurrList[3] = Curr_0);
+  finally
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_IsUnique;
+var
+  CurrList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2, Curr_1]);
+    CheckFalse(CurrList.IsUnique);
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2, Curr_3]);
+    Check(CurrList.IsUnique);
+  finally
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_MakeUnique;
+var
+  CurrList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2, Curr_1, Curr_2, Curr_1, Curr_2]);
+    CurrList.MakeUnique;
+    CheckEquals(CurrList.Count, 3);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+    Check(CurrList[2] = Curr_2);
+  finally
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_Equals;
+var
+  CurrList, AnotherList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  AnotherList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    AnotherList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    Check(CurrList.Equals(AnotherList));
+
+    AnotherList[1] := Curr_3;
+    CheckFalse(CurrList.Equals(AnotherList));
+  finally
+    AnotherList.Free;
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_Compare;
+var
+  CurrList, AnotherList, CurrListSolo, AnotherListSolo: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  AnotherList := mnTCurrList.Create;
+  CurrListSolo := mnTCurrList.Create;
+  AnotherListSolo := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    AnotherList.LoadFromArray([Curr_3, Curr_2, Curr_4, Curr_1]);
+
+    CurrList.Compare(AnotherList, CurrListSolo, AnotherListSolo);
+    CheckEquals(CurrListSolo.Count, 1);
+    Check(CurrListSolo[0] = Curr_0);
+    CheckEquals(AnotherListSolo.Count, 2);
+    Check(AnotherListSolo[0] = Curr_3);
+    Check(AnotherListSolo[1] = Curr_4);
+  finally
+    AnotherListSolo.Free;
+    CurrListSolo.Free;
+    AnotherList.Free;
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_Link;
+var
+  CurrList, AnotherList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  AnotherList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    AnotherList.LoadFromArray([Curr_3, Curr_2, Curr_4]);
+
+    CurrList.Link(AnotherList);
+    CheckEquals(CurrList.Count, 6);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+    Check(CurrList[2] = Curr_2);
+    Check(CurrList[3] = Curr_3);
+    Check(CurrList[4] = Curr_2);
+    Check(CurrList[5] = Curr_4);
+  finally
+    AnotherList.Free;
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_LinkStrs;
+var
+  CurrList: mnTCurrList;
+  Strs: mnTStrList;
+begin
+  CurrList := mnTCurrList.Create;
+  Strs := mnTStrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    Strs.LoadFromArray([CurrToStr(Curr_3), CurrToStr(Curr_4)]);
+
+    CurrList.LinkStrs(Strs);
+    CheckEquals(CurrList.Count, 5);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+    Check(CurrList[2] = Curr_2);
+    Check(CurrList[3] = Curr_3);
+    Check(CurrList[4] = Curr_4);
+  finally
+    Strs.Free;
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_Assign;
+var
+  CurrList, AnotherList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  AnotherList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    AnotherList.LoadFromArray([Curr_3, Curr_2, Curr_4, Curr_1]);
+
+    CurrList.Assign(AnotherList, laCopy);
+    CheckEquals(CurrList.Count, 4);
+    Check(CurrList[0] = Curr_3);
+    Check(CurrList[1] = Curr_2);
+    Check(CurrList[2] = Curr_4);
+    Check(CurrList[3] = Curr_1);
+
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    CurrList.Assign(AnotherList, laAnd);
+    CheckEquals(CurrList.Count, 2);
+    Check(CurrList[0] = Curr_1);
+    Check(CurrList[1] = Curr_2);
+
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    CurrList.Assign(AnotherList, laOr);
+    CheckEquals(CurrList.Count, 5);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+    Check(CurrList[2] = Curr_2);
+    Check(CurrList[3] = Curr_3);
+    Check(CurrList[4] = Curr_4);
+
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    CurrList.Assign(AnotherList, laXor);
+    CheckEquals(CurrList.Count, 3);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_3);
+    Check(CurrList[2] = Curr_4);
+
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    CurrList.Assign(AnotherList, laSrcUnique);
+    CheckEquals(CurrList.Count, 1);
+    Check(CurrList[0] = Curr_0);
+
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    CurrList.Assign(AnotherList, laDestUnique);
+    CheckEquals(CurrList.Count, 2);
+    Check(CurrList[0] = Curr_3);
+    Check(CurrList[1] = Curr_4);
+  finally
+    AnotherList.Free;
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_SaveLoadStreamTurbo;
+var
+  CurrList: mnTCurrList;
+  Stream: TFileStream;
+  StreamTurbo: mnTStreamTurbo;
+begin
+  CurrList := mnTCurrList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('CurrList.bin'), fmCreate);
+  StreamTurbo := mnTStreamTurbo.Create(Stream);
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2, Curr_3, Curr_4]);
+    CurrList.SaveToStreamTurbo(StreamTurbo);
+  finally
+    StreamTurbo.Free;
+    Stream.Free;
+    CurrList.Free;
+  end;
+
+  CurrList := mnTCurrList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('CurrList.bin'), fmOpenRead or fmShareDenyWrite);
+  StreamTurbo := mnTStreamTurbo.Create(Stream);
+  try
+    CurrList.LoadFromStreamTurbo(StreamTurbo);
+    CheckEquals(CurrList.Count, 5);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+    Check(CurrList[2] = Curr_2);
+    Check(CurrList[3] = Curr_3);
+    Check(CurrList[4] = Curr_4);
+  finally
+    StreamTurbo.Free;
+    Stream.Free;
+    CurrList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('CurrList.bin'));
+end;
+
+procedure TmnSystemTestCase.testCurrList_SaveLoadStream;
+var
+  CurrList: mnTCurrList;
+  Stream: TFileStream;
+begin
+  CurrList := mnTCurrList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('CurrList.bin'), fmCreate);
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2, Curr_3, Curr_4]);
+    CurrList.SaveToStream(Stream);
+  finally
+    Stream.Free;
+    CurrList.Free;
+  end;
+
+  CurrList := mnTCurrList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('CurrList.bin'), fmOpenRead or fmShareDenyWrite);
+  try
+    CurrList.LoadFromStream(Stream);
+    CheckEquals(CurrList.Count, 5);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+    Check(CurrList[2] = Curr_2);
+    Check(CurrList[3] = Curr_3);
+    Check(CurrList[4] = Curr_4);
+  finally
+    Stream.Free;
+    CurrList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('CurrList.bin'));
+end;
+
+procedure TmnSystemTestCase.testCurrList_SaveLoadStreamFile;
+var
+  CurrList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2, Curr_3, Curr_4]);
+    CurrList.SaveToStreamFile(mnTProjectConvention.GetTestTempPathSub('CurrList.bin'));
+  finally
+    CurrList.Free;
+  end;
+
+  CurrList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromStreamFile(mnTProjectConvention.GetTestTempPathSub('CurrList.bin'));
+    CheckEquals(CurrList.Count, 5);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+    Check(CurrList[2] = Curr_2);
+    Check(CurrList[3] = Curr_3);
+    Check(CurrList[4] = Curr_4);
+  finally
+    CurrList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('CurrList.bin'));
+end;
+
+procedure TmnSystemTestCase.testCurrList_SaveLoadFile;
+var
+  CurrList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2, Curr_3, Curr_4]);
+    CurrList.SaveToFile(mnTProjectConvention.GetTestTempPathSub('CurrList.txt'));
+  finally
+    CurrList.Free;
+  end;
+
+  CurrList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromFile(mnTProjectConvention.GetTestTempPathSub('CurrList.txt'));
+    CheckEquals(CurrList.Count, 5);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+    Check(CurrList[2] = Curr_2);
+    Check(CurrList[3] = Curr_3);
+    Check(CurrList[4] = Curr_4);
+  finally
+    CurrList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('CurrList.txt'));
+end;
+
+procedure TmnSystemTestCase.testCurrList_SaveLoadArray;
+var
+  CurrList: mnTCurrList;
+  DynArr: array of Currency;
+  StaArr: array [4..6] of Currency;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    CheckEquals(CurrList.Count, 3);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+    Check(CurrList[2] = Curr_2);
+
+    SetLength(DynArr, 1);
+    try
+      CurrList.SaveToArray(DynArr);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, SArrayTooShortForList);
+    end;
+
+    SetLength(DynArr, CurrList.Count);
+    CurrList.SaveToArray(DynArr);
+    Check(DynArr[0] = Curr_0);
+    Check(DynArr[1] = Curr_1);
+    Check(DynArr[2] = Curr_2);
+
+    CurrList.SaveToArray(StaArr);
+    Check(StaArr[4] = Curr_0);
+    Check(StaArr[5] = Curr_1);
+    Check(StaArr[6] = Curr_2);
+  finally
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_SaveLoadVA;
+var
+  CurrList: mnTCurrList;
+  VA: Variant;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    VA := VarArrayCreate([1, 10, 8, 29], varVariant);
+    try
+      CurrList.LoadFromVA(VA);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, SVANotDim1);
+    end;
+
+    VA := VarArrayOf([Curr_0, Curr_1, Curr_2]);
+    CurrList.LoadFromVA(VA);
+    CheckEquals(CurrList.Count, 3);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+    Check(CurrList[2] = Curr_2);
+
+    VA := Unassigned;
+    VA := CurrList.SaveToVA;
+    CheckEquals(VarArrayDimCount(VA), 1);
+    CheckEquals(VarArrayLowBound(VA, 1), 1);
+    CheckEquals(VarArrayHighBound(VA, 1), 3);
+    Check(VarArrayGet(VA, [1]) = Curr_0);
+    Check(VarArrayGet(VA, [2]) = Curr_1);
+    Check(VarArrayGet(VA, [3]) = Curr_2);
+  finally
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_Combine;
+var
+  CurrList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    CheckEquals(CurrList.Combine, Str_Of_Curr_0 + '```' + Str_Of_Curr_1 + '```' + Str_Of_Curr_2);
+    CheckEquals(CurrList.Combine(', '), Str_Of_Curr_0 + ', ' + Str_Of_Curr_1 + ', ' + Str_Of_Curr_2);
+    CheckEquals(CurrList.Combine(', ', True), ', ' + Str_Of_Curr_0 + ', ' + Str_Of_Curr_1 + ', ' + Str_Of_Curr_2 + ', ');
+
+    CurrList.LoadFromArray([]);
+    CheckEquals(CurrList.Combine(', '), '');
+  finally
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_Split;
+var
+  CurrList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    // Split
+    CheckEquals(CurrList.Split(CurrToStr(Curr_0) + '```' + CurrToStr(Curr_1)), 2);
+    CheckEquals(CurrList.Count, 2);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+
+    // AnsiSplit
+    CheckEquals(CurrList.AnsiSplit(CurrToStr(Curr_0) + '```' + CurrToStr(Curr_1)), 2);
+    CheckEquals(CurrList.Count, 4);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+    Check(CurrList[2] = Curr_0);
+    Check(CurrList[3] = Curr_1);
+  finally
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_GetEnumerator;
+var
+  CurrList: mnTCurrList;
+  Item: Currency;
+  Ticker: Integer;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
+    Ticker := 0;
+    for Item in CurrList do
+    begin
+      Inc(Ticker);
+      case Ticker of
+        1: Check(Item = Curr_0);
+        2: Check(Item = Curr_1);
+        3: Check(Item = Curr_2);
+        4: mnNeverGoesHere;
+      end;
+    end;
+  finally
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCurrList_Duplicates;
+var
+  CurrList: mnTCurrList;
+begin
+  CurrList := mnTCurrList.Create;
+  try
+    // dupIgnore
+    CurrList.LoadFromArray([Curr_0, Curr_1]);
+    CurrList.Duplicates := dupIgnore;
+    CurrList.Add(Curr_2);
+    CheckEquals(CurrList.Count, 3);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+    Check(CurrList[2] = Curr_2);
+    CurrList.Add(Curr_1);
+    CheckEquals(CurrList.Count, 3);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+    Check(CurrList[2] = Curr_2);
+
+    // dupAccept
+    CurrList.LoadFromArray([Curr_0, Curr_1]);
+    CurrList.Duplicates := dupAccept;
+    CurrList.Add(Curr_2);
+    CheckEquals(CurrList.Count, 3);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+    Check(CurrList[2] = Curr_2);
+    CurrList.Add(Curr_1);
+    CheckEquals(CurrList.Count, 4);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+    Check(CurrList[2] = Curr_2);
+    Check(CurrList[3] = Curr_1);
+
+    // dupError
+    CurrList.LoadFromArray([Curr_0, Curr_1]);
+    CurrList.Duplicates := dupError;
+    CurrList.Add(Curr_2);
+    CheckEquals(CurrList.Count, 3);
+    Check(CurrList[0] = Curr_0);
+    Check(CurrList[1] = Curr_1);
+    Check(CurrList[2] = Curr_2);
+    try
+      CurrList.Add(Curr_1);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(STryToAddDuplicateItem, [CurrToStr(Curr_1)]));
+    end;
+  finally
+    CurrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_Items;
+var
+  BoolList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2]);
+    Check(BoolList.Items[0] = Bool_0);
+    Check(BoolList.Items[1] = Bool_1);
+    Check(BoolList.Items[2] = Bool_2);
+
+    BoolList.Items[1] := Bool_3;
+    Check(BoolList.Items[0] = Bool_0);
+    Check(BoolList.Items[1] = Bool_3);
+    Check(BoolList.Items[2] = Bool_2);
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_StatSeries;
+var
+  BoolList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2, Bool_3, Bool_4]);
+    CheckEquals(BoolList.Min, Bool_1);
+    CheckEquals(BoolList.Max, Bool_0);
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_IndexOf;
+var
+  BoolList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1]);
+    CheckEquals(BoolList.IndexOf(Bool_0), 0);
+    CheckEquals(BoolList.IndexOf(Bool_1), 1);
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_First;
+var
+  BoolList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2]);
+    Check(BoolList.First = Bool_0);
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_Last;
+var
+  BoolList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2]);
+    Check(BoolList.Last = Bool_2);
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_Add;
+var
+  BoolList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    CheckEquals(BoolList.Add(Bool_0), 0);
+    CheckEquals(BoolList.Add(Bool_1), 1);
+    CheckEquals(BoolList.Add(Bool_2), 2);
+    CheckEquals(BoolList.Count, 3);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_1);
+    Check(BoolList[2] = Bool_2);
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_Insert;
+var
+  BoolList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2]);
+    BoolList.Insert(1, Bool_3);
+    CheckEquals(BoolList.Count, 4);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_3);
+    Check(BoolList[2] = Bool_1);
+    Check(BoolList[3] = Bool_2);
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_Extract;
+var
+  BoolList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2]);
+    Check(BoolList.Extract(1) = Bool_1);
+    CheckEquals(BoolList.Count, 2);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_2);
+
+    try
+      BoolList.Extract(2);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(SListIndexError, [2]));
+    end;
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_Remove;
+var
+  BoolList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2]);
+    CheckEquals(BoolList.Remove(Bool_1), 1);
+    CheckEquals(BoolList.Count, 2);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_2);
+
+    CheckEquals(BoolList.Remove(Bool_3), -1);
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_RemoveAll;
+var
+  BoolList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2, Bool_1, Bool_2, Bool_1, Bool_2]);
+    CheckEquals(BoolList.RemoveAll(Bool_1), 3);
+    CheckEquals(BoolList.Count, 4);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_2);
+    Check(BoolList[2] = Bool_2);
+    Check(BoolList[3] = Bool_2);
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_SortNormal;
+var
+  BoolList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2, Bool_3]);
+
+    BoolList.SortNormal(osAsc);
+    CheckEquals(BoolList.Count, 4);
+    Check(BoolList[0] = Bool_1);
+    Check(BoolList[1] = Bool_3);
+    Check(BoolList[2] = Bool_0);
+    Check(BoolList[3] = Bool_2);
+
+    BoolList.SortNormal(osDesc);
+    CheckEquals(BoolList.Count, 4);
+    Check(BoolList[0] = Bool_2);
+    Check(BoolList[1] = Bool_0);
+    Check(BoolList[2] = Bool_3);
+    Check(BoolList[3] = Bool_1);
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_IsUnique;
+var
+  BoolList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2]);
+    CheckFalse(BoolList.IsUnique);
+    BoolList.LoadFromArray([Bool_0, Bool_1]);
+    Check(BoolList.IsUnique);
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_MakeUnique;
+var
+  BoolList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2, Bool_1, Bool_2, Bool_1, Bool_2]);
+    BoolList.MakeUnique;
+    CheckEquals(BoolList.Count, 2);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_1);
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_Equals;
+var
+  BoolList, AnotherList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  AnotherList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2]);
+    AnotherList.LoadFromArray([Bool_0, Bool_1, Bool_2]);
+    Check(BoolList.Equals(AnotherList));
+
+    AnotherList[1] := Bool_4;
+    CheckFalse(BoolList.Equals(AnotherList));
+  finally
+    AnotherList.Free;
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_Compare;
+var
+  BoolList, AnotherList, BoolListSolo, AnotherListSolo: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  AnotherList := mnTBoolList.Create;
+  BoolListSolo := mnTBoolList.Create;
+  AnotherListSolo := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0]);
+    AnotherList.LoadFromArray([Bool_1]);
+
+    BoolList.Compare(AnotherList, BoolListSolo, AnotherListSolo);
+    CheckEquals(BoolListSolo.Count, 1);
+    Check(BoolListSolo[0] = Bool_0);
+    CheckEquals(AnotherListSolo.Count, 1);
+    Check(AnotherListSolo[0] = Bool_1);
+  finally
+    AnotherListSolo.Free;
+    BoolListSolo.Free;
+    AnotherList.Free;
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_Link;
+var
+  BoolList, AnotherList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  AnotherList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2]);
+    AnotherList.LoadFromArray([Bool_3, Bool_2, Bool_4]);
+
+    BoolList.Link(AnotherList);
+    CheckEquals(BoolList.Count, 6);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_1);
+    Check(BoolList[2] = Bool_2);
+    Check(BoolList[3] = Bool_3);
+    Check(BoolList[4] = Bool_2);
+    Check(BoolList[5] = Bool_4);
+  finally
+    AnotherList.Free;
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_LinkStrs;
+var
+  BoolList: mnTBoolList;
+  Strs: mnTStrList;
+begin
+  BoolList := mnTBoolList.Create;
+  Strs := mnTStrList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2]);
+    Strs.LoadFromArray([BoolToStr(Bool_3), BoolToStr(Bool_4)]);
+
+    BoolList.LinkStrs(Strs);
+    CheckEquals(BoolList.Count, 5);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_1);
+    Check(BoolList[2] = Bool_2);
+    Check(BoolList[3] = Bool_3);
+    Check(BoolList[4] = Bool_4);
+  finally
+    Strs.Free;
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_Assign;
+var
+  BoolList, AnotherList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  AnotherList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0]);
+    AnotherList.LoadFromArray([Bool_1]);
+
+    BoolList.Assign(AnotherList, laCopy);
+    CheckEquals(BoolList.Count, 1);
+    Check(BoolList[0] = Bool_1);
+
+    BoolList.LoadFromArray([Bool_0]);
+    BoolList.Assign(AnotherList, laAnd);
+    CheckEquals(BoolList.Count, 0);
+
+    BoolList.LoadFromArray([Bool_0]);
+    BoolList.Assign(AnotherList, laOr);
+    CheckEquals(BoolList.Count, 2);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_1);
+
+    BoolList.LoadFromArray([Bool_0]);
+    BoolList.Assign(AnotherList, laXor);
+    CheckEquals(BoolList.Count, 2);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_1);
+
+    BoolList.LoadFromArray([Bool_0]);
+    BoolList.Assign(AnotherList, laSrcUnique);
+    CheckEquals(BoolList.Count, 1);
+    Check(BoolList[0] = Bool_0);
+
+    BoolList.LoadFromArray([Bool_0]);
+    BoolList.Assign(AnotherList, laDestUnique);
+    CheckEquals(BoolList.Count, 1);
+    Check(BoolList[0] = Bool_1);
+  finally
+    AnotherList.Free;
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_SaveLoadStreamTurbo;
+var
+  BoolList: mnTBoolList;
+  Stream: TFileStream;
+  StreamTurbo: mnTStreamTurbo;
+begin
+  BoolList := mnTBoolList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('BoolList.bin'), fmCreate);
+  StreamTurbo := mnTStreamTurbo.Create(Stream);
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2, Bool_3, Bool_4]);
+    BoolList.SaveToStreamTurbo(StreamTurbo);
+  finally
+    StreamTurbo.Free;
+    Stream.Free;
+    BoolList.Free;
+  end;
+
+  BoolList := mnTBoolList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('BoolList.bin'), fmOpenRead or fmShareDenyWrite);
+  StreamTurbo := mnTStreamTurbo.Create(Stream);
+  try
+    BoolList.LoadFromStreamTurbo(StreamTurbo);
+    CheckEquals(BoolList.Count, 5);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_1);
+    Check(BoolList[2] = Bool_2);
+    Check(BoolList[3] = Bool_3);
+    Check(BoolList[4] = Bool_4);
+  finally
+    StreamTurbo.Free;
+    Stream.Free;
+    BoolList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('BoolList.bin'));
+end;
+
+procedure TmnSystemTestCase.testBoolList_SaveLoadStream;
+var
+  BoolList: mnTBoolList;
+  Stream: TFileStream;
+begin
+  BoolList := mnTBoolList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('BoolList.bin'), fmCreate);
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2, Bool_3, Bool_4]);
+    BoolList.SaveToStream(Stream);
+  finally
+    Stream.Free;
+    BoolList.Free;
+  end;
+
+  BoolList := mnTBoolList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('BoolList.bin'), fmOpenRead or fmShareDenyWrite);
+  try
+    BoolList.LoadFromStream(Stream);
+    CheckEquals(BoolList.Count, 5);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_1);
+    Check(BoolList[2] = Bool_2);
+    Check(BoolList[3] = Bool_3);
+    Check(BoolList[4] = Bool_4);
+  finally
+    Stream.Free;
+    BoolList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('BoolList.bin'));
+end;
+
+procedure TmnSystemTestCase.testBoolList_SaveLoadStreamFile;
+var
+  BoolList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2, Bool_3, Bool_4]);
+    BoolList.SaveToStreamFile(mnTProjectConvention.GetTestTempPathSub('BoolList.bin'));
+  finally
+    BoolList.Free;
+  end;
+
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromStreamFile(mnTProjectConvention.GetTestTempPathSub('BoolList.bin'));
+    CheckEquals(BoolList.Count, 5);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_1);
+    Check(BoolList[2] = Bool_2);
+    Check(BoolList[3] = Bool_3);
+    Check(BoolList[4] = Bool_4);
+  finally
+    BoolList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('BoolList.bin'));
+end;
+
+procedure TmnSystemTestCase.testBoolList_SaveLoadFile;
+var
+  BoolList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2, Bool_3, Bool_4]);
+    BoolList.SaveToFile(mnTProjectConvention.GetTestTempPathSub('BoolList.txt'));
+  finally
+    BoolList.Free;
+  end;
+
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromFile(mnTProjectConvention.GetTestTempPathSub('BoolList.txt'));
+    CheckEquals(BoolList.Count, 5);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_1);
+    Check(BoolList[2] = Bool_2);
+    Check(BoolList[3] = Bool_3);
+    Check(BoolList[4] = Bool_4);
+  finally
+    BoolList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('BoolList.txt'));
+end;
+
+procedure TmnSystemTestCase.testBoolList_SaveLoadArray;
+var
+  BoolList: mnTBoolList;
+  DynArr: array of Boolean;
+  StaArr: array [4..6] of Boolean;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2]);
+    CheckEquals(BoolList.Count, 3);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_1);
+    Check(BoolList[2] = Bool_2);
+
+    SetLength(DynArr, 1);
+    try
+      BoolList.SaveToArray(DynArr);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, SArrayTooShortForList);
+    end;
+
+    SetLength(DynArr, BoolList.Count);
+    BoolList.SaveToArray(DynArr);
+    Check(DynArr[0] = Bool_0);
+    Check(DynArr[1] = Bool_1);
+    Check(DynArr[2] = Bool_2);
+
+    BoolList.SaveToArray(StaArr);
+    Check(StaArr[4] = Bool_0);
+    Check(StaArr[5] = Bool_1);
+    Check(StaArr[6] = Bool_2);
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_SaveLoadVA;
+var
+  BoolList: mnTBoolList;
+  VA: Variant;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    VA := VarArrayCreate([1, 10, 8, 29], varVariant);
+    try
+      BoolList.LoadFromVA(VA);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, SVANotDim1);
+    end;
+
+    VA := VarArrayOf([Bool_0, Bool_1, Bool_2]);
+    BoolList.LoadFromVA(VA);
+    CheckEquals(BoolList.Count, 3);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_1);
+    Check(BoolList[2] = Bool_2);
+
+    VA := Unassigned;
+    VA := BoolList.SaveToVA;
+    CheckEquals(VarArrayDimCount(VA), 1);
+    CheckEquals(VarArrayLowBound(VA, 1), 1);
+    CheckEquals(VarArrayHighBound(VA, 1), 3);
+    Check(VarArrayGet(VA, [1]) = Bool_0);
+    Check(VarArrayGet(VA, [2]) = Bool_1);
+    Check(VarArrayGet(VA, [3]) = Bool_2);
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_Combine;
+var
+  BoolList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2]);
+    CheckEquals(BoolList.Combine, Str_Of_Bool_0 + '```' + Str_Of_Bool_1 + '```' + Str_Of_Bool_2);
+    CheckEquals(BoolList.Combine(', '), Str_Of_Bool_0 + ', ' + Str_Of_Bool_1 + ', ' + Str_Of_Bool_2);
+    CheckEquals(BoolList.Combine(', ', True), ', ' + Str_Of_Bool_0 + ', ' + Str_Of_Bool_1 + ', ' + Str_Of_Bool_2 + ', ');
+
+    BoolList.LoadFromArray([]);
+    CheckEquals(BoolList.Combine(', '), '');
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_Split;
+var
+  BoolList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    // Split
+    CheckEquals(BoolList.Split(SysUtils.BoolToStr(Bool_0, True) + '```' + SysUtils.BoolToStr(Bool_1, True)), 2);
+    CheckEquals(BoolList.Count, 2);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_1);
+
+    // AnsiSplit
+    CheckEquals(BoolList.AnsiSplit(BoolToStr(Bool_0) + '```' + BoolToStr(Bool_1)), 2);
+    CheckEquals(BoolList.Count, 4);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_1);
+    Check(BoolList[2] = Bool_0);
+    Check(BoolList[3] = Bool_1);
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_GetEnumerator;
+var
+  BoolList: mnTBoolList;
+  Item: Boolean;
+  Ticker: Integer;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadFromArray([Bool_0, Bool_1, Bool_2]);
+    Ticker := 0;
+    for Item in BoolList do
+    begin
+      Inc(Ticker);
+      case Ticker of
+        1: Check(Item = Bool_0);
+        2: Check(Item = Bool_1);
+        3: Check(Item = Bool_2);
+        4: mnNeverGoesHere;
+      end;
+    end;
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_Duplicates;
+var
+  BoolList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    // dupIgnore
+    BoolList.LoadFromArray([Bool_0, Bool_1]);
+    BoolList.Duplicates := dupIgnore;
+    BoolList.Add(Bool_1);
+    CheckEquals(BoolList.Count, 2);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_1);
+
+    // dupAccept
+    BoolList.LoadFromArray([Bool_0, Bool_1]);
+    BoolList.Duplicates := dupAccept;
+    BoolList.Add(Bool_1);
+    CheckEquals(BoolList.Count, 3);
+    Check(BoolList[0] = Bool_0);
+    Check(BoolList[1] = Bool_1);
+    Check(BoolList[2] = Bool_1);
+
+    // dupError
+    BoolList.LoadFromArray([Bool_0, Bool_1]);
+    BoolList.Duplicates := dupError;
+    try
+      BoolList.Add(Bool_1);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(STryToAddDuplicateItem, [SysUtils.BoolToStr(Bool_1, True)]));
+    end;
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testBoolList_SaveLoadByBit;
+var
+  BoolList: mnTBoolList;
+begin
+  BoolList := mnTBoolList.Create;
+  try
+    BoolList.LoadByBit($00000017, 4);
+    CheckEquals(BoolList.Count, 4);
+    CheckEquals(BoolList[0], True);
+    CheckEquals(BoolList[1], True);
+    CheckEquals(BoolList[2], True);
+    CheckEquals(BoolList[3], False);
+
+    CheckEquals(BoolList.SaveByBit(2), 3);
+  finally
+    BoolList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_StatSeries;
+var
+  StrList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2, Str_3, Str_4]);
+    CheckEquals(StrList.Min, Str_0);
+    CheckEquals(StrList.Max, Str_4);
+    CheckEquals(StrList.MinLength, 4);
+    CheckEquals(StrList.MaxLength, 6);
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_AppendF;
+var
+  StrList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  try
+    StrList.AppendF('a');
+    StrList.AppendF('b%d', [10]);
+    StrList.AppendF('%sc%d', ['x', 5]);
+
+    CheckEquals(StrList.Count, 3);
+    CheckEquals(StrList[0], 'a');
+    CheckEquals(StrList[1], 'b10');
+    CheckEquals(StrList[2], 'xc5');
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_First;
+var
+  StrList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2]);
+    Check(StrList.First = Str_0);
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_Last;
+var
+  StrList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2]);
+    Check(StrList.Last = Str_2);
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_Extract;
+var
+  StrList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2]);
+    Check(StrList.Extract(1) = Str_1);
+    CheckEquals(StrList.Count, 2);
+    Check(StrList[0] = Str_0);
+    Check(StrList[1] = Str_2);
+
+    try
+      StrList.Extract(2);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(SListIndexError, [2]));
+    end;
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_Remove;
+var
+  StrList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2]);
+    CheckEquals(StrList.Remove(Str_1), 1);
+    CheckEquals(StrList.Count, 2);
+    Check(StrList[0] = Str_0);
+    Check(StrList[1] = Str_2);
+
+    CheckEquals(StrList.Remove(Str_3), -1);
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_RemoveAll;
+var
+  StrList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2, Str_1, Str_2, Str_1, Str_2]);
+    CheckEquals(StrList.RemoveAll(Str_2), 3);
+    CheckEquals(StrList.Count, 4);
+    Check(StrList[0] = Str_0);
+    Check(StrList[1] = Str_1);
+    Check(StrList[2] = Str_1);
+    Check(StrList[3] = Str_1);
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_Concat;
+var
+  StrList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2]);
+    StrList.Concat(1, 'plus');
+    CheckEquals(StrList.Count, 3);
+    Check(StrList[0] = Str_0);
+    Check(StrList[1] = Str_1 + 'plus');
+    Check(StrList[2] = Str_2);
+
+    try
+      StrList.Concat(3, 'plus');
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(SListIndexError, [3]));
+    end;
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_ConcatToLast;
+var
+  StrList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2]);
+    StrList.ConcatToLast('plus');
+    CheckEquals(StrList.Count, 3);
+    Check(StrList[0] = Str_0);
+    Check(StrList[1] = Str_1);
+    Check(StrList[2] = Str_2 + 'plus');
+
+    StrList.Clear;
+    StrList.ConcatToLast('plus');
+    CheckEquals(StrList.Count, 1);
+    Check(StrList[0] = 'plus');
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_CountItem;
+var
+  StrList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2, Str_1, Str_2, Str_1, Str_2]);
+    CheckEquals(StrList.CountItem(Str_0), 1);
+    CheckEquals(StrList.CountItem(Str_1), 3);
+    CheckEquals(StrList.CountItem(Str_2), 3);
+    CheckEquals(StrList.CountItem(Str_3), 0);
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_SortNormal;
+var
+  StrList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2, Str_3]);
+
+    StrList.SortNormal(osAsc);
+    CheckEquals(StrList.Count, 4);
+    Check(StrList[0] = Str_0);
+    Check(StrList[1] = Str_1);
+    Check(StrList[2] = Str_2);
+    Check(StrList[3] = Str_3);
+
+    StrList.SortNormal(osDesc);
+    CheckEquals(StrList.Count, 4);
+    Check(StrList[0] = Str_3);
+    Check(StrList[1] = Str_2);
+    Check(StrList[2] = Str_1);
+    Check(StrList[3] = Str_0);
+
+    StrList.LoadFromArray([Str_NameValue_0, Str_NameValue_1, Str_NameValue_2, Str_NameValue_3]);
+
+    StrList.SortNormal(osAsc, True);
+    CheckEquals(StrList.Count, 4);
+    Check(StrList[0] = Str_NameValue_1);
+    Check(StrList[1] = Str_NameValue_2);
+    Check(StrList[2] = Str_NameValue_0);
+    Check(StrList[3] = Str_NameValue_3);
+
+    StrList.SortNormal(osDesc, True);
+    CheckEquals(StrList.Count, 4);
+    Check(StrList[0] = Str_NameValue_3);
+    Check(StrList[1] = Str_NameValue_0);
+    Check(StrList[2] = Str_NameValue_2);
+    Check(StrList[3] = Str_NameValue_1);
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_SortInNumberStyle;
+var
+  StrList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  try
+    StrList.LoadFromArray(['2aaa', 'aaa', 'bbb', '10aaa', '1aaa']);
+
+    StrList.SortInNumberStyle(osAsc);
+    CheckEquals(StrList.Count, 5);
+    Check(StrList[0] = '1aaa');
+    Check(StrList[1] = '2aaa');
+    Check(StrList[2] = '10aaa');
+    Check(StrList[3] = 'aaa');
+    Check(StrList[4] = 'bbb');
+
+    StrList.SortInNumberStyle(osDesc);
+    CheckEquals(StrList.Count, 5);
+    Check(StrList[0] = 'bbb');
+    Check(StrList[1] = 'aaa');
+    Check(StrList[2] = '10aaa');
+    Check(StrList[3] = '2aaa');
+    Check(StrList[4] = '1aaa');
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_IsUnique;
+var
+  StrList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2, Str_1]);
+    CheckFalse(StrList.IsUnique);
+    StrList.LoadFromArray([Str_0, Str_1, Str_2, Str_3]);
+    Check(StrList.IsUnique);
+
+    StrList.LoadFromArray([Str_NameValue_0, Str_NameValue_1, Str_NameValue_2, Str_NameValue_1]);
+    CheckFalse(StrList.IsUnique(True));
+    StrList.LoadFromArray([Str_NameValue_0, Str_NameValue_1, Str_NameValue_2, Str_NameValue_3]);
+    Check(StrList.IsUnique(True));
+
+    StrList.LoadFromArray([Str_NameValue_0, Str_NameValue_1, Str_NameValue_2, Str_NameValue_3, Str_NameValue_4]);
+    Check(StrList.IsUnique(False));
+    CheckFalse(StrList.IsUnique(True));
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_MakeUnique;
+var
+  StrList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2, Str_1, Str_2, Str_1, Str_2]);
+    StrList.MakeUnique;
+    CheckEquals(StrList.Count, 3);
+    Check(StrList[0] = Str_0);
+    Check(StrList[1] = Str_1);
+    Check(StrList[2] = Str_2);
+
+    StrList.LoadFromArray([Str_NameValue_0, Str_NameValue_1, Str_NameValue_2, Str_NameValue_1, Str_NameValue_2, Str_NameValue_1, Str_NameValue_2]);
+    StrList.MakeUnique(True);
+    CheckEquals(StrList.Count, 3);
+    Check(StrList[0] = Str_NameValue_0);
+    Check(StrList[1] = Str_NameValue_1);
+    Check(StrList[2] = Str_NameValue_2);
+
+    StrList.LoadFromArray([Str_NameValue_0, Str_NameValue_1, Str_NameValue_2, Str_NameValue_3, Str_NameValue_4]);
+    StrList.MakeUnique(False);
+    CheckEquals(StrList.Count, 5);
+    Check(StrList[0] = Str_NameValue_0);
+    Check(StrList[1] = Str_NameValue_1);
+    Check(StrList[2] = Str_NameValue_2);
+    Check(StrList[3] = Str_NameValue_3);
+    Check(StrList[4] = Str_NameValue_4);
+    StrList.MakeUnique(True);
+    CheckEquals(StrList.Count, 4);
+    Check(StrList[0] = Str_NameValue_0);
+    Check(StrList[1] = Str_NameValue_1);
+    Check(StrList[2] = Str_NameValue_2);
+    Check(StrList[3] = Str_NameValue_3);
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_Compare;
+var
+  StrList, AnotherList, StrListSolo, AnotherListSolo: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  AnotherList := mnTStrList.Create;
+  StrListSolo := mnTStrList.Create;
+  AnotherListSolo := mnTStrList.Create;
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2]);
+    StrList.Objects[0] := mnNewIntPointer(0);
+    StrList.Objects[1] := mnNewIntPointer(1);
+    StrList.Objects[2] := mnNewIntPointer(2);
+    AnotherList.LoadFromArray([Str_3, Str_2, Str_4, Str_1]);
+    AnotherList.Objects[0] := mnNewIntPointer(3);
+    AnotherList.Objects[1] := mnNewIntPointer(2);
+    AnotherList.Objects[2] := mnNewIntPointer(4);
+    AnotherList.Objects[3] := mnNewIntPointer(1);
+
+    StrList.Compare(AnotherList, StrListSolo, AnotherListSolo);
+    CheckEquals(StrListSolo.Count, 1);
+    Check(StrListSolo[0] = Str_0);
+    Check(mnReadIntPointer(StrListSolo.Objects[0]) = 0);
+    CheckEquals(AnotherListSolo.Count, 2);
+    Check(AnotherListSolo[0] = Str_3);
+    Check(AnotherListSolo[1] = Str_4);
+    Check(mnReadIntPointer(AnotherListSolo.Objects[0]) = 3);
+    Check(mnReadIntPointer(AnotherListSolo.Objects[1]) = 4);
+  finally
+    mnClearStrings(AnotherList);
+    mnClearStrings(StrList);
+    AnotherListSolo.Free;
+    StrListSolo.Free;
+    AnotherList.Free;
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_AssignByOp;
+var
+  StrList, AnotherList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  AnotherList := mnTStrList.Create;
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2]);
+    AnotherList.LoadFromArray([Str_3, Str_2, Str_4, Str_1]);
+
+    StrList.AssignByOp(AnotherList, laCopy);
+    CheckEquals(StrList.Count, 4);
+    Check(StrList[0] = Str_3);
+    Check(StrList[1] = Str_2);
+    Check(StrList[2] = Str_4);
+    Check(StrList[3] = Str_1);
+
+    StrList.LoadFromArray([Str_0, Str_1, Str_2]);
+    StrList.AssignByOp(AnotherList, laAnd);
+    CheckEquals(StrList.Count, 2);
+    Check(StrList[0] = Str_1);
+    Check(StrList[1] = Str_2);
+
+    StrList.LoadFromArray([Str_0, Str_1, Str_2]);
+    StrList.AssignByOp(AnotherList, laOr);
+    CheckEquals(StrList.Count, 5);
+    Check(StrList[0] = Str_0);
+    Check(StrList[1] = Str_1);
+    Check(StrList[2] = Str_2);
+    Check(StrList[3] = Str_3);
+    Check(StrList[4] = Str_4);
+
+    StrList.LoadFromArray([Str_0, Str_1, Str_2]);
+    StrList.AssignByOp(AnotherList, laXor);
+    CheckEquals(StrList.Count, 3);
+    Check(StrList[0] = Str_0);
+    Check(StrList[1] = Str_3);
+    Check(StrList[2] = Str_4);
+
+    StrList.LoadFromArray([Str_0, Str_1, Str_2]);
+    StrList.AssignByOp(AnotherList, laSrcUnique);
+    CheckEquals(StrList.Count, 1);
+    Check(StrList[0] = Str_0);
+
+    StrList.LoadFromArray([Str_0, Str_1, Str_2]);
+    StrList.AssignByOp(AnotherList, laDestUnique);
+    CheckEquals(StrList.Count, 2);
+    Check(StrList[0] = Str_3);
+    Check(StrList[1] = Str_4);
+  finally
+    AnotherList.Free;
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_SaveLoadStreamTurbo;
+var
+  StrList: mnTStrList;
+  Stream: TFileStream;
+  StreamTurbo: mnTStreamTurbo;
+begin
+  StrList := mnTStrList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('StrList.bin'), fmCreate);
+  StreamTurbo := mnTStreamTurbo.Create(Stream);
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2, Str_3, Str_4]);
+    StrList.SaveToStreamTurbo(StreamTurbo);
+  finally
+    StreamTurbo.Free;
+    Stream.Free;
+    StrList.Free;
+  end;
+
+  StrList := mnTStrList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('StrList.bin'), fmOpenRead or fmShareDenyWrite);
+  StreamTurbo := mnTStreamTurbo.Create(Stream);
+  try
+    StrList.LoadFromStreamTurbo(StreamTurbo);
+    CheckEquals(StrList.Count, 5);
+    Check(StrList[0] = Str_0);
+    Check(StrList[1] = Str_1);
+    Check(StrList[2] = Str_2);
+    Check(StrList[3] = Str_3);
+    Check(StrList[4] = Str_4);
+  finally
+    StreamTurbo.Free;
+    Stream.Free;
+    StrList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('StrList.bin'));
+end;
+
+procedure TmnSystemTestCase.testStrList_SaveLoadStreamBin;
+var
+  StrList: mnTStrList;
+  Stream: TFileStream;
+begin
+  StrList := mnTStrList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('StrList.bin'), fmCreate);
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2, Str_3, Str_4]);
+    StrList.SaveToStreamBin(Stream);
+  finally
+    Stream.Free;
+    StrList.Free;
+  end;
+
+  StrList := mnTStrList.Create;
+  Stream := TFileStream.Create(mnTProjectConvention.GetTestTempPathSub('StrList.bin'), fmOpenRead or fmShareDenyWrite);
+  try
+    StrList.LoadFromStreamBin(Stream);
+    CheckEquals(StrList.Count, 5);
+    Check(StrList[0] = Str_0);
+    Check(StrList[1] = Str_1);
+    Check(StrList[2] = Str_2);
+    Check(StrList[3] = Str_3);
+    Check(StrList[4] = Str_4);
+  finally
+    Stream.Free;
+    StrList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('StrList.bin'));
+end;
+
+procedure TmnSystemTestCase.testStrList_SaveLoadStreamFile;
+var
+  StrList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2, Str_3, Str_4]);
+    StrList.SaveToStreamFile(mnTProjectConvention.GetTestTempPathSub('StrList.bin'));
+  finally
+    StrList.Free;
+  end;
+
+  StrList := mnTStrList.Create;
+  try
+    StrList.LoadFromStreamFile(mnTProjectConvention.GetTestTempPathSub('StrList.bin'));
+    CheckEquals(StrList.Count, 5);
+    Check(StrList[0] = Str_0);
+    Check(StrList[1] = Str_1);
+    Check(StrList[2] = Str_2);
+    Check(StrList[3] = Str_3);
+    Check(StrList[4] = Str_4);
+  finally
+    StrList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('StrList.bin'));
+end;
+
+procedure TmnSystemTestCase.testStrList_SaveLoadArray;
+var
+  StrList: mnTStrList;
+  DynArr: array of string;
+  StaArr: array [4..6] of string;
+begin
+  StrList := mnTStrList.Create;
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2]);
+    CheckEquals(StrList.Count, 3);
+    Check(StrList[0] = Str_0);
+    Check(StrList[1] = Str_1);
+    Check(StrList[2] = Str_2);
+
+    SetLength(DynArr, 1);
+    try
+      StrList.SaveToArray(DynArr);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, SArrayTooShortForList);
+    end;
+
+    SetLength(DynArr, StrList.Count);
+    StrList.SaveToArray(DynArr);
+    Check(DynArr[0] = Str_0);
+    Check(DynArr[1] = Str_1);
+    Check(DynArr[2] = Str_2);
+
+    StrList.SaveToArray(StaArr);
+    Check(StaArr[4] = Str_0);
+    Check(StaArr[5] = Str_1);
+    Check(StaArr[6] = Str_2);
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_SaveLoadVA;
+var
+  StrList: mnTStrList;
+  VA: Variant;
+begin
+  StrList := mnTStrList.Create;
+  try
+    VA := VarArrayCreate([1, 10, 8, 29], varVariant);
+    try
+      StrList.LoadFromVA(VA);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, SVANotDim1);
+    end;
+
+    VA := VarArrayOf([Str_0, Str_1, Str_2]);
+    StrList.LoadFromVA(VA);
+    CheckEquals(StrList.Count, 3);
+    Check(StrList[0] = Str_0);
+    Check(StrList[1] = Str_1);
+    Check(StrList[2] = Str_2);
+
+    VA := Unassigned;
+    VA := StrList.SaveToVA;
+    CheckEquals(VarArrayDimCount(VA), 1);
+    CheckEquals(VarArrayLowBound(VA, 1), 1);
+    CheckEquals(VarArrayHighBound(VA, 1), 3);
+    Check(VarArrayGet(VA, [1]) = Str_0);
+    Check(VarArrayGet(VA, [2]) = Str_1);
+    Check(VarArrayGet(VA, [3]) = Str_2);
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_AppendToFile;
+var
+  StrList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  try
+    StrList.LoadFromArray([Str_0, Str_1]);
+    StrList.SaveToFile(mnTProjectConvention.GetTestTempPathSub('StrList.txt'));
+
+    StrList.Clear;
+    StrList.LoadFromArray([Str_2, Str_3, Str_4]);
+    StrList.AppendToFile(mnTProjectConvention.GetTestTempPathSub('StrList.txt'));
+
+    StrList.LoadFromFile(mnTProjectConvention.GetTestTempPathSub('StrList.txt'));
+    CheckEquals(StrList.Count, 5);
+    Check(StrList[0] = Str_0);
+    Check(StrList[1] = Str_1);
+    Check(StrList[2] = Str_2);
+    Check(StrList[3] = Str_3);
+    Check(StrList[4] = Str_4);
+  finally
+    StrList.Free;
+  end;
+
+  mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('StrList.txt'));
+end;
+
+procedure TmnSystemTestCase.testStrList_Combine;
+var
+  StrList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2]);
+    CheckEquals(StrList.Combine, 'str0```str1```str2');
+    CheckEquals(StrList.Combine(', '), 'str0, str1, str2');
+    CheckEquals(StrList.Combine(', ', True), ', str0, str1, str2, ');
+
+    StrList.LoadFromArray([]);
+    CheckEquals(StrList.Combine(', '), '');
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_CombinePart;
+var
+  StrList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  try
+    StrList.LoadFromArray([Str_0, Str_1, Str_2]);
+    CheckEquals(StrList.CombinePart([0, 1, 2]), 'str0```str1```str2');
+    CheckEquals(StrList.CombinePart([0, 1, 2], ', '), 'str0, str1, str2');
+    CheckEquals(StrList.CombinePart([0, 1, 2], ', ', True), ', str0, str1, str2, ');
+    CheckEquals(StrList.CombinePart([1]), 'str1');
+    CheckEquals(StrList.CombinePart([1], ', '), 'str1');
+    CheckEquals(StrList.CombinePart([1], ', ', True), ', str1, ');
+
+    StrList.LoadFromArray([]);
+    CheckEquals(StrList.CombinePart([], ', '), '');
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_Split;
+var
+  StrList: mnTStrList;
+begin
+  StrList := mnTStrList.Create;
+  try
+    // Split
+    CheckEquals(StrList.Split(Str_0 + '```' + Str_1), 2);
+    CheckEquals(StrList.Count, 2);
+    Check(StrList[0] = Str_0);
+    Check(StrList[1] = Str_1);
+
+    // AnsiSplit
+    CheckEquals(StrList.AnsiSplit(Str_0 + '```' + Str_1), 2);
+    CheckEquals(StrList.Count, 4);
+    Check(StrList[0] = Str_0);
+    Check(StrList[1] = Str_1);
+    Check(StrList[2] = Str_0);
+    Check(StrList[3] = Str_1);
+  finally
+    StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testObjList_EngraveAndDrop;
+var
+  objs: mnTObjList;
+begin
+  objs := mnTObjList.Create(False);
+  try
+    objs.Add(TObject(11));
+    objs.Engrave;
+    objs.Add(TObject(22));
+    objs.Add(TObject(33));
+    CheckEquals(objs.Count, 3);
+
+    objs.Drop;
+    CheckEquals(objs.Count, 1);
+    CheckEquals(Integer(objs[0]), 11);
+  finally
+    objs.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testFieldNamesSeries;
+var
+  strs: mnTStrList;
+begin
+  strs := mnTStrList.Create;
+  try
+    // mnCombineFieldNames
+    CheckEquals(mnCombineFieldNames(['ID', 'Name']), 'ID;Name');
+
+    strs.Append('ID');
+    strs.Append('Name');
+    CheckEquals(mnCombineFieldNames(strs), 'ID;Name');
+
+    // mnSplitFieldNames
+    strs.Clear;
+    CheckEquals(mnSplitFieldNames('ID;Name', strs), 2);
+    CheckEquals(strs[0], 'ID');
+    CheckEquals(strs[1], 'Name');
+
+    // mnCountFieldNames
+    CheckEquals(mnCountFieldNames('ID;Name'), 2);
+    CheckEquals(mnCountFieldNames(''), 0);
+  finally
+    strs.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testTimeUnitToStr;
+begin
+  CheckEquals(mnTimeUnitToStr(tuYear)  , 'Year');
+  CheckEquals(mnTimeUnitToStr(tuMonth) , 'Month');
+  CheckEquals(mnTimeUnitToStr(tuDay)   , 'Day');
+  CheckEquals(mnTimeUnitToStr(tuHour)  , 'Hour');
+  CheckEquals(mnTimeUnitToStr(tuMinute), 'Minute');
+  CheckEquals(mnTimeUnitToStr(tuSecond), 'Second');
+end;
+
+procedure TmnSystemTestCase.testRectSeries;
+var
+  RectA, RectB, RectC: TRect;
+begin
+  RectA := Rect(10, 20, 30, 50);
+  RectB := Rect(60, 70, 80, 100);
+  RectC := Rect(10, 20, 30, 60);
+
+  // mnRectWidth
+  CheckEquals(mnRectWidth(RectA), 20);
+  CheckEquals(mnRectWidth(RectB), 20);
+  CheckEquals(mnRectWidth(RectC), 20);
+
+  // mnRectHeight
+  CheckEquals(mnRectHeight(RectA), 30);
+  CheckEquals(mnRectHeight(RectB), 30);
+  CheckEquals(mnRectHeight(RectC), 40);
+
+  // mnEqualRectSize
+  Check(mnEqualRectSize(RectA, RectB));
+  CheckFalse(mnEqualRectSize(RectA, RectC));
+end;
+
+procedure TmnSystemTestCase.testAdjustSeries;
+var
+  Point1, Point2: TPoint;
+  Rect1, Rect2: TRect;
+begin
+  // mnAdjustX
+  CheckEquals(mnAdjustX(400, 100, taLeftJustify),  400);
+  CheckEquals(mnAdjustX(400, 100, taRightJustify), 301);
+  CheckEquals(mnAdjustX(400, 100, taCenter),       350);
+
+  // mnAdjustY
+  CheckEquals(mnAdjustY(220, 50, taAlignTop),       220);
+  CheckEquals(mnAdjustY(220, 50, taAlignBottom),    171);
+  CheckEquals(mnAdjustY(220, 50, taVerticalCenter), 195);
+
+  // mnAdjustPoint
+  Point1 := Point(400, 220);
+
+  Point2 := mnAdjustPoint(Point1, 100, 50);
+  CheckEquals(Point2.X, 400);
+  CheckEquals(Point2.Y, 220);
+
+  Point2 := mnAdjustPoint(Point1, 100, 50, taRightJustify, taVerticalCenter);
+  CheckEquals(Point2.X, 301);
+  CheckEquals(Point2.Y, 195);
+
+  // mnAdjustRect
+  Rect1.Left := 400;
+  Rect1.Top := 220;
+  Rect1.Right := 500;
+  Rect1.Bottom := 270;
+
+  Rect2 := mnAdjustRect(Rect1);
+  CheckEquals(Rect2.Left, 400);
+  CheckEquals(Rect2.Top, 220);
+  CheckEquals(Rect2.Right, 500);
+  CheckEquals(Rect2.Bottom, 270);
+
+  Rect2 := mnAdjustRect(Rect1, taRightJustify, taVerticalCenter);
+  CheckEquals(Rect2.Left, 301);
+  CheckEquals(Rect2.Top, 195);
+  CheckEquals(Rect2.Right, 401);
+  CheckEquals(Rect2.Bottom, 245);
+end;
+
+procedure TmnSystemTestCase.testCoordinatesTable_AddColumns;
+var
+  Table: mnTCoordinatesTable;
+begin
+  Table := mnTCoordinatesTable.Create;
+  try
+    CheckEquals(Table.AddColumns(10, 2), 0);
+    CheckEquals(Table.ColumnCount, 2);
+    CheckEquals(Table.ColumnWidths[0], 10);
+    CheckEquals(Table.ColumnWidths[1], 10);
+
+    CheckEquals(Table.AddColumns(20, 3), 2);
+    CheckEquals(Table.ColumnCount, 5);
+    CheckEquals(Table.ColumnWidths[0], 10);
+    CheckEquals(Table.ColumnWidths[1], 10);
+    CheckEquals(Table.ColumnWidths[2], 20);
+    CheckEquals(Table.ColumnWidths[3], 20);
+    CheckEquals(Table.ColumnWidths[4], 20);
+  finally
+    Table.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCoordinatesTable_AddRows;
+var
+  Table: mnTCoordinatesTable;
+begin
+  Table := mnTCoordinatesTable.Create;
+  try
+    CheckEquals(Table.AddRows(10, 2), 0);
+    CheckEquals(Table.RowCount, 2);
+    CheckEquals(Table.RowHeights[0], 10);
+    CheckEquals(Table.RowHeights[1], 10);
+
+    CheckEquals(Table.AddRows(20, 3), 2);
+    CheckEquals(Table.RowCount, 5);
+    CheckEquals(Table.RowHeights[0], 10);
+    CheckEquals(Table.RowHeights[1], 10);
+    CheckEquals(Table.RowHeights[2], 20);
+    CheckEquals(Table.RowHeights[3], 20);
+    CheckEquals(Table.RowHeights[4], 20);
+  finally
+    Table.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCoordinatesTable_InsertColumns;
+var
+  Table: mnTCoordinatesTable;
+begin
+  Table := mnTCoordinatesTable.Create;
+  try
+    Table.AddColumns(10);
+    Table.AddColumns(20);
+    Table.AddColumns(30);
+    Table.AddColumns(40);
+
+    Table.InsertColumns(2, 50, 2);
+    CheckEquals(Table.ColumnCount, 6);
+    CheckEquals(Table.ColumnWidths[0], 10);
+    CheckEquals(Table.ColumnWidths[1], 20);
+    CheckEquals(Table.ColumnWidths[2], 50);
+    CheckEquals(Table.ColumnWidths[3], 50);
+    CheckEquals(Table.ColumnWidths[4], 30);
+    CheckEquals(Table.ColumnWidths[5], 40);
+
+    try
+      Table.InsertColumns(7, 100);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(SCoordinatesTableColumnIndexError, [7, 6]));
+    end;
+  finally
+    Table.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCoordinatesTable_InsertRows;
+var
+  Table: mnTCoordinatesTable;
+begin
+  Table := mnTCoordinatesTable.Create;
+  try
+    Table.AddRows(10);
+    Table.AddRows(20);
+    Table.AddRows(30);
+    Table.AddRows(40);
+
+    Table.InsertRows(2, 50, 2);
+    CheckEquals(Table.RowCount, 6);
+    CheckEquals(Table.RowHeights[0], 10);
+    CheckEquals(Table.RowHeights[1], 20);
+    CheckEquals(Table.RowHeights[2], 50);
+    CheckEquals(Table.RowHeights[3], 50);
+    CheckEquals(Table.RowHeights[4], 30);
+    CheckEquals(Table.RowHeights[5], 40);
+
+    try
+      Table.InsertRows(7, 100);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(SCoordinatesTableRowIndexError, [7, 6]));
+    end;
+  finally
+    Table.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCoordinatesTable_DeleteColumns;
+var
+  Table: mnTCoordinatesTable;
+begin
+  Table := mnTCoordinatesTable.Create;
+  try
+    Table.AddColumns(10);
+    Table.AddColumns(20);
+    Table.AddColumns(30);
+    Table.AddColumns(40);
+    Table.AddColumns(50);
+
+    Table.DeleteColumns(1, 2);
+    CheckEquals(Table.ColumnCount, 3);
+    CheckEquals(Table.ColumnWidths[0], 10);
+    CheckEquals(Table.ColumnWidths[1], 40);
+    CheckEquals(Table.ColumnWidths[2], 50);
+
+    Table.DeleteColumns(2, 3);
+    CheckEquals(Table.ColumnCount, 2);
+    CheckEquals(Table.ColumnWidths[0], 10);
+    CheckEquals(Table.ColumnWidths[1], 40);
+
+    try
+      Table.DeleteColumns(5);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(SCoordinatesTableColumnIndexError, [5, 2]));
+    end;
+  finally
+    Table.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCoordinatesTable_DeleteRows;
+var
+  Table: mnTCoordinatesTable;
+begin
+  Table := mnTCoordinatesTable.Create;
+  try
+    Table.AddRows(10);
+    Table.AddRows(20);
+    Table.AddRows(30);
+    Table.AddRows(40);
+    Table.AddRows(50);
+
+    Table.DeleteRows(1, 2);
+    CheckEquals(Table.RowCount, 3);
+    CheckEquals(Table.RowHeights[0], 10);
+    CheckEquals(Table.RowHeights[1], 40);
+    CheckEquals(Table.RowHeights[2], 50);
+
+    Table.DeleteRows(2, 3);
+    CheckEquals(Table.RowCount, 2);
+    CheckEquals(Table.RowHeights[0], 10);
+    CheckEquals(Table.RowHeights[1], 40);
+
+    try
+      Table.DeleteRows(5);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(SCoordinatesTableRowIndexError, [5, 2]));
+    end;
+  finally
+    Table.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCoordinatesTable_GetX;
+var
+  Table: mnTCoordinatesTable;
+begin
+  Table := mnTCoordinatesTable.Create(1000, 100);
+  try
+    Table.AddColumns(10);
+    Table.AddColumns(20);
+    Table.AddColumns(30);
+    Table.AddColumns(40);
+    Table.AddColumns(50);
+
+    CheckEquals(Table.GetX(2), 1045);
+    CheckEquals(Table.GetX(1, taLeftJustify), 1010);
+    CheckEquals(Table.GetX(3, taRightJustify), 1099);
+
+    try
+      Table.GetX(5);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(SCoordinatesTableColumnIndexError, [5, 5]));
+    end;
+  finally
+    Table.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testCoordinatesTable_GetY;
+var
+  Table: mnTCoordinatesTable;
+begin
+  Table := mnTCoordinatesTable.Create(100, 1000);
+  try
+    Table.AddRows(10);
+    Table.AddRows(20);
+    Table.AddRows(30);
+    Table.AddRows(40);
+    Table.AddRows(50);
+
+    CheckEquals(Table.GetY(2), 1045);
+    CheckEquals(Table.GetY(1, taAlignTop), 1010);
+    CheckEquals(Table.GetY(3, taAlignBottom), 1099);
+
+    try
+      Table.GetY(5);
+      mnNeverGoesHere;
+    except
+      on E: Exception do CheckEquals(E.Message, Format(SCoordinatesTableRowIndexError, [5, 5]));
+    end;
+  finally
+    Table.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testLog;
+var
+  Log: mnTLog;
+  Strs: mnTStrList;
+  Form: TForm;
+  Memo: TcxMemo;
+begin
+  Log := mnTLog.Create;
+  Strs := mnTStrList.Create;
+  Form := TForm.Create(nil);
+  Memo := TcxMemo.Create(Form);
+  Memo.Parent := Form;
+  try
+    Log.BindToStrs(Strs);
+    Log.BindToFile(mnTProjectConvention.GetTestTempPathSub('Log.txt'));
+    Log.BindToMemo(Memo);
+
+    Log.Append('abc');
+    Log.Append('abc%s', ['de']);
+    Log.Sync;
+
+    CheckEquals(Log.Content.Text, 'abc'#13#10'abcde'#13#10);
+    Check(Strs.Equals(Log.Content));
+    Check(mnLoadStrFromFile(mnTProjectConvention.GetTestTempPathSub('Log.txt')) = Log.Content.Text);
+    Check(Memo.Lines.Equals(Log.Content));
+
+    Log.MaxStrsLines := 1;
+    Log.MaxMemoLines := 1;
+    Log.Sync;
+
+    CheckEquals(Log.Content.Text, 'abc'#13#10'abcde'#13#10);
+    Check(Strs.Text = 'abcde'#13#10);
+    Check(mnLoadStrFromFile(mnTProjectConvention.GetTestTempPathSub('Log.txt')) = Log.Content.Text);
+    Check(Memo.Lines.Text = 'abcde'#13#10);
+
+    Log.MaxStrsLines := 4;
+    Log.MaxMemoLines := 4;
+    Log.Sync;
+
+    CheckEquals(Log.Content.Text, 'abc'#13#10'abcde'#13#10);
+    Check(Strs.Equals(Log.Content));
+    Check(mnLoadStrFromFile(mnTProjectConvention.GetTestTempPathSub('Log.txt')) = Log.Content.Text);
+    Check(Memo.Lines.Equals(Log.Content));
+
+    Check(mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('Log.txt')));
+  finally
+    Memo.Free;
+    Form.Free;
+    Strs.Free;
+    Log.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testDelphiTypeConvertors;
+begin
+  CheckEquals(mnTDelphiTypeConvertors.ToText         (dtString), 'string');
+  CheckEquals(mnTDelphiTypeConvertors.ToMNText       (dtString), 'Str');
+  CheckEquals(mnTDelphiTypeConvertors.ToAsFunc       (dtString), 'AsString');
+  CheckEquals(mnTDelphiTypeConvertors.ToToStrFunc    (dtString), '');
+  CheckEquals(mnTDelphiTypeConvertors.ToStrToFunc    (dtString), '');
+  CheckEquals(mnTDelphiTypeConvertors.ToNullValue    (dtString), '''''');
+  CheckEquals(mnTDelphiTypeConvertors.ToFormatType   (dtString), '%s');
+  CheckEquals(mnTDelphiTypeConvertors.ToSQLFormatType(dtString), '''''%s''''');
+  CheckEquals(mnTDelphiTypeConvertors.ToFormatArg    (dtString), '');
+
+  CheckEquals(mnTDelphiTypeConvertors.ToText         (dtInt64), 'Int64');
+  CheckEquals(mnTDelphiTypeConvertors.ToMNText       (dtInt64), 'Int');
+  CheckEquals(mnTDelphiTypeConvertors.ToAsFunc       (dtInt64), 'AsInteger');
+  CheckEquals(mnTDelphiTypeConvertors.ToToStrFunc    (dtInt64), 'IntToStr');
+  CheckEquals(mnTDelphiTypeConvertors.ToStrToFunc    (dtInt64), 'StrToInt');
+  CheckEquals(mnTDelphiTypeConvertors.ToNullValue    (dtInt64), '0');
+  CheckEquals(mnTDelphiTypeConvertors.ToFormatType   (dtInt64), '%d');
+  CheckEquals(mnTDelphiTypeConvertors.ToSQLFormatType(dtInt64), '%d');
+  CheckEquals(mnTDelphiTypeConvertors.ToFormatArg    (dtInt64), '');
+end;
+
+procedure TmnSystemTestCase.testPpStrs;
+begin
+  Check(Assigned(ppStrs));
 end;
 
 initialization

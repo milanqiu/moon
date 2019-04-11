@@ -16,7 +16,7 @@ object MainForm: TMainForm
   Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
-  object cxmclbFile: TcxMCListBox
+  object cxmclbModule: TcxMCListBox
     Left = 24
     Top = 24
     Width = 297
@@ -27,19 +27,29 @@ object MainForm: TMainForm
         Width = 100
       end
       item
-        Text = 'File'
+        Text = 'Module'
         Width = 200
       end>
     Items.Strings = (
-      'Moon_Utilities;mnSystem')
+      'Moon_Utilities;mnCOM'
+      ';mnControl'
+      ';mnDialog'
+      ';mnForm'
+      ';mnGraphics'
+      ';mnNetwork'
+      ';mnSystem'
+      ';mnTPL'
+      ';mnWindows')
     TabOrder = 0
+    OnDblClick = cxmclbModuleDblClick
   end
-  object Test: TcxButton
+  object cxbtnTest: TcxButton
     Left = 336
     Top = 296
     Width = 75
     Height = 25
     Caption = 'Test'
     TabOrder = 1
+    OnClick = cxbtnTestClick
   end
 end

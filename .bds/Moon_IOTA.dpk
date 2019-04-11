@@ -25,6 +25,51 @@ package Moon_IOTA;
 {$IMPLICITBUILD OFF}
 
 requires
-  rtl;
+  rtl,
+  designide,
+  xmlrtl,
+  vclactnband,
+  vclx,
+  vcl,
+  dbrtl,
+  IndyProtocols,
+  IndyCore,
+  IndySystem,
+  cxPageControlD9,
+  cxLibraryD9,
+  dxThemeD9,
+  cxGridD9,
+  cxExtEditorsD9,
+  cxDataD9,
+  cxEditorsD9,
+  vcljpg,
+  vcldb,
+  cxExportD9,
+  adortl,
+  vclie,
+  PerlRegExD7;
+
+contains
+  mnArray in '..\src\Moon_Utilities\mnArray.pas',
+  mnChinese in '..\src\Moon_Utilities\mnChinese.pas',
+  mnCOM in '..\src\Moon_Utilities\mnCOM.pas',
+  mnControl in '..\src\Moon_Utilities\mnControl.pas',
+  mnDateTime in '..\src\Moon_Utilities\mnDateTime.pas',
+  mnDB in '..\src\Moon_Utilities\mnDB.pas',
+  mnDebug in '..\src\Moon_Utilities\mnDebug.pas',
+  mnDialog in '..\src\Moon_Utilities\mnDialog.pas',
+  mnFile in '..\src\Moon_Utilities\mnFile.pas',
+  mnForm in '..\src\Moon_Utilities\mnForm.pas',
+  mnGraphics in '..\src\Moon_Utilities\mnGraphics.pas',
+  mnHTML in '..\src\Moon_Utilities\mnHTML.pas',
+  mnMath in '..\src\Moon_Utilities\mnMath.pas',
+  mnNetwork in '..\src\Moon_Utilities\mnNetwork.pas',
+  mnResStrsU in '..\src\Moon_Utilities\mnResStrsU.pas',
+  mnSQL in '..\src\Moon_Utilities\mnSQL.pas',
+  mnString in '..\src\Moon_Utilities\mnString.pas',
+  mnSystem in '..\src\Moon_Utilities\mnSystem.pas',
+  mnTPL in '..\src\Moon_Utilities\mnTPL.pas',
+  mnWindows in '..\src\Moon_Utilities\mnWindows.pas',
+  mnTestCaseWizard in '..\src\Moon_IOTA\Wizards\mnTestCaseWizard.pas';
 
 end.
