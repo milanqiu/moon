@@ -1325,6 +1325,11 @@ function mnRectHeight(const Rect: TRect): Integer; inline;
   Tested in TestUnit.
  --------------------------------}
 function mnEqualRectSize(const RectA, RectB: TRect): Boolean; inline;
+{--------------------------------
+  将一个Rect移动到指定点，宽高不变。
+  Tested in TestUnit.
+ --------------------------------}
+function mnMoveRect(const Rect: TRect; const Left: Integer = 0; const Top: Integer = 0): TRect;
 
 {--------------------------------
   根据对齐方式调整坐标。可以调整一个轴的坐标，一个点的坐标，或一个矩形的坐标。
@@ -6644,6 +6649,11 @@ end;
 function mnEqualRectSize(const RectA, RectB: TRect): Boolean; inline;
 begin
   Result := (mnRectWidth(RectA) = mnRectWidth(RectB)) and (mnRectHeight(RectA) = mnRectHeight(RectB));
+end;
+
+function mnMoveRect(const Rect: TRect; const Left: Integer = 0; const Top: Integer = 0): TRect;
+begin
+  Result := Bounds(Left, Top, mnRectWidth(Rect), mnRectHeight(Rect));
 end;
 
 function mnAdjustX(const X, Width: Integer; const HAlign: TAlignment = taLeftJustify): Integer;

@@ -6947,6 +6947,7 @@ end;
 procedure TmnSystemTestCase.testRectSeries;
 var
   RectA, RectB, RectC: TRect;
+  RectR: TRect;
 begin
   RectA := Rect(10, 20, 30, 50);
   RectB := Rect(60, 70, 80, 100);
@@ -6965,6 +6966,19 @@ begin
   // mnEqualRectSize
   Check(mnEqualRectSize(RectA, RectB));
   CheckFalse(mnEqualRectSize(RectA, RectC));
+
+  // mnMoveRect
+  RectR := mnMoveRect(RectA);
+  CheckEquals(RectR.Left,   0);
+  CheckEquals(RectR.Top,    0);
+  CheckEquals(RectR.Right,  20);
+  CheckEquals(RectR.Bottom, 30);
+
+  RectR := mnMoveRect(RectA, 100, 200);
+  CheckEquals(RectR.Left,   100);
+  CheckEquals(RectR.Top,    200);
+  CheckEquals(RectR.Right,  120);
+  CheckEquals(RectR.Bottom, 230);
 end;
 
 procedure TmnSystemTestCase.testAdjustSeries;
