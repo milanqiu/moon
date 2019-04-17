@@ -132,7 +132,8 @@ type
     property Width: Integer read FWidth;
     property Height: Integer read FHeight;
     property BoundsRect: TRect read GetBoundsRect;
-    procedure SetSize(const AWidth, AHeight: Integer);
+    procedure SetSize(const AWidth, AHeight: Integer); overload;
+    procedure SetSize(const ARect: TRect); overload;
   // 按位置读写图的像素。X和Y从0开始。如果越界，会抛出异常
   protected
     FPixels: array of array of mnTPixel;
@@ -425,6 +426,13 @@ procedure mnTPixeledImage.SetSize(const AWidth, AHeight: Integer);
 begin
   FWidth := AWidth;
   FHeight := AHeight;
+  SetLength(FPixels, FWidth, FHeight);
+end;
+
+procedure mnTPixeledImage.SetSize(const ARect: TRect);
+begin
+  FWidth := mnRectWidth(ARect);
+  FHeight := mnRectHeight(ARect);
   SetLength(FPixels, FWidth, FHeight);
 end;
 
