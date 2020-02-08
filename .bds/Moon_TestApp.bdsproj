@@ -120,7 +120,7 @@
 			<Directories Name="PackageDLLOutputDir"></Directories>
 			<Directories Name="PackageDCPOutputDir"></Directories>
 			<Directories Name="SearchPath"></Directories>
-			<Directories Name="Packages">rtl;vcl;dbrtl;vcldb;vclx;adortl;dbxcds;dbexpress;vclib;ibxpress;IntrawebDB_72_90;Intraweb_72_90;xmlrtl;vclie;inet;inetdbbde;inetdbxpress;IndySystem;IndyCore;dclOfficeXP;VclSmp;soaprtl;dsnap;IndyProtocols;inetdb;bdertl;vcldbx;webdsnap;websnap;vclactnband;vclshlctrls;dsnapcon;teeui;teedb;tee;cxEditorsD9;cxLibraryD9;dxThemeD9;cxDataD9;cxExtEditorsD9;cxGridD9;cxPageControlD9;cxSchedulerD9;cxSpreadSheetD9;cxTreeListD9;cxVerticalGridD9;dxBarD9;dxComnD9;dxBarDBNavD9;dxBarExtDBItemsD9;dxBarExtItemsD9;dxdbtrD9;dxDockingD9;dxLayoutControlD9;dxmdsD9;dxNavBarD9;dxsbD9;dxtrmdD9</Directories>
+			<Directories Name="Packages">rtl;vcl;dbrtl;vcldb;vclx;adortl;dbxcds;dbexpress;vclib;ibxpress;IntrawebDB_72_90;Intraweb_72_90;xmlrtl;vclie;inet;inetdbbde;inetdbxpress;IndySystem;IndyCore;dclOfficeXP;VclSmp;soaprtl;dsnap;IndyProtocols;inetdb;bdertl;vcldbx;webdsnap;websnap;vclactnband;vclshlctrls;dsnapcon;teeui;teedb;tee;cxEditorsD9;cxLibraryD9;dxThemeD9;cxDataD9;cxExtEditorsD9;cxGridD9;cxPageControlD9;cxSchedulerD9;cxSpreadSheetD9;cxTreeListD9;cxVerticalGridD9;dxBarD9;dxComnD9;dxBarDBNavD9;dxBarExtDBItemsD9;dxBarExtItemsD9;dxdbtrD9;dxDockingD9;dxLayoutControlD9;dxmdsD9;dxNavBarD9;dxsbD9;dxtrmdD9;PerlRegExD7;Moon_Utilities;Moon_Components;cxExportD9;Moon_IOTA</Directories>
 			<Directories Name="Conditionals">MN_DEBUG</Directories>
 			<Directories Name="DebugSourceDirs"></Directories>
 			<Directories Name="UsePackages">False</Directories>

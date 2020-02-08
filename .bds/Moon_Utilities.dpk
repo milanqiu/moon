@@ -22,6 +22,7 @@ package Moon_Utilities;
 {$WRITEABLECONST OFF}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
+{$DESCRIPTION 'Moon Utilities'}
 {$IMPLICITBUILD OFF}
 
 requires

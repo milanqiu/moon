@@ -17,6 +17,6 @@ How to install:
 	{Moon Path}\src\Moon_Utilities\
 	{Moon Path}\src\Moon_Components\
 2. Open .bds/Moon.bdsgroup in Delphi.
-3. Build Moon_Utilities.bpl. Install Moon_Utilities.bpl.
-4. Build Moon_Components.bpl. Install Moon_Components.bpl.
-5. Build Moon_IOTA.bpl. Install Moon_IOTA.bpl.
+3. Build all projects.
+4. Copy Moon_Utilities.bpl, Moon_Components.bpl and Moon_IOTA.bpl to library directory.
+5. Menu -> Components -> Install Packages -> Add. Add Moon_Utilities.bpl, Moon_Components.bpl and Moon_IOTA.bpl one by one.
