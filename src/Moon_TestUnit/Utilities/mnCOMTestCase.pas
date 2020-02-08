@@ -179,6 +179,21 @@ end;
 procedure TmnCOMTestCase.testExcel_SheetSeries;
 begin
   Excel.New;
+  // the default sheet count is changed from 3 to 1 in Office 365
+  if Excel.SheetCount = 1 then
+  begin
+    Excel.AddSheet;
+    Excel.AddSheet;
+    CheckEquals(Excel.SheetNames[1], 'Sheet3');
+    CheckEquals(Excel.SheetNames[2], 'Sheet2');
+    CheckEquals(Excel.SheetNames[3], 'Sheet1');
+    Excel.SheetNames[1] := 'temp1';
+    Excel.SheetNames[2] := 'temp2';
+    Excel.SheetNames[3] := 'temp3';
+    Excel.SheetNames[1] := 'Sheet1';
+    Excel.SheetNames[2] := 'Sheet2';
+    Excel.SheetNames[3] := 'Sheet3';
+  end;
 
   // SheetCount
   CheckEquals(Excel.SheetCount, 3);
@@ -386,6 +401,12 @@ end;
 procedure TmnCOMTestCase.testExcelArea_CopyAndPaste;
 begin
   Excel.New;
+  // the default sheet count is changed from 3 to 1 in Office 365
+  if Excel.SheetCount = 1 then
+  begin
+    Excel.AddSheet;
+    Excel.AddSheet;
+  end;
 
   // Global ->, Preparing
   Excel.SetActiveSheet(1);
