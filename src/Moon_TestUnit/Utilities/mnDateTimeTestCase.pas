@@ -28,6 +28,7 @@ type
     procedure testStdDateTimeFormatSeries;
     procedure testDateTimeToStdStr;
     procedure testDateToStdStr;
+    procedure testFileTimeToDateTimeSeries;
     procedure testStartEndOfDateTimeSeries;
     procedure testStartEndOfWeekQuarterSeries;
     procedure testDateToLunar;
@@ -39,7 +40,8 @@ type
 
 implementation
 
-uses mnDateTime, DateUtils, mnSystem, SysUtils, mnDebug, mnResStrsU, mnMath, mnDialog;
+uses mnDateTime, DateUtils, mnSystem, SysUtils, mnDebug, mnResStrsU, mnMath, mnDialog,
+  Windows;
 
 { TmnDateTimeTestCase }
 
@@ -122,6 +124,44 @@ procedure TmnDateTimeTestCase.testDateToStdStr;
 begin
   CheckEquals(mnDateToStdStr(EncodeDate(1982, 8, 29)), '1982-08-29');
   CheckEquals(mnDateToStdStr(EncodeDateTime(1982, 8, 29, 8, 50, 0, 0)), '1982-08-29');
+end;
+
+procedure TmnDateTimeTestCase.testFileTimeToDateTimeSeries;
+var
+  FileTime: TFileTime;
+  tzi: TTimeZoneInformation;
+begin
+  GetTimeZoneInformation(tzi);
+
+  FileTime.dwHighDateTime := 0;
+  FileTime.dwLowDateTime := 0;
+  CheckEquals(1601, YearOf  (mnFileTimeToDateTime(FileTime)));
+  CheckEquals(1,    MonthOf (mnFileTimeToDateTime(FileTime)));
+  CheckEquals(1,    DayOf   (mnFileTimeToDateTime(FileTime)));
+  CheckEquals(0,    HourOf  (mnFileTimeToDateTime(FileTime)));
+  CheckEquals(0,    MinuteOf(mnFileTimeToDateTime(FileTime)));
+  CheckEquals(0,    SecondOf(mnFileTimeToDateTime(FileTime)));
+  CheckEquals(1601,             YearOf  (mnFileTimeToLocalToDateTime(FileTime)));
+  CheckEquals(1,                MonthOf (mnFileTimeToLocalToDateTime(FileTime)));
+  CheckEquals(1,                DayOf   (mnFileTimeToLocalToDateTime(FileTime)));
+  CheckEquals(-tzi.Bias div 60, HourOf  (mnFileTimeToLocalToDateTime(FileTime)));
+  CheckEquals(-tzi.Bias mod 60, MinuteOf(mnFileTimeToLocalToDateTime(FileTime)));
+  CheckEquals(0,                SecondOf(mnFileTimeToLocalToDateTime(FileTime)));
+
+  FileTime.dwHighDateTime := 0;
+  FileTime.dwLowDateTime := 10*1000*1000*191;
+  CheckEquals(1601, YearOf  (mnFileTimeToDateTime(FileTime)));
+  CheckEquals(1,    MonthOf (mnFileTimeToDateTime(FileTime)));
+  CheckEquals(1,    DayOf   (mnFileTimeToDateTime(FileTime)));
+  CheckEquals(0,    HourOf  (mnFileTimeToDateTime(FileTime)));
+  CheckEquals(3,    MinuteOf(mnFileTimeToDateTime(FileTime)));
+  CheckEquals(11,    SecondOf(mnFileTimeToDateTime(FileTime)));
+  CheckEquals(1601,              YearOf  (mnFileTimeToLocalToDateTime(FileTime)));
+  CheckEquals(1,                 MonthOf (mnFileTimeToLocalToDateTime(FileTime)));
+  CheckEquals(1,                 DayOf   (mnFileTimeToLocalToDateTime(FileTime)));
+  CheckEquals(-tzi.Bias div 60,  HourOf  (mnFileTimeToLocalToDateTime(FileTime)));
+  CheckEquals(3-tzi.Bias mod 60, MinuteOf(mnFileTimeToLocalToDateTime(FileTime)));
+  CheckEquals(11,                SecondOf(mnFileTimeToLocalToDateTime(FileTime)));
 end;
 
 procedure TmnDateTimeTestCase.testStartEndOfDateTimeSeries;

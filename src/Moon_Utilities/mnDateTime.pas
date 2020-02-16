@@ -2,7 +2,7 @@ unit mnDateTime;
 
 interface
 
-uses mnSystem;
+uses mnSystem, Windows;
 
 {--------------------------------
   将不完整的日期转换为字符串。
@@ -64,6 +64,14 @@ function mnDateToStdStr(const Value: TDateTime): string;
   No test.
  --------------------------------}
 procedure mnSetNormalDateTimeFormat(const DateFormat: string = mnStdDateFormat; const TimeFormat: string = mnStdTimeFormat);
+
+{--------------------------------
+  将一个FileTime转换为时间格式。
+  带Local中转的，表示在转换时先转为本地时间。
+  Tested in TestUnit.
+ --------------------------------}
+function mnFileTimeToDateTime(const FileTime: TFileTime): TDateTime;
+function mnFileTimeToLocalToDateTime(const FileTime: TFileTime): TDateTime;
 
 {--------------------------------
   返回指定时刻所在的那一小时的开始时刻、结束时刻，那一分钟的开始时刻、结束时刻，那一秒钟的开始时刻、结束时刻。
@@ -302,6 +310,24 @@ begin
   ShortDateFormat := DateFormat;
   LongTimeFormat := TimeFormat;
   cxFormatController.UseDelphiDateTimeFormats := True;
+end;
+
+function mnFileTimeToDateTime(const FileTime: TFileTime): TDateTime;
+var
+  SystemTime: TSystemTime;
+begin
+  FileTimeToSystemTime(FileTime, SystemTime);
+  Result := SystemTimeToDateTime(SystemTime);
+end;
+
+function mnFileTimeToLocalToDateTime(const FileTime: TFileTime): TDateTime;
+var
+  LocalFileTime: TFileTime;
+  SystemTime: TSystemTime;
+begin
+  FileTimeToLocalFileTime(FileTime, LocalFileTime);
+  FileTimeToSystemTime(LocalFileTime, SystemTime);
+  Result := SystemTimeToDateTime(SystemTime);
 end;
 
 function mnStartOfTheHour  (const Value: TDateTime): TDateTime;
