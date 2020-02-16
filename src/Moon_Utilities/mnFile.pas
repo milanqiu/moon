@@ -2,6 +2,9 @@ unit mnFile;
 
 interface
 
+{$WARN UNIT_PLATFORM OFF}
+{$WARN SYMBOL_PLATFORM OFF}
+
 uses Classes, mnString;
 
 {--------------------------------
@@ -105,6 +108,15 @@ function mnDeleteFile(const FileName: string): Boolean;
  --------------------------------}
 function mnGetFileSize(const FileName: string): Integer;
 
+{$IFDEF MSWINDOWS}
+{--------------------------------
+  得到指定文件的创建时间、最后修改时间和最后访问时间。
+  Tested in TestApp.
+ --------------------------------}
+procedure mnGetFileTimes(const FileName: string; var CreationTime, LastWriteTime: TDateTime); overload;
+procedure mnGetFileTimes(const FileName: string; var CreationTime, LastWriteTime, LastAccessTime: TDateTime); overload;
+{$ENDIF}
+
 {--------------------------------
   将指定文件的内容装载到字符串里。不单支持文本模式，也支持二进制。
   Tested in TestUnit.
@@ -149,7 +161,8 @@ procedure mnValidateFileExists(const FileName: string; const ErrorMsg: string = 
 
 implementation
 
-uses SysUtils, StrUtils, Windows, ShLwApi, mnSystem, ShellAPI, mnCOM, mnResStrsU;
+uses SysUtils, StrUtils, Windows, ShLwApi, mnSystem, ShellAPI, mnCOM, mnResStrsU,
+  mnDateTime;
 
 function mnExtractFileNoExt(const FileName: string): string;
 begin
@@ -282,6 +295,29 @@ begin
     Stream.Free;
   end;
 end;
+
+{$IFDEF MSWINDOWS}
+
+procedure mnGetFileTimes(const FileName: string; var CreationTime, LastWriteTime: TDateTime); overload;
+var
+  LastAccessTime: TDateTime;
+begin
+  mnGetFileTimes(FileName, CreationTime, LastWriteTime, LastAccessTime);
+end;
+
+procedure mnGetFileTimes(const FileName: string; var CreationTime, LastWriteTime, LastAccessTime: TDateTime); overload;
+var
+  tr: TSearchRec;
+begin
+  mnValidateFileExists(FileName);
+
+  FindFirst(FileName, faAnyFile, tr);
+  CreationTime := mnFileTimeToLocalToDateTime(tr.FindData.ftCreationTime);
+  LastWriteTime := mnFileTimeToLocalToDateTime(tr.FindData.ftLastWriteTime);
+  LastAccessTime := mnFileTimeToLocalToDateTime(tr.FindData.ftLastAccessTime);
+end;
+
+{$ENDIF}
 
 function mnLoadStrFromFile(const FileName: string): string;
 var

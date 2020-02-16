@@ -34,6 +34,7 @@ object MainForm: TMainForm
       'Moon_Utilities;mnCOM'
       ';mnControl'
       ';mnDialog'
+      ';mnFile'
       ';mnForm'
       ';mnGraphics'
       ';mnNetwork'

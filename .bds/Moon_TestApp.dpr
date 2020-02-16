@@ -11,6 +11,7 @@ uses
   DlgTestCOM in '..\src\Moon_TestApp\Utilities\DlgTestCOM.pas' {TestCOMDialog},
   DlgTestControl in '..\src\Moon_TestApp\Utilities\DlgTestControl.pas' {TestControlDialog},
   DlgTestDialog in '..\src\Moon_TestApp\Utilities\DlgTestDialog.pas' {TestDialogDialog},
+  DlgTestFile in '..\src\Moon_TestApp\Utilities\DlgTestFile.pas' {TestFileDialog},
   DlgTestForm in '..\src\Moon_TestApp\Utilities\DlgTestForm.pas' {TestFormDialog},
   DlgTestGraphics in '..\src\Moon_TestApp\Utilities\DlgTestGraphics.pas' {TestGraphicsDialog},
   DlgTestNetwork in '..\src\Moon_TestApp\Utilities\DlgTestNetwork.pas' {TestNetworkDialog},
@@ -28,6 +29,7 @@ begin
   Application.CreateForm(TTestCOMDialog, TestCOMDialog);
   Application.CreateForm(TTestControlDialog, TestControlDialog);
   Application.CreateForm(TTestDialogDialog, TestDialogDialog);
+  Application.CreateForm(TTestFileDialog, TestFileDialog);
   Application.CreateForm(TTestFormDialog, TestFormDialog);
   Application.CreateForm(TTestGraphicsDialog, TestGraphicsDialog);
   Application.CreateForm(TTestNetworkDialog, TestNetworkDialog);
