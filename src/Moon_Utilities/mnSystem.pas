@@ -521,7 +521,7 @@ function mnCircle(const LowerLimit, UpperLimit, InitPos, Step: Integer): Integer
 procedure mnSleep(const Milliseconds: Cardinal);
 
 {--------------------------------
-  生成一个新的GUID。格式类似 左花括号402B70CF-C83B-4D9F-8821-2BC8DD530835右花括号
+  生成一个新的GUID。格式为xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx，例如402B70CF-C83B-4D9F-8821-2BC8DD530835。
   Tested in TestUnit.
  --------------------------------}
 function mnNewGUID: string;
@@ -2904,7 +2904,7 @@ var
   GUID: TGUID;
 begin
   CreateGUID(GUID);
-  Result := GUIDToString(GUID);
+  Result := Copy(GUIDToString(GUID), 2, 36);
 end;
 
 function mnHasMethodByName(Obj: TObject; const MethodName: string): Boolean;

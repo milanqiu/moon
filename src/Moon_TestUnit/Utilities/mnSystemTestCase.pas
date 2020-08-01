@@ -1568,12 +1568,10 @@ var
   i: Integer;
 begin
   GUID := mnNewGUID;
-  Check(Length(GUID) = 38);
-  Check(GUID[1] = '{');
-  Check(GUID[38] = '}');
-  for i := 2 to 37 do
+  Check(Length(GUID) = 36);
+  for i := 1 to 36 do
   begin
-    if (i = 10) or (i = 15) or (i = 20) or (i = 25) then
+    if (i = 9) or (i = 14) or (i = 19) or (i = 24) then
       Check(GUID[i] = '-')
     else
       Check(mnIsHex(GUID[i]));
