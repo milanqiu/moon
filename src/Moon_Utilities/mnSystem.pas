@@ -1503,7 +1503,7 @@ var
 
 implementation
 
-uses mnResStrsU, Variants, mnString, StrUtils, mnMath, RTLConsts, mnArray, Forms, mnWindows, mnFile;
+uses mnResStrsU, Variants, mnString, StrUtils, mnMath, RTLConsts, mnArray, Forms, mnWindows, mnFile, mnTPL;
 
 function mnAppPathSub(const SubName: string): string; overload;
 begin
@@ -6902,7 +6902,7 @@ begin
     AssignToStrs(BindedMemo.Lines, FMaxMemoLines);
     mnResumeRedraw(BindedMemo.Handle);
     BindedMemo.SetSelection(Length(BindedMemo.Text), 0);
-    //mnScrollToEnd(BindedMemo);
+    mnScrollToEnd(BindedMemo);
     Application.ProcessMessages;
   end;
 end;
