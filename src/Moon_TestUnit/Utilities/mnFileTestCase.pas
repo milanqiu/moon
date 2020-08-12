@@ -33,6 +33,7 @@ type
     procedure testDeleteDir;
     procedure testCopyAndDeleteFile;
     procedure testGetFileSize;
+    procedure testCanFileBeRW;
     procedure testSaveLoadStrFile;
     procedure testAppendStrToFile;
     procedure testIsSameFile;
@@ -45,7 +46,7 @@ type
 implementation
 
 uses mnFile, mnSystem, mnResStrsU, mnDebug, SysUtils, UTestConsts, mnString, mnCOM, StrUtils, Classes,
-  Forms, ComCtrls;
+  Forms, ComCtrls, Windows;
 
 { TmnFileTestCase }
 
@@ -346,6 +347,32 @@ begin
   Check(mnDeleteFile(TempFile));
 
   CheckEquals(mnGetFileSize(mnTProjectConvention.GetFilesPathSub('Images\BMP.bmp')), 14+40+20*20*3);
+end;
+
+procedure TmnFileTestCase.testCanFileBeRW;
+var
+  i: Integer;
+  str: string;
+  TempFile: string;
+  HFileHandle: HFILE;
+begin
+  str := '';
+  for i := 0 to 255 do
+    str := str + Chr(i);
+  str := str + '一二三四五';
+
+  TempFile := mnTProjectConvention.GetTestTempPathSub('temp.bin');
+  mnSaveStrToFile(str, TempFile);
+  Check(mnCanFileBeRW(TempFile));
+
+  HFileHandle := CreateFile(PChar(TempFile), GENERIC_READ or GENERIC_WRITE, 0, nil, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
+  CheckFalse(mnCanFileBeRW(TempFile));
+
+  CloseHandle(HFileHandle);
+  Check(mnCanFileBeRW(TempFile));
+
+  Check(mnDeleteFile(TempFile));
+  CheckFalse(mnCanFileBeRW(TempFile));
 end;
 
 procedure TmnFileTestCase.testSaveLoadStrFile;

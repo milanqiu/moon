@@ -118,6 +118,12 @@ procedure mnGetFileTimes(const FileName: string; var CreationTime, LastWriteTime
 {$ENDIF}
 
 {--------------------------------
+  返回指定文件是否存在并可读写。
+  Tested in TestUnit.
+ --------------------------------}
+function mnCanFileBeRW(const FileName: string): Boolean;
+
+{--------------------------------
   将指定文件的内容装载到字符串里。不单支持文本模式，也支持二进制。
   Tested in TestUnit.
  --------------------------------}
@@ -318,6 +324,20 @@ begin
 end;
 
 {$ENDIF}
+
+function mnCanFileBeRW(const FileName: string): Boolean;
+var
+  HFileHandle: HFILE;
+begin
+  HFileHandle := INVALID_HANDLE_VALUE;
+  try
+    HFileHandle := CreateFile(PChar(FileName), GENERIC_READ or GENERIC_WRITE, 0, nil, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
+    Result := HFileHandle <> INVALID_HANDLE_VALUE;
+  finally
+    if HFileHandle <> INVALID_HANDLE_VALUE then
+      CloseHandle(HFileHandle);
+  end;
+end;
 
 function mnLoadStrFromFile(const FileName: string): string;
 var
