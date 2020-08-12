@@ -38,6 +38,7 @@ type
     procedure testCutLeftRightBySeries;
     procedure testRemoveLeftRightSeries;
     procedure testEnsureLeftRightSeries;
+    procedure testAppendLeftRightIfNotEmptySeries;
     procedure testCountSeries;
     procedure testDiscardSeries;
     procedure testShrinkSeries;
@@ -595,6 +596,25 @@ begin
   CheckEquals(mnAnsiEnsureRight('ABC', 'abcabcabc'), 'abcabcabcABC');
   CheckEquals(mnAnsiEnsureRight('二三', '一二三一二三一二三'), '一二三一二三一二三');
   CheckEquals(mnAnsiEnsureRight(#253, '一二三一二三一二三'), '一二三一二三一二三'#253);
+end;
+
+procedure TmnStringTestCase.testAppendLeftRightIfNotEmptySeries;
+begin
+  // mnAppendLeftCharIfNotEmpty
+  CheckEquals(mnAppendLeftCharIfNotEmpty('#', ''), '');
+  CheckEquals(mnAppendLeftCharIfNotEmpty('#', 'aaa'), '#aaa');
+
+  // mnAppendRightCharIfNotEmpty
+  CheckEquals(mnAppendRightCharIfNotEmpty('#', ''), '');
+  CheckEquals(mnAppendRightCharIfNotEmpty('#', 'aaa'), 'aaa#');
+
+  // mnAppendLeftIfNotEmpty
+  CheckEquals(mnAppendLeftIfNotEmpty('bc', ''), '');
+  CheckEquals(mnAppendLeftIfNotEmpty('bc', 'aaa'), 'bcaaa');
+
+  // mnAppendRightIfNotEmpty
+  CheckEquals(mnAppendRightIfNotEmpty('bc', ''), '');
+  CheckEquals(mnAppendRightIfNotEmpty('bc', 'aaa'), 'aaabc');
 end;
 
 procedure TmnStringTestCase.testCountSeries;

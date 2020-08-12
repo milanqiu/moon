@@ -214,6 +214,18 @@ function mnAnsiEnsureLeft (const Substr, S: string): string;
 function mnAnsiEnsureRight(const Substr, S: string): string;
 
 {--------------------------------
+  如果S不为空，则在开始处或结束处加上指定单位。和MBCS无关。
+  支持的单位有：
+    - 指定字符
+    - 指定字符串
+  Tested in TestUnit.
+ --------------------------------}
+function mnAppendLeftCharIfNotEmpty (const Ch: Char; const S: string): string;
+function mnAppendRightCharIfNotEmpty(const Ch: Char; const S: string): string;
+function mnAppendLeftIfNotEmpty     (const Substr, S: string): string;
+function mnAppendRightIfNotEmpty    (const Substr, S: string): string;
+
+{--------------------------------
   统计在S中指定单位的出现次数。
   支持的单位有：
     - 指定字符
@@ -1296,6 +1308,38 @@ begin
     Exit;
   end;
   if EndsStr(Substr, S) then
+    Result := S
+  else
+    Result := S + Substr;
+end;
+
+function mnAppendLeftCharIfNotEmpty (const Ch: Char; const S: string): string;
+begin
+  if S = '' then
+    Result := S
+  else
+    Result := Ch + S;
+end;
+
+function mnAppendRightCharIfNotEmpty(const Ch: Char; const S: string): string;
+begin
+  if S = '' then
+    Result := S
+  else
+    Result := S + Ch;
+end;
+
+function mnAppendLeftIfNotEmpty     (const Substr, S: string): string;
+begin
+  if S = '' then
+    Result := S
+  else
+    Result := Substr + S;
+end;
+
+function mnAppendRightIfNotEmpty    (const Substr, S: string): string;
+begin
+  if S = '' then
     Result := S
   else
     Result := S + Substr;
