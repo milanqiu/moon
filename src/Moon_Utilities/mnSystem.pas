@@ -39,8 +39,9 @@ type
 
 type
 {--------------------------------
-  一维Byte数组，用于作为函数参数传递。
+  一维字符串数组和Byte数组，用于作为函数参数传递。
  --------------------------------}
+  mnTStrArray = array of String;
   mnTByteArray = array of Byte;
 {--------------------------------
   二维Variant数组、字符串数组和整数数组，用于作为函数参数传递。
@@ -1461,6 +1462,85 @@ type
   end;
 
 type
+  mnTExternalCommandExecution = class;
+
+{--------------------------------
+  外部命令文件，用于在执行外部命令时使用。
+  Tested in TestUnit.
+ --------------------------------}
+  mnTExternalCommandFile = class
+  private
+    FCommandFileName: string;
+  public
+    // 外部命令文件的文件名
+    property CommandFileName: string read FCommandFileName;
+  private
+    FUseJavaToRunJar: Boolean;
+  public
+    // 执行外部命令时，是否使用Java来将外部命令文件作为Jar包执行
+    property UseJavaToRunJar: Boolean read FUseJavaToRunJar write FUseJavaToRunJar default False;
+  public
+    // InDefaultPath表示外部命令文件是否位于缺省路径中
+    // 缺省路径指应用程序所在路径的ExternalCommandFile子目录下
+    constructor Create(ACommandFileName: string; const InDefaultPath: Boolean = True);
+    // 基于外部命令文件，新建立一个外部命令的执行进程
+    function NewExecution(const CommandName: string; const ArgsStr: string = ''): mnTExternalCommandExecution;
+  end;
+
+{--------------------------------
+  外部命令的执行结果：成功完成，出现异常（出现可预测、可捕获的异常），执行中止（出现不可预测、未捕获的异常），执行冻结（执行时间过长未返回）。
+ --------------------------------}
+  mnTExternalCommandExecutionResult = (erFinished, erException, erHalted, erFreezed);
+
+{--------------------------------
+  外部命令的执行进程。
+  Tested in TestUnit.
+ --------------------------------}
+  mnTExternalCommandExecution = class
+  private
+    FCommandFile: mnTExternalCommandFile;
+    FCommandName: string;
+    FArgsStr: string;
+    FAnnouncementDir: string;
+    FAnnouncementFileName: string;
+    FCompletedArgs: string;
+  public
+    // 外部命令文件
+    property CommandFile: mnTExternalCommandFile read FCommandFile;
+    // 外部命令名
+    property CommandName: string read FCommandName;
+    // 外部命令参数
+    property ArgsStr: string read FArgsStr;
+    // 外部命令执行结果的宣告目录
+    property AnnouncementDir: string read FAnnouncementDir;
+    // 外部命令执行结果的宣告文件名
+    property AnnouncementFileName: string read FAnnouncementFileName;
+    // 外部命令实际执行时的完整参数
+    property CompletedArgs: string read FCompletedArgs;
+  private
+    FTimeout: Integer;
+    FKeepAnnouncementDir: Boolean;
+  public
+    // 外部命令执行时的超时时间，单位为秒
+    property Timeout: Integer read FTimeout write FTimeout default 0;
+    // 外部命令执行完后，是否保留执行结果的宣告目录
+    property KeepAnnouncementDir: Boolean read FKeepAnnouncementDir write FKeepAnnouncementDir default False;
+  private
+    FMsg: string;
+  public
+    // 外部命令执行完后，生成的消息
+    property Msg: string read FMsg;
+  private
+    constructor Create(const ACommandFile: mnTExternalCommandFile; const ACommandName: string; const AnArgsStr: string);
+    function WaitAndParse: mnTExternalCommandExecutionResult;
+  public
+    // 删除外部命令执行结果的宣告目录
+    procedure DeleteAnnouncementDir;
+    // 执行外部命令，返回执行结果，并将生成的消息写到Msg中
+    function Execute: mnTExternalCommandExecutionResult;
+  end;
+
+type
 {--------------------------------
   Delphi的数据类型，一般用于自动生成Delphi代码时。
  --------------------------------}
@@ -1503,7 +1583,7 @@ var
 
 implementation
 
-uses mnResStrsU, Variants, mnString, StrUtils, mnMath, RTLConsts, mnArray, Forms, mnWindows, mnFile, mnTPL;
+uses mnResStrsU, Variants, mnString, StrUtils, mnMath, RTLConsts, mnArray, Forms, mnWindows, mnFile, mnTPL, DateUtils;
 
 function mnAppPathSub(const SubName: string): string; overload;
 begin
@@ -6905,6 +6985,96 @@ begin
     mnScrollToEnd(BindedMemo);
     Application.ProcessMessages;
   end;
+end;
+
+{ mnTExternalCommandFile }
+
+constructor mnTExternalCommandFile.Create(ACommandFileName: string; const InDefaultPath: Boolean = True);
+begin
+  if InDefaultPath then
+    ACommandFileName := mnAppPathSub('ExternalCommandFiles\' + ACommandFileName);
+  mnValidateFileExists(ACommandFileName);
+  FCommandFileName := ACommandFileName;
+
+  FUseJavaToRunJar := False;
+end;
+
+function mnTExternalCommandFile.NewExecution(const CommandName: string; const ArgsStr: string = ''): mnTExternalCommandExecution;
+begin
+  Result := mnTExternalCommandExecution.Create(Self, CommandName, ArgsStr);
+end;
+
+{ mnTExternalCommandExecution }
+
+constructor mnTExternalCommandExecution.Create(const ACommandFile: mnTExternalCommandFile; const ACommandName: string; const AnArgsStr: string);
+begin
+  FCommandFile := ACommandFile;
+  FCommandName := ACommandName;
+  FArgsStr := AnArgsStr;
+
+  FAnnouncementDir := mnAppPathSub('ExternalCommandFiles\' + mnNewGUID);
+  FAnnouncementFileName := FAnnouncementDir + '\ok';
+  FCompletedArgs := FCommandName + ' ' + FAnnouncementDir + mnAppendLeftIfNotEmpty(' ', FArgsStr);
+  ForceDirectories(FAnnouncementDir);
+
+  FTimeout := 0;
+  FKeepAnnouncementDir := False;
+end;
+
+function mnTExternalCommandExecution.WaitAndParse: mnTExternalCommandExecutionResult;
+var
+  Deadline: TDateTime;
+  strs: mnTStrList;
+begin
+  // Wait
+  Deadline := IncSecond(Now, FTimeout);
+  repeat
+    if (FTimeout > 0) and (Now > Deadline) then
+    begin
+      Result := erFreezed;
+      FMsg := '';
+      Exit;
+    end;
+  until FileExists(FAnnouncementFileName) and mnCanFileBeRW(FAnnouncementFileName);
+
+  // Parse
+  strs := mnTStrList.Create;
+  try
+    strs.LoadFromFile(FAnnouncementFileName);
+    if strs[0] = 'finished' then
+      Result := erFinished
+    else if strs[0] = 'exception' then
+      Result := erException
+    else if strs[0] = 'halted' then
+      Result := erHalted
+    else
+    begin
+      mnCreateError(SIllegalExternalCommandExecutionResult);
+      Result := erHalted;
+      FMsg := '';
+      Exit;
+    end;
+    strs.Delete(0);
+    FMsg := strs.Combine(mnNewLine); 
+  finally
+    strs.Free;
+  end;
+end;
+
+procedure mnTExternalCommandExecution.DeleteAnnouncementDir;
+begin
+  mnDeleteDir(FAnnouncementDir);
+end;
+
+function mnTExternalCommandExecution.Execute: mnTExternalCommandExecutionResult;
+begin
+  if FCommandFile.UseJavaToRunJar then
+    mnShellOpen('java', '-jar ' + FCommandFile.CommandFileName + ' ' + FCompletedArgs)
+  else
+    mnShellOpen(FCommandFile.CommandFileName, FCompletedArgs);
+  Result := WaitAndParse;
+  if not FKeepAnnouncementDir then
+    DeleteAnnouncementDir;
 end;
 
 { mnTDelphiTypeConvertors }

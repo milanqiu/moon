@@ -117,6 +117,7 @@ resourcestring
   SIllegalTimeUnit = '非法的时间单位';
   SCoordinatesTableColumnIndexError = 'mnTCoordinatesTable列的索引越界: %d（总长度：%d）';
   SCoordinatesTableRowIndexError = 'mnTCoordinatesTable行的索引越界: %d（总长度：%d）';
+  SIllegalExternalCommandExecutionResult = '非法的外部命令执行结果';
 
   // in mnTPC
   SItemPrecisionShoudBeNumeric = 'SetItemPrecision只能用于TcxCalcEditProperties或TcxCurrencyEditProperties';
@@ -237,6 +238,7 @@ resourcestring
   SIllegalTimeUnit = 'Illegal time unit';
   SCoordinatesTableColumnIndexError = 'mnTCoordinatesTable column index out of bounds: %d of length %d';
   SCoordinatesTableRowIndexError = 'mnTCoordinatesTable row index out of bounds: %d of length %d';
+  SIllegalExternalCommandExecutionResult = 'Illegal external command execution result';
 
   // in mnTPC
   SItemPrecisionShoudBeNumeric = 'SetItemPrecision should be used only on TcxCalcEditProperties or TcxCurrencyEditProperties';

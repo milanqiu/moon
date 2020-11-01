@@ -299,6 +299,14 @@ type
     procedure testCoordinatesTable_GetY;
 
     procedure testLog;
+
+    procedure testExternalCommandFile_Create;
+    procedure testExternalCommandFile_NewExecution;
+    procedure testExternalCommandFile_UseJavaToRunJar;
+    procedure testExternalCommandExecution_DeleteAnnouncementDir;
+    procedure testExternalCommandExecution_Execute_Timeout;
+    procedure testExternalCommandExecution_KeepAnnouncementDir;
+
     procedure testDelphiTypeConvertors;
     procedure testPpStrs;
   end;
@@ -307,7 +315,7 @@ implementation
 
 uses mnSystem, SysUtils, mnString, mnDebug, UTestConsts, Variants, mnMath,
   mnResStrsU, ComCtrls, Forms, Classes, Windows, mnFile, Math, RTLConsts, Types,
-  cxMemo;
+  cxMemo, StrUtils;
 
 { TmnSystemTestCase }
 
@@ -7304,6 +7312,177 @@ begin
     Form.Free;
     Strs.Free;
     Log.Free;
+  end;
+end;
+
+const
+  GwangmyeongseongConsoleJarName = 'gwangmyeongseong-console.jar';
+
+procedure TmnSystemTestCase.testExternalCommandFile_Create;
+var
+  ECF: mnTExternalCommandFile;
+begin
+  ECF := mnTExternalCommandFile.Create(GwangmyeongseongConsoleJarName);
+  try
+    CheckEquals(ECF.CommandFileName, mnAppPathSub('ExternalCommandFiles\'+GwangmyeongseongConsoleJarName));
+  finally
+    ECF.Free;
+  end;
+
+  ECF := mnTExternalCommandFile.Create('C:\Windows\notepad.exe', False);
+  try
+    CheckEquals(ECF.CommandFileName, 'C:\Windows\notepad.exe');
+  finally
+    ECF.Free;
+  end;
+
+  try
+    mnTExternalCommandFile.Create('Fake');
+    mnNeverGoesHere;
+  except
+    on E: Exception do CheckEquals(E.Message, Format(SFileNotExists, [mnAppPathSub('ExternalCommandFiles\Fake')]));
+  end;
+end;
+
+procedure TmnSystemTestCase.testExternalCommandFile_NewExecution;
+var
+  ECF: mnTExternalCommandFile;
+  ECE: mnTExternalCommandExecution;
+begin
+  ECF := mnTExternalCommandFile.Create(GwangmyeongseongConsoleJarName);
+  ECE := ECF.NewExecution('Command', 'Arg1 Arg2');
+  try
+    Check(ECE.CommandFile = ECF);
+    Check(ECE.CommandName = 'Command');
+    Check(ECE.ArgsStr = 'Arg1 Arg2');
+    Check(StartsStr(mnAppPathSub('ExternalCommandFiles\'), ECE.AnnouncementDir));
+    Check(Length(mnRemoveLeft(mnAppPathSub('ExternalCommandFiles\'), ECE.AnnouncementDir)) = 36);
+    Check(ECE.AnnouncementFileName = ECE.AnnouncementDir+'\ok');
+    Check(ECE.CompletedArgs = 'Command ' + ECE.AnnouncementDir + ' Arg1 Arg2');
+    Check(DirectoryExists(ECE.AnnouncementDir));
+  finally
+    mnDeleteDir(ECE.AnnouncementDir);
+    ECE.Free;
+    ECF.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testExternalCommandFile_UseJavaToRunJar;
+var
+  ECF: mnTExternalCommandFile;
+  ECE: mnTExternalCommandExecution;
+begin
+  ECF := mnTExternalCommandFile.Create(GwangmyeongseongConsoleJarName);
+  ECF.UseJavaToRunJar := True;
+  try
+    ECE := ECF.NewExecution('CommandFinished', 'aaa bbb');
+    try
+      Check(ECE.Execute = erFinished);
+      CheckEquals(ECE.Msg, 'input:aaa,bbb');
+    finally
+      ECE.Free;
+    end;
+  finally
+    ECF.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testExternalCommandExecution_DeleteAnnouncementDir;
+var
+  ECF: mnTExternalCommandFile;
+  ECE: mnTExternalCommandExecution;
+begin
+  ECF := mnTExternalCommandFile.Create(GwangmyeongseongConsoleJarName);
+  ECE := ECF.NewExecution('Command', 'Arg1 Arg2');
+  try
+    Check(DirectoryExists(ECE.AnnouncementDir));
+    ECE.DeleteAnnouncementDir;
+    CheckFalse(DirectoryExists(ECE.AnnouncementDir));
+  finally
+    ECE.Free;
+    ECF.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testExternalCommandExecution_Execute_Timeout;
+var
+  ECF: mnTExternalCommandFile;
+  ECE: mnTExternalCommandExecution;
+begin
+  ECF := mnTExternalCommandFile.Create(GwangmyeongseongConsoleJarName);
+  try
+    ECE := ECF.NewExecution('CommandFinished', 'aaa bbb');
+    try
+      Check(ECE.Execute = erFinished);
+      CheckEquals(ECE.Msg, 'input:aaa,bbb');
+    finally
+      ECE.Free;
+    end;
+
+    ECE := ECF.NewExecution('CommandException', '');
+    try
+      Check(ECE.Execute = erException);
+      CheckEquals(ECE.Msg, 'java.lang.ArithmeticException: / by zero');
+    finally
+      ECE.Free;
+    end;
+
+    ECE := ECF.NewExecution('CommandHalted', '');
+    try
+      Check(ECE.Execute = erHalted);
+      CheckEquals(ECE.Msg, 'java.lang.IllegalArgumentException: command name not found: CommandHalted');
+    finally
+      ECE.Free;
+    end;
+
+    ECE := ECF.NewExecution('CommandFreezed', '');
+    try
+      ECE.Timeout := 1;
+      Check(ECE.Execute = erFreezed);
+      CheckEquals(ECE.Msg, '');
+    finally
+      ECE.Free;
+    end;
+
+    ECE := ECF.NewExecution('CommandFinished', 'aaa');
+    try
+      Check(ECE.Execute = erException);
+      CheckEquals(ECE.Msg, 'java.lang.ArrayIndexOutOfBoundsException: 3');
+    finally
+      ECE.Free;
+    end;
+  finally
+    ECF.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testExternalCommandExecution_KeepAnnouncementDir;
+var
+  ECF: mnTExternalCommandFile;
+  ECE: mnTExternalCommandExecution;
+begin
+  ECF := mnTExternalCommandFile.Create(GwangmyeongseongConsoleJarName);
+  try
+    ECE := ECF.NewExecution('CommandFinished', 'aaa bbb');
+    try
+      ECE.KeepAnnouncementDir := False;
+      Check(ECE.Execute = erFinished);
+      CheckFalse(DirectoryExists(ECE.AnnouncementDir));
+    finally
+      ECE.Free;
+    end;
+
+    ECE := ECF.NewExecution('CommandFinished', 'aaa bbb');
+    try
+      ECE.KeepAnnouncementDir := True;
+      Check(ECE.Execute = erFinished);
+      Check(DirectoryExists(ECE.AnnouncementDir));
+    finally
+      ECE.DeleteAnnouncementDir;
+      ECE.Free;
+    end;
+  finally
+    ECF.Free;
   end;
 end;
 
