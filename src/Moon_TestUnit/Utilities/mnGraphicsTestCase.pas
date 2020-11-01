@@ -38,6 +38,7 @@ type
     procedure testPixeledImage_SaveToBMPFile;
     procedure testPixeledImage_Compare;
     procedure testPixeledImage_Find;
+    procedure testPixeledImage_CopyTo;
   end;
 
 implementation
@@ -571,6 +572,22 @@ begin
     PI.Free;
     PICopy.Free;
     PIRegion.Free;
+  end;
+end;
+
+procedure TmnGraphicsTestCase.testPixeledImage_CopyTo;
+var
+  PI, PICopy: mnTPixeledImage;
+begin
+  PI := mnTPixeledImage.Create;
+  PICopy := mnTPixeledImage.Create;
+  try
+    PI.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMP.bmp'));
+    PI.CopyTo(PICopy);
+    Check(PI.Compare(PICopy));
+  finally
+    PI.Free;
+    PICopy.Free;
   end;
 end;
 

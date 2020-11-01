@@ -169,7 +169,6 @@ type
     procedure SaveToBMPFile(const FileName: string); overload;
   public
     // 判断图片的指定区域，是否和另一张图片的指定区域完全相同，即大小和每个像素（的颜色）都相同
-    // 如果事先能确定大小相同，则CompareSize可传入False，这样函数内部将不再比较区域大小，直接比较像素，以提高执行效率
     // 在其它重载形式里，如果有图片没有指定区域，则代表比较它的整张图片
     function Compare(AnotherImage: mnTPixeledImage; const Rect, AnotherRect: TRect): Boolean; overload;
     function Compare(AnotherImage: mnTPixeledImage; const Rect:              TRect): Boolean; overload;
@@ -185,6 +184,9 @@ type
     function Find(PartImage: mnTPixeledImage; const Rect:           TRect):                    Boolean; overload;
     function Find(PartImage: mnTPixeledImage;                              var X, Y: Integer): Boolean; overload;
     function Find(PartImage: mnTPixeledImage):                                                 Boolean; overload;
+  public
+    // 将整张图片复制到另一张图片，另一张图片的大小将设置为同这张图片相等
+    procedure CopyTo(AnotherImage: mnTPixeledImage);
   end;
 
 implementation
@@ -711,6 +713,16 @@ var
   X, Y: Integer;
 begin
   Result := Find(PartImage, BoundsRect, PartImage.BoundsRect, X, Y);
+end;
+
+procedure mnTPixeledImage.CopyTo(AnotherImage: mnTPixeledImage);
+var
+  i, j: Integer;
+begin
+  AnotherImage.SetSize(Width, Height);
+  for i := 0 to Width-1 do
+    for j := 0 to Height-1 do
+      AnotherImage.Pixels[i, j] := Pixels[i, j];
 end;
 
 end.
