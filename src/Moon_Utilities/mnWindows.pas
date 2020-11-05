@@ -116,12 +116,13 @@ function mnMouseMsgInControl(const AMsg: TMsg; AControl: TControl): Boolean;
 function mnMousePos: TPoint;
 
 {--------------------------------
-  模拟鼠标单击、双击或右键单击。
+  模拟鼠标单击、双击、右键单击或滚轮。
   Tested in TestApp.
  --------------------------------}
 procedure mnMouseClick;
 procedure mnMouseDblClick;
 procedure mnMouseRightClick;
+procedure mnMouseWheel(const Delta: Integer);
 
 {--------------------------------
   检查一个Virtual Key是否正被按下，或一个Char Key是否正被按下。
@@ -462,6 +463,11 @@ procedure mnMouseRightClick;
 begin
   mouse_event(MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
   mouse_event(MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
+end;
+
+procedure mnMouseWheel(const Delta: Integer);
+begin
+  mouse_event(MOUSEEVENTF_WHEEL, 0, 0, Delta, 0);
 end;
 
 function mnIsVKeyHold(const VKey: Integer): Boolean;

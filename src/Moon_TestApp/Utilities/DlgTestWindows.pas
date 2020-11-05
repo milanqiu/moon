@@ -90,6 +90,7 @@ type
     btnSnapWindowEx: TButton;
     lbMouseMsg3: TLabel;
     lbMouseMsg4: TLabel;
+    btnMouseWheel: TButton;
     procedure btnSnapWindowExClick(Sender: TObject);
     procedure btnSnapWindowClick(Sender: TObject);
     procedure btnSendKeyToWindowClick(Sender: TObject);
@@ -112,10 +113,13 @@ type
     procedure btnCtrlCClick(Sender: TObject);
     procedure btnIsKeyPressedClick(Sender: TObject);
     procedure btnIsVKeyPressedClick(Sender: TObject);
+    procedure FormMouseWheel(Sender: TObject; Shift: TShiftState;
+      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
     procedure FormMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure FormDblClick(Sender: TObject);
     procedure FormClick(Sender: TObject);
+    procedure btnMouseWheelClick(Sender: TObject);
     procedure btnMouseRightClickClick(Sender: TObject);
     procedure btnMouseDblClickClick(Sender: TObject);
     procedure btnMouseClickClick(Sender: TObject);
@@ -338,6 +342,12 @@ begin
   mnMouseRightClick;
 end;
 
+procedure TTestWindowsDialog.btnMouseWheelClick(Sender: TObject);
+begin
+  SetCursorPos(TestWindowsDialog.ClientToScreen(Point(1, 1)).X, TestWindowsDialog.ClientToScreen(Point(1, 1)).Y);
+  mnMouseWheel(-100);
+end;
+
 procedure TTestWindowsDialog.FormClick(Sender: TObject);
 begin
   inherited;
@@ -355,7 +365,14 @@ procedure TTestWindowsDialog.FormMouseUp(Sender: TObject; Button: TMouseButton;
 begin
   inherited;
   if Button = mbRight then
-    lbMouseClick.Caption := 'Mouse right click';
+    lbMouseClick.Caption := 'Mouse right click' + '    X:' + IntToStr(X) + '    Y:' + IntToStr(Y);
+end;
+
+procedure TTestWindowsDialog.FormMouseWheel(Sender: TObject; Shift: TShiftState;
+  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+begin
+  inherited;
+  lbMouseClick.Caption := 'Mouse wheel' + '    WheelDelta:' + IntToStr(WheelDelta) + '    MousePos:' + IntToStr(MousePos.X) + ',' + IntToStr(MousePos.Y);
 end;
 
 procedure TTestWindowsDialog.btnIsVKeyPressedClick(Sender: TObject);

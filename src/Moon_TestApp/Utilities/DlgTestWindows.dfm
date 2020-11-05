@@ -1,4 +1,6 @@
 inherited TestWindowsDialog: TTestWindowsDialog
+  Left = 912
+  Top = 300
   Caption = 'TestWindows'
   ClientHeight = 523
   ClientWidth = 867
@@ -6,6 +8,7 @@ inherited TestWindowsDialog: TTestWindowsDialog
   OnCreate = FormCreate
   OnDblClick = FormDblClick
   OnMouseUp = FormMouseUp
+  OnMouseWheel = FormMouseWheel
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxbtnOK: TcxButton
@@ -184,7 +187,7 @@ inherited TestWindowsDialog: TTestWindowsDialog
       end
       object lbMouseClick: TLabel
         Left = 536
-        Top = 56
+        Top = 88
         Width = 60
         Height = 13
         Caption = 'lbMouseClick'
@@ -342,6 +345,15 @@ inherited TestWindowsDialog: TTestWindowsDialog
         Height = 21
         TabOrder = 11
         Text = 'edtFrom'
+      end
+      object btnMouseWheel: TButton
+        Left = 536
+        Top = 48
+        Width = 75
+        Height = 25
+        Caption = 'Wheel'
+        TabOrder = 12
+        OnClick = btnMouseWheelClick
       end
     end
     object tsWindow: TTabSheet
