@@ -52,6 +52,11 @@ requires
   Moon_Utilities;
 
 contains
-  mnTestCaseWizard in '..\src\Moon_IOTA\Wizards\mnTestCaseWizard.pas';
+  mnIniWizard in '..\src\Moon_IOTA\Wizards\mnIniWizard.pas',
+  mnRegWizard in '..\src\Moon_IOTA\Wizards\mnRegWizard.pas',
+  mnTestCaseWizard in '..\src\Moon_IOTA\Wizards\mnTestCaseWizard.pas',
+  mnAboutDialogWizard in '..\src\Moon_IOTA\Wizards\mnAboutDialogWizard.pas',
+  mnCommonDialogWizard in '..\src\Moon_IOTA\Wizards\mnCommonDialogWizard.pas',
+  mnMDIChildFormWizard in '..\src\Moon_IOTA\Wizards\mnMDIChildFormWizard.pas';
 
 end.

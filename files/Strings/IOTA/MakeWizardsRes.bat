@@ -1,3 +1,10 @@
+brcc32 mnIniWizard\mnIniWizard.rc
+brcc32 mnRegWizard\mnRegWizard.rc
 brcc32 mnTestCaseWizard\mnTestCaseWizard.rc
+
+brcc32 mnAboutDialogWizard\mnAboutDialogWizard.rc
+
+brcc32 mnCommonDialogWizard\mnCommonDialogWizard.rc
+brcc32 mnMDIChildFormWizard\mnMDIChildFormWizard.rc
 
 pause
