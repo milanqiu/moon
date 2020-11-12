@@ -52,6 +52,7 @@ requires
   Moon_Utilities;
 
 contains
+  mnQuickLaunch in '..\src\Moon_IOTA\Menus\mnQuickLaunch.pas',
   mnIniWizard in '..\src\Moon_IOTA\Wizards\mnIniWizard.pas',
   mnRegWizard in '..\src\Moon_IOTA\Wizards\mnRegWizard.pas',
   mnTestCaseWizard in '..\src\Moon_IOTA\Wizards\mnTestCaseWizard.pas',
