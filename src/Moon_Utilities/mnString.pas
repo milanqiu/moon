@@ -517,9 +517,9 @@ const
 {--------------------------------
   表明文本编码方式的头字节。
  --------------------------------}
-  mnUnicodeLEHead = #$FF#$FE;
-  mnUnicodeBEHead = #$FE#$FF;
-  mnUTF8Head = #$EF#$BB#$BF;
+  mnUnicodeLEBOM = #$FF#$FE;
+  mnUnicodeBEBOM = #$FE#$FF;
+  mnUTF8BOM = #$EF#$BB#$BF;
 
 {--------------------------------
   根据头字节，得到文本的编码方式。
@@ -2472,11 +2472,11 @@ end;
 
 function mnGetTextEncoding(const S: string): mnTTextEncoding;
 begin
-  if mnStartsStr(mnUnicodeLEHead, S) then
+  if mnStartsStr(mnUnicodeLEBOM, S) then
     Result := teUnicodeLE
-  else if mnStartsStr(mnUnicodeBEHead, S) then
+  else if mnStartsStr(mnUnicodeBEBOM, S) then
     Result := teUnicodeBE
-  else if mnStartsStr(mnUTF8Head, S) then
+  else if mnStartsStr(mnUTF8BOM, S) then
     Result := teUTF8
   else
     Result := teAnsi;

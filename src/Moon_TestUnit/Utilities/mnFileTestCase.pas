@@ -530,13 +530,13 @@ begin
   mnSaveStrToFile(Text_Ansi, TempFile);
   Check(mnGetTextFileEncoding(TempFile) = teAnsi);
 
-  mnSaveStrToFile(Text_UnicodeLE, TempFile);
+  mnSaveStrToFile(Text_UnicodeLE_WithBOM, TempFile);
   Check(mnGetTextFileEncoding(TempFile) = teUnicodeLE);
 
-  mnSaveStrToFile(Text_UnicodeBE, TempFile);
+  mnSaveStrToFile(Text_UnicodeBE_WithBOM, TempFile);
   Check(mnGetTextFileEncoding(TempFile) = teUnicodeBE);
 
-  mnSaveStrToFile(Text_UTF8, TempFile);
+  mnSaveStrToFile(Text_UTF8_WithBOM, TempFile);
   Check(mnGetTextFileEncoding(TempFile) = teUTF8);
   
   Check(mnDeleteFile(TempFile));

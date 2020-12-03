@@ -1979,9 +1979,9 @@ end;
 procedure TmnStringTestCase.testGetTextEncoding;
 begin
   Check(mnGetTextEncoding(Text_Ansi) = teAnsi);
-  Check(mnGetTextEncoding(Text_UnicodeLE) = teUnicodeLE);
-  Check(mnGetTextEncoding(Text_UnicodeBE) = teUnicodeBE);
-  Check(mnGetTextEncoding(Text_UTF8) = teUTF8);
+  Check(mnGetTextEncoding(Text_UnicodeLE_WithBOM) = teUnicodeLE);
+  Check(mnGetTextEncoding(Text_UnicodeBE_WithBOM) = teUnicodeBE);
+  Check(mnGetTextEncoding(Text_UTF8_WithBOM) = teUTF8);
 end;
 
 procedure TmnStringTestCase.testExpressWideString;
