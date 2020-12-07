@@ -1234,6 +1234,9 @@ type
     procedure Compare(AnotherList: TStrings; OutSolo, OutAnotherSolo: TStrings);
     procedure AssignByOp(AnotherList: TStrings; AOperator: TListAssignOp = laCopy);
 
+    procedure SaveToUTF8File(const FileName: string; const HasBOM: Boolean = True);
+    procedure LoadFromUTF8File(const FileName: string; const HasBOM: Boolean = True);
+
     procedure SaveToStreamTurbo(StreamTurbo: mnTStreamTurbo);
     procedure SaveToStreamBin(Stream: TStream);
     procedure SaveToStreamFile(const FileName: string);
@@ -6483,6 +6486,44 @@ begin
         TempList.Free;
       end;
     end;
+  end;
+end;
+
+procedure mnTStrList.SaveToUTF8File(const FileName: string; const HasBOM: Boolean = True);
+var
+  Stream: TStream;
+  UTF8Text: UTF8String;
+begin
+  Stream := TFileStream.Create(FileName, fmCreate);
+  try
+    if HasBOM then
+      Stream.WriteBuffer(mnUTF8BOM[1], Length(mnUTF8BOM));
+    UTF8Text := UTF8Encode(GetTextStr);
+    Stream.WriteBuffer(Pointer(UTF8Text)^, Length(UTF8Text));
+  finally
+    Stream.Free;
+  end;
+end;
+
+procedure mnTStrList.LoadFromUTF8File(const FileName: string; const HasBOM: Boolean = True);
+var
+  Stream: TStream;
+  UTF8Text: UTF8String;
+  BOM: string;
+begin
+  Stream := TFileStream.Create(FileName, fmOpenRead or fmShareDenyWrite);
+  try
+    if HasBOM then
+    begin
+      SetLength(BOM, Length(mnUTF8BOM));
+      Stream.Read(BOM[1], Length(BOM));
+      mnCreateErrorIf(BOM <> mnUTF8BOM, SWrongBOM);
+    end;
+    SetLength(UTF8Text, Stream.Size-Stream.Position);
+    Stream.Read(Pointer(UTF8Text)^, Length(UTF8Text));
+    SetTextStr(UTF8Decode(UTF8Text));
+  finally
+    Stream.Free;
   end;
 end;
 

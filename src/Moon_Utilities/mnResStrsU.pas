@@ -114,6 +114,7 @@ resourcestring
   STryToAddDuplicateItem = '尝试往TypeList里添加一个重复成员: %s';
   SArrayTooShortForList = '数组太短，无法装载TypeList的所有元素';
   SMakeStatOnEmptyList = '尝试对一个空列表进行统计';
+  SWrongBOM = '错误的BOM';
   SIllegalTimeUnit = '非法的时间单位';
   SCoordinatesTableColumnIndexError = 'mnTCoordinatesTable列的索引越界: %d（总长度：%d）';
   SCoordinatesTableRowIndexError = 'mnTCoordinatesTable行的索引越界: %d（总长度：%d）';
@@ -235,6 +236,7 @@ resourcestring
   STryToAddDuplicateItem = 'Try to add a duplicate item into TypeList: %s';
   SArrayTooShortForList = 'Array is too short to hold all elements of TypeList';
   SMakeStatOnEmptyList = 'Try to make statistics on an empty list';
+  SWrongBOM = 'Wrong BOM';
   SIllegalTimeUnit = 'Illegal time unit';
   SCoordinatesTableColumnIndexError = 'mnTCoordinatesTable column index out of bounds: %d of length %d';
   SCoordinatesTableRowIndexError = 'mnTCoordinatesTable row index out of bounds: %d of length %d';

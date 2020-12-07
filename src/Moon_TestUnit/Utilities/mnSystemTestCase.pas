@@ -272,6 +272,7 @@ type
     procedure testStrList_MakeUnique;
     procedure testStrList_Compare;
     procedure testStrList_AssignByOp;
+    procedure testStrList_SaveLoadUTF8File;
     procedure testStrList_SaveLoadStreamTurbo;
     procedure testStrList_SaveLoadStreamBin;
     procedure testStrList_SaveLoadStreamFile;
@@ -6630,6 +6631,38 @@ begin
     AnotherList.Free;
     StrList.Free;
   end;
+end;
+
+procedure TmnSystemTestCase.testStrList_SaveLoadUTF8File;
+var
+  TestFileName: string;
+  StrList: mnTStrList;
+begin
+  TestFileName := mnTProjectConvention.GetTestTempPathSub('StrList.txt');
+
+  StrList := mnTStrList.Create;
+  try
+    StrList.Append(Text_Ansi);
+    StrList.SaveToUTF8File(TestFileName);
+    CheckEquals(mnLoadStrFromFile(TestFileName), Text_UTF8_WithBOM + mnNewLine);
+    StrList.Clear;
+    StrList.LoadFromUTF8File(TestFileName);
+    CheckEquals(StrList.Count, 1);
+    CheckEquals(StrList[0], Text_Ansi);
+
+    StrList.Clear;
+    StrList.Append(Text_Ansi);
+    StrList.SaveToUTF8File(TestFileName, False);
+    CheckEquals(mnLoadStrFromFile(TestFileName), Text_UTF8 + mnNewLine);
+    StrList.Clear;
+    StrList.LoadFromUTF8File(TestFileName, False);
+    CheckEquals(StrList.Count, 1);
+    CheckEquals(StrList[0], Text_Ansi);
+  finally
+    StrList.Free;
+  end;
+
+  mnDeleteFile(TestFileName);
 end;
 
 procedure TmnSystemTestCase.testStrList_SaveLoadStreamTurbo;

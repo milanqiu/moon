@@ -108,6 +108,9 @@ const
 const
   // different encoding texts: Œ“√«a
   Text_Ansi = #$CE#$D2#$C3#$C7#$61;
+  Text_UnicodeLE = #$11#$62#$EC#$4E#$61#$00;
+  Text_UnicodeBE = #$62#$11#$4E#$EC#$00#$61;
+  Text_UTF8 = #$E6#$88#$91#$E4#$BB#$AC#$61;
   Text_UnicodeLE_WithBOM = #$FF#$FE + #$11#$62#$EC#$4E#$61#$00;
   Text_UnicodeBE_WithBOM = #$FE#$FF + #$62#$11#$4E#$EC#$00#$61;
   Text_UTF8_WithBOM = #$EF#$BB#$BF + #$E6#$88#$91#$E4#$BB#$AC#$61;
