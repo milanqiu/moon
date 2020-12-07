@@ -7083,7 +7083,7 @@ begin
   // Parse
   strs := mnTStrList.Create;
   try
-    strs.LoadFromFile(FAnnouncementFileName);
+    strs.LoadFromUTF8File(FAnnouncementFileName, False);
     if strs[0] = 'finished' then
       Result := erFinished
     else if strs[0] = 'exception' then
