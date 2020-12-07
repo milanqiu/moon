@@ -67,6 +67,7 @@ type
 
 {--------------------------------
   根据带有*和?等通配符的文件名模式，查找所有文件，然后将文件名保存到OutFileList里。
+  注意：OutFileList之前存储的内容依旧保留，不会被清空。
   注意：该查找并非recursive方式，即不查找子文件夹。
   Tested in TestUnit.
  --------------------------------}
@@ -75,6 +76,7 @@ procedure mnGetFileList(const FileNamePattern: string; OutFileList: TStrings;
 
 {--------------------------------
   在指定路径中，根据带有*和?等通配符的文件名模式，查找所有文件，然后将文件名保存到OutFileList里。
+  注意：OutFileList之前存储的内容依旧保留，不会被清空。
   注意：该查找是recursive方式的，会查找指定路径下的所有子文件夹。
   注意：FileNamePattern是严格的文件名模式，不能带有路径信息。
   Tested in TestUnit.
