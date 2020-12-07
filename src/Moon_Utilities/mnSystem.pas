@@ -1541,6 +1541,8 @@ type
     procedure DeleteAnnouncementDir;
     // 执行外部命令，返回执行结果，并将生成的消息写到Msg中
     function Execute: mnTExternalCommandExecutionResult;
+    // 执行外部命令，当成功完成时，返回生成的消息，否则抛出异常
+    function ExecuteSuccessfully: string;
   end;
 
 type
@@ -7116,6 +7118,19 @@ begin
   Result := WaitAndParse;
   if not FKeepAnnouncementDir then
     DeleteAnnouncementDir;
+end;
+
+function mnTExternalCommandExecution.ExecuteSuccessfully: string;
+var
+  ExecutionResult: mnTExternalCommandExecutionResult;
+begin
+  ExecutionResult := Execute;
+  case ExecutionResult of
+    erFinished: Result := Msg;
+    erException: mnCreateError('Execution with exception:' + mnNewLine + Msg);
+    erHalted:    mnCreateError('Execution halted:'         + mnNewLine + Msg);
+    erFreezed:   mnCreateError('Execution freezed:'        + mnNewLine + Msg);
+  end;
 end;
 
 { mnTDelphiTypeConvertors }

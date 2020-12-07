@@ -306,6 +306,7 @@ type
     procedure testExternalCommandFile_UseJavaToRunJar;
     procedure testExternalCommandExecution_DeleteAnnouncementDir;
     procedure testExternalCommandExecution_Execute_Timeout;
+    procedure testExternalCommandExecution_ExecuteSuccessfully_Timeout;
     procedure testExternalCommandExecution_KeepAnnouncementDir;
 
     procedure testDelphiTypeConvertors;
@@ -7481,6 +7482,61 @@ begin
     try
       Check(ECE.Execute = erException);
       CheckEquals(ECE.Msg, 'java.lang.ArrayIndexOutOfBoundsException: 3');
+    finally
+      ECE.Free;
+    end;
+  finally
+    ECF.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testExternalCommandExecution_ExecuteSuccessfully_Timeout;
+var
+  ECF: mnTExternalCommandFile;
+  ECE: mnTExternalCommandExecution;
+begin
+  ECF := mnTExternalCommandFile.Create(GwangmyeongseongConsoleJarName);
+  try
+    ECE := ECF.NewExecution('CommandFinished', 'aaa bbb');
+    try
+      Check(ECE.ExecuteSuccessfully = 'input:aaa,bbb');
+    finally
+      ECE.Free;
+    end;
+
+    ECE := ECF.NewExecution('CommandException', '');
+    try try
+      ECE.ExecuteSuccessfully;
+      mnNeverGoesHere;
+    except
+      on E: Exception do
+        CheckEquals(E.Message, 'Execution with exception:' + mnNewLine + 'java.lang.ArithmeticException: / by zero');
+      end;
+    finally
+      ECE.Free;
+    end;
+
+    ECE := ECF.NewExecution('CommandHalted', '');
+    try try
+      ECE.ExecuteSuccessfully;
+      mnNeverGoesHere;
+    except
+      on E: Exception do
+        CheckEquals(E.Message, 'Execution halted:' + mnNewLine + 'java.lang.IllegalArgumentException: command name not found: CommandHalted');
+      end;
+    finally
+      ECE.Free;
+    end;
+
+    ECE := ECF.NewExecution('CommandFreezed', '');
+    try try
+      ECE.Timeout := 1;
+      ECE.ExecuteSuccessfully;
+      mnNeverGoesHere;
+    except
+      on E: Exception do
+        CheckEquals(E.Message, 'Execution freezed:' + mnNewLine + '');
+      end;
     finally
       ECE.Free;
     end;
