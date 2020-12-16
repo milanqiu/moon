@@ -119,6 +119,9 @@ resourcestring
   SCoordinatesTableColumnIndexError = 'mnTCoordinatesTable列的索引越界: %d（总长度：%d）';
   SCoordinatesTableRowIndexError = 'mnTCoordinatesTable行的索引越界: %d（总长度：%d）';
   SIllegalExternalCommandExecutionResult = '非法的外部命令执行结果';
+  SExternalCommandExecutionException = '外部命令执行出现异常：';
+  SExternalCommandExecutionHalted = '外部命令执行中止：';
+  SExternalCommandExecutionFreezed = '外部命令执行冻结：';
 
   // in mnTPC
   SItemPrecisionShoudBeNumeric = 'SetItemPrecision只能用于TcxCalcEditProperties或TcxCurrencyEditProperties';
@@ -241,6 +244,9 @@ resourcestring
   SCoordinatesTableColumnIndexError = 'mnTCoordinatesTable column index out of bounds: %d of length %d';
   SCoordinatesTableRowIndexError = 'mnTCoordinatesTable row index out of bounds: %d of length %d';
   SIllegalExternalCommandExecutionResult = 'Illegal external command execution result';
+  SExternalCommandExecutionException = 'Execution with exception:';
+  SExternalCommandExecutionHalted = 'Execution halted:';
+  SExternalCommandExecutionFreezed = 'Execution freezed:';
 
   // in mnTPC
   SItemPrecisionShoudBeNumeric = 'SetItemPrecision should be used only on TcxCalcEditProperties or TcxCurrencyEditProperties';

@@ -7126,10 +7126,10 @@ var
 begin
   ExecutionResult := Execute;
   case ExecutionResult of
-    erFinished: Result := Msg;
-    erException: mnCreateError('Execution with exception:' + mnNewLine + Msg);
-    erHalted:    mnCreateError('Execution halted:'         + mnNewLine + Msg);
-    erFreezed:   mnCreateError('Execution freezed:'        + mnNewLine + Msg);
+    erFinished:  Result := Msg;
+    erException: mnCreateError(SExternalCommandExecutionException + mnNewLine + Msg);
+    erHalted:    mnCreateError(SExternalCommandExecutionHalted    + mnNewLine + Msg);
+    erFreezed:   mnCreateError(SExternalCommandExecutionFreezed   + mnNewLine + Msg);
   end;
 end;
 
