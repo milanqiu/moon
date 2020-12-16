@@ -1187,6 +1187,11 @@ type
     laDestUnique：B有A没有。12345, 346 = 6
     但在用两个列表做非拷贝的集合操作时，如果原始列表已有重复元素，则结果会符合逻辑，但不一定是想要的结果。
 
+  ExtractObjectsAsStrPointer：将附属对象当作字符串指针，提取出来并和列表内容一起生成新列表。
+  ExtractObjectsAsIntPointer：将附属对象当作整数指针，提取出来并和列表内容一起生成新列表。
+  FreeObjects：释放本列表的所有附属对象。
+  ClearWithObjects：清空带有附属对象的本列表，意味着先释放所有附属对象，再清空内容。
+
   SaveToXXX, LoadFromXXX：基于StreamTurbo、流或二进制流文件，保存或载入整个列表。
 
   SaveToArray, LoadFromArray：基于数组，保存或载入整个列表。注意在保存到数组时，传入的数组的长度必须不小于列表元素个数。
@@ -1233,6 +1238,11 @@ type
 
     procedure Compare(AnotherList: TStrings; OutSolo, OutAnotherSolo: TStrings);
     procedure AssignByOp(AnotherList: TStrings; AOperator: TListAssignOp = laCopy);
+
+    procedure ExtractObjectsAsStrPointer(OutList: TStrings; ExtractdFormat: string = '');
+    procedure ExtractObjectsAsIntPointer(OutList: TStrings; ExtractdFormat: string = '');
+    procedure FreeObjects(const PointerType: mnTPointerType = ptSimple);
+    procedure ClearWithObjects(const PointerType: mnTPointerType = ptSimple);
 
     procedure SaveToUTF8File(const FileName: string; const HasBOM: Boolean = True);
     procedure LoadFromUTF8File(const FileName: string; const HasBOM: Boolean = True);
@@ -6489,6 +6499,36 @@ begin
       end;
     end;
   end;
+end;
+
+procedure mnTStrList.ExtractObjectsAsStrPointer(OutList: TStrings; ExtractdFormat: string = '');
+var
+  i: Integer;
+begin
+  if ExtractdFormat = '' then ExtractdFormat := '%1:s=%0:s';
+  OutList.Clear;
+  for i := 0 to Count-1 do
+    OutList.Append(Format(ExtractdFormat, [Get(i), mnReadStrPointer(GetObject(i))]))
+end;
+
+procedure mnTStrList.ExtractObjectsAsIntPointer(OutList: TStrings; ExtractdFormat: string = '');
+var
+  i: Integer;
+begin
+  if ExtractdFormat = '' then ExtractdFormat := '%1:d=%0:s';
+  OutList.Clear;
+  for i := 0 to Count-1 do
+    OutList.Append(Format(ExtractdFormat, [Get(i), mnReadIntPointer(GetObject(i))]))
+end;
+
+procedure mnTStrList.FreeObjects(const PointerType: mnTPointerType = ptSimple);
+begin
+  mnFreeObjects(Self, PointerType);
+end;
+
+procedure mnTStrList.ClearWithObjects(const PointerType: mnTPointerType = ptSimple);
+begin
+  mnClearStrings(Self, PointerType);
 end;
 
 procedure mnTStrList.SaveToUTF8File(const FileName: string; const HasBOM: Boolean = True);

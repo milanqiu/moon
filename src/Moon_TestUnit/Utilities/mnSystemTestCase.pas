@@ -272,6 +272,9 @@ type
     procedure testStrList_MakeUnique;
     procedure testStrList_Compare;
     procedure testStrList_AssignByOp;
+    procedure testStrList_ExtractObjectsAsPointerSeries;
+    procedure testStrList_FreeObjects;
+    procedure testStrList_ClearWithObjects;
     procedure testStrList_SaveLoadUTF8File;
     procedure testStrList_SaveLoadStreamTurbo;
     procedure testStrList_SaveLoadStreamBin;
@@ -6631,6 +6634,92 @@ begin
   finally
     AnotherList.Free;
     StrList.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_ExtractObjectsAsPointerSeries;
+var
+  strs, OutStrs: mnTStrList;
+begin
+  strs := mnTStrList.Create;
+  outStrs := mnTStrList.Create;
+  try
+    // ExtractObjectsAsStrPointer
+    strs.AddObject('aaa', mnNewStrPointer(Str_0));
+    strs.AddObject('bbb', mnNewStrPointer(Str_1));
+    strs.AddObject('ccc', mnNewStrPointer(Str_2));
+
+    strs.ExtractObjectsAsStrPointer(OutStrs);
+    CheckEquals(OutStrs.Count, 3);
+    CheckEquals(OutStrs[0], Str_0+'=aaa');
+    CheckEquals(OutStrs[1], Str_1+'=bbb');
+    CheckEquals(OutStrs[2], Str_2+'=ccc');
+
+    strs.ExtractObjectsAsStrPointer(OutStrs, '%1:s^%0:s');
+    CheckEquals(OutStrs.Count, 3);
+    CheckEquals(OutStrs[0], Str_0+'^aaa');
+    CheckEquals(OutStrs[1], Str_1+'^bbb');
+    CheckEquals(OutStrs[2], Str_2+'^ccc');
+
+    strs.ClearWithObjects(ptString);
+
+    // ExtractObjectsAsIntPointer
+    strs.AddObject('aaa', mnNewIntPointer(Int_0));
+    strs.AddObject('bbb', mnNewIntPointer(Int_1));
+    strs.AddObject('ccc', mnNewIntPointer(Int_2));
+
+    strs.ExtractObjectsAsIntPointer(OutStrs);
+    CheckEquals(OutStrs.Count, 3);
+    CheckEquals(OutStrs[0], Str_Of_Int_0+'=aaa');
+    CheckEquals(OutStrs[1], Str_Of_Int_1+'=bbb');
+    CheckEquals(OutStrs[2], Str_Of_Int_2+'=ccc');
+
+    strs.ExtractObjectsAsIntPointer(OutStrs, '%1:d^%0:s');
+    CheckEquals(OutStrs.Count, 3);
+    CheckEquals(OutStrs[0], Str_Of_Int_0+'^aaa');
+    CheckEquals(OutStrs[1], Str_Of_Int_1+'^bbb');
+    CheckEquals(OutStrs[2], Str_Of_Int_2+'^ccc');
+
+    strs.ClearWithObjects;
+  finally
+    strs.Free;
+    outStrs.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_FreeObjects;
+var
+  strs: mnTStrList;
+begin
+  strs := mnTStrList.Create;
+  try
+    strs.AddObject('1', mnNewIntPointer(Int_0));
+    strs.Add('2');
+    Check(strs.Objects[0] <> nil);
+    Check(strs.Objects[1] = nil);
+    strs.FreeObjects;
+    Check(strs.Objects[0] = nil);
+    Check(strs.Objects[1] = nil);
+    CheckEquals(strs.Count, 2);
+  finally
+    strs.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testStrList_ClearWithObjects;
+var
+  strs: mnTStrList;
+begin
+  strs := mnTStrList.Create;
+  try
+    strs.AddObject('1', mnNewIntPointer(Int_0));
+    strs.Add('2');
+    Check(strs.Objects[0] <> nil);
+    Check(strs.Objects[1] = nil);
+    strs.ClearWithObjects;
+    CheckEquals(strs.Count, 0);
+  finally
+    strs.Free;
   end;
 end;
 
