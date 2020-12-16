@@ -37,13 +37,14 @@ type
     procedure testPixeledImage_SaveToBMP;
     procedure testPixeledImage_SaveToBMPFile;
     procedure testPixeledImage_Compare;
+    procedure testPixeledImage_CompareSimilarity;
     procedure testPixeledImage_Find;
     procedure testPixeledImage_CopyTo;
   end;
 
 implementation
 
-uses mnDebug, Graphics, mnSystem, mnFile, Types, mnDialog, SysUtils;
+uses mnDebug, Graphics, mnSystem, mnFile, Types, mnDialog, SysUtils, mnMath;
 
 { TmnGraphicsTestCase }
 
@@ -505,6 +506,51 @@ begin
     PI.Free;
     PICopy.Free;
     PIRegion.Free;
+  end;
+end;
+
+procedure TmnGraphicsTestCase.testPixeledImage_CompareSimilarity;
+var
+  PI, PICopy, PIRegion, PIWithDifference, PIRegionWithDifference: mnTPixeledImage;
+begin
+  PI := mnTPixeledImage.Create;
+  PICopy := mnTPixeledImage.Create;
+  PIRegion := mnTPixeledImage.Create;
+  PIWithDifference := mnTPixeledImage.Create;
+  PIRegionWithDifference := mnTPixeledImage.Create;
+  try
+    PI.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMP.bmp'));
+    PICopy.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMPCopy.bmp'));
+    PIRegion.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMPRegion.bmp'));
+    PIWithDifference.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMPWithDifference.bmp'));
+    PIRegionWithDifference.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMPRegionWithDifference.bmp'));
+
+    // overload form 1
+    CheckEquals(PI.CompareSimilarity(PICopy, Rect(0, 0, 9, 9), Rect(0, 0, 7, 7)), 0);
+    CheckEquals(PI.CompareSimilarity(PICopy, Rect(0, 0, 7, 7), Rect(0, 0, 9, 9)), 0);
+    CheckEquals(PI.CompareSimilarity(PICopy, Rect(0, 0, 20, 20), Rect(0, 0, 20, 20)), 1);
+    CheckEquals(PI.CompareSimilarity(PIRegion, Rect(3, 9, 4, 12), Rect(1, 1, 2, 4)), 1);
+    CheckEquals(PI.CompareSimilarity(PIWithDifference, Rect(0, 0, 20, 20), Rect(0, 0, 20, 20)), (20*20-3)/(20*20), mnParticle);
+    CheckEquals(PI.CompareSimilarity(PIRegionWithDifference, Rect(2, 8, 11, 15), Rect(0, 0, 9, 7)), (9*7-3)/(9*7), mnParticle);
+
+    // overload form 2
+    CheckEquals(PI.CompareSimilarity(PICopy, Rect(0, 0, 9, 9)), 0);
+    CheckEquals(PI.CompareSimilarity(PICopy, Rect(0, 0, 20, 20)), 1);
+    CheckEquals(PI.CompareSimilarity(PIRegion, Rect(2, 8, 11, 15)), 1);
+    CheckEquals(PI.CompareSimilarity(PIWithDifference, Rect(0, 0, 20, 20)), (20*20-3)/(20*20), mnParticle);
+    CheckEquals(PI.CompareSimilarity(PIRegionWithDifference, Rect(2, 8, 11, 15)), (9*7-3)/(9*7), mnParticle);
+
+    // overload form 3
+    CheckEquals(PI.CompareSimilarity(PICopy), 1);
+    CheckEquals(PI.CompareSimilarity(PIRegion), 0);
+    CheckEquals(PI.CompareSimilarity(PIWithDifference), (20*20-3)/(20*20), mnParticle);
+    CheckEquals(PIRegion.CompareSimilarity(PIRegionWithDifference), (9*7-3)/(9*7), mnParticle);
+  finally
+    PI.Free;
+    PICopy.Free;
+    PIRegion.Free;
+    PIWithDifference.Free;
+    PIRegionWithDifference.Free;
   end;
 end;
 

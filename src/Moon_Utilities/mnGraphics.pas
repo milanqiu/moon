@@ -173,6 +173,13 @@ type
     function Compare(AnotherImage: mnTPixeledImage; const Rect, AnotherRect: TRect): Boolean; overload;
     function Compare(AnotherImage: mnTPixeledImage; const Rect:              TRect): Boolean; overload;
     function Compare(AnotherImage: mnTPixeledImage                                ): Boolean; overload;
+    // 判断图片的指定区域，和另一张图片的指定区域的相似度
+    // 如果两个区域的大小不一样，则相似度为0
+    // 如果大小一样，则相似度等于（颜色）相同的像素数量除以区域的总像素数量
+    // 在其它重载形式里，如果有图片没有指定区域，则代表比较它的整张图片
+    function CompareSimilarity(AnotherImage: mnTPixeledImage; const Rect, AnotherRect: TRect): Extended; overload;
+    function CompareSimilarity(AnotherImage: mnTPixeledImage; const Rect:              TRect): Extended; overload;
+    function CompareSimilarity(AnotherImage: mnTPixeledImage                                ): Extended; overload;
   public
     // 在图片的指定区域内，寻找另一张图片的指定区域的图像，返回是否找到
     // 如果找到，X和Y返回其位置。当不需要位置时，也可使用没有X和Y的重载形式。注意位置从图片左上角算起，而不从区域左上角算起
@@ -643,6 +650,43 @@ end;
 function mnTPixeledImage.Compare(AnotherImage: mnTPixeledImage                                ): Boolean;
 begin
   Result := Compare(AnotherImage, BoundsRect, AnotherImage.BoundsRect);
+end;
+
+function mnTPixeledImage.CompareSimilarity(AnotherImage: mnTPixeledImage; const Rect, AnotherRect: TRect): Extended;
+var
+  Width, Height, XA, YA, XB, YB: Integer;
+  i, j: Integer;
+  SamePixelCount: Integer;
+begin
+  if not mnEqualRectSize(Rect, AnotherRect) then
+  begin
+    Result := 0;
+    Exit;
+  end;
+
+  SamePixelCount := 0;
+  Width := mnRectWidth(Rect);
+  Height := mnRectHeight(Rect);
+  XA := Rect.Left;
+  YA := Rect.Top;
+  XB := AnotherRect.Left;
+  YB := AnotherRect.Top;
+  for j := 0 to Height-1 do
+    for i := 0 to Width-1 do
+    begin
+      if Pixels[XA+i, YA+j] = AnotherImage.Pixels[XB+i, YB+j] then Inc(SamePixelCount);
+    end;
+  Result := SamePixelCount / (Width * Height);
+end;
+
+function mnTPixeledImage.CompareSimilarity(AnotherImage: mnTPixeledImage; const Rect:              TRect): Extended;
+begin
+  Result := CompareSimilarity(AnotherImage, Rect, AnotherImage.BoundsRect);
+end;
+
+function mnTPixeledImage.CompareSimilarity(AnotherImage: mnTPixeledImage                                ): Extended;
+begin
+  Result := CompareSimilarity(AnotherImage, BoundsRect, AnotherImage.BoundsRect);
 end;
 
 function mnTPixeledImage.Find(PartImage: mnTPixeledImage; const Rect, PartRect: TRect; var X, Y: Integer): Boolean;
