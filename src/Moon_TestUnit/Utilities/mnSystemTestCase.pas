@@ -64,6 +64,7 @@ type
     procedure testUpperLowerCase;
     procedure testCheckStrConstraint;
     procedure testPointerSeries;
+    procedure testClearList;
     procedure testFreeObjects;
     procedure testClearStrings;
     procedure testClearTreeNodes;
@@ -1348,6 +1349,21 @@ begin
   CheckEquals(mnReadBoolPointer(P), Bool_1);
   mnFreeAndNilPointer(P);
   Check(P = nil);
+end;
+
+procedure TmnSystemTestCase.testClearList;
+var
+  List: TList;
+begin
+  List := TList.Create;
+  try
+    List.Add(mnNewIntPointer(Int_0));
+    List.Add(mnNewIntPointer(Int_1));
+    mnClearList(List);
+    CheckEquals(List.Count, 0);
+  finally
+    List.Free;
+  end;
 end;
 
 procedure TmnSystemTestCase.testFreeObjects;

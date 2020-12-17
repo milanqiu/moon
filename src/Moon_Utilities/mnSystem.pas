@@ -452,6 +452,12 @@ procedure mnFreePointer(P: Pointer; const PointerType: mnTPointerType = ptSimple
 procedure mnFreeAndNilPointer(var P: Pointer; const PointerType: mnTPointerType = ptSimple); inline;
 
 {--------------------------------
+  清空一个TList实例，意味着先释放所有元素指针，再清空内容。
+  Tested in TestUnit.
+ --------------------------------}
+procedure mnClearList(List: TList; const PointerType: mnTPointerType = ptSimple);
+
+{--------------------------------
   释放一个TStrings或TTreeNodes实例的所有附属对象。
   Tested in TestUnit.
  --------------------------------}
@@ -2862,6 +2868,15 @@ procedure mnFreeAndNilPointer(var P: Pointer; const PointerType: mnTPointerType 
 begin
   mnFreePointer(P, PointerType);
   P := nil;
+end;
+
+procedure mnClearList(List: TList; const PointerType: mnTPointerType = ptSimple);
+var
+  i: Integer;
+begin
+  for i := 0 to List.Count-1 do
+    mnFreePointer(List[i], PointerType);
+  List.Clear;
 end;
 
 procedure mnFreeObjects(Strs: TStrings; const PointerType: mnTPointerType = ptSimple); overload;
