@@ -2,7 +2,7 @@ unit mnWindows;
 
 interface
 
-uses Windows, Controls, Graphics, Classes, mnSystem;
+uses Windows, Controls, Graphics, Classes, mnSystem, mnString;
 
 {--------------------------------
   Windows API.
@@ -145,45 +145,77 @@ procedure mnVKeyPress(const VKey: Integer);
 procedure mnKeyPress(const Key: Char); overload;
 procedure mnKeyPress(const Keys: string); overload;
 
+type
+{--------------------------------
+  窗口句柄数组和指针。
+ --------------------------------}
+  mnTHWNDArray = array of HWND;
+  mnPHWND = ^HWND;
+{--------------------------------
+  在窗口句柄数组和指针列表之间转换。
+  Tested in TestUnit.
+ --------------------------------}
+function mnHWNDArrayToList(const HWNDArray: mnTHWNDArray): TList;
+function mnHWNDListToArray(const HWNDList: TList): mnTHWNDArray;
+
 {--------------------------------
   得到指定窗口的类名或标题。
-  如果指定窗口不存在，则返回空字符串。
+  如果指定窗口不存在，则抛出异常。
   Tested in TestApp.
  --------------------------------}
 function mnGetWindowClassName(const Window: HWND): string;
 function mnGetWindowCaption(const Window: HWND): string;
 {--------------------------------
-  得到所有窗口的类名或标题的列表，可指定其父窗口。
-  列表的Object属性会以整数指针形式存储窗口句柄。
-  列表原有的数据不会被清空。
-  返回所有窗口数量。
+  得到指定的多个窗口的类名或标题。
   Tested in TestApp.
  --------------------------------}
-function mnGetWindowsClassNames(ClassNames: TStrings; const ParentWindow: HWND = 0): Integer;
-function mnGetWindowsCaptions(Captions: TStrings; const ParentWindow: HWND = 0): Integer;
+procedure mnGetWindowsClassNames(const Windows: mnTHWNDArray; ClassNames: TStrings);
+procedure mnGetWindowsCaptions(const Windows: mnTHWNDArray; Captions: TStrings);
+
+const
 {--------------------------------
-  根据窗口的类名或标题查找窗口，可指定其父窗口及起始子窗口。返回窗口句柄。
-  不区分大小写。
-  如果没有找到，返回0。
-  Tested in TestApp.
+  标准的窗口描述格式。
  --------------------------------}
-function mnFindWindowByClassName(const ClassName: string; const ParentWindow: HWND = 0; const AfterChildWindow: HWND = 0): HWND;
-function mnFindWindowByCaption(const Caption: string; const ParentWindow: HWND = 0; const AfterChildWindow: HWND = 0): HWND;
+  mnStdWindowDescriptionFormat = '%0:d:%2:s[%1:s]';
 {--------------------------------
-  根据窗口的标题的子串查找窗口，可指定其父窗口。返回窗口句柄。
-  不区分大小写。
-  如果没有找到，返回0。
+  得到指定的多个窗口的描述，描述由窗口句柄ID、类别和标题拼接而成，格式以Format形式传入。
   Tested in TestApp.
  --------------------------------}
-function mnFindWindowByCaptionSub(const CaptionSub: string; const ParentWindow: HWND = 0): HWND;
+procedure mnGetWindowsDescriptions(const Windows: mnTHWNDArray; Descriptions: TStrings; const DescriptionFormat: string);
+
+type
 {--------------------------------
-  根据窗口的标题的子串，查找所有标题中含有该子串的窗口，可指定其父窗口。
-  不区分大小写。
-  HWNDs原有的数据不会被清空。
-  返回找到的窗口数量。
+  用于查找窗口时传入参数。
+    ParentWindow：所属的父窗口。
+    ClassName：需匹配的类名。
+    ClassNameMatchOptions：匹配类名时的比较选项。
+    Caption：需匹配的标题。
+    CaptionMatchOptions：匹配标题时的比较选项。
+    VisibleRequired：是否要求窗口可见。
+ --------------------------------}
+  mnTFindWindowsOption = record
+    ParentWindow: HWND;
+    ClassName: string;
+    ClassNameMatchOptions: mnTStrComparisonOptions;
+    Caption: string;
+    CaptionMatchOptions: mnTStrComparisonOptions;
+    VisibleRequired: Boolean;
+  end;
+{--------------------------------
+  缺省的查找窗口选项，没有设置任何条件。自定义的条件可以在此基础上修改。
   Tested in TestApp.
  --------------------------------}
-function mnFindWindowsByCaptionSub(HWNDs: mnTIntList; const CaptionSub: string; const ParentWindow: HWND = 0): HWND;
+function mnDefaultFindWindowsOption: mnTFindWindowsOption;
+{--------------------------------
+  查找窗口，返回窗口句柄数组。
+  Tested in TestApp.
+ --------------------------------}
+function mnFindWindows(const Option: mnTFindWindowsOption): mnTHWNDArray;
+{--------------------------------
+  查找第一个符合条件选项的窗口。
+  Tested in TestApp.
+ --------------------------------}
+function mnFindFirstWindow(const Option: mnTFindWindowsOption): HWND;
 
 var
 {--------------------------------
@@ -530,13 +562,36 @@ begin
     mnKeyPress(Keys[i]);
 end;
 
+function mnHWNDArrayToList(const HWNDArray: mnTHWNDArray): TList;
+var
+  H: HWND;
+  P: mnPHWND;
+begin
+  Result := TList.Create;
+  Result.Capacity := Length(HWNDArray);
+  for H in HWNDArray do
+  begin
+    New(P);
+    P^ := H;
+    Result.Add(P);
+  end;
+end;
+
+function mnHWNDListToArray(const HWNDList: TList): mnTHWNDArray;
+var
+  i: Integer;
+begin
+  SetLength(Result, HWNDList.Count);
+  for i := 0 to HWNDList.Count-1 do
+    Result[i] := mnPHWND(HWNDList[i])^;
+end;
+
 function mnGetWindowClassName(const Window: HWND): string;
 var
   ClassName: array [0..255] of Char;
-  Size: DWORD;
 begin
-  Size := SizeOf(ClassName);
-  if GetClassName(Window, ClassName, Size) <> 0 then
+  mnCreateErrorIf(not IsWindow(Window), SWindowNotExists);
+  if GetClassName(Window, ClassName, SizeOf(ClassName)) <> 0 then
     Result := ClassName
   else Result := '';
 end;
@@ -544,148 +599,106 @@ end;
 function mnGetWindowCaption(const Window: HWND): string;
 var
   Caption: array [0..255] of Char;
-  Size: DWORD;
 begin
-  Size := SizeOf(Caption);
-  if GetWindowText(Window, Caption, Size) <> 0 then
+  mnCreateErrorIf(not IsWindow(Window), SWindowNotExists);
+  if GetWindowText(Window, Caption, SizeOf(Caption)) <> 0 then
     Result := Caption
   else Result := '';
 end;
 
-function mnGetWindowsClassNames(ClassNames: TStrings; const ParentWindow: HWND = 0): Integer;
+procedure mnGetWindowsClassNames(const Windows: mnTHWNDArray; ClassNames: TStrings);
 var
-  OldCount: Integer;
-
-  function EnumWindowsFunc(Window: HWND; ClassNames: TStrings): Boolean; stdcall;
-  begin
-    ClassNames.AddObject(mnGetWindowClassName(Window), mnNewIntPointer(Window));
-    Result := True;
-  end;
-
+  Window: HWND;
 begin
-  OldCount := ClassNames.Count;
-  if ParentWindow = 0 then
-    EnumWindows(@EnumWindowsFunc, LPARAM(ClassNames))
-  else
-    EnumChildWindows(ParentWindow, @EnumWindowsFunc, LPARAM(ClassNames));
-  Result := ClassNames.Count - OldCount;
+  ClassNames.Capacity := ClassNames.Count + Length(Windows);
+  for Window in Windows do
+    ClassNames.Append(mnGetWindowClassName(Window));
 end;
 
-function mnGetWindowsCaptions(Captions: TStrings; const ParentWindow: HWND = 0): Integer;
+procedure mnGetWindowsCaptions(const Windows: mnTHWNDArray; Captions: TStrings);
 var
-  OldCount: Integer;
-
-  function EnumWindowsFunc(Window: HWND; Captions: TStrings): Boolean; stdcall;
-  begin
-    Captions.AddObject(mnGetWindowCaption(Window), mnNewIntPointer(Window));
-    Result := True;
-  end;
-
+  Window: HWND;
 begin
-  OldCount := Captions.Count;
-  if ParentWindow = 0 then
-    EnumWindows(@EnumWindowsFunc, LPARAM(Captions))
-  else
-    EnumChildWindows(ParentWindow, @EnumWindowsFunc, LPARAM(Captions));
-  Result := Captions.Count - OldCount;
+  Captions.Capacity := Captions.Count + Length(Windows);
+  for Window in Windows do
+    Captions.Append(mnGetWindowCaption(Window));
 end;
 
-function mnFindWindowByClassName(const ClassName: string; const ParentWindow: HWND = 0; const AfterChildWindow: HWND = 0): HWND;
+procedure mnGetWindowsDescriptions(const Windows: mnTHWNDArray; Descriptions: TStrings; const DescriptionFormat: string);
+var
+  Window: HWND;
 begin
-  if ParentWindow = 0 then
-    Result := FindWindow(PChar(ClassName), nil)
-  else
-    Result := FindWindowEx(ParentWindow, AfterChildWindow, PChar(ClassName), nil);
+  Descriptions.Capacity := Descriptions.Count + Length(Windows);
+  for Window in Windows do
+    Descriptions.Append(Format(DescriptionFormat, [Window, mnGetWindowClassName(Window), mnGetWindowCaption(Window)]));
 end;
 
-function mnFindWindowByCaption(const Caption: string; const ParentWindow: HWND = 0; const AfterChildWindow: HWND = 0): HWND;
+function mnDefaultFindWindowsOption: mnTFindWindowsOption;
 begin
-  if ParentWindow = 0 then
-    Result := FindWindow(nil, PChar(Caption))
-  else
-    Result := FindWindowEx(ParentWindow, AfterChildWindow, nil, PChar(Caption));
+  Result.ParentWindow := 0;
+  Result.ClassName := '';
+  Result.ClassNameMatchOptions := [];
+  Result.Caption := '';
+  Result.CaptionMatchOptions := [];
+  Result.VisibleRequired := False;
 end;
 
-function mnFindWindowByCaptionSub(const CaptionSub: string; const ParentWindow: HWND = 0): HWND;
+function mnFindWindows(const Option: mnTFindWindowsOption): mnTHWNDArray;
 type
   TEnumParam = record
-    CaptionSub: string;
-    Window: HWND;
+    Option: mnTFindWindowsOption;
+    Windows: TList;
   end;
   PEnumParam = ^TEnumParam;
 var
   P: PEnumParam;
+  Windows: TList;
 
   function EnumWindowsFunc(Window: HWND; lParam: LPARAM): Boolean; stdcall;
   var
-    CaptionSub: string;
-    Caption: string;
+    P: PEnumParam;
+    PWindow: mnPHWND;
   begin
-    CaptionSub := LowerCase(PEnumParam(lParam).CaptionSub);
-    Caption := LowerCase(mnGetWindowCaption(Window));
-    if (CaptionSub = '') or (Pos(CaptionSub, Caption) > 0) then
-    begin
-      PEnumParam(lParam).Window := Window;
-      Result := False;
-    end
-    else Result := True;
+    Result := True;
+    P := PEnumParam(lParam);
+    if (P.Option.ClassName <> '') and not mnCompareStr(mnGetWindowClassName(Window), P.Option.ClassName, P.Option.ClassNameMatchOptions) then
+      Exit;
+    if (P.Option.Caption <> '') and not mnCompareStr(mnGetWindowCaption(Window), P.Option.Caption, P.Option.CaptionMatchOptions) then
+      Exit;
+    if P.Option.VisibleRequired and not IsWindowVisible(Window) then
+      Exit;
+    New(PWindow);
+    PWindow^ := Window;
+    P.Windows.Add(PWindow);
   end;
 
 begin
+  Windows := TList.Create;
   New(P);
   try
-    P.CaptionSub := CaptionSub;
-    P.Window := 0;
-    if ParentWindow = 0 then
+    P.Option := Option;
+    P.Windows := Windows;
+    if Option.ParentWindow = 0 then
       EnumWindows(@EnumWindowsFunc, LPARAM(P))
     else
-      EnumChildWindows(ParentWindow, @EnumWindowsFunc, LPARAM(P));
-    Result := P.Window;
+      EnumChildWindows(Option.ParentWindow, @EnumWindowsFunc, LPARAM(P));
+    Result := mnHWNDListToArray(Windows);
+    mnClearList(Windows);
   finally
     Dispose(P);
+    Windows.Free;
   end;
 end;
 
-function mnFindWindowsByCaptionSub(HWNDs: mnTIntList; const CaptionSub: string; const ParentWindow: HWND = 0): HWND;
-type
-  TEnumParam = record
-    CaptionSub: string;
-    HWNDs: mnTIntList;
-    Count: Integer;
-  end;
-  PEnumParam = ^TEnumParam;
+function mnFindFirstWindow(const Option: mnTFindWindowsOption): HWND;
 var
-  P: PEnumParam;
-
-  function EnumWindowsFunc(Window: HWND; lParam: LPARAM): Boolean; stdcall;
-  var
-    CaptionSub: string;
-    Caption: string;
-  begin
-    CaptionSub := LowerCase(PEnumParam(lParam).CaptionSub);
-    Caption := LowerCase(mnGetWindowCaption(Window));
-    if (CaptionSub = '') or (Pos(CaptionSub, Caption) > 0) then
-    begin
-      PEnumParam(lParam).HWNDs.Add(Window);
-      PEnumParam(lParam).Count := PEnumParam(lParam).Count + 1;
-    end;
-    Result := True;
-  end;
-
+  Windows: mnTHWNDArray;
 begin
-  New(P);
-  try
-    P.CaptionSub := CaptionSub;
-    P.HWNDs := HWNDs;
-    P.Count := 0;
-    if ParentWindow = 0 then
-      EnumWindows(@EnumWindowsFunc, LPARAM(P))
-    else
-      EnumChildWindows(ParentWindow, @EnumWindowsFunc, LPARAM(P));
-    Result := P.Count;
-  finally
-    Dispose(P);
-  end;
+  Windows := mnFindWindows(Option);
+  if Length(Windows) = 0 then
+    Result := 0
+  else
+    Result := Windows[0];
 end;
 
 procedure mnSendVKeyToWindow(const Window: HWND; const VKey: Integer);

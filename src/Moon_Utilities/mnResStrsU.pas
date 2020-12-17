@@ -128,6 +128,7 @@ resourcestring
 
   // in mnWindows
   SShutdownPrivilegeError = '设置关机权限时出错';
+  SWindowNotExists = '窗口不存在';
 
 {$ELSE}
 
@@ -253,6 +254,7 @@ resourcestring
 
   // in mnWindows
   SShutdownPrivilegeError = 'Error in setting shutdown privilege';
+  SWindowNotExists = 'Window does not exist';
 
 {$ENDIF}
 

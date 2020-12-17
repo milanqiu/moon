@@ -21,12 +21,13 @@ type
     procedure SetUp; override;
     procedure TearDown; override;
   published
+    procedure testHWNDArrayListConvertors;
     procedure testLoadResAsStr;
   end;
 
 implementation
 
-uses mnWindows;
+uses mnWindows, UTestConsts, Classes, mnSystem;
 
 {$R ..\..\..\files\Strings\TestUnit\TestUnit.res}
 
@@ -38,6 +39,34 @@ end;
 
 procedure TmnWindowsTestCase.TearDown;
 begin
+end;
+
+procedure TmnWindowsTestCase.testHWNDArrayListConvertors;
+var
+  Arr, Arr2: mnTHWNDArray;
+  List: TList;
+begin
+  SetLength(Arr, 3);
+  Arr[0] := Int_0;
+  Arr[1] := Int_2;
+  Arr[2] := Int_3;
+
+  // mnHWNDArrayToList
+  List := mnHWNDArrayToList(Arr);
+  CheckEquals(List.Count, 3);
+  CheckEquals(mnPHWND(List[0])^, Int_0);
+  CheckEquals(mnPHWND(List[1])^, Int_2);
+  CheckEquals(mnPHWND(List[2])^, Int_3);
+
+  // mnHWNDListToArray
+  Arr2 := mnHWNDListToArray(List);
+  CheckEquals(Length(Arr2), 3);
+  CheckEquals(Arr2[0], Int_0);
+  CheckEquals(Arr2[1], Int_2);
+  CheckEquals(Arr2[2], Int_3);
+
+  mnClearList(List);
+  List.Free;
 end;
 
 procedure TmnWindowsTestCase.testLoadResAsStr;

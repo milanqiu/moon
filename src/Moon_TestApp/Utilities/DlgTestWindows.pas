@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, DlgTest, Menus, cxLookAndFeelPainters, StdCtrls, cxButtons, ExtCtrls,
-  ComCtrls, AppEvnts;
+  ComCtrls, AppEvnts, mnWindows;
 
 type
   TTestWindowsDialog = class(TTestDialog)
@@ -54,25 +54,13 @@ type
     lbCurrWindow: TLabel;
     lbCurrWindowClassName: TLabel;
     lbCurrWindowCaption: TLabel;
-    btnFindWindowByClassName: TButton;
-    btnFindWindowByCaption: TButton;
-    edtFindWindow: TEdit;
-    btnListWindowsCaptions: TButton;
-    btnListWindowsClassNames: TButton;
-    btnFindChildWindowByClassName: TButton;
-    btnFindChildWindowByCaption: TButton;
-    edtFindChildWindow: TEdit;
-    btnListChildWindowsCaptions: TButton;
-    btnListChildWindowsClassNames: TButton;
-    btnFindWindowByCaptionSub: TButton;
-    btnFindChildWindowByCaptionSub: TButton;
+    btnGetWindowsCaptions: TButton;
+    btnGetWindowsClassNames: TButton;
     btnSendVKeyToWindow: TButton;
     btnSendKeyToWindow: TButton;
     cbVKey: TComboBox;
     cbKey: TEdit;
     btnGotoCurrWindowLeftTop: TButton;
-    btnFindWindowsByCaptionSub: TButton;
-    btnFindChildWindowsByCaptionSub: TButton;
     tsSnap: TTabSheet;
     Label2: TLabel;
     lbScreenColor: TLabel;
@@ -91,23 +79,28 @@ type
     lbMouseMsg3: TLabel;
     lbMouseMsg4: TLabel;
     btnMouseWheel: TButton;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    edtParentWindow: TEdit;
+    edtClassName: TEdit;
+    edtCaption: TEdit;
+    cbClassNameCaseSensitive: TCheckBox;
+    cbClassNameWholdWordOnly: TCheckBox;
+    cbCaptionCaseSensitive: TCheckBox;
+    cbCaptionWholdWordOnly: TCheckBox;
+    cbVisibleRequired: TCheckBox;
+    btnGetWindowsDescriptions: TButton;
+    btnFindFirstWindow: TButton;
     procedure btnSnapWindowExClick(Sender: TObject);
     procedure btnSnapWindowClick(Sender: TObject);
     procedure btnSendKeyToWindowClick(Sender: TObject);
     procedure btnSendVKeyToWindowClick(Sender: TObject);
-    procedure btnFindChildWindowsByCaptionSubClick(Sender: TObject);
-    procedure btnFindChildWindowByCaptionSubClick(Sender: TObject);
-    procedure btnFindChildWindowByCaptionClick(Sender: TObject);
-    procedure btnFindChildWindowByClassNameClick(Sender: TObject);
-    procedure btnListChildWindowsCaptionsClick(Sender: TObject);
-    procedure btnListChildWindowsClassNamesClick(Sender: TObject);
-    procedure btnFindWindowsByCaptionSubClick(Sender: TObject);
-    procedure btnFindWindowByCaptionSubClick(Sender: TObject);
-    procedure btnFindWindowByCaptionClick(Sender: TObject);
-    procedure btnFindWindowByClassNameClick(Sender: TObject);
-    procedure btnListWindowsCaptionsClick(Sender: TObject);
-    procedure btnListWindowsClassNamesClick(Sender: TObject);
     procedure btnGotoCurrWindowLeftTopClick(Sender: TObject);
+    procedure btnFindFirstWindowClick(Sender: TObject);
+    procedure btnGetWindowsDescriptionsClick(Sender: TObject);
+    procedure btnGetWindowsCaptionsClick(Sender: TObject);
+    procedure btnGetWindowsClassNamesClick(Sender: TObject);
     procedure btnKeyPressClick(Sender: TObject);
     procedure btnCtrlVClick(Sender: TObject);
     procedure btnCtrlCClick(Sender: TObject);
@@ -143,6 +136,7 @@ type
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+    function GetFindWindowsOption: mnTFindWindowsOption;
   public
     { Public declarations }
   end;
@@ -154,7 +148,7 @@ implementation
 
 {$R *.dfm}
 
-uses mnWindows, mnDialog, mnSystem, mnFile;
+uses mnDialog, mnSystem, mnFile, mnString;
 
 { TTestWindowsDialog }
 
@@ -420,14 +414,72 @@ begin
   mnKeyPress(edtFrom.Text);
 end;
 
+function TTestWindowsDialog.GetFindWindowsOption: mnTFindWindowsOption;
+begin
+  Result := mnDefaultFindWindowsOption;
+
+  Result.ParentWindow := mnABStrToInt(edtParentWindow.Text);
+
+  Result.ClassName := edtClassName.Text;
+  Result.ClassNameMatchOptions := [];
+  if cbClassNameCaseSensitive.Checked then
+    Include(Result.ClassNameMatchOptions, scoCaseSensitive);
+  if cbClassNameWholdWordOnly.Checked then
+    Include(Result.ClassNameMatchOptions, scoWholdWordOnly);
+
+  Result.Caption := edtCaption.Text;
+  Result.CaptionMatchOptions := [];
+  if cbCaptionCaseSensitive.Checked then
+    Include(Result.CaptionMatchOptions, scoCaseSensitive);
+  if cbCaptionWholdWordOnly.Checked then
+    Include(Result.CaptionMatchOptions, scoWholdWordOnly);
+
+  Result.VisibleRequired := cbVisibleRequired.Checked; 
+end;
+
+procedure TTestWindowsDialog.btnGetWindowsClassNamesClick(Sender: TObject);
+var
+  Windows: mnTHWNDArray;
+begin
+  Windows := mnFindWindows(GetFindWindowsOption);
+  ppStrs.Clear;
+  mnGetWindowsClassNames(Windows, ppStrs);
+  mnInfoBox(Format('共有%d个窗口', [Length(Windows)]));
+  mnMemoBox(ppStrs.Text);
+end;
+
+procedure TTestWindowsDialog.btnGetWindowsCaptionsClick(Sender: TObject);
+var
+  Windows: mnTHWNDArray;
+begin
+  Windows := mnFindWindows(GetFindWindowsOption);
+  ppStrs.Clear;
+  mnGetWindowsCaptions(Windows, ppStrs);
+  mnInfoBox(Format('共有%d个窗口', [Length(Windows)]));
+  mnMemoBox(ppStrs.Text);
+end;
+
+procedure TTestWindowsDialog.btnGetWindowsDescriptionsClick(
+  Sender: TObject);
+var
+  Windows: mnTHWNDArray;
+begin
+  Windows := mnFindWindows(GetFindWindowsOption);
+  ppStrs.Clear;
+  mnGetWindowsDescriptions(Windows, ppStrs, mnStdWindowDescriptionFormat);
+  mnInfoBox(Format('共有%d个窗口', [Length(Windows)]));
+  mnMemoBox(ppStrs.Text);
+end;
+
 var
   CurrWindow: HWND;
 
-procedure DisplayCurrWindow;
+procedure TTestWindowsDialog.btnFindFirstWindowClick(Sender: TObject);
 begin
-  TestWindowsDialog.lbCurrWindow.Caption := 'Curr Window: ' + IntToStr(CurrWindow);
-  TestWindowsDialog.lbCurrWindowClassName.Caption := 'Curr Window Class Name: ' + mnGetWindowClassName(CurrWindow);
-  TestWindowsDialog.lbCurrWindowCaption.Caption := 'Curr Window Caption: ' + mnGetWindowCaption(CurrWindow);
+  CurrWindow := mnFindFirstWindow(GetFindWindowsOption);;
+  lbCurrWindow.Caption := 'Curr Window: ' + IntToStr(CurrWindow);
+  lbCurrWindowClassName.Caption := 'Curr Window Class Name: ' + mnGetWindowClassName(CurrWindow);
+  lbCurrWindowCaption.Caption := 'Curr Window Caption: ' + mnGetWindowCaption(CurrWindow);
 end;
 
 procedure TTestWindowsDialog.btnGotoCurrWindowLeftTopClick(Sender: TObject);
@@ -436,106 +488,6 @@ var
 begin
   GetWindowRect(CurrWindow, Rect);
   SetCursorPos(Rect.Left, Rect.Top);
-end;
-
-procedure TTestWindowsDialog.btnListWindowsClassNamesClick(Sender: TObject);
-begin
-  ppStrs.Clear;
-  mnInfoBox(Format('共有%d个窗口', [mnGetWindowsClassNames(ppStrs)]));
-  mnMemoBox(ppStrs.Text);
-  mnClearStrings(ppStrs);
-end;
-
-procedure TTestWindowsDialog.btnListWindowsCaptionsClick(Sender: TObject);
-begin
-  ppStrs.Clear;
-  mnInfoBox(Format('共有%d个窗口', [mnGetWindowsCaptions(ppStrs)]));
-  mnMemoBox(ppStrs.Text);
-  mnClearStrings(ppStrs);
-end;
-
-procedure TTestWindowsDialog.btnFindWindowByClassNameClick(Sender: TObject);
-begin
-  CurrWindow := mnFindWindowByClassName(edtFindWindow.Text);
-  DisplayCurrWindow;
-end;
-
-procedure TTestWindowsDialog.btnFindWindowByCaptionClick(Sender: TObject);
-begin
-  CurrWindow := mnFindWindowByCaption(edtFindWindow.Text);
-  DisplayCurrWindow;
-end;
-
-procedure TTestWindowsDialog.btnFindWindowByCaptionSubClick(Sender: TObject);
-begin
-  CurrWindow := mnFindWindowByCaptionSub(edtFindWindow.Text);
-  DisplayCurrWindow;
-end;
-
-procedure TTestWindowsDialog.btnFindWindowsByCaptionSubClick(Sender: TObject);
-var
-  ints: mnTIntList;
-  Count: Integer;
-begin
-  ints := mnTIntList.Create;
-  try
-    Count := mnFindWindowsByCaptionSub(ints, edtFindWindow.Text);
-    mnInfoBox(Format('找到%d个窗口' + mnNewLine + mnNewLine + '%s', [Count, ints.Combine('   ')]));
-  finally
-    ints.Free;
-  end;
-end;
-
-procedure TTestWindowsDialog.btnListChildWindowsClassNamesClick(
-  Sender: TObject);
-begin
-  ppStrs.Clear;
-  mnInfoBox(Format('共有%d个窗口', [mnGetWindowsClassNames(ppStrs, CurrWindow)]));
-  mnMemoBox(ppStrs.Text);
-  mnClearStrings(ppStrs);
-end;
-
-procedure TTestWindowsDialog.btnListChildWindowsCaptionsClick(Sender: TObject);
-begin
-  ppStrs.Clear;
-  mnInfoBox(Format('共有%d个窗口', [mnGetWindowsCaptions(ppStrs, CurrWindow)]));
-  mnMemoBox(ppStrs.Text);
-  mnClearStrings(ppStrs);
-end;
-
-procedure TTestWindowsDialog.btnFindChildWindowByClassNameClick(
-  Sender: TObject);
-begin
-  CurrWindow := mnFindWindowByClassName(edtFindChildWindow.Text, CurrWindow);
-  DisplayCurrWindow;
-end;
-
-procedure TTestWindowsDialog.btnFindChildWindowByCaptionClick(Sender: TObject);
-begin
-  CurrWindow := mnFindWindowByCaption(edtFindChildWindow.Text, CurrWindow);
-  DisplayCurrWindow;
-end;
-
-procedure TTestWindowsDialog.btnFindChildWindowByCaptionSubClick(
-  Sender: TObject);
-begin
-  CurrWindow := mnFindWindowByCaptionSub(edtFindChildWindow.Text, CurrWindow);
-  DisplayCurrWindow;
-end;
-
-procedure TTestWindowsDialog.btnFindChildWindowsByCaptionSubClick(
-  Sender: TObject);
-var
-  ints: mnTIntList;
-  Count: Integer;
-begin
-  ints := mnTIntList.Create;
-  try
-    Count := mnFindWindowsByCaptionSub(ints, edtFindChildWindow.Text, CurrWindow);
-    mnInfoBox(Format('找到%d个窗口' + mnNewLine + mnNewLine + '%s', [Count, ints.Combine('   ')]));
-  finally
-    ints.Free;
-  end;
 end;
 
 procedure TTestWindowsDialog.btnSendVKeyToWindowClick(Sender: TObject);

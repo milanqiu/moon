@@ -151,17 +151,16 @@ end;
 var
   CurrWindow: HWND;
 
-procedure DisplayCurrWindow;
-begin
-  TestGraphicsDialog.lbCurrWindow.Caption := 'Curr Window: ' + IntToStr(CurrWindow);
-  TestGraphicsDialog.lbCurrWindowClassName.Caption := 'Curr Window: ' + mnGetWindowClassName(CurrWindow);
-  TestGraphicsDialog.lbCurrWindowCaption.Caption := 'Curr Window: ' + mnGetWindowCaption(CurrWindow);
-end;
-
 procedure TTestGraphicsDialog.btnFindWindowByCaptionSubClick(Sender: TObject);
+var
+  Option: mnTFindWindowsOption;
 begin
-  CurrWindow := mnFindWindowByCaptionSub(edtFindWindow.Text);
-  DisplayCurrWindow;
+  Option := mnDefaultFindWindowsOption;
+  Option.Caption := edtFindWindow.Text;
+  CurrWindow := mnFindFirstWindow(Option);
+  lbCurrWindow.Caption := IntToStr(CurrWindow);
+  lbCurrWindowClassName.Caption := mnGetWindowClassName(CurrWindow);
+  lbCurrWindowCaption.Caption := mnGetWindowCaption(CurrWindow);
 end;
 
 procedure TTestGraphicsDialog.btnDrawWindowClick(Sender: TObject);

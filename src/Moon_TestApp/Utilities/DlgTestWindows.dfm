@@ -1,6 +1,6 @@
 inherited TestWindowsDialog: TTestWindowsDialog
-  Left = 912
-  Top = 300
+  Left = 506
+  Top = 376
   Caption = 'TestWindows'
   ClientHeight = 523
   ClientWidth = 867
@@ -361,152 +361,85 @@ inherited TestWindowsDialog: TTestWindowsDialog
       ImageIndex = 2
       object lbCurrWindow: TLabel
         Left = 24
-        Top = 24
+        Top = 208
         Width = 67
         Height = 13
         Caption = 'lbCurrWindow'
       end
       object lbCurrWindowClassName: TLabel
         Left = 24
-        Top = 48
+        Top = 232
         Width = 119
         Height = 13
         Caption = 'lbCurrWindowClassName'
       end
       object lbCurrWindowCaption: TLabel
         Left = 24
-        Top = 72
+        Top = 256
         Width = 104
         Height = 13
         Caption = 'lbCurrWindowCaption'
       end
-      object btnFindWindowByClassName: TButton
+      object Label8: TLabel
         Left = 24
-        Top = 168
-        Width = 150
-        Height = 25
-        Caption = 'FindWindowByClassName'
-        TabOrder = 0
-        OnClick = btnFindWindowByClassNameClick
+        Top = 12
+        Width = 77
+        Height = 13
+        Caption = 'Parent Window:'
       end
-      object btnFindWindowByCaption: TButton
+      object Label9: TLabel
+        Left = 42
+        Top = 36
+        Width = 59
+        Height = 13
+        Caption = 'Class Name:'
+      end
+      object Label10: TLabel
+        Left = 60
+        Top = 60
+        Width = 41
+        Height = 13
+        Caption = 'Caption:'
+      end
+      object btnGetWindowsCaptions: TButton
         Left = 184
-        Top = 168
+        Top = 112
         Width = 150
         Height = 25
-        Caption = 'FindWindowByCaption'
-        TabOrder = 1
-        OnClick = btnFindWindowByCaptionClick
-      end
-      object edtFindWindow: TEdit
-        Left = 24
-        Top = 136
-        Width = 121
-        Height = 21
-        TabOrder = 2
-        Text = 'edtFindWindow'
-      end
-      object btnListWindowsCaptions: TButton
-        Left = 184
-        Top = 104
-        Width = 150
-        Height = 25
-        Caption = 'ListWindowsCaptions'
-        TabOrder = 3
-        OnClick = btnListWindowsCaptionsClick
-      end
-      object btnListWindowsClassNames: TButton
-        Left = 24
-        Top = 104
-        Width = 150
-        Height = 25
-        Caption = 'ListWindowsClassNames'
-        TabOrder = 4
-        OnClick = btnListWindowsClassNamesClick
-      end
-      object btnFindChildWindowByClassName: TButton
-        Left = 24
-        Top = 280
-        Width = 150
-        Height = 25
-        Caption = 'FindChildWindowByClassName'
-        TabOrder = 5
-        OnClick = btnFindChildWindowByClassNameClick
-      end
-      object btnFindChildWindowByCaption: TButton
-        Left = 184
-        Top = 280
-        Width = 150
-        Height = 25
-        Caption = 'FindChildWindowByCaption'
-        TabOrder = 6
-        OnClick = btnFindChildWindowByCaptionClick
-      end
-      object edtFindChildWindow: TEdit
-        Left = 24
-        Top = 248
-        Width = 121
-        Height = 21
-        TabOrder = 7
-        Text = 'edtFindChildWindow'
-      end
-      object btnListChildWindowsCaptions: TButton
-        Left = 184
-        Top = 216
-        Width = 150
-        Height = 25
-        Caption = 'ListChildWindowsCaptions'
-        TabOrder = 8
-        OnClick = btnListChildWindowsCaptionsClick
-      end
-      object btnListChildWindowsClassNames: TButton
-        Left = 24
-        Top = 216
-        Width = 150
-        Height = 25
-        Caption = 'ListChildWindowsClassNames'
+        Caption = 'GetWindowsCaptions'
         TabOrder = 9
-        OnClick = btnListChildWindowsClassNamesClick
+        OnClick = btnGetWindowsCaptionsClick
       end
-      object btnFindWindowByCaptionSub: TButton
-        Left = 344
-        Top = 168
+      object btnGetWindowsClassNames: TButton
+        Left = 24
+        Top = 112
         Width = 150
         Height = 25
-        Caption = 'FindWindowByCaptionSub'
-        TabOrder = 10
-        OnClick = btnFindWindowByCaptionSubClick
-      end
-      object btnFindChildWindowByCaptionSub: TButton
-        Left = 344
-        Top = 280
-        Width = 150
-        Height = 25
-        Caption = 'FindChildWindowByCaptionSub'
-        TabOrder = 11
-        OnClick = btnFindChildWindowByCaptionSubClick
+        Caption = 'GetWindowsClassNames'
+        TabOrder = 8
+        OnClick = btnGetWindowsClassNamesClick
       end
       object btnSendVKeyToWindow: TButton
         Left = 24
-        Top = 328
+        Top = 312
         Width = 150
         Height = 25
         Caption = 'SendVKeyToWindow'
-        TabOrder = 12
+        TabOrder = 13
         OnClick = btnSendVKeyToWindowClick
       end
       object btnSendKeyToWindow: TButton
         Left = 24
-        Top = 360
+        Top = 344
         Width = 150
         Height = 25
         Caption = 'SendKeyToWindow'
-        TabOrder = 13
+        TabOrder = 15
         OnClick = btnSendKeyToWindowClick
       end
       object cbVKey: TComboBox
         Left = 192
-        Top = 328
+        Top = 312
         Width = 145
         Height = 21
         Style = csDropDownList
@@ -527,38 +460,99 @@ inherited TestWindowsDialog: TTestWindowsDialog
       end
       object cbKey: TEdit
         Left = 192
-        Top = 360
+        Top = 344
         Width = 121
         Height = 21
-        TabOrder = 15
+        TabOrder = 16
         Text = 'cbKey'
       end
       object btnGotoCurrWindowLeftTop: TButton
-        Left = 456
-        Top = 40
-        Width = 150
-        Height = 25
-        Caption = 'GotoCurrWindowLeftTop'
-        TabOrder = 16
-        OnClick = btnGotoCurrWindowLeftTopClick
-      end
-      object btnFindWindowsByCaptionSub: TButton
-        Left = 504
-        Top = 168
-        Width = 150
-        Height = 25
-        Caption = 'FindWindowsByCaptionSub'
-        TabOrder = 17
-        OnClick = btnFindWindowsByCaptionSubClick
-      end
-      object btnFindChildWindowsByCaptionSub: TButton
-        Left = 504
+        Left = 24
         Top = 280
         Width = 150
         Height = 25
-        Caption = 'FindChildWindowsByCaptionSub'
-        TabOrder = 18
-        OnClick = btnFindChildWindowsByCaptionSubClick
+        Caption = 'GotoCurrWindowLeftTop'
+        TabOrder = 12
+        OnClick = btnGotoCurrWindowLeftTopClick
+      end
+      object edtParentWindow: TEdit
+        Left = 112
+        Top = 8
+        Width = 121
+        Height = 21
+        TabOrder = 0
+      end
+      object edtClassName: TEdit
+        Left = 112
+        Top = 32
+        Width = 121
+        Height = 21
+        TabOrder = 1
+      end
+      object edtCaption: TEdit
+        Left = 112
+        Top = 56
+        Width = 121
+        Height = 21
+        TabOrder = 4
+      end
+      object cbClassNameCaseSensitive: TCheckBox
+        Left = 272
+        Top = 34
+        Width = 169
+        Height = 17
+        Caption = 'Class Name Case Sensitive'
+        TabOrder = 2
+      end
+      object cbClassNameWholdWordOnly: TCheckBox
+        Left = 432
+        Top = 34
+        Width = 169
+        Height = 17
+        Caption = 'Class Name Whold Word Only'
+        TabOrder = 3
+      end
+      object cbCaptionCaseSensitive: TCheckBox
+        Left = 272
+        Top = 58
+        Width = 169
+        Height = 17
+        Caption = 'Caption Case Sensitive'
+        TabOrder = 5
+      end
+      object cbCaptionWholdWordOnly: TCheckBox
+        Left = 432
+        Top = 58
+        Width = 169
+        Height = 17
+        Caption = 'Caption Whold Word Only'
+        TabOrder = 6
+      end
+      object cbVisibleRequired: TCheckBox
+        Left = 112
+        Top = 80
+        Width = 169
+        Height = 17
+        Caption = 'Visible Required'
+        TabOrder = 7
+      end
+      object btnGetWindowsDescriptions: TButton
+        Left = 344
+        Top = 112
+        Width = 150
+        Height = 25
+        Caption = 'GetWindowsDescriptions'
+        TabOrder = 10
+        OnClick = btnGetWindowsDescriptionsClick
+      end
+      object btnFindFirstWindow: TButton
+        Left = 24
+        Top = 168
+        Width = 150
+        Height = 25
+        Caption = 'FindFirstWindow'
+        TabOrder = 11
+        OnClick = btnFindFirstWindowClick
       end
     end
     object tsSnap: TTabSheet
