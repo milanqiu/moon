@@ -291,6 +291,22 @@ function mnExpandRight(const S: string; const NewLength: Integer; const FillingC
  --------------------------------}
 function mnExpandInt(const Value: Integer; const RequiredLength: Integer; const FillingChar: Char = '0'): string;
 
+type
+{--------------------------------
+  用于调用mnCompareStr函数时传入参数，以指定比较方式。
+    scoCaseSensitive：大小写敏感。
+    scoWholdWordOnly：整词匹配。
+ --------------------------------}
+  mnTStrComparisonOption = (scoCaseSensitive, scoWholdWordOnly);
+  mnTStrComparisonOptions = set of mnTStrComparisonOption;
+
+{--------------------------------
+  比较两个字符串，可传入是否大小写敏感或整词匹配的设置。
+  如果非整词匹配，则使用SMajor作为主串，SMinor作为子串。
+  Tested in TestUnit.
+ --------------------------------}
+function mnCompareStr(SMajor, SMinor: string; const Options: mnTStrComparisonOptions): Boolean;
+
 {--------------------------------
   以数字方式比较两个字符串。
   如果A>B，返回值>0。如果A=B，返回值=0。如果A<B，返回值<0。
@@ -1613,6 +1629,19 @@ end;
 function mnExpandInt(const Value: Integer; const RequiredLength: Integer; const FillingChar: Char = '0'): string;
 begin
   Result := mnExpandLeft(IntToStr(Value), RequiredLength, FillingChar);
+end;
+
+function mnCompareStr(SMajor, SMinor: string; const Options: mnTStrComparisonOptions): Boolean;
+begin
+  if not (scoCaseSensitive in Options) then
+  begin
+    SMajor := LowerCase(SMajor);
+    SMinor := LowerCase(SMinor);
+  end;
+  if scoWholdWordOnly in Options then
+    Result := SMajor = SMinor
+  else
+    Result := AnsiPos(SMinor, SMajor) > 0;
 end;
 
 function mnCompareStrInNumberStyle(const SA: string; const SB: string): Integer;

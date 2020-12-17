@@ -45,6 +45,7 @@ type
     procedure testTrimSeries;
     procedure testExpandLeftRight;
     procedure testExpandInt;
+    procedure testCompareStr;
     procedure testCompareStrInNumberStyle;
     procedure testReplaceStr;
     procedure testReplaceStrWholeWord;
@@ -727,6 +728,33 @@ procedure TmnStringTestCase.testExpandInt;
 begin
   CheckEquals(mnExpandInt(123, 5), '00123');
   CheckEquals(mnExpandInt(123, 2), '123');
+end;
+
+procedure TmnStringTestCase.testCompareStr;
+begin
+  Check(mnCompareStr('一二三', '一二三', [scoCaseSensitive, scoWholdWordOnly]));
+  CheckFalse(mnCompareStr('一二三', '二', [scoCaseSensitive, scoWholdWordOnly]));
+  CheckFalse(mnCompareStr('一二三', '欢', [scoCaseSensitive, scoWholdWordOnly]));
+  Check(mnCompareStr('aaa', 'aaa', [scoCaseSensitive, scoWholdWordOnly]));
+  CheckFalse(mnCompareStr('AAA', 'aaa', [scoCaseSensitive, scoWholdWordOnly]));
+
+  Check(mnCompareStr('一二三', '一二三', [scoCaseSensitive]));
+  Check(mnCompareStr('一二三', '二', [scoCaseSensitive]));
+  CheckFalse(mnCompareStr('一二三', '欢', [scoCaseSensitive]));
+  Check(mnCompareStr('aaa', 'aaa', [scoCaseSensitive]));
+  CheckFalse(mnCompareStr('AAA', 'aaa', [scoCaseSensitive]));
+
+  Check(mnCompareStr('一二三', '一二三', [scoWholdWordOnly]));
+  CheckFalse(mnCompareStr('一二三', '二', [scoWholdWordOnly]));
+  CheckFalse(mnCompareStr('一二三', '欢', [scoWholdWordOnly]));
+  Check(mnCompareStr('aaa', 'aaa', [scoWholdWordOnly]));
+  Check(mnCompareStr('AAA', 'aaa', [scoWholdWordOnly]));
+
+  Check(mnCompareStr('一二三', '一二三', []));
+  Check(mnCompareStr('一二三', '二', []));
+  CheckFalse(mnCompareStr('一二三', '欢', []));
+  Check(mnCompareStr('aaa', 'aaa', []));
+  Check(mnCompareStr('AAA', 'aaa', []));
 end;
 
 procedure TmnStringTestCase.testCompareStrInNumberStyle;
