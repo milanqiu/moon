@@ -169,11 +169,13 @@ type
     procedure SaveToBMPFile(const FileName: string); overload;
   public
     // 判断图片的指定区域，是否和另一张图片的指定区域完全相同，即大小和每个像素（的颜色）都相同
+    // 如果两个区域的宽高都是0，则返回相同
     // 在其它重载形式里，如果有图片没有指定区域，则代表比较它的整张图片
     function Compare(AnotherImage: mnTPixeledImage; const Rect, AnotherRect: TRect): Boolean; overload;
     function Compare(AnotherImage: mnTPixeledImage; const Rect:              TRect): Boolean; overload;
     function Compare(AnotherImage: mnTPixeledImage                                ): Boolean; overload;
-    // 判断图片的指定区域，和另一张图片的指定区域的相似度
+    // 判断图片的指定区域，和另一张图片的指定区域的相似度，最小为0，最大为1
+    // 如果两个区域的宽高都是0，则相似度为1
     // 如果两个区域的大小不一样，则相似度为0
     // 如果大小一样，则相似度等于（颜色）相同的像素数量除以区域的总像素数量
     // 在其它重载形式里，如果有图片没有指定区域，则代表比较它的整张图片
@@ -184,6 +186,7 @@ type
     // 在图片的指定区域内，寻找另一张图片的指定区域的图像，返回是否找到
     // 如果找到，X和Y返回其位置。当不需要位置时，也可使用没有X和Y的重载形式。注意位置从图片左上角算起，而不从区域左上角算起
     // 如果区域内存在多个完全匹配的子区域，则返回其位置的Y最小的那个。Y相同时，返回X最小的那个
+    // 如果被寻找的区域宽高都是0，则返回找到，X和Y都返回0
     // 在其它重载形式里，如果有图片没有指定区域，则代表寻找它的整张图片
     function Find(PartImage: mnTPixeledImage; const Rect, PartRect: TRect; var X, Y: Integer): Boolean; overload;
     function Find(PartImage: mnTPixeledImage; const Rect, PartRect: TRect):                    Boolean; overload;
@@ -661,6 +664,11 @@ begin
   if not mnEqualRectSize(Rect, AnotherRect) then
   begin
     Result := 0;
+    Exit;
+  end;
+  if (mnRectWidth(Rect) = 0) and (mnRectHeight(Rect) = 0) then
+  begin
+    Result := 1;
     Exit;
   end;
 

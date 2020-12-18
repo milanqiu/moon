@@ -484,7 +484,9 @@ begin
   PICopy := mnTPixeledImage.Create;
   PIRegion := mnTPixeledImage.Create;
   try
+    Check(PI.Compare(PICopy));
     PI.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMP.bmp'));
+    CheckFalse(PI.Compare(PICopy));
     PICopy.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMPCopy.bmp'));
     PIRegion.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMPRegion.bmp'));
 
@@ -519,7 +521,9 @@ begin
   PIWithDifference := mnTPixeledImage.Create;
   PIRegionWithDifference := mnTPixeledImage.Create;
   try
+    CheckEquals(PI.CompareSimilarity(PICopy), 1);
     PI.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMP.bmp'));
+    CheckEquals(PI.CompareSimilarity(PIRegion), 0);
     PICopy.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMPCopy.bmp'));
     PIRegion.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMPRegion.bmp'));
     PIWithDifference.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMPWithDifference.bmp'));
@@ -563,7 +567,14 @@ begin
   PICopy := mnTPixeledImage.Create;
   PIRegion := mnTPixeledImage.Create;
   try
+    Check(PI.Find(PIRegion, X, Y));
+    CheckEquals(X, 0);
+    CheckEquals(Y, 0);
     PI.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMP.bmp'));
+    Check(PI.Find(PIRegion, X, Y));
+    CheckEquals(X, 0);
+    CheckEquals(Y, 0);
+    CheckFalse(PIRegion.Find(PI, X, Y));
     PICopy.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMPCopy.bmp'));
     PIRegion.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMPRegion.bmp'));
 
