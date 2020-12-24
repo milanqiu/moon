@@ -217,26 +217,18 @@ function mnFindWindows(const Option: mnTFindWindowsOption): mnTHWNDArray;
  --------------------------------}
 function mnFindFirstWindow(const Option: mnTFindWindowsOption): HWND;
 
-var
-{--------------------------------
-  在往窗口发送按键消息时，键按下和弹起的时间间隔。
- --------------------------------}
-  KeyDownUpInterval: Integer = 10;
-{--------------------------------
-  在往窗口发送按键消息时，键弹起后的休整时间。
- --------------------------------}
-  KeyRest: Integer = 10;
-
 {--------------------------------
   往指定窗口发送一个Virtual Key。
+  mnPostVKeyToWindow和mnPostSysVKeyToWindow分别使用WM_KEYDOWN和WM_SYSKEYDOWN发送消息。并不是所有Virtual Key都能得到正确处理，要看窗口具体是如何处理的。
   Tested in TestApp.
  --------------------------------}
-procedure mnSendVKeyToWindow(const Window: HWND; const VKey: Integer);
+procedure mnPostVKeyToWindow(const Window: HWND; const VKey: Integer);
+procedure mnPostSysVKeyToWindow(const Window: HWND; const VKey: Integer);
 {--------------------------------
   往指定窗口发送一个Char Key。
   Tested in TestApp.
  --------------------------------}
-procedure mnSendKeyToWindow(const Window: HWND; const Key: Char);
+procedure mnPostKeyToWindow(const Window: HWND; const Key: Char);
 
 {--------------------------------
   得到指定窗口中某点的颜色。
@@ -701,18 +693,21 @@ begin
     Result := Windows[0];
 end;
 
-procedure mnSendVKeyToWindow(const Window: HWND; const VKey: Integer);
+procedure mnPostVKeyToWindow(const Window: HWND; const VKey: Integer);
 begin
   PostMessage(Window, WM_KEYDOWN, VKey, 0);
-  Sleep(KeyDownUpInterval);
   PostMessage(Window, WM_KEYUP, VKey, 0);
-  Sleep(KeyRest);
 end;
 
-procedure mnSendKeyToWindow(const Window: HWND; const Key: Char);
+procedure mnPostSysVKeyToWindow(const Window: HWND; const VKey: Integer);
+begin
+  PostMessage(Window, WM_SYSKEYDOWN, VKey, 0);
+  PostMessage(Window, WM_SYSKEYUP, VKey, 0);
+end;
+
+procedure mnPostKeyToWindow(const Window: HWND; const Key: Char);
 begin
   PostMessage(Window, WM_CHAR, Ord(Key), 0);
-  Sleep(KeyRest);
 end;
 
 function mnGetWindowColor(const APoint: TPoint; const Window: HWND = 0): TColor;

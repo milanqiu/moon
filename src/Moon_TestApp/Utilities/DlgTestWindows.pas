@@ -56,8 +56,8 @@ type
     lbCurrWindowCaption: TLabel;
     btnGetWindowsCaptions: TButton;
     btnGetWindowsClassNames: TButton;
-    btnSendVKeyToWindow: TButton;
-    btnSendKeyToWindow: TButton;
+    btnPostVKeyToWindow: TButton;
+    btnPostKeyToWindow: TButton;
     cbVKey: TComboBox;
     cbKey: TEdit;
     btnGotoCurrWindowLeftTop: TButton;
@@ -92,10 +92,12 @@ type
     cbVisibleRequired: TCheckBox;
     btnGetWindowsDescriptions: TButton;
     btnFindFirstWindow: TButton;
+    btnPostSysVKeyToWindow: TButton;
     procedure btnSnapWindowExClick(Sender: TObject);
     procedure btnSnapWindowClick(Sender: TObject);
-    procedure btnSendKeyToWindowClick(Sender: TObject);
-    procedure btnSendVKeyToWindowClick(Sender: TObject);
+    procedure btnPostKeyToWindowClick(Sender: TObject);
+    procedure btnPostSysVKeyToWindowClick(Sender: TObject);
+    procedure btnPostVKeyToWindowClick(Sender: TObject);
     procedure btnGotoCurrWindowLeftTopClick(Sender: TObject);
     procedure btnFindFirstWindowClick(Sender: TObject);
     procedure btnGetWindowsDescriptionsClick(Sender: TObject);
@@ -490,10 +492,10 @@ begin
   SetCursorPos(Rect.Left, Rect.Top);
 end;
 
-procedure TTestWindowsDialog.btnSendVKeyToWindowClick(Sender: TObject);
+procedure TTestWindowsDialog.btnPostVKeyToWindowClick(Sender: TObject);
 var
   VKey: Integer;
-begin    
+begin
   case cbVKey.ItemIndex of
     0: VKey := VK_F1;
     1: VKey := VK_F2;
@@ -504,18 +506,40 @@ begin
     6: VKey := VK_UP;
     7: VKey := VK_DOWN;
     8: VKey := VK_NUMPAD5;
+    9: VKey := VK_NUMLOCK;
   else
     VKey := 0;
   end;
-  mnSendVKeyToWindow(CurrWindow, VKey);
+  mnPostVKeyToWindow(CurrWindow, VKey);
 end;
 
-procedure TTestWindowsDialog.btnSendKeyToWindowClick(Sender: TObject);
+procedure TTestWindowsDialog.btnPostSysVKeyToWindowClick(Sender: TObject);
+var
+  VKey: Integer;
+begin
+  case cbVKey.ItemIndex of
+    0: VKey := VK_F1;
+    1: VKey := VK_F2;
+    2: VKey := VK_F3;
+    3: VKey := VK_RETURN;
+    4: VKey := VK_LEFT;
+    5: VKey := VK_RIGHT;
+    6: VKey := VK_UP;
+    7: VKey := VK_DOWN;
+    8: VKey := VK_NUMPAD5;
+    9: VKey := VK_NUMLOCK;
+  else
+    VKey := 0;
+  end;
+  mnPostSysVKeyToWindow(CurrWindow, VKey);
+end;
+
+procedure TTestWindowsDialog.btnPostKeyToWindowClick(Sender: TObject);
 var
   i: Integer;
 begin
   for i := 1 to Length(cbKey.Text) do
-    mnSendKeyToWindow(CurrWindow, cbKey.Text[i]);
+    mnPostKeyToWindow(CurrWindow, cbKey.Text[i]);
 end;
 
 procedure TTestWindowsDialog.btnSnapWindowClick(Sender: TObject);

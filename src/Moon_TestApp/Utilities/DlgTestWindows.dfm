@@ -1,6 +1,6 @@
 inherited TestWindowsDialog: TTestWindowsDialog
-  Left = 506
-  Top = 376
+  Left = 831
+  Top = 377
   Caption = 'TestWindows'
   ClientHeight = 523
   ClientWidth = 867
@@ -419,27 +419,27 @@ inherited TestWindowsDialog: TTestWindowsDialog
         TabOrder = 8
         OnClick = btnGetWindowsClassNamesClick
       end
-      object btnSendVKeyToWindow: TButton
+      object btnPostVKeyToWindow: TButton
         Left = 24
         Top = 312
         Width = 150
         Height = 25
-        Caption = 'SendVKeyToWindow'
+        Caption = 'PostVKeyToWindow'
         TabOrder = 13
-        OnClick = btnSendVKeyToWindowClick
+        OnClick = btnPostVKeyToWindowClick
       end
-      object btnSendKeyToWindow: TButton
+      object btnPostKeyToWindow: TButton
         Left = 24
         Top = 344
         Width = 150
         Height = 25
-        Caption = 'SendKeyToWindow'
+        Caption = 'PostKeyToWindow'
         TabOrder = 15
-        OnClick = btnSendKeyToWindowClick
+        OnClick = btnPostKeyToWindowClick
       end
       object cbVKey: TComboBox
-        Left = 192
-        Top = 312
+        Left = 352
+        Top = 314
         Width = 145
         Height = 21
         Style = csDropDownList
@@ -456,11 +456,12 @@ inherited TestWindowsDialog: TTestWindowsDialog
           'VK_RIGHT'
           'VK_UP'
           'VK_DOWN'
-          'VK_NUMPAD5')
+          'VK_NUMPAD5'
+          'VK_NUMLOCK')
       end
       object cbKey: TEdit
         Left = 192
-        Top = 344
+        Top = 346
         Width = 121
         Height = 21
         TabOrder = 16
@@ -553,6 +554,15 @@ inherited TestWindowsDialog: TTestWindowsDialog
         Caption = 'FindFirstWindow'
         TabOrder = 11
         OnClick = btnFindFirstWindowClick
+      end
+      object btnPostSysVKeyToWindow: TButton
+        Left = 184
+        Top = 312
+        Width = 150
+        Height = 25
+        Caption = 'PostSysVKeyToWindow'
+        TabOrder = 17
+        OnClick = btnPostSysVKeyToWindowClick
       end
     end
     object tsSnap: TTabSheet
