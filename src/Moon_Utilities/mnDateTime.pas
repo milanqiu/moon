@@ -224,8 +224,8 @@ begin
     tuMonth:  Result := Quantity * ApproxDaysPerMonth;
     tuDay:    Result := Quantity;
     tuHour:   Result := Quantity / 24;
-    tuMinute: Result := Quantity / 24 / 60;
-    tuSecond: Result := Quantity / 24 / 60 / 60;
+    tuMinute: Result := Quantity / (24*60);
+    tuSecond: Result := Quantity / (24*60*60);
   else
     mnNeverGoesHere;
     Result := 0;
