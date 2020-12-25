@@ -493,11 +493,13 @@ procedure mnArrayToStrings(const Arr: array of string; Strs: TStrings);
   mnInitCounter初始化计数器的值。
   mnAddCounter给计数器的值增加Step。
   mnGetCounter得到计数器的值。
+  mnCounterReaches返回计数器是否已到达指定位置，仅对增加的计数器有效。
   Tested in TestUnit.
  --------------------------------}
 procedure mnInitCounter(const InitPos: Integer = 0);
 procedure mnAddCounter(const Step: Integer = 1);
 function mnGetCounter: Integer;
+function mnCounterReaches(const Pos: Integer): Boolean;
 
 {--------------------------------
   管理一个整数环。内部维护了一个指针，当越过上界时回到下界，越过下界时回到上界。
@@ -2969,6 +2971,11 @@ end;
 function mnGetCounter: Integer;
 begin
   Result := CounterPos;
+end;
+
+function mnCounterReaches(const Pos: Integer): Boolean;
+begin
+  Result := CounterPos >= Pos;
 end;
 
 var

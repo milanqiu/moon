@@ -1540,10 +1540,14 @@ procedure TmnSystemTestCase.testCounterSeries;
 begin
   mnInitCounter(2);
   CheckEquals(mnGetCounter, 2);
+
   mnAddCounter;
   CheckEquals(mnGetCounter, 3);
+  CheckFalse(mnCounterReaches(8));
+
   mnAddCounter(5);
   CheckEquals(mnGetCounter, 8);
+  Check(mnCounterReaches(8));
 end;
 
 procedure TmnSystemTestCase.testCircleSeries;
