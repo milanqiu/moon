@@ -521,6 +521,15 @@ function mnGetCirclePos: Integer;
 function mnCircle(const LowerLimit, UpperLimit, InitPos, Step: Integer): Integer;
 
 {--------------------------------
+  管理一个倒计时器。
+  mnInitCountdown初始化倒计时器，指定多少秒后到期。
+  mnCountdownExpires返回倒计时器是否已到期。
+  Tested in TestUnit.
+ --------------------------------}
+procedure mnInitCountdown(const Seconds: Integer);
+function mnCountdownExpires: Boolean;
+
+{--------------------------------
   让当前线程挂起指定毫秒数的时间。
   和VCL中标准Sleep函数不同的是，在线程挂起的期间，依然能够响应消息。
   Tested in TestApp.
@@ -2999,6 +3008,21 @@ begin
   Result := InitPos + Step;
   while Result > UpperLimit do Dec(Result, UpperLimit - LowerLimit + 1);
   while Result < LowerLimit do Inc(Result, UpperLimit - LowerLimit + 1);
+end;
+
+var
+  CountdownStartTime: TDateTime;
+  CountdownExpiringTime: TDateTime;
+
+procedure mnInitCountdown(const Seconds: Integer);
+begin
+  CountdownStartTime := Now;
+  CountdownExpiringTime := CountdownStartTime + Seconds / (24*3600);
+end;
+
+function mnCountdownExpires: Boolean;
+begin
+  Result := Now >= CountdownExpiringTime;
 end;
 
 procedure mnSleep(const Milliseconds: Cardinal);

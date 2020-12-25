@@ -74,6 +74,7 @@ type
     procedure testCounterSeries;
     procedure testCircleSeries;
     procedure testCircle;
+    procedure testCountdownSeries;
     procedure testNewGUID;
     procedure testHasMethodByName;
     procedure testExecMethodByName;
@@ -1589,6 +1590,17 @@ begin
   CheckEquals(mnCircle(11, 15, 13, 12), 15);
   CheckEquals(mnCircle(11, 15, 13, -3), 15);
   CheckEquals(mnCircle(11, 15, 13, 3), 11);
+end;
+
+procedure TmnSystemTestCase.testCountdownSeries;
+var
+  T: TDateTime;
+begin
+  T := Now;
+  mnInitCountdown(3);
+  repeat
+  until mnCountdownExpires;
+  Check(Now-T > 3/24/3600);
 end;
 
 procedure TmnSystemTestCase.testNewGUID;
