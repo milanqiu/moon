@@ -65,6 +65,31 @@ function mnDateToStdStr(const Value: TDateTime): string;
  --------------------------------}
 procedure mnSetNormalDateTimeFormat(const DateFormat: string = mnStdDateFormat; const TimeFormat: string = mnStdTimeFormat);
 
+const
+{--------------------------------
+  用于文件名的日期、时间和日期时间字符串的格式。其中时间有时分秒全和仅时分两种。
+  由于Windows的文件名不允许用冒号，所以用点代替。
+  Tested in TestUnit.
+ --------------------------------}
+  mnDateAsFileNameFormat = 'yyyy-MM-dd';
+  mnTimeAsFileNameFormat = 'HH.mm.ss';
+  mnTimeAsFileNameFormatHM = 'HH.mm';
+  mnDateTimeAsFileNameFormat = mnDateAsFileNameFormat + '_' + mnTimeAsFileNameFormat;
+  mnDateTimeAsFileNameFormatHM = mnDateAsFileNameFormat + '_' + mnTimeAsFileNameFormatHM;
+
+{--------------------------------
+  将日期时间转换为用于文件名的格式的字符串，使用上述的用于文件名的格式。
+  MayIgnoreTime表示在只有日期（即时间部分为0）的情况下，是否不转换时间部分（即没有“00:00:00”）。
+  HMOnly表示转换成的字符串是否仅有时分（没有秒）。
+  Tested in TestUnit.
+ --------------------------------}
+function mnDateTimeToStrAsFileName(const Value: TDateTime; const MayIgnoreTime: Boolean = False; const HMOnly: Boolean = False): string;
+{--------------------------------
+  将日期转换为用于文件名的格式的字符串，使用上述的用于文件名的格式。
+  Tested in TestUnit.
+ --------------------------------}
+function mnDateToStrAsFileName(const Value: TDateTime; const MayIgnoreTime: Boolean = False; const HMOnly: Boolean = False): string;
+
 {--------------------------------
   将一个FileTime转换为时间格式。
   带Local中转的，表示在转换时先转为本地时间。
@@ -310,6 +335,22 @@ begin
   ShortDateFormat := DateFormat;
   LongTimeFormat := TimeFormat;
   cxFormatController.UseDelphiDateTimeFormats := True;
+end;
+
+function mnDateTimeToStrAsFileName(const Value: TDateTime; const MayIgnoreTime: Boolean = False; const HMOnly: Boolean = False): string;
+var
+  Format: string;
+begin
+  if MayIgnoreTime and mnFloatIsInt(Value)then
+    Format := mnDateAsFileNameFormat
+  else
+    Format := mnChooseStr(HMOnly, mnDateTimeAsFileNameFormatHM, mnDateTimeAsFileNameFormat);
+  Result := FormatDateTime(Format, Value);
+end;
+
+function mnDateToStrAsFileName(const Value: TDateTime; const MayIgnoreTime: Boolean = False; const HMOnly: Boolean = False): string;
+begin
+  Result := FormatDateTime(mnDateAsFileNameFormat, Value);
 end;
 
 function mnFileTimeToDateTime(const FileTime: TFileTime): TDateTime;

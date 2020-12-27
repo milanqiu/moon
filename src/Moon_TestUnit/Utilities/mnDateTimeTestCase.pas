@@ -28,6 +28,9 @@ type
     procedure testStdDateTimeFormatSeries;
     procedure testDateTimeToStdStr;
     procedure testDateToStdStr;
+    procedure testDateTimeAsFileNameFormatSeries;
+    procedure testDateTimeToStrAsFileName;
+    procedure testDateToStrAsFileName;
     procedure testFileTimeToDateTimeSeries;
     procedure testStartEndOfDateTimeSeries;
     procedure testStartEndOfWeekQuarterSeries;
@@ -124,6 +127,34 @@ procedure TmnDateTimeTestCase.testDateToStdStr;
 begin
   CheckEquals(mnDateToStdStr(EncodeDate(1982, 8, 29)), '1982-08-29');
   CheckEquals(mnDateToStdStr(EncodeDateTime(1982, 8, 29, 8, 50, 0, 0)), '1982-08-29');
+end;
+
+procedure TmnDateTimeTestCase.testDateTimeAsFileNameFormatSeries;
+begin
+  CheckEquals(FormatDateTime(mnDateAsFileNameFormat, EncodeDate(1982, 8, 29)), '1982-08-29');
+  CheckEquals(FormatDateTime(mnTimeAsFileNameFormat, EncodeTime(8, 50, 0, 0)), '08.50.00');
+  CheckEquals(FormatDateTime(mnTimeAsFileNameFormatHM, EncodeTime(8, 50, 0, 0)), '08.50');
+  CheckEquals(FormatDateTime(mnDateTimeAsFileNameFormat, EncodeDateTime(1982, 8, 29, 8, 50, 0, 0)), '1982-08-29_08.50.00');
+  CheckEquals(FormatDateTime(mnDateTimeAsFileNameFormatHM, EncodeDateTime(1982, 8, 29, 8, 50, 0, 0)), '1982-08-29_08.50');
+end;
+
+procedure TmnDateTimeTestCase.testDateTimeToStrAsFileName;
+begin
+  CheckEquals(mnDateTimeToStrAsFileName(EncodeDate(1982, 8, 29)),               '1982-08-29_00.00.00');
+  CheckEquals(mnDateTimeToStrAsFileName(EncodeDate(1982, 8, 29), True,  False), '1982-08-29');
+  CheckEquals(mnDateTimeToStrAsFileName(EncodeDate(1982, 8, 29), False, True),  '1982-08-29_00.00');
+  CheckEquals(mnDateTimeToStrAsFileName(EncodeDate(1982, 8, 29), True,  True),  '1982-08-29');
+
+  CheckEquals(mnDateTimeToStrAsFileName(EncodeDateTime(1982, 8, 29, 8, 50, 0, 0)),               '1982-08-29_08.50.00');
+  CheckEquals(mnDateTimeToStrAsFileName(EncodeDateTime(1982, 8, 29, 8, 50, 0, 0), True,  False), '1982-08-29_08.50.00');
+  CheckEquals(mnDateTimeToStrAsFileName(EncodeDateTime(1982, 8, 29, 8, 50, 0, 0), False, True),  '1982-08-29_08.50');
+  CheckEquals(mnDateTimeToStrAsFileName(EncodeDateTime(1982, 8, 29, 8, 50, 0, 0), True,  True),  '1982-08-29_08.50');
+end;
+
+procedure TmnDateTimeTestCase.testDateToStrAsFileName;
+begin
+  CheckEquals(mnDateToStrAsFileName(EncodeDate(1982, 8, 29)), '1982-08-29');
+  CheckEquals(mnDateToStrAsFileName(EncodeDateTime(1982, 8, 29, 8, 50, 0, 0)), '1982-08-29');
 end;
 
 procedure TmnDateTimeTestCase.testFileTimeToDateTimeSeries;
