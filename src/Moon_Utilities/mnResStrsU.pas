@@ -122,6 +122,7 @@ resourcestring
   SExternalCommandExecutionException = '外部命令执行出现异常：';
   SExternalCommandExecutionHalted = '外部命令执行中止：';
   SExternalCommandExecutionFreezed = '外部命令执行冻结：';
+  SAbnormalExternalCommandAnnouncementFile = '外部命令的宣告文件没有正常生成';
 
   // in mnTPC
   SItemPrecisionShoudBeNumeric = 'SetItemPrecision只能用于TcxCalcEditProperties或TcxCurrencyEditProperties';
@@ -248,6 +249,7 @@ resourcestring
   SExternalCommandExecutionException = 'Execution with exception:';
   SExternalCommandExecutionHalted = 'Execution halted:';
   SExternalCommandExecutionFreezed = 'Execution freezed:';
+  SAbnormalExternalCommandAnnouncementFile = 'Abnormal announcement file of external command';
 
   // in mnTPC
   SItemPrecisionShoudBeNumeric = 'SetItemPrecision should be used only on TcxCalcEditProperties or TcxCurrencyEditProperties';

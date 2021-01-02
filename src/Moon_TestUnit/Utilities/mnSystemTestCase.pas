@@ -306,12 +306,13 @@ type
 
     procedure testLog;
 
+    procedure testExternalCommandFile_IsJar;
     procedure testExternalCommandFile_Create;
     procedure testExternalCommandFile_NewExecution;
-    procedure testExternalCommandFile_UseJavaToRunJar;
     procedure testExternalCommandExecution_DeleteAnnouncementDir;
-    procedure testExternalCommandExecution_Execute_Timeout;
-    procedure testExternalCommandExecution_ExecuteSuccessfully_Timeout;
+    procedure testExternalCommandExecution_Execute_Timeout_AutoKillFreeze;
+    procedure testExternalCommandExecution_ExecuteSuccessfully_Timeout_AutoKillFreeze;
+    procedure testExternalCommandExecution_ShowWindow;
     procedure testExternalCommandExecution_KeepAnnouncementDir;
 
     procedure testDelphiTypeConvertors;
@@ -7473,6 +7474,32 @@ end;
 const
   GwangmyeongseongConsoleJarName = 'gwangmyeongseong-console.jar';
 
+procedure TmnSystemTestCase.testExternalCommandFile_IsJar;
+var
+  ECF: mnTExternalCommandFile;
+begin
+  ECF := mnTExternalCommandFile.Create(GwangmyeongseongConsoleJarName);
+  try
+    Check(ECF.IsJar);
+  finally
+    ECF.Free;
+  end;
+
+  ECF := mnTExternalCommandFile.Create('gwangmyeongseong-console.JAR');
+  try
+    Check(ECF.IsJar);
+  finally
+    ECF.Free;
+  end;
+
+  ECF := mnTExternalCommandFile.Create('C:\Windows\notepad.exe', False);
+  try
+    CheckFalse(ECF.IsJar);
+  finally
+    ECF.Free;
+  end;
+end;
+
 procedure TmnSystemTestCase.testExternalCommandFile_Create;
 var
   ECF: mnTExternalCommandFile;
@@ -7522,26 +7549,6 @@ begin
   end;
 end;
 
-procedure TmnSystemTestCase.testExternalCommandFile_UseJavaToRunJar;
-var
-  ECF: mnTExternalCommandFile;
-  ECE: mnTExternalCommandExecution;
-begin
-  ECF := mnTExternalCommandFile.Create(GwangmyeongseongConsoleJarName);
-  ECF.UseJavaToRunJar := True;
-  try
-    ECE := ECF.NewExecution('CommandFinished', 'aaa bbb');
-    try
-      Check(ECE.Execute = erFinished);
-      CheckEquals(ECE.Msg, 'input:aaa,bbb');
-    finally
-      ECE.Free;
-    end;
-  finally
-    ECF.Free;
-  end;
-end;
-
 procedure TmnSystemTestCase.testExternalCommandExecution_DeleteAnnouncementDir;
 var
   ECF: mnTExternalCommandFile;
@@ -7559,11 +7566,12 @@ begin
   end;
 end;
 
-procedure TmnSystemTestCase.testExternalCommandExecution_Execute_Timeout;
+procedure TmnSystemTestCase.testExternalCommandExecution_Execute_Timeout_AutoKillFreeze;
 var
   ECF: mnTExternalCommandFile;
   ECE: mnTExternalCommandExecution;
 begin
+  // execute jar
   ECF := mnTExternalCommandFile.Create(GwangmyeongseongConsoleJarName);
   try
     ECE := ECF.NewExecution('CommandFinished', 'aaa bbb');
@@ -7593,6 +7601,7 @@ begin
     ECE := ECF.NewExecution('CommandFreezed', '');
     try
       ECE.Timeout := 1;
+      ECE.AutoKillFreeze := False;
       Check(ECE.Execute = erFreezed);
       CheckEquals(ECE.Msg, '');
     finally
@@ -7609,13 +7618,29 @@ begin
   finally
     ECF.Free;
   end;
+
+  // execute exe
+  ECF := mnTExternalCommandFile.Create(mnTProjectConvention.GetFilesPathSub('Files\Sleep5s.exe'), False);
+  try
+    ECE := ECF.NewExecution('');
+    try
+      ECE.Timeout := 1;
+      Check(ECE.Execute = erFreezed);
+      CheckEquals(ECE.Msg, '');
+    finally
+      ECE.Free;
+    end;
+  finally
+    ECF.Free;
+  end;
 end;
 
-procedure TmnSystemTestCase.testExternalCommandExecution_ExecuteSuccessfully_Timeout;
+procedure TmnSystemTestCase.testExternalCommandExecution_ExecuteSuccessfully_Timeout_AutoKillFreeze;
 var
   ECF: mnTExternalCommandFile;
   ECE: mnTExternalCommandExecution;
 begin
+  // execute jar
   ECF := mnTExternalCommandFile.Create(GwangmyeongseongConsoleJarName);
   try
     ECE := ECF.NewExecution('CommandFinished', 'aaa bbb');
@@ -7652,12 +7677,53 @@ begin
     ECE := ECF.NewExecution('CommandFreezed', '');
     try try
       ECE.Timeout := 1;
+      ECE.AutoKillFreeze := True;
       ECE.ExecuteSuccessfully;
       mnNeverGoesHere;
     except
       on E: Exception do
         CheckEquals(E.Message, 'Execution freezed:' + mnNewLine + '');
       end;
+    finally
+      ECE.Free;
+    end;
+  finally
+    ECF.Free;
+  end;
+
+  // execute exe
+  ECF := mnTExternalCommandFile.Create(mnTProjectConvention.GetFilesPathSub('Files\Sleep5s.exe'), False);
+  try
+    ECE := ECF.NewExecution('');
+    try try
+      ECE.Timeout := 1;
+      ECE.ExecuteSuccessfully;
+      mnNeverGoesHere;
+    except
+      on E: Exception do
+        CheckEquals(E.Message, 'Execution freezed:' + mnNewLine + '');
+      end;
+    finally
+      ECE.Free;
+    end;
+  finally
+    ECF.Free;
+  end;
+end;
+
+procedure TmnSystemTestCase.testExternalCommandExecution_ShowWindow;
+var
+  ECF: mnTExternalCommandFile;
+  ECE: mnTExternalCommandExecution;
+begin
+  ECF := mnTExternalCommandFile.Create(GwangmyeongseongConsoleJarName);
+  try
+    ECE := ECF.NewExecution('CommandFreezed', '');
+    try
+      ECE.ShowWindow := False;
+      ECE.Timeout := 1;
+      Check(ECE.Execute = erFreezed);
+      CheckEquals(ECE.Msg, '');
     finally
       ECE.Free;
     end;

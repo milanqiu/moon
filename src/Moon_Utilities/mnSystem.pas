@@ -1504,11 +1504,8 @@ type
   public
     // 外部命令文件的文件名
     property CommandFileName: string read FCommandFileName;
-  private
-    FUseJavaToRunJar: Boolean;
-  public
-    // 执行外部命令时，是否使用Java来将外部命令文件作为Jar包执行
-    property UseJavaToRunJar: Boolean read FUseJavaToRunJar write FUseJavaToRunJar default False;
+    // 外部命令文件是否是Jar包（如果是的话，就不能直接执行，而是使用Java执行）
+    function IsJar: Boolean;
   public
     // InDefaultPath表示外部命令文件是否位于缺省路径中
     // 缺省路径指应用程序所在路径的ExternalCommandFile子目录下
@@ -1548,11 +1545,17 @@ type
     // 外部命令实际执行时的完整参数
     property CompletedArgs: string read FCompletedArgs;
   private
+    FShowWindow: Boolean;
     FTimeout: Integer;
+    FAutoKillFreeze: Boolean;
     FKeepAnnouncementDir: Boolean;
   public
+    // 外部命令执行时是否显示执行窗口
+    property ShowWindow: Boolean read FShowWindow write FShowWindow default True;
     // 外部命令执行时的超时时间，单位为秒
     property Timeout: Integer read FTimeout write FTimeout default 0;
+    // 如果外部命令执行冻结，在超时后自动杀死外部命令进程
+    property AutoKillFreeze: Boolean read FAutoKillFreeze write FAutoKillFreeze default True;
     // 外部命令执行完后，是否保留执行结果的宣告目录
     property KeepAnnouncementDir: Boolean read FKeepAnnouncementDir write FKeepAnnouncementDir default False;
   private
@@ -1562,7 +1565,7 @@ type
     property Msg: string read FMsg;
   private
     constructor Create(const ACommandFile: mnTExternalCommandFile; const ACommandName: string; const AnArgsStr: string);
-    function WaitAndParse: mnTExternalCommandExecutionResult;
+    function WaitAndParse(const ProcessHandle: THandle): mnTExternalCommandExecutionResult;
   public
     // 删除外部命令执行结果的宣告目录
     procedure DeleteAnnouncementDir;
@@ -1615,7 +1618,8 @@ var
 
 implementation
 
-uses mnResStrsU, Variants, mnString, StrUtils, mnMath, RTLConsts, mnArray, Forms, mnWindows, mnFile, mnTPL, DateUtils;
+uses mnResStrsU, Variants, mnString, StrUtils, mnMath, RTLConsts, mnArray, Forms, mnWindows, mnFile,
+  mnTPL, DateUtils, mnDebug;
 
 function mnAppPathSub(const SubName: string): string; overload;
 begin
@@ -7118,14 +7122,17 @@ end;
 
 { mnTExternalCommandFile }
 
+function mnTExternalCommandFile.IsJar: Boolean;
+begin
+  Result := LowerCase(ExtractFileExt(FCommandFileName)) = '.jar';
+end;
+
 constructor mnTExternalCommandFile.Create(ACommandFileName: string; const InDefaultPath: Boolean = True);
 begin
   if InDefaultPath then
     ACommandFileName := mnAppPathSub('ExternalCommandFiles\' + ACommandFileName);
   mnValidateFileExists(ACommandFileName);
   FCommandFileName := ACommandFileName;
-
-  FUseJavaToRunJar := False;
 end;
 
 function mnTExternalCommandFile.NewExecution(const CommandName: string; const ArgsStr: string = ''): mnTExternalCommandExecution;
@@ -7146,11 +7153,13 @@ begin
   FCompletedArgs := FCommandName + ' ' + FAnnouncementDir + mnAppendLeftIfNotEmpty(' ', FArgsStr);
   ForceDirectories(FAnnouncementDir);
 
+  FShowWindow := True;
   FTimeout := 0;
+  FAutoKillFreeze := True;
   FKeepAnnouncementDir := False;
 end;
 
-function mnTExternalCommandExecution.WaitAndParse: mnTExternalCommandExecutionResult;
+function mnTExternalCommandExecution.WaitAndParse(const ProcessHandle: THandle): mnTExternalCommandExecutionResult;
 var
   Deadline: TDateTime;
   strs: mnTStrList;
@@ -7162,9 +7171,11 @@ begin
     begin
       Result := erFreezed;
       FMsg := '';
+      if FAutoKillFreeze then mnTerminateProcess(ProcessHandle);
       Exit;
     end;
-  until FileExists(FAnnouncementFileName) and mnCanFileBeRW(FAnnouncementFileName);
+  until mnHasProcessExited(ProcessHandle);
+  mnAssert(FileExists(FAnnouncementFileName) and mnCanFileBeRW(FAnnouncementFileName), SAbnormalExternalCommandAnnouncementFile);
 
   // Parse
   strs := mnTStrList.Create;
@@ -7196,12 +7207,14 @@ begin
 end;
 
 function mnTExternalCommandExecution.Execute: mnTExternalCommandExecutionResult;
+var
+  ProcessHandle: THandle;
 begin
-  if FCommandFile.UseJavaToRunJar then
-    mnShellOpen('java', '-jar ' + FCommandFile.CommandFileName + ' ' + FCompletedArgs)
+  if FCommandFile.IsJar then
+    ProcessHandle := mnCreateProcess('java -jar ' + FCommandFile.CommandFileName + ' ' + FCompletedArgs, FShowWindow)
   else
-    mnShellOpen(FCommandFile.CommandFileName, FCompletedArgs);
-  Result := WaitAndParse;
+    ProcessHandle := mnCreateProcess(               FCommandFile.CommandFileName + ' ' + FCompletedArgs, FShowWindow);
+  Result := WaitAndParse(ProcessHandle);
   if not FKeepAnnouncementDir then
     DeleteAnnouncementDir;
 end;
