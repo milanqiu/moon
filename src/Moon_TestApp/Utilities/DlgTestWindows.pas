@@ -93,6 +93,7 @@ type
     btnGetWindowsDescriptions: TButton;
     btnFindFirstWindow: TButton;
     btnPostSysVKeyToWindow: TButton;
+    cbShowWindow: TCheckBox;
     procedure btnSnapWindowExClick(Sender: TObject);
     procedure btnSnapWindowClick(Sender: TObject);
     procedure btnPostKeyToWindowClick(Sender: TObject);
@@ -198,10 +199,10 @@ begin
     begin
       OwnerDesktopName := mnNewGUID;
       mnCreateDesktop(OwnerDesktopName);
-      ProcessHandle := mnCreateProcess(odChooseProcess.FileName, OwnerDesktopName);
+      ProcessHandle := mnCreateProcess(odChooseProcess.FileName, cbShowWindow.Checked, OwnerDesktopName);
     end
     else
-      ProcessHandle := mnCreateProcess(odChooseProcess.FileName, '');
+      ProcessHandle := mnCreateProcess(odChooseProcess.FileName, cbShowWindow.Checked, '');
     mnInfoBox('ProcessHandle: ' + IntToStr(ProcessHandle));
   end;
 end;

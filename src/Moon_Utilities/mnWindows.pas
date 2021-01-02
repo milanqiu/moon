@@ -20,12 +20,13 @@ function mnCloseDesktop(const DesktopHandle: HDESK): Boolean;
 
 {--------------------------------
   通过命令行方式执行任何命令（包括exe），以创建一个进程。
+  ShowWindow指示进程运行的程序界面是否可见。
   OwnerDesktopName指示在哪个Desktop中创建。如果为空，则在当前Desktop中创建。
   如果不是在当前Desktop中创建，进程运行的程序界面将对用户不可见。
   返回新创建的进程的句柄。
   Tested in TestApp.
  --------------------------------}
-function mnCreateProcess(const CmdLine: string; const OwnerDesktopName: string = ''): THandle;
+function mnCreateProcess(const CmdLine: string; const ShowWindow: Boolean = True; const OwnerDesktopName: string = ''): THandle;
 {--------------------------------
   强行终止一个进程。
   返回是否成功终止。
@@ -282,7 +283,7 @@ begin
     Result := False;
 end;
 
-function mnCreateProcess(const CmdLine: string; const OwnerDesktopName: string = ''): THandle;
+function mnCreateProcess(const CmdLine: string; const ShowWindow: Boolean = True; const OwnerDesktopName: string = ''): THandle;
 var
   SI: TStartupInfo;
   PI: TProcessInformation;
@@ -290,7 +291,7 @@ begin
   FillChar(SI, SizeOf(SI), 0);
   SI.cb := SizeOf(SI);
   SI.dwFlags := STARTF_USESHOWWINDOW;
-  SI.wShowWindow := SW_SHOW;
+  SI.wShowWindow := mnChooseInt(ShowWindow, SW_SHOW, SW_HIDE);
   SI.hStdInput := 0;
   SI.hStdOutput := 0;
   SI.hStdError := 0;

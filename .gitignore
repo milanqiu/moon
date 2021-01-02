@@ -38,6 +38,7 @@ dunit.ini
 
 # Delphi compiler-generated binaries (safe to delete)
 *.exe
+!Sleep5s.exe
 *.dll
 *.bpl
 *.bpi

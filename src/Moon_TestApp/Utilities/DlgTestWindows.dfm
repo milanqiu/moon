@@ -1,6 +1,6 @@
 inherited TestWindowsDialog: TTestWindowsDialog
-  Left = 831
-  Top = 377
+  Left = 657
+  Top = 359
   Caption = 'TestWindows'
   ClientHeight = 523
   ClientWidth = 867
@@ -79,7 +79,7 @@ inherited TestWindowsDialog: TTestWindowsDialog
         OnClick = btnReportWhenProcessExitedClick
       end
       object cbUseNewDesktop: TCheckBox
-        Left = 568
+        Left = 664
         Top = 60
         Width = 121
         Height = 17
@@ -166,6 +166,16 @@ inherited TestWindowsDialog: TTestWindowsDialog
         Caption = 'OSLanguage'
         TabOrder = 15
         OnClick = btnOSLanguageClick
+      end
+      object cbShowWindow: TCheckBox
+        Left = 568
+        Top = 60
+        Width = 97
+        Height = 17
+        Caption = 'Show Window'
+        Checked = True
+        State = cbChecked
+        TabOrder = 16
       end
     end
     object tsKeyMouse: TTabSheet
