@@ -38,7 +38,9 @@ type
     procedure testPixeledImage_SaveToBMPFile;
     procedure testPixeledImage_Compare;
     procedure testPixeledImage_CompareSimilarity;
+    procedure testPixeledImage_CompareWithMask;
     procedure testPixeledImage_Find;
+    procedure testPixeledImage_FindWithMask;
     procedure testPixeledImage_CopyTo;
   end;
 
@@ -558,6 +560,62 @@ begin
   end;
 end;
 
+procedure TmnGraphicsTestCase.testPixeledImage_CompareWithMask;
+var
+  PI, PICopy, PIRegion, PIWithMask, PIRegionWithMask: mnTPixeledImage;
+begin
+  PI := mnTPixeledImage.Create;
+  PICopy := mnTPixeledImage.Create;
+  PIRegion := mnTPixeledImage.Create;
+  PIWithMask := mnTPixeledImage.Create;
+  PIRegionWithMask := mnTPixeledImage.Create;
+  try
+    Check(PI.CompareWithMask(PICopy));
+    PI.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMP.bmp'));
+    CheckFalse(PI.CompareWithMask(PICopy));
+    PICopy.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMPCopy.bmp'));
+    PIRegion.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMPRegion.bmp'));
+    PIWithMask.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMPWithMask.bmp'));
+    PIRegionWithMask.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMPRegionWithMask.bmp'));
+
+    // overload form 1
+    CheckFalse(PI.CompareWithMask(PICopy, Rect(0, 0, 9, 9), Rect(0, 0, 7, 7)));
+    CheckFalse(PI.CompareWithMask(PICopy, Rect(0, 0, 7, 7), Rect(0, 0, 9, 9)));
+    Check(PI.CompareWithMask(PICopy, Rect(0, 0, 20, 20), Rect(0, 0, 20, 20)));
+    Check(PI.CompareWithMask(PIRegion, Rect(3, 9, 4, 12), Rect(1, 1, 2, 4)));
+
+    CheckFalse(PI.CompareWithMask(PIWithMask, Rect(0, 0, 20, 20), Rect(0, 0, 20, 20)));
+    Check(PI.CompareWithMask(PIWithMask, Rect(0, 0, 20, 20), Rect(0, 0, 20, 20), $0EC9FF));
+    Check(PI.CompareWithMask(PIRegionWithMask, Rect(3, 9, 4, 12), Rect(1, 1, 2, 4)));
+    Check(PI.CompareWithMask(PIRegionWithMask, Rect(3, 9, 4, 12), Rect(1, 1, 2, 4), $0EC9FF));
+
+    // overload form 2
+    CheckFalse(PI.CompareWithMask(PICopy, Rect(0, 0, 9, 9)));
+    Check(PI.CompareWithMask(PICopy, Rect(0, 0, 20, 20)));
+    Check(PI.CompareWithMask(PIRegion, Rect(2, 8, 11, 15)));
+
+    CheckFalse(PI.CompareWithMask(PIWithMask, Rect(0, 0, 20, 20)));
+    Check(PI.CompareWithMask(PIWithMask, Rect(0, 0, 20, 20), $0EC9FF));
+    CheckFalse(PI.CompareWithMask(PIRegionWithMask, Rect(2, 8, 11, 15)));
+    Check(PI.CompareWithMask(PIRegionWithMask, Rect(2, 8, 11, 15), $0EC9FF));
+
+    // overload form 3
+    Check(PI.CompareWithMask(PICopy));
+    CheckFalse(PI.CompareWithMask(PIRegion));
+
+    CheckFalse(PI.CompareWithMask(PIWithMask));
+    Check(PI.CompareWithMask(PIWithMask, $0EC9FF));
+    CheckFalse(PI.CompareWithMask(PIRegionWithMask));
+    CheckFalse(PI.CompareWithMask(PIRegionWithMask, $0EC9FF));
+  finally
+    PI.Free;
+    PICopy.Free;
+    PIRegion.Free;
+    PIWithMask.Free;
+    PIRegionWithMask.Free;
+  end;
+end;
+
 procedure TmnGraphicsTestCase.testPixeledImage_Find;
 var
   PI, PICopy, PIRegion: mnTPixeledImage;
@@ -629,6 +687,110 @@ begin
     PI.Free;
     PICopy.Free;
     PIRegion.Free;
+  end;
+end;
+
+procedure TmnGraphicsTestCase.testPixeledImage_FindWithMask;
+var
+  PI, PICopy, PIRegion, PIWithMask, PIRegionWithMask: mnTPixeledImage;
+  X, Y: Integer;
+begin
+  PI := mnTPixeledImage.Create;
+  PICopy := mnTPixeledImage.Create;
+  PIRegion := mnTPixeledImage.Create;
+  PIWithMask := mnTPixeledImage.Create;
+  PIRegionWithMask := mnTPixeledImage.Create;
+  try
+    Check(PI.FindWithMask(PIRegion, X, Y));
+    CheckEquals(X, 0);
+    CheckEquals(Y, 0);
+    PI.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMP.bmp'));
+    Check(PI.FindWithMask(PIRegion, X, Y));
+    CheckEquals(X, 0);
+    CheckEquals(Y, 0);
+    CheckFalse(PIRegion.FindWithMask(PI, X, Y));
+    PICopy.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMPCopy.bmp'));
+    PIRegion.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMPRegion.bmp'));
+    PIWithMask.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMPWithMask.bmp'));
+    PIRegionWithMask.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMPRegionWithMask.bmp'));
+
+    // overload form 1 and 2
+    Check(PI.FindWithMask(PIRegion, Rect(4, 10, 10, 14), Rect(2, 2, 8, 6), X, Y));
+    CheckEquals(X, 4);
+    CheckEquals(Y, 10);
+    Check(PI.FindWithMask(PIRegion, Rect(4, 10, 10, 14), Rect(2, 2, 8, 6)));
+
+    Check(PI.FindWithMask(PIRegion, Rect(3, 9, 10, 14), Rect(2, 2, 8, 6), X, Y));
+    CheckEquals(X, 4);
+    CheckEquals(Y, 10);
+    Check(PI.FindWithMask(PIRegion, Rect(3, 9, 10, 14), Rect(2, 2, 8, 6)));
+
+    CheckFalse(PI.FindWithMask(PIRegion, Rect(5, 11, 10, 14), Rect(2, 2, 8, 6), X, Y));
+    CheckFalse(PI.FindWithMask(PIRegion, Rect(5, 11, 10, 14), Rect(2, 2, 8, 6)));
+
+    CheckFalse(PI.FindWithMask(PIRegion, Rect(4, 10, 9, 13), Rect(2, 2, 8, 6), X, Y));
+    CheckFalse(PI.FindWithMask(PIRegion, Rect(4, 10, 9, 13), Rect(2, 2, 8, 6)));
+
+    // overload form 3 and 4
+    Check(PI.FindWithMask(PIRegion, Rect(2, 8, 11, 15), X, Y));
+    CheckEquals(X, 2);
+    CheckEquals(Y, 8);
+    Check(PI.FindWithMask(PIRegion, Rect(2, 8, 11, 15)));
+
+    Check(PI.FindWithMask(PIRegion, Rect(1, 7, 11, 15), X, Y));
+    CheckEquals(X, 2);
+    CheckEquals(Y, 8);
+    Check(PI.FindWithMask(PIRegion, Rect(1, 7, 11, 15)));
+
+    CheckFalse(PI.FindWithMask(PIRegion, Rect(3, 9, 11, 15), X, Y));
+    CheckFalse(PI.FindWithMask(PIRegion, Rect(3, 9, 11, 15)));
+
+    CheckFalse(PI.FindWithMask(PIRegion, Rect(2, 8, 10, 14), X, Y));
+    CheckFalse(PI.FindWithMask(PIRegion, Rect(2, 8, 10, 14)));
+
+    CheckFalse(PI.FindWithMask(PIRegionWithMask, Rect(2, 8, 11, 15)));
+    Check(PI.FindWithMask(PIRegionWithMask, Rect(2, 8, 11, 15), X, Y, $0EC9FF));
+    CheckEquals(X, 2);
+    CheckEquals(Y, 8);
+    Check(PI.FindWithMask(PIRegionWithMask, Rect(2, 8, 11, 15), $0EC9FF));
+
+    CheckFalse(PI.FindWithMask(PIRegionWithMask, Rect(1, 7, 11, 15)));
+    Check(PI.FindWithMask(PIRegionWithMask, Rect(1, 7, 11, 15), X, Y, $0EC9FF));
+    CheckEquals(X, 2);
+    CheckEquals(Y, 8);
+    Check(PI.FindWithMask(PIRegionWithMask, Rect(1, 7, 11, 15), $0EC9FF));
+
+    // overload form 5 and 6
+    Check(PI.FindWithMask(PICopy, X, Y));
+    CheckEquals(X, 0);
+    CheckEquals(Y, 0);
+    Check(PI.FindWithMask(PICopy));
+
+    Check(PI.FindWithMask(PIRegion, X, Y));
+    CheckEquals(X, 2);
+    CheckEquals(Y, 8);
+    Check(PI.FindWithMask(PIRegion));
+
+    CheckFalse(PIRegion.FindWithMask(PI, X, Y));
+    CheckFalse(PIRegion.FindWithMask(PI));
+
+    CheckFalse(PI.FindWithMask(PIWithMask));
+    Check(PI.FindWithMask(PIWithMask, X, Y, $0EC9FF));
+    CheckEquals(X, 0);
+    CheckEquals(Y, 0);
+    Check(PI.FindWithMask(PIWithMask, $0EC9FF));
+
+    CheckFalse(PI.FindWithMask(PIRegionWithMask));
+    Check(PI.FindWithMask(PIRegionWithMask, X, Y, $0EC9FF));
+    CheckEquals(X, 2);
+    CheckEquals(Y, 8);
+    Check(PI.FindWithMask(PIRegionWithMask, $0EC9FF));
+  finally
+    PI.Free;
+    PICopy.Free;
+    PIRegion.Free;
+    PIWithMask.Free;
+    PIRegionWithMask.Free;
   end;
 end;
 

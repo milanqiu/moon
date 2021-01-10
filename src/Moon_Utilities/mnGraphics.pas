@@ -182,6 +182,10 @@ type
     function CompareSimilarity(AnotherImage: mnTPixeledImage; const Rect, AnotherRect: TRect): Extended; overload;
     function CompareSimilarity(AnotherImage: mnTPixeledImage; const Rect:              TRect): Extended; overload;
     function CompareSimilarity(AnotherImage: mnTPixeledImage                                ): Extended; overload;
+    // 和Compare类似，但支持掩码，即忽略另一张图片里颜色为MaskColor的像素，不参与比较
+    function CompareWithMask(AnotherImage: mnTPixeledImage; const Rect, AnotherRect: TRect; const MaskColor: mnTColor = clWhite): Boolean; overload;
+    function CompareWithMask(AnotherImage: mnTPixeledImage; const Rect:              TRect; const MaskColor: mnTColor = clWhite): Boolean; overload;
+    function CompareWithMask(AnotherImage: mnTPixeledImage;                                 const MaskColor: mnTColor = clWhite): Boolean; overload;
   public
     // 在图片的指定区域内，寻找另一张图片的指定区域的图像，返回是否找到
     // 如果找到，X和Y返回其位置。当不需要位置时，也可使用没有X和Y的重载形式。注意位置从图片左上角算起，而不从区域左上角算起
@@ -194,6 +198,13 @@ type
     function Find(PartImage: mnTPixeledImage; const Rect:           TRect):                    Boolean; overload;
     function Find(PartImage: mnTPixeledImage;                              var X, Y: Integer): Boolean; overload;
     function Find(PartImage: mnTPixeledImage):                                                 Boolean; overload;
+    // 和Find类似，但支持掩码，即忽略另一张图片里颜色为MaskColor的像素，不参与比较
+    function FindWithMask(PartImage: mnTPixeledImage; const Rect, PartRect: TRect; var X, Y: Integer; const MaskColor: mnTColor = clWhite): Boolean; overload;
+    function FindWithMask(PartImage: mnTPixeledImage; const Rect, PartRect: TRect;                    const MaskColor: mnTColor = clWhite): Boolean; overload;
+    function FindWithMask(PartImage: mnTPixeledImage; const Rect:           TRect; var X, Y: Integer; const MaskColor: mnTColor = clWhite): Boolean; overload;
+    function FindWithMask(PartImage: mnTPixeledImage; const Rect:           TRect;                    const MaskColor: mnTColor = clWhite): Boolean; overload;
+    function FindWithMask(PartImage: mnTPixeledImage;                              var X, Y: Integer; const MaskColor: mnTColor = clWhite): Boolean; overload;
+    function FindWithMask(PartImage: mnTPixeledImage;                                                 const MaskColor: mnTColor = clWhite): Boolean; overload;
   public
     // 将整张图片复制到另一张图片，另一张图片的大小将设置为同这张图片相等
     procedure CopyTo(AnotherImage: mnTPixeledImage);
@@ -697,6 +708,40 @@ begin
   Result := CompareSimilarity(AnotherImage, BoundsRect, AnotherImage.BoundsRect);
 end;
 
+function mnTPixeledImage.CompareWithMask(AnotherImage: mnTPixeledImage; const Rect, AnotherRect: TRect; const MaskColor: mnTColor = clWhite): Boolean;
+var
+  Width, Height, XA, YA, XB, YB: Integer;
+  i, j: Integer;
+begin
+  Result := mnEqualRectSize(Rect, AnotherRect);
+  if not Result then Exit;
+
+  Width := mnRectWidth(Rect);
+  Height := mnRectHeight(Rect);
+  XA := Rect.Left;
+  YA := Rect.Top;
+  XB := AnotherRect.Left;
+  YB := AnotherRect.Top;
+  for j := 0 to Height-1 do
+    for i := 0 to Width-1 do
+      if AnotherImage.Pixels[XB+i, YB+j] <> MaskColor then
+      begin
+        Result := Pixels[XA+i, YA+j] = AnotherImage.Pixels[XB+i, YB+j];
+        if not Result then Exit;
+      end;
+  Result := True;
+end;
+
+function mnTPixeledImage.CompareWithMask(AnotherImage: mnTPixeledImage; const Rect:              TRect; const MaskColor: mnTColor = clWhite): Boolean;
+begin
+  Result := CompareWithMask(AnotherImage, Rect, AnotherImage.BoundsRect, MaskColor);
+end;
+
+function mnTPixeledImage.CompareWithMask(AnotherImage: mnTPixeledImage;                                 const MaskColor: mnTColor = clWhite): Boolean;
+begin
+  Result := CompareWithMask(AnotherImage, BoundsRect, AnotherImage.BoundsRect, MaskColor);
+end;
+
 function mnTPixeledImage.Find(PartImage: mnTPixeledImage; const Rect, PartRect: TRect; var X, Y: Integer): Boolean;
 var
   Width, Height, WidthPart, HeightPart: Integer;
@@ -765,6 +810,77 @@ var
   X, Y: Integer;
 begin
   Result := Find(PartImage, BoundsRect, PartImage.BoundsRect, X, Y);
+end;
+
+function mnTPixeledImage.FindWithMask(PartImage: mnTPixeledImage; const Rect, PartRect: TRect; var X, Y: Integer; const MaskColor: mnTColor = clWhite): Boolean;
+var
+  Width, Height, WidthPart, HeightPart: Integer;
+  XA, YA, XB, YB: Integer;
+  i, j, m, n: Integer;
+label
+  Break2;
+begin
+  Width := mnRectWidth(Rect);
+  Height := mnRectHeight(Rect);
+  WidthPart := mnRectWidth(PartRect);
+  HeightPart := mnRectHeight(PartRect);
+  XA := Rect.Left;
+  YA := Rect.Top;
+  XB := PartRect.Left;
+  YB := PartRect.Top;
+
+  for j := 0 to Height-HeightPart do
+    for i := 0 to Width-WidthPart do
+    begin
+      Result := True;
+      for n := 0 to HeightPart-1 do
+        for m := 0 to WidthPart-1 do
+          if PartImage.Pixels[XB+m, YB+n] <> MaskColor then
+            if Pixels[XA+i+m, YA+j+n] <> PartImage.Pixels[XB+m, YB+n] then
+            begin
+              Result := False;
+              goto Break2;
+            end;
+      Break2:
+      if Result then
+      begin
+        X := XA+i;
+        Y := YA+j;
+        Exit;
+      end;
+    end;
+  Result := False;
+end;
+
+function mnTPixeledImage.FindWithMask(PartImage: mnTPixeledImage; const Rect, PartRect: TRect;                    const MaskColor: mnTColor = clWhite): Boolean;
+var
+  X, Y: Integer;
+begin
+  Result := FindWithMask(PartImage, Rect, PartRect, X, Y, MaskColor);
+end;
+
+function mnTPixeledImage.FindWithMask(PartImage: mnTPixeledImage; const Rect:           TRect; var X, Y: Integer; const MaskColor: mnTColor = clWhite): Boolean;
+begin
+  Result := FindWithMask(PartImage, Rect, PartImage.BoundsRect, X, Y, MaskColor);
+end;
+
+function mnTPixeledImage.FindWithMask(PartImage: mnTPixeledImage; const Rect:           TRect;                    const MaskColor: mnTColor = clWhite): Boolean;
+var
+  X, Y: Integer;
+begin
+  Result := FindWithMask(PartImage, Rect, PartImage.BoundsRect, X, Y, MaskColor);
+end;
+
+function mnTPixeledImage.FindWithMask(PartImage: mnTPixeledImage;                              var X, Y: Integer; const MaskColor: mnTColor = clWhite): Boolean;
+begin
+  Result := FindWithMask(PartImage, BoundsRect, PartImage.BoundsRect, X, Y, MaskColor);
+end;
+
+function mnTPixeledImage.FindWithMask(PartImage: mnTPixeledImage;                                                 const MaskColor: mnTColor = clWhite): Boolean;
+var
+  X, Y: Integer;
+begin
+  Result := FindWithMask(PartImage, BoundsRect, PartImage.BoundsRect, X, Y, MaskColor);
 end;
 
 procedure mnTPixeledImage.CopyTo(AnotherImage: mnTPixeledImage);
