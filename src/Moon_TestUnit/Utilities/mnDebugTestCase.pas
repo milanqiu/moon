@@ -23,11 +23,12 @@ type
   published
     procedure testNeverGoesHere;
     procedure testAssert;
+    procedure testLog;
   end;
 
 implementation
 
-uses mnDebug, mnResStrsU, SysUtils;
+uses mnDebug, mnResStrsU, SysUtils, cxMemo, mnSystem, Forms, mnFile;
 
 { TmnDebugTestCase }
 
@@ -70,6 +71,59 @@ begin
     mnNeverGoesHere;
   except
     on E: Exception do CheckEquals(E.Message, Format(SAssertionFailedWithDesc, ['how could 1 equals to 2?!']));
+  end;
+end;
+
+procedure TmnDebugTestCase.testLog;
+var
+  Log: mnTLog;
+  Strs: mnTStrList;
+  Form: TForm;
+  Memo: TcxMemo;
+begin
+  Log := mnTLog.Create;
+  Strs := mnTStrList.Create;
+  Form := TForm.Create(nil);
+  Memo := TcxMemo.Create(Form);
+  Memo.Parent := Form;
+  try
+    Log.BindToStrs(Strs);
+    Log.BindToFile(mnTProjectConvention.GetTestTempPathSub('Log.txt'));
+    Log.BindToMemo(Memo);
+
+    Log.Append('abc');
+    Log.Append('abc%s', ['de']);
+    Log.Sync;
+
+    CheckEquals(Log.Content.Text, 'abc'#13#10'abcde'#13#10);
+    Check(Strs.Equals(Log.Content));
+    Check(mnLoadStrFromFile(mnTProjectConvention.GetTestTempPathSub('Log.txt')) = Log.Content.Text);
+    Check(Memo.Lines.Equals(Log.Content));
+
+    Log.MaxStrsLines := 1;
+    Log.MaxMemoLines := 1;
+    Log.Sync;
+
+    CheckEquals(Log.Content.Text, 'abc'#13#10'abcde'#13#10);
+    Check(Strs.Text = 'abcde'#13#10);
+    Check(mnLoadStrFromFile(mnTProjectConvention.GetTestTempPathSub('Log.txt')) = Log.Content.Text);
+    Check(Memo.Lines.Text = 'abcde'#13#10);
+
+    Log.MaxStrsLines := 4;
+    Log.MaxMemoLines := 4;
+    Log.Sync;
+
+    CheckEquals(Log.Content.Text, 'abc'#13#10'abcde'#13#10);
+    Check(Strs.Equals(Log.Content));
+    Check(mnLoadStrFromFile(mnTProjectConvention.GetTestTempPathSub('Log.txt')) = Log.Content.Text);
+    Check(Memo.Lines.Equals(Log.Content));
+
+    Check(mnDeleteFile(mnTProjectConvention.GetTestTempPathSub('Log.txt')));
+  finally
+    Memo.Free;
+    Form.Free;
+    Strs.Free;
+    Log.Free;
   end;
 end;
 
