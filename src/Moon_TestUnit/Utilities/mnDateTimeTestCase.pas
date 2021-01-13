@@ -22,7 +22,7 @@ type
     procedure TearDown; override;
   published
     procedure testIncompleteDateToStr;
-    procedure testToDuration;
+    procedure testToDurationSeries;
     procedure testDurationToStr;
     procedure testDurationFormatOnHour;
     procedure testStdDateTimeFormatSeries;
@@ -68,14 +68,24 @@ begin
   CheckEquals(mnIncompleteDateToStr(1982, 8, 29), '1982-08-29');
 end;
 
-procedure TmnDateTimeTestCase.testToDuration;
+procedure TmnDateTimeTestCase.testToDurationSeries;
 begin
+  // mnToDuration
   CheckEquals(mnToDuration(2, tuYear),   2 * 365.25,       mnParticle);
   CheckEquals(mnToDuration(2, tuMonth),  2 * 30.4375,      mnParticle);
   CheckEquals(mnToDuration(2, tuDay),    2,                mnParticle);
   CheckEquals(mnToDuration(2, tuHour),   2 / 24,           mnParticle);
   CheckEquals(mnToDuration(2, tuMinute), 2 / 24 / 60,      mnParticle);
   CheckEquals(mnToDuration(2, tuSecond), 2 / 24 / 60 / 60, mnParticle);
+
+  // mnHourToDuration
+  CheckEquals(mnHourToDuration(2),   2 / 24,           mnParticle);
+
+  // mnMinuteToDuration
+  CheckEquals(mnMinuteToDuration(2), 2 / 24 / 60,      mnParticle);
+
+  // mnSecondToDuration
+  CheckEquals(mnSecondToDuration(2), 2 / 24 / 60 / 60, mnParticle);
 end;
 
 procedure TmnDateTimeTestCase.testDurationToStr;

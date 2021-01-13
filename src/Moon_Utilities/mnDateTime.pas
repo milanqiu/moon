@@ -13,11 +13,18 @@ uses mnSystem, Windows;
 function mnIncompleteDateToStr(const Year, Month, Day: Word): string;
 
 {--------------------------------
-  根据一个数字和一个时间单位，生成Duration。
+  根据一个数量和一个时间单位，生成Duration。
   注意：时间单位若是年和月，则生成的Duration只是近似值。
   Tested in TestUnit.
  --------------------------------}
 function mnToDuration(const Quantity: Integer; const TimeUnit: mnTTimeUnit): mnTDuration;
+{--------------------------------
+  直接根据相应数量的时、分、秒，生成Duration。
+  Tested in TestUnit.
+ --------------------------------}
+function mnHourToDuration(const Quantity: Integer): mnTDuration; inline;
+function mnMinuteToDuration(const Quantity: Integer): mnTDuration; inline;
+function mnSecondToDuration(const Quantity: Integer): mnTDuration; inline;
 
 {--------------------------------
   将一个Duration转换为字符串，可指定转换成的字符串格式，该格式使用SysUtils.Format。
@@ -255,6 +262,21 @@ begin
     mnNeverGoesHere;
     Result := 0;
   end;
+end;
+
+function mnHourToDuration(const Quantity: Integer): mnTDuration; inline;
+begin
+  Result := Quantity / 24;
+end;
+
+function mnMinuteToDuration(const Quantity: Integer): mnTDuration; inline;
+begin
+  Result := Quantity / (24*60);
+end;
+
+function mnSecondToDuration(const Quantity: Integer): mnTDuration; inline;
+begin
+  Result := Quantity / (24*60*60);
 end;
 
 function mnDurationToStr(const Format: string; const Duration: mnTDuration; const Measure: mnTTimeUnit): string;
