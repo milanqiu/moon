@@ -26,26 +26,23 @@ package Moon_Utilities;
 {$IMPLICITBUILD OFF}
 
 requires
-  rtl,
   vcl,
   xmlrtl,
   vcljpg,
   dbrtl,
   vcldb,
-  adortl,
   cxLibraryD9,
   dxThemeD9,
   cxEditorsD9,
   cxDataD9,
   cxExtEditorsD9,
-  cxGridD9,
-  cxPageControlD9,
   IndySystem,
   IndyCore,
   IndyProtocols,
   PerlRegExD7;
 
 contains
+  mnResStrsU in '..\src\Moon_Utilities\mnResStrsU.pas',
   mnArray in '..\src\Moon_Utilities\mnArray.pas',
   mnChinese in '..\src\Moon_Utilities\mnChinese.pas',
   mnCOM in '..\src\Moon_Utilities\mnCOM.pas',
@@ -60,7 +57,6 @@ contains
   mnHTML in '..\src\Moon_Utilities\mnHTML.pas',
   mnMath in '..\src\Moon_Utilities\mnMath.pas',
   mnNetwork in '..\src\Moon_Utilities\mnNetwork.pas',
-  mnResStrsU in '..\src\Moon_Utilities\mnResStrsU.pas',
   mnSQL in '..\src\Moon_Utilities\mnSQL.pas',
   mnString in '..\src\Moon_Utilities\mnString.pas',
   mnSystem in '..\src\Moon_Utilities\mnSystem.pas',

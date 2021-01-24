@@ -26,29 +26,21 @@ package Moon_IOTA;
 {$IMPLICITBUILD OFF}
 
 requires
-  rtl,
-  designide,
-  xmlrtl,
-  vclactnband,
-  vclx,
   vcl,
+  xmlrtl,
+  vcljpg,
   dbrtl,
-  IndyProtocols,
-  IndyCore,
-  IndySystem,
-  cxPageControlD9,
+  vcldb,
   cxLibraryD9,
   dxThemeD9,
-  cxGridD9,
-  cxExtEditorsD9,
-  cxDataD9,
   cxEditorsD9,
-  vcljpg,
-  vcldb,
-  cxExportD9,
-  adortl,
-  vclie,
+  cxDataD9,
+  cxExtEditorsD9,
+  IndySystem,
+  IndyCore,
+  IndyProtocols,
   PerlRegExD7,
+  designide,
   Moon_Utilities;
 
 contains

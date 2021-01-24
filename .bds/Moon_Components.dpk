@@ -26,7 +26,20 @@ package Moon_Components;
 {$IMPLICITBUILD OFF}
 
 requires
-  rtl,
+  vcl,
+  xmlrtl,
+  vcljpg,
+  dbrtl,
+  vcldb,
+  cxLibraryD9,
+  dxThemeD9,
+  cxEditorsD9,
+  cxDataD9,
+  cxExtEditorsD9,
+  IndySystem,
+  IndyCore,
+  IndyProtocols,
+  PerlRegExD7,
   Moon_Utilities;
 
 end.
