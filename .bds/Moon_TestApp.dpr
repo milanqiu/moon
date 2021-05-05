@@ -17,7 +17,8 @@ uses
   DlgTestNetwork in '..\src\Moon_TestApp\Utilities\DlgTestNetwork.pas' {TestNetworkDialog},
   DlgTestSystem in '..\src\Moon_TestApp\Utilities\DlgTestSystem.pas' {TestSystemDialog},
   DlgTestTPL in '..\src\Moon_TestApp\Utilities\DlgTestTPL.pas' {TestTPLDialog},
-  DlgTestWindows in '..\src\Moon_TestApp\Utilities\DlgTestWindows.pas' {TestWindowsDialog};
+  DlgTestWindows in '..\src\Moon_TestApp\Utilities\DlgTestWindows.pas' {TestWindowsDialog},
+  DlgTestDateRange in '..\src\Moon_TestApp\Components\DlgTestDateRange.pas' {TestDateRangeDialog};
 
 {$R *.res}
 
@@ -36,5 +37,6 @@ begin
   Application.CreateForm(TTestSystemDialog, TestSystemDialog);
   Application.CreateForm(TTestTPLDialog, TestTPLDialog);
   Application.CreateForm(TTestWindowsDialog, TestWindowsDialog);
+  Application.CreateForm(TTestDateRangeDialog, TestDateRangeDialog);
   Application.Run;
 end.

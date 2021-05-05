@@ -40,7 +40,8 @@ object MainForm: TMainForm
       ';mnNetwork'
       ';mnSystem'
       ';mnTPL'
-      ';mnWindows')
+      ';mnWindows'
+      'Moon_Components;mnDateRange')
     TabOrder = 0
     OnDblClick = cxmclbModuleDblClick
   end

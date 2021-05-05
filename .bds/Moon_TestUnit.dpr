@@ -41,7 +41,8 @@ uses
   mnStringTestCase in '..\src\Moon_TestUnit\Utilities\mnStringTestCase.pas',
   mnSystemTestCase in '..\src\Moon_TestUnit\Utilities\mnSystemTestCase.pas',
   mnTPLTestCase in '..\src\Moon_TestUnit\Utilities\mnTPLTestCase.pas',
-  mnWindowsTestCase in '..\src\Moon_TestUnit\Utilities\mnWindowsTestCase.pas';
+  mnWindowsTestCase in '..\src\Moon_TestUnit\Utilities\mnWindowsTestCase.pas',
+  mnDateRangeTestCase in '..\src\Moon_TestUnit\Components\mnDateRangeTestCase.pas';
 
 {$R *.RES}
 
