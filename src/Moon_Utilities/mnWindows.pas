@@ -2,7 +2,7 @@ unit mnWindows;
 
 interface
 
-uses Windows, Controls, Graphics, Classes, mnSystem, mnString;
+uses Windows, Controls, Graphics, Classes, mnSystem, mnString, Messages;
 
 {--------------------------------
   Windows API.
@@ -231,6 +231,47 @@ procedure mnPostSysVKeyToWindow(const Window: HWND; const VKey: Integer);
  --------------------------------}
 procedure mnPostKeyToWindow(const Window: HWND; const Key: Char);
 
+{$EXTERNALSYM DragAcceptFiles}
+procedure DragAcceptFiles(hWnd: Cardinal; fAccept: Boolean); stdcall;
+{$EXTERNALSYM DragQueryFile}
+function DragQueryFile(hDrop: Cardinal; iFile: Cardinal; lpszFile: PChar; cch: Integer): Integer; stdcall;
+{$EXTERNALSYM DragQueryPoint}
+function DragQueryPoint(hDrop: Cardinal; ppt: PPoint): Boolean; stdcall;
+{$EXTERNALSYM DragFinish}
+procedure DragFinish(hDrop: Cardinal); stdcall;
+
+{--------------------------------
+  允许指定句柄或指定控件接受文件拖入。
+  Tested in TestApp.
+ --------------------------------}
+procedure mnAcceptDropFiles(AHandle: THandle); overload;
+procedure mnAcceptDropFiles(AWinControl: TWinControl); overload;
+{--------------------------------
+  根据文件拖入消息，得到拖入的文件数量。
+  Tested in TestApp.
+ --------------------------------}
+function mnGetDropFileCount(const AMsg: TWMDropFiles): Integer;
+{--------------------------------
+  根据文件拖入消息，得到指定索引的拖入文件名。索引从0开始。
+  Tested in TestApp.
+ --------------------------------}
+function mnGetDropFileName(const AMsg: TWMDropFiles; const FileIndex: Integer = 0): string;
+{--------------------------------
+  根据文件拖入消息，得到所有拖入文件名。
+  Tested in TestApp.
+ --------------------------------}
+function mnGetDropFileNames(const AMsg: TWMDropFiles): mnTStrArray;
+{--------------------------------
+  根据文件拖入消息，得到拖入文件释放时的鼠标位置。
+  Tested in TestApp.
+ --------------------------------}
+function mnGetDropFilesPoint(const AMsg: TWMDropFiles): TPoint;
+{--------------------------------
+  终结文件拖入消息，进行释放内存等操作。
+  Tested in TestApp.
+ --------------------------------}
+procedure mnFinishDropFiles(var AMsg: TWMDropFiles);
+
 {--------------------------------
   得到指定窗口中某点的颜色。
   若没有指定窗口，则返回屏幕某点的颜色。
@@ -268,7 +309,7 @@ procedure mnResumeRedraw(AHandle: THandle);
 
 implementation
 
-uses ShellAPI, Forms, mnControl, mnResStrsU, SysUtils, Messages, Types;
+uses ShellAPI, Forms, mnControl, mnResStrsU, SysUtils, Types;
 
 function mnCreateDesktop(const DesktopName: string): HDESK;
 begin
@@ -709,6 +750,67 @@ end;
 procedure mnPostKeyToWindow(const Window: HWND; const Key: Char);
 begin
   PostMessage(Window, WM_CHAR, Ord(Key), 0);
+end;
+
+procedure DragAcceptFiles; external 'Shell32';
+function DragQueryFile; external 'Shell32';
+function DragQueryPoint; external 'Shell32';
+procedure DragFinish; external 'Shell32';
+
+procedure mnAcceptDropFiles(AHandle: THandle); overload;
+begin
+  DragAcceptFiles(AHandle, True);
+end;
+
+procedure mnAcceptDropFiles(AWinControl: TWinControl); overload;
+begin
+  DragAcceptFiles(AWinControl.Handle, True);
+end;
+
+function mnGetDropFileCount(const AMsg: TWMDropFiles): Integer;
+begin
+  Result := DragQueryFile(AMsg.Drop, $FFFFFFFF, nil, 0);
+end;
+
+function mnGetDropFileName(const AMsg: TWMDropFiles; const FileIndex: Integer = 0): string;
+const
+  Size = 65535;
+var
+  Len: Integer;
+begin
+  SetLength(Result, Size);
+  Len := DragQueryFile(AMsg.Drop, FileIndex, PChar(Result), Size);
+  SetLength(Result, Len);
+end;
+
+function mnGetDropFileNames(const AMsg: TWMDropFiles): mnTStrArray;
+var
+  Count: Integer;
+  i: Integer;
+begin
+  Count := mnGetDropFileCount(AMsg);
+  SetLength(Result, Count);
+  for i := 0 to Count-1 do
+    Result[i] := mnGetDropFileName(AMsg, i);
+end;
+
+function mnGetDropFilesPoint(const AMsg: TWMDropFiles): TPoint;
+var
+  PP: PPoint;
+begin
+  New(PP);
+  try
+    DragQueryPoint(AMsg.Drop, PP);
+    Result := PP^;
+  finally
+    Dispose(PP);
+  end;
+end;
+
+procedure mnFinishDropFiles(var AMsg: TWMDropFiles);
+begin
+  DragFinish(AMsg.Drop);
+  AMsg.Result := 0;
 end;
 
 function mnGetWindowColor(const APoint: TPoint; const Window: HWND = 0): TColor;

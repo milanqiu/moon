@@ -94,6 +94,7 @@ type
     btnFindFirstWindow: TButton;
     btnPostSysVKeyToWindow: TButton;
     cbShowWindow: TCheckBox;
+    Label11: TLabel;
     procedure btnSnapWindowExClick(Sender: TObject);
     procedure btnSnapWindowClick(Sender: TObject);
     procedure btnPostKeyToWindowClick(Sender: TObject);
@@ -136,10 +137,12 @@ type
     procedure btnCreateProcessClick(Sender: TObject);
     procedure btnCloseDesktopClick(Sender: TObject);
     procedure btnCreateDesktopClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     function GetFindWindowsOption: mnTFindWindowsOption;
+    procedure WMDropFiles(var Message: TWMDropFiles); message WM_DropFiles;
   public
     { Public declarations }
   end;
@@ -160,6 +163,11 @@ begin
   inherited;
   edtWidth.Text := IntToStr(Screen.Width);
   edtHeight.Text := IntToStr(Screen.Height);
+end;
+
+procedure TTestWindowsDialog.FormShow(Sender: TObject);
+begin
+  mnAcceptDropFiles(Handle);
 end;
 
 var
@@ -289,6 +297,22 @@ begin
     olKorean:   mnInfoBox('Korean');
     olUSA:      mnInfoBox('USA');
     olOther:    mnInfoBox('Other');
+  end;
+end;
+
+procedure TTestWindowsDialog.WMDropFiles(var Message: TWMDropFiles);
+var
+  Point: TPoint;
+begin
+  try
+    Point := mnGetDropFilesPoint(Message);
+    mnMemoBox('mnGetDropFileCount: ' + IntToStr(mnGetDropFileCount(Message)) + mnNewline + mnNewline +
+              'mnGetDropFileName: ' + mnNewline + mnGetDropFileName(Message, 0) + mnNewline + mnNewline +
+              'mnGetDropFileNames: ' + mnNewline + mnCombine(mnGetDropFileNames(Message), mnNewline) + mnNewline + mnNewline +
+              'mnGetDropFilesPoint: ' + IntToStr(Point.X) + ',' + IntToStr(Point.Y)
+             );
+  finally
+    mnFinishDropFiles(Message);
   end;
 end;
 

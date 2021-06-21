@@ -9,6 +9,7 @@ inherited TestWindowsDialog: TTestWindowsDialog
   OnDblClick = FormDblClick
   OnMouseUp = FormMouseUp
   OnMouseWheel = FormMouseWheel
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxbtnOK: TcxButton
@@ -24,6 +25,13 @@ inherited TestWindowsDialog: TTestWindowsDialog
     TabOrder = 1
     object tsMisc: TTabSheet
       Caption = 'tsMisc'
+      object Label11: TLabel
+        Left = 24
+        Top = 184
+        Width = 145
+        Height = 13
+        Caption = 'Drag any file to this window...'
+      end
       object btnCreateDesktop: TButton
         Left = 24
         Top = 16
