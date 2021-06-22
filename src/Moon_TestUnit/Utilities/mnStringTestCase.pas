@@ -732,11 +732,11 @@ end;
 
 procedure TmnStringTestCase.testCompareStr;
 begin
-  Check(mnCompareStr('一二三', '一二三', [scoCaseSensitive, scoWholdWordOnly]));
-  CheckFalse(mnCompareStr('一二三', '二', [scoCaseSensitive, scoWholdWordOnly]));
-  CheckFalse(mnCompareStr('一二三', '欢', [scoCaseSensitive, scoWholdWordOnly]));
-  Check(mnCompareStr('aaa', 'aaa', [scoCaseSensitive, scoWholdWordOnly]));
-  CheckFalse(mnCompareStr('AAA', 'aaa', [scoCaseSensitive, scoWholdWordOnly]));
+  Check(mnCompareStr('一二三', '一二三', [scoCaseSensitive, scoWholeWordOnly]));
+  CheckFalse(mnCompareStr('一二三', '二', [scoCaseSensitive, scoWholeWordOnly]));
+  CheckFalse(mnCompareStr('一二三', '欢', [scoCaseSensitive, scoWholeWordOnly]));
+  Check(mnCompareStr('aaa', 'aaa', [scoCaseSensitive, scoWholeWordOnly]));
+  CheckFalse(mnCompareStr('AAA', 'aaa', [scoCaseSensitive, scoWholeWordOnly]));
 
   Check(mnCompareStr('一二三', '一二三', [scoCaseSensitive]));
   Check(mnCompareStr('一二三', '二', [scoCaseSensitive]));
@@ -744,11 +744,11 @@ begin
   Check(mnCompareStr('aaa', 'aaa', [scoCaseSensitive]));
   CheckFalse(mnCompareStr('AAA', 'aaa', [scoCaseSensitive]));
 
-  Check(mnCompareStr('一二三', '一二三', [scoWholdWordOnly]));
-  CheckFalse(mnCompareStr('一二三', '二', [scoWholdWordOnly]));
-  CheckFalse(mnCompareStr('一二三', '欢', [scoWholdWordOnly]));
-  Check(mnCompareStr('aaa', 'aaa', [scoWholdWordOnly]));
-  Check(mnCompareStr('AAA', 'aaa', [scoWholdWordOnly]));
+  Check(mnCompareStr('一二三', '一二三', [scoWholeWordOnly]));
+  CheckFalse(mnCompareStr('一二三', '二', [scoWholeWordOnly]));
+  CheckFalse(mnCompareStr('一二三', '欢', [scoWholeWordOnly]));
+  Check(mnCompareStr('aaa', 'aaa', [scoWholeWordOnly]));
+  Check(mnCompareStr('AAA', 'aaa', [scoWholeWordOnly]));
 
   Check(mnCompareStr('一二三', '一二三', []));
   Check(mnCompareStr('一二三', '二', []));

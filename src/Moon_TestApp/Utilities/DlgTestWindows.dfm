@@ -523,12 +523,12 @@ inherited TestWindowsDialog: TTestWindowsDialog
         Caption = 'Class Name Case Sensitive'
         TabOrder = 2
       end
-      object cbClassNameWholdWordOnly: TCheckBox
+      object cbClassNameWholeWordOnly: TCheckBox
         Left = 432
         Top = 34
         Width = 169
         Height = 17
-        Caption = 'Class Name Whold Word Only'
+        Caption = 'Class Name Whole Word Only'
         TabOrder = 3
       end
       object cbCaptionCaseSensitive: TCheckBox
@@ -539,12 +539,12 @@ inherited TestWindowsDialog: TTestWindowsDialog
         Caption = 'Caption Case Sensitive'
         TabOrder = 5
       end
-      object cbCaptionWholdWordOnly: TCheckBox
+      object cbCaptionWholeWordOnly: TCheckBox
         Left = 432
         Top = 58
         Width = 169
         Height = 17
-        Caption = 'Caption Whold Word Only'
+        Caption = 'Caption Whole Word Only'
         TabOrder = 6
       end
       object cbVisibleRequired: TCheckBox

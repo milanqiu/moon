@@ -295,9 +295,9 @@ type
 {--------------------------------
   用于调用mnCompareStr函数时传入参数，以指定比较方式。
     scoCaseSensitive：大小写敏感。
-    scoWholdWordOnly：整词匹配。
+    scoWholeWordOnly：整词匹配。
  --------------------------------}
-  mnTStrComparisonOption = (scoCaseSensitive, scoWholdWordOnly);
+  mnTStrComparisonOption = (scoCaseSensitive, scoWholeWordOnly);
   mnTStrComparisonOptions = set of mnTStrComparisonOption;
 
 {--------------------------------
@@ -1638,7 +1638,7 @@ begin
     SMajor := LowerCase(SMajor);
     SMinor := LowerCase(SMinor);
   end;
-  if scoWholdWordOnly in Options then
+  if scoWholeWordOnly in Options then
     Result := SMajor = SMinor
   else
     Result := AnsiPos(SMinor, SMajor) > 0;

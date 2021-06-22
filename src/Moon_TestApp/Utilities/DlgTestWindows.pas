@@ -86,9 +86,9 @@ type
     edtClassName: TEdit;
     edtCaption: TEdit;
     cbClassNameCaseSensitive: TCheckBox;
-    cbClassNameWholdWordOnly: TCheckBox;
+    cbClassNameWholeWordOnly: TCheckBox;
     cbCaptionCaseSensitive: TCheckBox;
-    cbCaptionWholdWordOnly: TCheckBox;
+    cbCaptionWholeWordOnly: TCheckBox;
     cbVisibleRequired: TCheckBox;
     btnGetWindowsDescriptions: TButton;
     btnFindFirstWindow: TButton;
@@ -451,15 +451,15 @@ begin
   Result.ClassNameMatchOptions := [];
   if cbClassNameCaseSensitive.Checked then
     Include(Result.ClassNameMatchOptions, scoCaseSensitive);
-  if cbClassNameWholdWordOnly.Checked then
-    Include(Result.ClassNameMatchOptions, scoWholdWordOnly);
+  if cbClassNameWholeWordOnly.Checked then
+    Include(Result.ClassNameMatchOptions, scoWholeWordOnly);
 
   Result.Caption := edtCaption.Text;
   Result.CaptionMatchOptions := [];
   if cbCaptionCaseSensitive.Checked then
     Include(Result.CaptionMatchOptions, scoCaseSensitive);
-  if cbCaptionWholdWordOnly.Checked then
-    Include(Result.CaptionMatchOptions, scoWholdWordOnly);
+  if cbCaptionWholeWordOnly.Checked then
+    Include(Result.CaptionMatchOptions, scoWholeWordOnly);
 
   Result.VisibleRequired := cbVisibleRequired.Checked; 
 end;
