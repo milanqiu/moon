@@ -3,6 +3,7 @@ del .bds\*.tgs
 del .bds\*.tgw
 del .bds\*.identcache
 del .bds\*.cfg
+del .bds\*.dsk
 
 rd .bds\ModelSupport
 

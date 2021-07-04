@@ -2314,25 +2314,25 @@ end;
 
 procedure TmnSystemTestCase.testVarList_Compare;
 var
-  VarList, AnotherList, VarListSolo, AnotherListSolo: mnTVarList;
+  VarList, AnotherList, VarListUnique, AnotherListUnique: mnTVarList;
 begin
   VarList := mnTVarList.Create;
   AnotherList := mnTVarList.Create;
-  VarListSolo := mnTVarList.Create;
-  AnotherListSolo := mnTVarList.Create;
+  VarListUnique := mnTVarList.Create;
+  AnotherListUnique := mnTVarList.Create;
   try
     VarList.LoadFromArray([Var_0, Var_1, Var_2]);
     AnotherList.LoadFromArray([Var_3, Var_2, Var_4, Var_1]);
 
-    VarList.Compare(AnotherList, VarListSolo, AnotherListSolo);
-    CheckEquals(VarListSolo.Count, 1);
-    Check(VarListSolo[0] = Var_0);
-    CheckEquals(AnotherListSolo.Count, 2);
-    Check(AnotherListSolo[0] = Var_3);
-    Check(AnotherListSolo[1] = Var_4);
+    VarList.Compare(AnotherList, VarListUnique, AnotherListUnique);
+    CheckEquals(VarListUnique.Count, 1);
+    Check(VarListUnique[0] = Var_0);
+    CheckEquals(AnotherListUnique.Count, 2);
+    Check(AnotherListUnique[0] = Var_3);
+    Check(AnotherListUnique[1] = Var_4);
   finally
-    AnotherListSolo.Free;
-    VarListSolo.Free;
+    AnotherListUnique.Free;
+    VarListUnique.Free;
     AnotherList.Free;
     VarList.Free;
   end;
@@ -3028,25 +3028,25 @@ end;
 
 procedure TmnSystemTestCase.testIntList_Compare;
 var
-  IntList, AnotherList, IntListSolo, AnotherListSolo: mnTIntList;
+  IntList, AnotherList, IntListUnique, AnotherListUnique: mnTIntList;
 begin
   IntList := mnTIntList.Create;
   AnotherList := mnTIntList.Create;
-  IntListSolo := mnTIntList.Create;
-  AnotherListSolo := mnTIntList.Create;
+  IntListUnique := mnTIntList.Create;
+  AnotherListUnique := mnTIntList.Create;
   try
     IntList.LoadFromArray([Int_0, Int_1, Int_2]);
     AnotherList.LoadFromArray([Int_3, Int_2, Int_4, Int_1]);
 
-    IntList.Compare(AnotherList, IntListSolo, AnotherListSolo);
-    CheckEquals(IntListSolo.Count, 1);
-    Check(IntListSolo[0] = Int_0);
-    CheckEquals(AnotherListSolo.Count, 2);
-    Check(AnotherListSolo[0] = Int_3);
-    Check(AnotherListSolo[1] = Int_4);
+    IntList.Compare(AnotherList, IntListUnique, AnotherListUnique);
+    CheckEquals(IntListUnique.Count, 1);
+    Check(IntListUnique[0] = Int_0);
+    CheckEquals(AnotherListUnique.Count, 2);
+    Check(AnotherListUnique[0] = Int_3);
+    Check(AnotherListUnique[1] = Int_4);
   finally
-    AnotherListSolo.Free;
-    IntListSolo.Free;
+    AnotherListUnique.Free;
+    IntListUnique.Free;
     AnotherList.Free;
     IntList.Free;
   end;
@@ -3729,25 +3729,25 @@ end;
 
 procedure TmnSystemTestCase.testFloatList_Compare;
 var
-  FloatList, AnotherList, FloatListSolo, AnotherListSolo: mnTFloatList;
+  FloatList, AnotherList, FloatListUnique, AnotherListUnique: mnTFloatList;
 begin
   FloatList := mnTFloatList.Create;
   AnotherList := mnTFloatList.Create;
-  FloatListSolo := mnTFloatList.Create;
-  AnotherListSolo := mnTFloatList.Create;
+  FloatListUnique := mnTFloatList.Create;
+  AnotherListUnique := mnTFloatList.Create;
   try
     FloatList.LoadFromArray([Float_0, Float_1, Float_2]);
     AnotherList.LoadFromArray([Float_3, Float_2, Float_4, Float_1]);
 
-    FloatList.Compare(AnotherList, FloatListSolo, AnotherListSolo);
-    CheckEquals(FloatListSolo.Count, 1);
-    Check(FloatListSolo[0] = Float_0);
-    CheckEquals(AnotherListSolo.Count, 2);
-    Check(AnotherListSolo[0] = Float_3);
-    Check(AnotherListSolo[1] = Float_4);
+    FloatList.Compare(AnotherList, FloatListUnique, AnotherListUnique);
+    CheckEquals(FloatListUnique.Count, 1);
+    Check(FloatListUnique[0] = Float_0);
+    CheckEquals(AnotherListUnique.Count, 2);
+    Check(AnotherListUnique[0] = Float_3);
+    Check(AnotherListUnique[1] = Float_4);
   finally
-    AnotherListSolo.Free;
-    FloatListSolo.Free;
+    AnotherListUnique.Free;
+    FloatListUnique.Free;
     AnotherList.Free;
     FloatList.Free;
   end;
@@ -4427,25 +4427,25 @@ end;
 
 procedure TmnSystemTestCase.testDTList_Compare;
 var
-  DTList, AnotherList, DTListSolo, AnotherListSolo: mnTDTList;
+  DTList, AnotherList, DTListUnique, AnotherListUnique: mnTDTList;
 begin
   DTList := mnTDTList.Create;
   AnotherList := mnTDTList.Create;
-  DTListSolo := mnTDTList.Create;
-  AnotherListSolo := mnTDTList.Create;
+  DTListUnique := mnTDTList.Create;
+  AnotherListUnique := mnTDTList.Create;
   try
     DTList.LoadFromArray([DT_0, DT_1, DT_2]);
     AnotherList.LoadFromArray([DT_3, DT_2, DT_4, DT_1]);
 
-    DTList.Compare(AnotherList, DTListSolo, AnotherListSolo);
-    CheckEquals(DTListSolo.Count, 1);
-    Check(DTListSolo[0] = DT_0);
-    CheckEquals(AnotherListSolo.Count, 2);
-    Check(AnotherListSolo[0] = DT_3);
-    Check(AnotherListSolo[1] = DT_4);
+    DTList.Compare(AnotherList, DTListUnique, AnotherListUnique);
+    CheckEquals(DTListUnique.Count, 1);
+    Check(DTListUnique[0] = DT_0);
+    CheckEquals(AnotherListUnique.Count, 2);
+    Check(AnotherListUnique[0] = DT_3);
+    Check(AnotherListUnique[1] = DT_4);
   finally
-    AnotherListSolo.Free;
-    DTListSolo.Free;
+    AnotherListUnique.Free;
+    DTListUnique.Free;
     AnotherList.Free;
     DTList.Free;
   end;
@@ -5128,25 +5128,25 @@ end;
 
 procedure TmnSystemTestCase.testCurrList_Compare;
 var
-  CurrList, AnotherList, CurrListSolo, AnotherListSolo: mnTCurrList;
+  CurrList, AnotherList, CurrListUnique, AnotherListUnique: mnTCurrList;
 begin
   CurrList := mnTCurrList.Create;
   AnotherList := mnTCurrList.Create;
-  CurrListSolo := mnTCurrList.Create;
-  AnotherListSolo := mnTCurrList.Create;
+  CurrListUnique := mnTCurrList.Create;
+  AnotherListUnique := mnTCurrList.Create;
   try
     CurrList.LoadFromArray([Curr_0, Curr_1, Curr_2]);
     AnotherList.LoadFromArray([Curr_3, Curr_2, Curr_4, Curr_1]);
 
-    CurrList.Compare(AnotherList, CurrListSolo, AnotherListSolo);
-    CheckEquals(CurrListSolo.Count, 1);
-    Check(CurrListSolo[0] = Curr_0);
-    CheckEquals(AnotherListSolo.Count, 2);
-    Check(AnotherListSolo[0] = Curr_3);
-    Check(AnotherListSolo[1] = Curr_4);
+    CurrList.Compare(AnotherList, CurrListUnique, AnotherListUnique);
+    CheckEquals(CurrListUnique.Count, 1);
+    Check(CurrListUnique[0] = Curr_0);
+    CheckEquals(AnotherListUnique.Count, 2);
+    Check(AnotherListUnique[0] = Curr_3);
+    Check(AnotherListUnique[1] = Curr_4);
   finally
-    AnotherListSolo.Free;
-    CurrListSolo.Free;
+    AnotherListUnique.Free;
+    CurrListUnique.Free;
     AnotherList.Free;
     CurrList.Free;
   end;
@@ -5822,24 +5822,24 @@ end;
 
 procedure TmnSystemTestCase.testBoolList_Compare;
 var
-  BoolList, AnotherList, BoolListSolo, AnotherListSolo: mnTBoolList;
+  BoolList, AnotherList, BoolListUnique, AnotherListUnique: mnTBoolList;
 begin
   BoolList := mnTBoolList.Create;
   AnotherList := mnTBoolList.Create;
-  BoolListSolo := mnTBoolList.Create;
-  AnotherListSolo := mnTBoolList.Create;
+  BoolListUnique := mnTBoolList.Create;
+  AnotherListUnique := mnTBoolList.Create;
   try
     BoolList.LoadFromArray([Bool_0]);
     AnotherList.LoadFromArray([Bool_1]);
 
-    BoolList.Compare(AnotherList, BoolListSolo, AnotherListSolo);
-    CheckEquals(BoolListSolo.Count, 1);
-    Check(BoolListSolo[0] = Bool_0);
-    CheckEquals(AnotherListSolo.Count, 1);
-    Check(AnotherListSolo[0] = Bool_1);
+    BoolList.Compare(AnotherList, BoolListUnique, AnotherListUnique);
+    CheckEquals(BoolListUnique.Count, 1);
+    Check(BoolListUnique[0] = Bool_0);
+    CheckEquals(AnotherListUnique.Count, 1);
+    Check(AnotherListUnique[0] = Bool_1);
   finally
-    AnotherListSolo.Free;
-    BoolListSolo.Free;
+    AnotherListUnique.Free;
+    BoolListUnique.Free;
     AnotherList.Free;
     BoolList.Free;
   end;
@@ -6577,12 +6577,12 @@ end;
 
 procedure TmnSystemTestCase.testStrList_Compare;
 var
-  StrList, AnotherList, StrListSolo, AnotherListSolo: mnTStrList;
+  StrList, AnotherList, StrListUnique, AnotherListUnique: mnTStrList;
 begin
   StrList := mnTStrList.Create;
   AnotherList := mnTStrList.Create;
-  StrListSolo := mnTStrList.Create;
-  AnotherListSolo := mnTStrList.Create;
+  StrListUnique := mnTStrList.Create;
+  AnotherListUnique := mnTStrList.Create;
   try
     StrList.LoadFromArray([Str_0, Str_1, Str_2]);
     StrList.Objects[0] := mnNewIntPointer(0);
@@ -6594,20 +6594,20 @@ begin
     AnotherList.Objects[2] := mnNewIntPointer(4);
     AnotherList.Objects[3] := mnNewIntPointer(1);
 
-    StrList.Compare(AnotherList, StrListSolo, AnotherListSolo);
-    CheckEquals(StrListSolo.Count, 1);
-    Check(StrListSolo[0] = Str_0);
-    Check(mnReadIntPointer(StrListSolo.Objects[0]) = 0);
-    CheckEquals(AnotherListSolo.Count, 2);
-    Check(AnotherListSolo[0] = Str_3);
-    Check(AnotherListSolo[1] = Str_4);
-    Check(mnReadIntPointer(AnotherListSolo.Objects[0]) = 3);
-    Check(mnReadIntPointer(AnotherListSolo.Objects[1]) = 4);
+    StrList.Compare(AnotherList, StrListUnique, AnotherListUnique);
+    CheckEquals(StrListUnique.Count, 1);
+    Check(StrListUnique[0] = Str_0);
+    Check(mnReadIntPointer(StrListUnique.Objects[0]) = 0);
+    CheckEquals(AnotherListUnique.Count, 2);
+    Check(AnotherListUnique[0] = Str_3);
+    Check(AnotherListUnique[1] = Str_4);
+    Check(mnReadIntPointer(AnotherListUnique.Objects[0]) = 3);
+    Check(mnReadIntPointer(AnotherListUnique.Objects[1]) = 4);
   finally
     mnClearStrings(AnotherList);
     mnClearStrings(StrList);
-    AnotherListSolo.Free;
-    StrListSolo.Free;
+    AnotherListUnique.Free;
+    StrListUnique.Free;
     AnotherList.Free;
     StrList.Free;
   end;

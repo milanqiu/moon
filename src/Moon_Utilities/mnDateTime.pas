@@ -107,6 +107,7 @@ function mnFileTimeToLocalToDateTime(const FileTime: TFileTime): TDateTime;
 
 {--------------------------------
   返回指定时刻所在的那一小时的开始时刻、结束时刻，那一分钟的开始时刻、结束时刻，那一秒钟的开始时刻、结束时刻。
+  结束时刻以最后一毫秒计。
   StartOfTheYear、StartOfTheMonth、StartOfTheDay、EndOfTheYear、EndOfTheMonth、EndOfTheDay已在标准DateUtils中实现。
   Tested in TestUnit.
  --------------------------------}
@@ -120,6 +121,7 @@ function mnEndOfTheSecond(const Value: TDateTime): TDateTime;
 
 {--------------------------------
   返回指定时刻的下一年、月、日、时、分、秒的开始时刻和结束时刻。
+  结束时刻以最后一毫秒计。
   Tested in TestUnit.
  --------------------------------}
 function mnStartOfNextYear  (const Value: TDateTime): TDateTime;
@@ -138,6 +140,7 @@ function mnEndOfNextSecond(const Value: TDateTime): TDateTime;
 
 {--------------------------------
   返回指定时刻的上一年、月、日、时、分、秒的开始时刻和结束时刻。
+  结束时刻以最后一毫秒计。
   Tested in TestUnit.
  --------------------------------}
 function mnStartOfLastYear  (const Value: TDateTime): TDateTime;
@@ -156,6 +159,7 @@ function mnEndOfLastSecond(const Value: TDateTime): TDateTime;
 
 {--------------------------------
   返回指定时刻所在的同一时间单位，或下一时间单位，或上一时间单位的开始时刻和结束时刻。
+  结束时刻以最后一毫秒计。
   Tested in TestUnit.
  --------------------------------}
 function mnStartOf    (const Value: TDateTime; const Precision: mnTTimeUnit): TDateTime;
@@ -167,6 +171,8 @@ function mnEndOfLast  (const Value: TDateTime; const Precision: mnTTimeUnit): TD
 
 {--------------------------------
   返回指定时刻所在的那一季度、上一周、上一季度的开始时刻、结束时刻。
+  结束时刻以最后一毫秒计。
+  StartOfTheWeek、EndOfTheWeek已在标准DateUtils中实现。
   Tested in TestUnit.
  --------------------------------}
 function mnStartOfTheQuarter (const Value: TDateTime): TDateTime;

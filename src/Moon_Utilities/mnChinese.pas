@@ -38,26 +38,28 @@ function mnChineseInt(const Value: Integer; const Capital: Boolean = False; cons
 function mnChineseDate(const Value: TDateTime; const Capital: Boolean = False; const Zero: string = '零'): string;
 
 {--------------------------------
-  将一个浮点数转换成以万表示的中文。例如，“87654320”转为“8765.43万”。
+  将一个浮点数转换成以万表示的字符串。例如，“87654320”转为“8765.43万”。
   DecimalDigits表示转换成字符串时，保留的小数位数。如果是-1，说明不做任何舍入操作。
   Tested in TestUnit.
  --------------------------------}
 function mnFloatToWanStr  (const Value: Extended; const DecimalDigits: Integer = -1): string;
 {--------------------------------
-  将一个浮点数转换成以亿表示的中文。例如，“876543200000”转为“8765.43亿”。
+  将一个浮点数转换成以亿表示的字符串。例如，“876543200000”转为“8765.43亿”。
   DecimalDigits表示转换成字符串时，保留的小数位数。如果是-1，说明不做任何舍入操作。
   Tested in TestUnit.
  --------------------------------}
 function mnFloatToYiStr   (const Value: Extended; const DecimalDigits: Integer = -1): string;
 {--------------------------------
-  将一个浮点数根据其大小，转换为以万表示或以亿表示的中文。大于1亿或小于负1亿，以亿表示，否则以万表示。
+  将一个浮点数根据其大小，转换为以万表示或以亿表示的字符串。大于1亿或小于负1亿，以亿表示，否则以万表示。
   DecimalDigits表示转换成字符串时，保留的小数位数。如果是-1，说明不做任何舍入操作。
   Tested in TestUnit.
  --------------------------------}
 function mnFloatToWanYiStr(const Value: Extended; const DecimalDigits: Integer = -1): string;
 
 {--------------------------------
-  将以万表示或以亿表示的中文，转换为浮点数。
+  将以万表示或以亿表示的字符串，转换为浮点数。
+  支持字符串里存在千位分隔符或空格。
+  例如，“8765万”转为“87650000”，“8,765.432 亿”转为“876543200000”。
   Tested in TestUnit.
  --------------------------------}
 function mnWanYiStrToFloat(const S: string): Extended;

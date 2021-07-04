@@ -527,10 +527,9 @@ var
   i: Integer;
   LowBound, HighBound: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim1(VA);
   mnCreateErrorIf(mnVALength(VA, 1) > Length(Arr), SArrayTooShort, [Length(Arr), mnVALength(VA, 1)]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     LowBound := VarArrayLowBound(VA, 1);
@@ -547,10 +546,9 @@ var
   i: Integer;
   LowBound, HighBound: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim1(VA);
   mnCreateErrorIf(mnVALength(VA, 1) > Length(Arr), SArrayTooShort, [Length(Arr), mnVALength(VA, 1)]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     LowBound := VarArrayLowBound(VA, 1);
@@ -567,10 +565,9 @@ var
   i: Integer;
   LowBound, HighBound: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim1(VA);
   mnCreateErrorIf(mnVALength(VA, 1) > Length(Arr), SArrayTooShort, [Length(Arr), mnVALength(VA, 1)]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     LowBound := VarArrayLowBound(VA, 1);
@@ -587,10 +584,9 @@ var
   i: Integer;
   LowBound, HighBound: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim1(VA);
   mnCreateErrorIf(mnVALength(VA, 1) > Length(Arr), SArrayTooShort, [Length(Arr), mnVALength(VA, 1)]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     LowBound := VarArrayLowBound(VA, 1);
@@ -607,10 +603,9 @@ var
   i: Integer;
   LowBound, HighBound: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim1(VA);
   mnCreateErrorIf(mnVALength(VA, 1) > Length(Arr), SArrayTooShort, [Length(Arr), mnVALength(VA, 1)]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     LowBound := VarArrayLowBound(VA, 1);
@@ -627,10 +622,9 @@ var
   i: Integer;
   LowBound, HighBound: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim1(VA);
   mnCreateErrorIf(mnVALength(VA, 1) > Length(Arr), SArrayTooShort, [Length(Arr), mnVALength(VA, 1)]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     LowBound := VarArrayLowBound(VA, 1);
@@ -768,11 +762,10 @@ var
   LowBound1, HighBound1: Integer;
   LowBound2, HighBound2: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCreateErrorIf(mnVALength(VA, 1) > Length(Arr),    SArrayTooShort, [Length(Arr),    mnVALength(VA, 1)]);
   mnCreateErrorIf(mnVALength(VA, 2) > Length(Arr[0]), SArrayTooShort, [Length(Arr[0]), mnVALength(VA, 2)]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     LowBound1 := VarArrayLowBound(VA, 1);
@@ -793,11 +786,10 @@ var
   LowBound1, HighBound1: Integer;
   LowBound2, HighBound2: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCreateErrorIf(mnVALength(VA, 1) > Length(Arr),    SArrayTooShort, [Length(Arr),    mnVALength(VA, 1)]);
   mnCreateErrorIf(mnVALength(VA, 2) > Length(Arr[0]), SArrayTooShort, [Length(Arr[0]), mnVALength(VA, 2)]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     LowBound1 := VarArrayLowBound(VA, 1);
@@ -818,11 +810,10 @@ var
   LowBound1, HighBound1: Integer;
   LowBound2, HighBound2: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCreateErrorIf(mnVALength(VA, 1) > Length(Arr),    SArrayTooShort, [Length(Arr),    mnVALength(VA, 1)]);
   mnCreateErrorIf(mnVALength(VA, 2) > Length(Arr[0]), SArrayTooShort, [Length(Arr[0]), mnVALength(VA, 2)]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     LowBound1 := VarArrayLowBound(VA, 1);
@@ -843,9 +834,8 @@ var
   LowBound1, HighBound1: Integer;
   LowBound2, HighBound2: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     LowBound1 := VarArrayLowBound(VA, 1);
@@ -867,9 +857,8 @@ var
   LowBound1, HighBound1: Integer;
   LowBound2, HighBound2: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     LowBound1 := VarArrayLowBound(VA, 1);
@@ -891,9 +880,8 @@ var
   LowBound1, HighBound1: Integer;
   LowBound2, HighBound2: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     LowBound1 := VarArrayLowBound(VA, 1);
@@ -976,12 +964,11 @@ procedure mnPartVAToArrayDim2  (const VA: Variant; var Arr: mnTVarArrayDim2; con
 var
   i, j: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1Begin, Index1End, Index2Begin, Index2End);
   mnCreateErrorIf(Index1End-Index1Begin+1 > Length(Arr),    SArrayTooShort, [Length(Arr),    Index1End-Index1Begin+1]);
   mnCreateErrorIf(Index2End-Index2Begin+1 > Length(Arr[0]), SArrayTooShort, [Length(Arr[0]), Index2End-Index2Begin+1]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     for i := Index1Begin to Index1End do
@@ -996,12 +983,11 @@ procedure mnPartVAToArrayDim2  (const VA: Variant; var Arr: mnTStrArrayDim2; con
 var
   i, j: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1Begin, Index1End, Index2Begin, Index2End);
   mnCreateErrorIf(Index1End-Index1Begin+1 > Length(Arr),    SArrayTooShort, [Length(Arr),    Index1End-Index1Begin+1]);
   mnCreateErrorIf(Index2End-Index2Begin+1 > Length(Arr[0]), SArrayTooShort, [Length(Arr[0]), Index2End-Index2Begin+1]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     for i := Index1Begin to Index1End do
@@ -1016,12 +1002,11 @@ procedure mnPartVAToArrayDim2  (const VA: Variant; var Arr: mnTIntArrayDim2; con
 var
   i, j: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1Begin, Index1End, Index2Begin, Index2End);
   mnCreateErrorIf(Index1End-Index1Begin+1 > Length(Arr),    SArrayTooShort, [Length(Arr),    Index1End-Index1Begin+1]);
   mnCreateErrorIf(Index2End-Index2Begin+1 > Length(Arr[0]), SArrayTooShort, [Length(Arr[0]), Index2End-Index2Begin+1]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     for i := Index1Begin to Index1End do
@@ -1036,10 +1021,9 @@ procedure mnPartVAToArrayDim2_A(const VA: Variant; var Arr: mnTVarArrayDim2; con
 var
   i, j: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1Begin, Index1End, Index2Begin, Index2End);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     SetLength(Arr, Index1End-Index1Begin+1, Index2End-Index2Begin+1);
@@ -1055,10 +1039,9 @@ procedure mnPartVAToArrayDim2_A(const VA: Variant; var Arr: mnTStrArrayDim2; con
 var
   i, j: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1Begin, Index1End, Index2Begin, Index2End);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     SetLength(Arr, Index1End-Index1Begin+1, Index2End-Index2Begin+1);
@@ -1074,10 +1057,9 @@ procedure mnPartVAToArrayDim2_A(const VA: Variant; var Arr: mnTIntArrayDim2; con
 var
   i, j: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1Begin, Index1End, Index2Begin, Index2End);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     SetLength(Arr, Index1End-Index1Begin+1, Index2End-Index2Begin+1);
@@ -1098,10 +1080,10 @@ begin
   if Index1End < Index1Begin then Exit;
   Index2End := Index2Begin + Length(Arr[0]) - 1;
   if Index2End < Index2Begin then Exit;
-{$IFDEF MN_DEBUG}
+
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1Begin, Index1End, Index2Begin, Index2End);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     for i := Index1Begin to Index1End do
@@ -1121,10 +1103,10 @@ begin
   if Index1End < Index1Begin then Exit;
   Index2End := Index2Begin + Length(Arr[0]) - 1;
   if Index2End < Index2Begin then Exit;
-{$IFDEF MN_DEBUG}
+
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1Begin, Index1End, Index2Begin, Index2End);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     for i := Index1Begin to Index1End do
@@ -1144,10 +1126,10 @@ begin
   if Index1End < Index1Begin then Exit;
   Index2End := Index2Begin + Length(Arr[0]) - 1;
   if Index2End < Index2Begin then Exit;
-{$IFDEF MN_DEBUG}
+
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1Begin, Index1End, Index2Begin, Index2End);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     for i := Index1Begin to Index1End do
@@ -1162,11 +1144,10 @@ procedure mnBase1VAToArrayDim2(const VA: Variant; var Arr: array of Variant;   c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1, Index1, Index2Begin, Index2End);
   mnCreateErrorIf(Index2End-Index2Begin+1 > Length(Arr), SArrayTooShort, [Length(Arr), Index2End-Index2Begin+1]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     for i := Index2Begin to Index2End do
@@ -1180,11 +1161,10 @@ procedure mnBase1VAToArrayDim2(const VA: Variant; var Arr: array of string;    c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1, Index1, Index2Begin, Index2End);
   mnCreateErrorIf(Index2End-Index2Begin+1 > Length(Arr), SArrayTooShort, [Length(Arr), Index2End-Index2Begin+1]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     for i := Index2Begin to Index2End do
@@ -1198,11 +1178,10 @@ procedure mnBase1VAToArrayDim2(const VA: Variant; var Arr: array of Integer;   c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1, Index1, Index2Begin, Index2End);
   mnCreateErrorIf(Index2End-Index2Begin+1 > Length(Arr), SArrayTooShort, [Length(Arr), Index2End-Index2Begin+1]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     for i := Index2Begin to Index2End do
@@ -1216,11 +1195,10 @@ procedure mnBase1VAToArrayDim2(const VA: Variant; var Arr: array of Extended;  c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1, Index1, Index2Begin, Index2End);
   mnCreateErrorIf(Index2End-Index2Begin+1 > Length(Arr), SArrayTooShort, [Length(Arr), Index2End-Index2Begin+1]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     for i := Index2Begin to Index2End do
@@ -1234,11 +1212,10 @@ procedure mnBase1VAToArrayDim2(const VA: Variant; var Arr: array of TDateTime; c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1, Index1, Index2Begin, Index2End);
   mnCreateErrorIf(Index2End-Index2Begin+1 > Length(Arr), SArrayTooShort, [Length(Arr), Index2End-Index2Begin+1]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     for i := Index2Begin to Index2End do
@@ -1252,11 +1229,10 @@ procedure mnBase1VAToArrayDim2(const VA: Variant; var Arr: array of Currency;  c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1, Index1, Index2Begin, Index2End);
   mnCreateErrorIf(Index2End-Index2Begin+1 > Length(Arr), SArrayTooShort, [Length(Arr), Index2End-Index2Begin+1]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     for i := Index2Begin to Index2End do
@@ -1270,11 +1246,10 @@ procedure mnBase2VAToArrayDim2(const VA: Variant; var Arr: array of Variant;   c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1Begin, Index1End, Index2, Index2);
   mnCreateErrorIf(Index1End-Index1Begin+1 > Length(Arr), SArrayTooShort, [Length(Arr), Index1End-Index1Begin+1]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     for i := Index1Begin to Index1End do
@@ -1288,11 +1263,10 @@ procedure mnBase2VAToArrayDim2(const VA: Variant; var Arr: array of string;    c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1Begin, Index1End, Index2, Index2);
   mnCreateErrorIf(Index1End-Index1Begin+1 > Length(Arr), SArrayTooShort, [Length(Arr), Index1End-Index1Begin+1]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     for i := Index1Begin to Index1End do
@@ -1306,11 +1280,10 @@ procedure mnBase2VAToArrayDim2(const VA: Variant; var Arr: array of Integer;   c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1Begin, Index1End, Index2, Index2);
   mnCreateErrorIf(Index1End-Index1Begin+1 > Length(Arr), SArrayTooShort, [Length(Arr), Index1End-Index1Begin+1]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     for i := Index1Begin to Index1End do
@@ -1324,11 +1297,10 @@ procedure mnBase2VAToArrayDim2(const VA: Variant; var Arr: array of Extended;  c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1Begin, Index1End, Index2, Index2);
   mnCreateErrorIf(Index1End-Index1Begin+1 > Length(Arr), SArrayTooShort, [Length(Arr), Index1End-Index1Begin+1]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     for i := Index1Begin to Index1End do
@@ -1342,11 +1314,10 @@ procedure mnBase2VAToArrayDim2(const VA: Variant; var Arr: array of TDateTime; c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1Begin, Index1End, Index2, Index2);
   mnCreateErrorIf(Index1End-Index1Begin+1 > Length(Arr), SArrayTooShort, [Length(Arr), Index1End-Index1Begin+1]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     for i := Index1Begin to Index1End do
@@ -1360,11 +1331,10 @@ procedure mnBase2VAToArrayDim2(const VA: Variant; var Arr: array of Currency;  c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1Begin, Index1End, Index2, Index2);
   mnCreateErrorIf(Index1End-Index1Begin+1 > Length(Arr), SArrayTooShort, [Length(Arr), Index1End-Index1Begin+1]);
-{$ENDIF}
+
   try
     VarArrayLock(VA);
     for i := Index1Begin to Index1End do
@@ -1378,10 +1348,9 @@ procedure mnBase1ArrayToVADim2(const Arr: array of Variant;   var VA: Variant; c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1, Index1, Index2, Index2+Length(Arr)-1);
-{$ENDIF}
+
   if Length(Arr) = 0 then Exit;
   try
     VarArrayLock(VA);
@@ -1396,10 +1365,9 @@ procedure mnBase1ArrayToVADim2(const Arr: array of string;    var VA: Variant; c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1, Index1, Index2, Index2+Length(Arr)-1);
-{$ENDIF}
+
   if Length(Arr) = 0 then Exit;
   try
     VarArrayLock(VA);
@@ -1414,10 +1382,9 @@ procedure mnBase1ArrayToVADim2(const Arr: array of Integer;   var VA: Variant; c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1, Index1, Index2, Index2+Length(Arr)-1);
-{$ENDIF}
+
   if Length(Arr) = 0 then Exit;
   try
     VarArrayLock(VA);
@@ -1432,10 +1399,9 @@ procedure mnBase1ArrayToVADim2(const Arr: array of Extended;  var VA: Variant; c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1, Index1, Index2, Index2+Length(Arr)-1);
-{$ENDIF}
+
   if Length(Arr) = 0 then Exit;
   try
     VarArrayLock(VA);
@@ -1450,10 +1416,9 @@ procedure mnBase1ArrayToVADim2(const Arr: array of TDateTime; var VA: Variant; c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1, Index1, Index2, Index2+Length(Arr)-1);
-{$ENDIF}
+
   if Length(Arr) = 0 then Exit;
   try
     VarArrayLock(VA);
@@ -1468,10 +1433,9 @@ procedure mnBase1ArrayToVADim2(const Arr: array of Currency;  var VA: Variant; c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1, Index1, Index2, Index2+Length(Arr)-1);
-{$ENDIF}
+
   if Length(Arr) = 0 then Exit;
   try
     VarArrayLock(VA);
@@ -1486,10 +1450,9 @@ procedure mnBase2ArrayToVADim2(const Arr: array of Variant;   var VA: Variant; c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1, Index1+Length(Arr)-1, Index2, Index2);
-{$ENDIF}
+
   if Length(Arr) = 0 then Exit;
   try
     VarArrayLock(VA);
@@ -1504,10 +1467,9 @@ procedure mnBase2ArrayToVADim2(const Arr: array of string;    var VA: Variant; c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1, Index1+Length(Arr)-1, Index2, Index2);
-{$ENDIF}
+
   if Length(Arr) = 0 then Exit;
   try
     VarArrayLock(VA);
@@ -1522,10 +1484,9 @@ procedure mnBase2ArrayToVADim2(const Arr: array of Integer;   var VA: Variant; c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1, Index1+Length(Arr)-1, Index2, Index2);
-{$ENDIF}
+
   if Length(Arr) = 0 then Exit;
   try
     VarArrayLock(VA);
@@ -1540,10 +1501,9 @@ procedure mnBase2ArrayToVADim2(const Arr: array of Extended;  var VA: Variant; c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1, Index1+Length(Arr)-1, Index2, Index2);
-{$ENDIF}
+
   if Length(Arr) = 0 then Exit;
   try
     VarArrayLock(VA);
@@ -1558,10 +1518,9 @@ procedure mnBase2ArrayToVADim2(const Arr: array of TDateTime; var VA: Variant; c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1, Index1+Length(Arr)-1, Index2, Index2);
-{$ENDIF}
+
   if Length(Arr) = 0 then Exit;
   try
     VarArrayLock(VA);
@@ -1576,10 +1535,9 @@ procedure mnBase2ArrayToVADim2(const Arr: array of Currency;  var VA: Variant; c
 var
   i: Integer;
 begin
-{$IFDEF MN_DEBUG}
   mnCheckVADim2(VA);
   mnCheckVAContainRangeDim2(VA, Index1, Index1+Length(Arr)-1, Index2, Index2);
-{$ENDIF}
+
   if Length(Arr) = 0 then Exit;
   try
     VarArrayLock(VA);

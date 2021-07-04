@@ -5,11 +5,6 @@ interface
 uses Windows, Controls, Graphics, Classes, mnSystem, mnString, Messages;
 
 {--------------------------------
-  Windows API.
- --------------------------------}
-function PrintWindow(hWnd: HWND; hdcBlt: HDC; nFlags: UINT): BOOL; stdcall; external user32 name 'PrintWindow';
-
-{--------------------------------
   在Windows环境中创建和关闭Desktop。
   mnCreateDesktop返回新创建的Desktop的句柄。
   mnCloseDesktop返回是否成功关闭。
@@ -231,14 +226,13 @@ procedure mnPostSysVKeyToWindow(const Window: HWND; const VKey: Integer);
  --------------------------------}
 procedure mnPostKeyToWindow(const Window: HWND; const Key: Char);
 
-{$EXTERNALSYM DragAcceptFiles}
-procedure DragAcceptFiles(hWnd: Cardinal; fAccept: Boolean); stdcall;
-{$EXTERNALSYM DragQueryFile}
-function DragQueryFile(hDrop: Cardinal; iFile: Cardinal; lpszFile: PChar; cch: Integer): Integer; stdcall;
-{$EXTERNALSYM DragQueryPoint}
-function DragQueryPoint(hDrop: Cardinal; ppt: PPoint): Boolean; stdcall;
-{$EXTERNALSYM DragFinish}
-procedure DragFinish(hDrop: Cardinal); stdcall;
+{--------------------------------
+  Windows API.
+ --------------------------------}
+procedure DragAcceptFiles(hWnd: Cardinal; fAccept: Boolean); stdcall; external 'Shell32';
+function DragQueryFile(hDrop: Cardinal; iFile: Cardinal; lpszFile: PChar; cch: Integer): Integer; stdcall; external 'Shell32';
+function DragQueryPoint(hDrop: Cardinal; ppt: PPoint): Boolean; stdcall; external 'Shell32';
+procedure DragFinish(hDrop: Cardinal); stdcall; external 'Shell32';
 
 {--------------------------------
   允许指定句柄或指定控件接受文件拖入。
@@ -278,6 +272,11 @@ procedure mnFinishDropFiles(var AMsg: TWMDropFiles);
   Tested in TestApp.
  --------------------------------}
 function mnGetWindowColor(const APoint: TPoint; const Window: HWND = 0): TColor;
+
+{--------------------------------
+  Windows API.
+ --------------------------------}
+function PrintWindow(hWnd: HWND; hdcBlt: HDC; nFlags: UINT): BOOL; stdcall; external user32 name 'PrintWindow';
 
 {--------------------------------
   以下两个函数的功能都是截取指定窗口中某区域的图像，并绘制到Canvas的(CanvasX, CanvasY)处。
@@ -751,11 +750,6 @@ procedure mnPostKeyToWindow(const Window: HWND; const Key: Char);
 begin
   PostMessage(Window, WM_CHAR, Ord(Key), 0);
 end;
-
-procedure DragAcceptFiles; external 'Shell32';
-function DragQueryFile; external 'Shell32';
-function DragQueryPoint; external 'Shell32';
-procedure DragFinish; external 'Shell32';
 
 procedure mnAcceptDropFiles(AHandle: THandle); overload;
 begin

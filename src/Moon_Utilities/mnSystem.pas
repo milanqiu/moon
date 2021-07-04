@@ -822,7 +822,7 @@ type
     procedure MakeUnique;
 
     function Equals(AnotherList: mnTVarList): Boolean;
-    procedure Compare(AnotherList: mnTVarList; OutSolo, OutAnotherSolo: mnTVarList);
+    procedure Compare(AnotherList: mnTVarList; OutUnique, OutAnotherUnique: mnTVarList);
     procedure Link(AnotherList: mnTVarList);
     procedure LinkStrs(Strs: TStrings);
     procedure Assign(AnotherList: mnTVarList; AOperator: TListAssignOp = laCopy);
@@ -889,7 +889,7 @@ type
     procedure MakeUnique;
 
     function Equals(AnotherList: mnTIntList): Boolean;
-    procedure Compare(AnotherList: mnTIntList; OutSolo, OutAnotherSolo: mnTIntList);
+    procedure Compare(AnotherList: mnTIntList; OutUnique, OutAnotherUnique: mnTIntList);
     procedure Link(AnotherList: mnTIntList);
     procedure LinkStrs(Strs: TStrings);
     procedure Assign(AnotherList: mnTIntList; AOperator: TListAssignOp = laCopy);
@@ -956,7 +956,7 @@ type
     procedure MakeUnique;
 
     function Equals(AnotherList: mnTFloatList): Boolean;
-    procedure Compare(AnotherList: mnTFloatList; OutSolo, OutAnotherSolo: mnTFloatList);
+    procedure Compare(AnotherList: mnTFloatList; OutUnique, OutAnotherUnique: mnTFloatList);
     procedure Link(AnotherList: mnTFloatList);
     procedure LinkStrs(Strs: TStrings);
     procedure Assign(AnotherList: mnTFloatList; AOperator: TListAssignOp = laCopy);
@@ -1017,7 +1017,7 @@ type
     procedure MakeUnique;
 
     function Equals(AnotherList: mnTDTList): Boolean;
-    procedure Compare(AnotherList: mnTDTList; OutSolo, OutAnotherSolo: mnTDTList);
+    procedure Compare(AnotherList: mnTDTList; OutUnique, OutAnotherUnique: mnTDTList);
     procedure Link(AnotherList: mnTDTList);
     procedure LinkStrs(Strs: TStrings);
     procedure Assign(AnotherList: mnTDTList; AOperator: TListAssignOp = laCopy);
@@ -1084,7 +1084,7 @@ type
     procedure MakeUnique;
 
     function Equals(AnotherList: mnTCurrList): Boolean;
-    procedure Compare(AnotherList: mnTCurrList; OutSolo, OutAnotherSolo: mnTCurrList);
+    procedure Compare(AnotherList: mnTCurrList; OutUnique, OutAnotherUnique: mnTCurrList);
     procedure Link(AnotherList: mnTCurrList);
     procedure LinkStrs(Strs: TStrings);
     procedure Assign(AnotherList: mnTCurrList; AOperator: TListAssignOp = laCopy);
@@ -1145,7 +1145,7 @@ type
     procedure MakeUnique;
 
     function Equals(AnotherList: mnTBoolList): Boolean;
-    procedure Compare(AnotherList: mnTBoolList; OutSolo, OutAnotherSolo: mnTBoolList);
+    procedure Compare(AnotherList: mnTBoolList; OutUnique, OutAnotherUnique: mnTBoolList);
     procedure Link(AnotherList: mnTBoolList);
     procedure LinkStrs(Strs: TStrings);
     procedure Assign(AnotherList: mnTBoolList; AOperator: TListAssignOp = laCopy);
@@ -1253,7 +1253,7 @@ type
     function IsUnique(const NamePartOnly: Boolean = False): Boolean;
     procedure MakeUnique(const NamePartOnly: Boolean = False);
 
-    procedure Compare(AnotherList: TStrings; OutSolo, OutAnotherSolo: TStrings);
+    procedure Compare(AnotherList: TStrings; OutUnique, OutAnotherUnique: TStrings);
     procedure AssignByOp(AnotherList: TStrings; AOperator: TListAssignOp = laCopy);
 
     procedure ExtractObjectsAsStrPointer(OutList: TStrings; ExtractdFormat: string = '');
@@ -3673,16 +3673,16 @@ begin
     end;
 end;
 
-procedure mnTVarList.Compare(AnotherList: mnTVarList; OutSolo, OutAnotherSolo: mnTVarList);
+procedure mnTVarList.Compare(AnotherList: mnTVarList; OutUnique, OutAnotherUnique: mnTVarList);
 var
   i: Integer;
 begin
-  OutSolo.Capacity := OutSolo.Count + Count;
-  OutAnotherSolo.Capacity := OutAnotherSolo.Count + AnotherList.Count;
+  OutUnique.Capacity := OutUnique.Count + Count;
+  OutAnotherUnique.Capacity := OutAnotherUnique.Count + AnotherList.Count;
   for i := 0 to Count-1 do
-    if AnotherList.IndexOf(GetItem(i)) = -1 then OutSolo.Add(GetItem(i));
+    if AnotherList.IndexOf(GetItem(i)) = -1 then OutUnique.Add(GetItem(i));
   for i := 0 to AnotherList.Count-1 do
-    if IndexOf(AnotherList.GetItem(i)) = -1 then OutAnotherSolo.Add(AnotherList.GetItem(i));
+    if IndexOf(AnotherList.GetItem(i)) = -1 then OutAnotherUnique.Add(AnotherList.GetItem(i));
 end;
 
 procedure mnTVarList.Link(AnotherList: mnTVarList);
@@ -4144,16 +4144,16 @@ begin
     end;
 end;
 
-procedure mnTIntList.Compare(AnotherList: mnTIntList; OutSolo, OutAnotherSolo: mnTIntList);
+procedure mnTIntList.Compare(AnotherList: mnTIntList; OutUnique, OutAnotherUnique: mnTIntList);
 var
   i: Integer;
 begin
-  OutSolo.Capacity := OutSolo.Count + Count;
-  OutAnotherSolo.Capacity := OutAnotherSolo.Count + AnotherList.Count;
+  OutUnique.Capacity := OutUnique.Count + Count;
+  OutAnotherUnique.Capacity := OutAnotherUnique.Count + AnotherList.Count;
   for i := 0 to Count-1 do
-    if AnotherList.IndexOf(GetItem(i)) = -1 then OutSolo.Add(GetItem(i));
+    if AnotherList.IndexOf(GetItem(i)) = -1 then OutUnique.Add(GetItem(i));
   for i := 0 to AnotherList.Count-1 do
-    if IndexOf(AnotherList.GetItem(i)) = -1 then OutAnotherSolo.Add(AnotherList.GetItem(i));
+    if IndexOf(AnotherList.GetItem(i)) = -1 then OutAnotherUnique.Add(AnotherList.GetItem(i));
 end;
 
 procedure mnTIntList.Link(AnotherList: mnTIntList);
@@ -4608,16 +4608,16 @@ begin
     end;
 end;
 
-procedure mnTFloatList.Compare(AnotherList: mnTFloatList; OutSolo, OutAnotherSolo: mnTFloatList);
+procedure mnTFloatList.Compare(AnotherList: mnTFloatList; OutUnique, OutAnotherUnique: mnTFloatList);
 var
   i: Integer;
 begin
-  OutSolo.Capacity := OutSolo.Count + Count;
-  OutAnotherSolo.Capacity := OutAnotherSolo.Count + AnotherList.Count;
+  OutUnique.Capacity := OutUnique.Count + Count;
+  OutAnotherUnique.Capacity := OutAnotherUnique.Count + AnotherList.Count;
   for i := 0 to Count-1 do
-    if AnotherList.IndexOf(GetItem(i)) = -1 then OutSolo.Add(GetItem(i));
+    if AnotherList.IndexOf(GetItem(i)) = -1 then OutUnique.Add(GetItem(i));
   for i := 0 to AnotherList.Count-1 do
-    if IndexOf(AnotherList.GetItem(i)) = -1 then OutAnotherSolo.Add(AnotherList.GetItem(i));
+    if IndexOf(AnotherList.GetItem(i)) = -1 then OutAnotherUnique.Add(AnotherList.GetItem(i));
 end;
 
 procedure mnTFloatList.Link(AnotherList: mnTFloatList);
@@ -5047,16 +5047,16 @@ begin
     end;
 end;
 
-procedure mnTDTList.Compare(AnotherList: mnTDTList; OutSolo, OutAnotherSolo: mnTDTList);
+procedure mnTDTList.Compare(AnotherList: mnTDTList; OutUnique, OutAnotherUnique: mnTDTList);
 var
   i: Integer;
 begin
-  OutSolo.Capacity := OutSolo.Count + Count;
-  OutAnotherSolo.Capacity := OutAnotherSolo.Count + AnotherList.Count;
+  OutUnique.Capacity := OutUnique.Count + Count;
+  OutAnotherUnique.Capacity := OutAnotherUnique.Count + AnotherList.Count;
   for i := 0 to Count-1 do
-    if AnotherList.IndexOf(GetItem(i)) = -1 then OutSolo.Add(GetItem(i));
+    if AnotherList.IndexOf(GetItem(i)) = -1 then OutUnique.Add(GetItem(i));
   for i := 0 to AnotherList.Count-1 do
-    if IndexOf(AnotherList.GetItem(i)) = -1 then OutAnotherSolo.Add(AnotherList.GetItem(i));
+    if IndexOf(AnotherList.GetItem(i)) = -1 then OutAnotherUnique.Add(AnotherList.GetItem(i));
 end;
 
 procedure mnTDTList.Link(AnotherList: mnTDTList);
@@ -5511,16 +5511,16 @@ begin
     end;
 end;
 
-procedure mnTCurrList.Compare(AnotherList: mnTCurrList; OutSolo, OutAnotherSolo: mnTCurrList);
+procedure mnTCurrList.Compare(AnotherList: mnTCurrList; OutUnique, OutAnotherUnique: mnTCurrList);
 var
   i: Integer;
 begin
-  OutSolo.Capacity := OutSolo.Count + Count;
-  OutAnotherSolo.Capacity := OutAnotherSolo.Count + AnotherList.Count;
+  OutUnique.Capacity := OutUnique.Count + Count;
+  OutAnotherUnique.Capacity := OutAnotherUnique.Count + AnotherList.Count;
   for i := 0 to Count-1 do
-    if AnotherList.IndexOf(GetItem(i)) = -1 then OutSolo.Add(GetItem(i));
+    if AnotherList.IndexOf(GetItem(i)) = -1 then OutUnique.Add(GetItem(i));
   for i := 0 to AnotherList.Count-1 do
-    if IndexOf(AnotherList.GetItem(i)) = -1 then OutAnotherSolo.Add(AnotherList.GetItem(i));
+    if IndexOf(AnotherList.GetItem(i)) = -1 then OutAnotherUnique.Add(AnotherList.GetItem(i));
 end;
 
 procedure mnTCurrList.Link(AnotherList: mnTCurrList);
@@ -5950,16 +5950,16 @@ begin
     end;
 end;
 
-procedure mnTBoolList.Compare(AnotherList: mnTBoolList; OutSolo, OutAnotherSolo: mnTBoolList);
+procedure mnTBoolList.Compare(AnotherList: mnTBoolList; OutUnique, OutAnotherUnique: mnTBoolList);
 var
   i: Integer;
 begin
-  OutSolo.Capacity := OutSolo.Count + Count;
-  OutAnotherSolo.Capacity := OutAnotherSolo.Count + AnotherList.Count;
+  OutUnique.Capacity := OutUnique.Count + Count;
+  OutAnotherUnique.Capacity := OutAnotherUnique.Count + AnotherList.Count;
   for i := 0 to Count-1 do
-    if AnotherList.IndexOf(GetItem(i)) = -1 then OutSolo.Add(GetItem(i));
+    if AnotherList.IndexOf(GetItem(i)) = -1 then OutUnique.Add(GetItem(i));
   for i := 0 to AnotherList.Count-1 do
-    if IndexOf(AnotherList.GetItem(i)) = -1 then OutAnotherSolo.Add(AnotherList.GetItem(i));
+    if IndexOf(AnotherList.GetItem(i)) = -1 then OutAnotherUnique.Add(AnotherList.GetItem(i));
 end;
 
 procedure mnTBoolList.Link(AnotherList: mnTBoolList);
@@ -6428,16 +6428,16 @@ begin
       end;
 end;
 
-procedure mnTStrList.Compare(AnotherList: TStrings; OutSolo, OutAnotherSolo: TStrings);
+procedure mnTStrList.Compare(AnotherList: TStrings; OutUnique, OutAnotherUnique: TStrings);
 var
   i: Integer;
 begin
-  OutSolo.Capacity := OutSolo.Count + Count;
-  OutAnotherSolo.Capacity := OutAnotherSolo.Count + AnotherList.Count;
+  OutUnique.Capacity := OutUnique.Count + Count;
+  OutAnotherUnique.Capacity := OutAnotherUnique.Count + AnotherList.Count;
   for i := 0 to Count-1 do
-    if AnotherList.IndexOf(Get(i)) = -1 then OutSolo.AddObject(Get(i), Objects[i]);
+    if AnotherList.IndexOf(Get(i)) = -1 then OutUnique.AddObject(Get(i), Objects[i]);
   for i := 0 to AnotherList.Count-1 do
-    if IndexOf(AnotherList[i]) = -1 then OutAnotherSolo.AddObject(AnotherList[i], AnotherList.Objects[i]);
+    if IndexOf(AnotherList[i]) = -1 then OutAnotherUnique.AddObject(AnotherList[i], AnotherList.Objects[i]);
 end;
 
 procedure mnTStrList.AssignByOp(AnotherList: TStrings; AOperator: TListAssignOp = laCopy);

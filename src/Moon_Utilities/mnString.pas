@@ -180,6 +180,7 @@ function mnAnsiCutRightBy(const Substr: string; var S: string): string;
 
 {--------------------------------
   如果S以指定单位开始，或以指定单位结束，则截去指定单位，返回S的剩余部分。否则，直接返回S。
+  如果S以连续多个指定单位开始或结束，则只会截去一个指定单位。
   相当于先用StartsEndsStr判断，若满足条件，则使用TruncLeftRightOver。
   支持的单位有：
     - 指定字符
