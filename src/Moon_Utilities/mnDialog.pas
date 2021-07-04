@@ -98,17 +98,19 @@ procedure mnShouldBeBoxDT(const Actual, Expected: TDateTime; const Title: string
 {--------------------------------
   显示一个多行文本框，内容为Msg，标题为Title。
   若未指定标题，则缺省为应用程序的标题。
+  CanSave表示是否有保存按钮，可以将文本框内容保存到文件。
   Tested in TestUnit and TestApp.
  --------------------------------}
-procedure mnMemoBox(const Msg: string; const Title: string = '');
+procedure mnMemoBox(const Msg: string; const Title: string = ''; const CanSave: Boolean = False);
 
 {--------------------------------
   强制性地显示一个多行文本框，内容为Msg，标题为Title。
   若未指定标题，则缺省为应用程序的标题。
+  CanSave表示是否有保存按钮，可以将文本框内容保存到文件。
   和mnMemoBox函数的功能相同，但不受预编译定义MN_NODIALOG的影响。
   Tested in TestApp.
  --------------------------------}
-procedure mnMMemoBox(const Msg: string; const Title: string = '');
+procedure mnMMemoBox(const Msg: string; const Title: string = ''; const CanSave: Boolean = False);
 
 {--------------------------------
   显示一个对话框，上面有一个编辑框供用户输入。
@@ -157,7 +159,7 @@ implementation
 
 uses SysUtils, Variants, Forms, Windows, mnResStrsU, StdCtrls, mnWindows,
   cxTextEdit, cxButtons, mnForm, Controls, cxDropDownEdit, mnControl,
-  cxCheckListBox;
+  cxCheckListBox, mnFile;
 
 procedure mnInfoBox(const Msg: string;   const Title: string = ''); overload;
 begin
@@ -331,17 +333,43 @@ begin
   else if (Key = Ord('A')) and mnIsVKeyHold(VK_CONTROL) then SelectAll;
 end;
 
-procedure mnMemoBox(const Msg: string; const Title: string = '');
+type
+  TShortcutSaveBtn = class(TcxButton)
+  private
+    StrToBeSaved: string;
+    procedure WhenButtonClick(Sender: TObject);
+  end;
+
+{ TShortcutSaveBtn }
+
+procedure TShortcutSaveBtn.WhenButtonClick(Sender: TObject);
+var
+  SaveDialog: TSaveDialog;
+begin
+  SaveDialog := TSaveDialog.Create(nil);
+  try
+    mnSetSaveDialogFilter(SaveDialog, dfAll);
+    if SaveDialog.Execute then
+    begin
+      mnSaveStrToFile(StrToBeSaved, SaveDialog.FileName);
+      mnInfoBox(SSaveSuccessfully);
+    end;
+  finally
+    SaveDialog.Free;
+  end;
+end;
+
+procedure mnMemoBox(const Msg: string; const Title: string = ''; const CanSave: Boolean = False);
 begin
 {$IFDEF MN_NODIALOG}
   mnLastDialogInfo.Kind := 'mnMemoBox';
   mnLastDialogInfo.Msg := Msg;
 {$ELSE}
-  mnMMemoBox(Msg, Title);
+  mnMMemoBox(Msg, Title, CanSave);
 {$ENDIF}
 end;
 
-procedure mnMMemoBox(const Msg: string; const Title: string = '');
+procedure mnMMemoBox(const Msg: string; const Title: string = ''; const CanSave: Boolean = False);
 var
   MemoDialog: TForm;
 begin
@@ -361,11 +389,32 @@ begin
     with TShortcutMemo.Create(MemoDialog) do
     begin
       Parent := MemoDialog;
-      Align := alClient;
+      if CanSave then
+      begin
+        Align := alTop;
+        Height := MemoDialog.ClientHeight - 45;
+      end
+      else
+      begin
+        Align := alClient;
+      end;
       Text := Msg;
       ScrollBars := ssBoth;
       ReadOnly := True;
       OnKeyDown := WhenMemoKeyDown;
+    end;
+
+    if CanSave then
+    begin
+      with TShortcutSaveBtn.Create(MemoDialog) do
+      begin
+        Parent := MemoDialog;
+        Caption := SSave;
+        Left := (MemoDialog.ClientWidth - Width) div 2;
+        Top := MemoDialog.ClientHeight - 10 - Height;
+        StrToBeSaved := Msg;
+        OnClick := WhenButtonClick;
+      end;
     end;
 
     MemoDialog.ShowModal;

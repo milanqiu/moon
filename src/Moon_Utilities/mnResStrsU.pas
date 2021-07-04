@@ -9,6 +9,9 @@ resourcestring
   // common
   SOK = '确定';
   SCancel = '取消';
+  SSave = '保存';
+  SCheckAll = '全选';
+  SCheckNone = '全部清除';
 
   // in mnArray
   SArrayCopySrcIndexError = 'mnArrayCopy的源数组索引越界: %d（总长度：%d）';
@@ -72,8 +75,7 @@ resourcestring
   // in mnDialog
   SShouldBeCorrect = '实际值: %s (正确)';
   SShouldBeWrong = '实际值: %s (应当是%s)';
-  SCheckAll = '全选';
-  SCheckNone = '全部清除';
+  SSaveSuccessfully = '成功保存';
   SDialogFilterAll = '所有文件(*.*)|*.*';
   SDialogFilterText = '文本文件(*.txt)|*.txt';
   SDialogFilterExcel = 'Excel文件(*.xls;*.xlsx)|*.xls;*.xlsx';
@@ -136,6 +138,9 @@ resourcestring
   // common
   SOK = 'OK';
   SCancel = 'Cancel';
+  SSave = 'Save';
+  SCheckAll = 'Check All';
+  SCheckNone = 'Check None';
 
   // in mnArray
   SArrayCopySrcIndexError = 'mnArrayCopy source index out of bounds: %d of length %d';
@@ -199,8 +204,7 @@ resourcestring
   // in mnDialog
   SShouldBeCorrect = 'Actual: %s (correct)';
   SShouldBeWrong = 'Actual: %s (should be %s)';
-  SCheckAll = 'Check All';
-  SCheckNone = 'Check None';
+  SSaveSuccessfully = 'Save successfully';
   SDialogFilterAll = 'All Files(*.*)|*.*';
   SDialogFilterText = 'Text Files(*.txt)|*.txt';
   SDialogFilterExcel = 'Excel Files(*.xls;*.xlsx)|*.xls;*.xlsx';

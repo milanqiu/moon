@@ -123,7 +123,7 @@ begin
   strs := mnTStrList.Create;
   try
     strs.LoadFromFile(mnAppPathSub('dunit.ini'));
-    mnMemoBox(strs.Text);
+    mnMemoBox(strs.Text, '', mnConfirmBox('Can Save?'));
   finally
     strs.Free;
   end;
