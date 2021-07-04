@@ -439,10 +439,10 @@ procedure mnWriteBoolPointer (const P: Pointer; const Value: Boolean);   inline;
 
 type
 {--------------------------------
-  指针类型，表示指向的是简单类型变量、Variant或字符串。
-  主要用于释放指针时。指向简单类型变量的指针可直接释放，指向Variant或字符串的指针必须先进行处理。
+  指针类型，表示指向的是简单类型变量、Variant、字符串或对象。
+  主要用于释放指针时。指向简单类型变量的指针可直接释放，指向Variant、字符串或对象的指针必须先进行处理。
  --------------------------------}
-  mnTPointerType = (ptSimple, ptVariant, ptString);
+  mnTPointerType = (ptSimple, ptVariant, ptString, ptObject);
 
 {--------------------------------
   释放和清空指针。
@@ -2824,9 +2824,24 @@ procedure mnFreePointer(P: Pointer; const PointerType: mnTPointerType = ptSimple
 begin
   if Assigned(P) then
   begin
-    if PointerType = ptVariant then PVariant(P)^ := Unassigned
-    else if PointerType = ptString then PString(P)^ := '';
-    Dispose(P);
+    case PointerType of
+      ptVariant:
+      begin
+        PVariant(P)^ := Unassigned;
+        Dispose(P);
+      end;
+      ptString:
+      begin
+        PString(P)^ := '';
+        Dispose(P);
+      end;
+      ptObject:
+      begin
+        TObject(P).Free;
+      end;
+    else
+      Dispose(P);
+    end;
   end;
 end;
 

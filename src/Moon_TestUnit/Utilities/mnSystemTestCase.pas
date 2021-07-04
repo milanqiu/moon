@@ -1349,6 +1349,12 @@ begin
   CheckEquals(mnReadBoolPointer(P), Bool_1);
   mnFreeAndNilPointer(P);
   Check(P = nil);
+
+  // Pointer of Object series: Free
+  P := TObject.Create;
+  Check(P <> nil);
+  mnFreeAndNilPointer(P, ptObject);
+  Check(P = nil);
 end;
 
 procedure TmnSystemTestCase.testClearList;
@@ -2046,10 +2052,13 @@ begin
     PointerList.Add(mnNewStrPointer(Str_0));
     PointerList.Add(mnNewIntPointer(Int_0));
     PointerList.Add(mnNewFloatPointer(Float_0));
+    PointerList.Add(TObject.Create);
     PointerList.PointerType := ptString;
     PointerList.Delete(1);
     PointerList.PointerType := ptVariant;
     PointerList.Delete(0);
+    PointerList.PointerType := ptObject;
+    PointerList.Delete(2);
     PointerList.PointerType := ptSimple;
     PointerList.Clear;
   finally
