@@ -2,7 +2,7 @@ unit mnGraphics;
 
 interface
 
-uses Types, Classes, mnSystem, Windows, Graphics;
+uses Types, Classes, mnSystem, Windows, Graphics, Contnrs;
 
 {--------------------------------
   从一个颜色得到其R、G、B部分。
@@ -168,6 +168,9 @@ type
     procedure SaveToBMPFile(const FileName: string; const Rect: TRect); overload;
     procedure SaveToBMPFile(const FileName: string); overload;
   public
+    // 生成一个新的mnTPixeledImage对象，并从一个BMP文件里装载图片，图片大小将设置为同BMP大小相等
+    class function CreateNewFromBMPFile(const FileName: string): mnTPixeledImage;
+  public
     // 判断图片的指定区域，是否和另一张图片的指定区域完全相同，即大小和每个像素（的颜色）都相同
     // 如果两个区域的宽高都是0，则返回相同
     // 在其它重载形式里，如果有图片没有指定区域，则代表比较它的整张图片
@@ -210,9 +213,29 @@ type
     procedure CopyTo(AnotherImage: mnTPixeledImage);
   end;
 
+{--------------------------------
+  像素图列表。
+  内部存储多个mnTPixeledImage对象，通过名称进行访问。
+  一般用于管理从多个文件中加载的多个像素图。
+  Tested in TestUnit.
+ --------------------------------}
+  mnTPixeledImageList = class(TObject)
+  private
+    NamedImages: mnTStrList;
+  public
+    constructor Create;
+    destructor Destroy; override;
+    // 得到指定名称的图片
+    function Get(const Name: string): mnTPixeledImage;
+    // 从一个BMP文件里装载图片，并加入到列表中，取文件名作为图片名
+    procedure AddFromBMPFile(const FileName: string);
+    // 从一个路径下的所有BMP文件里逐个装载图片，并加入到列表中，取文件名作为图片名
+    procedure AddBatchFromBMPPath(const PathName: string);
+  end;
+
 implementation
 
-uses SysUtils, mnMath, Math, mnWindows, mnResStrsU, mnDialog;
+uses SysUtils, mnMath, Math, mnWindows, mnResStrsU, mnDialog, mnFile;
 
 function mnGetColorR(const Color: TColor): Byte; inline;
 begin
@@ -570,6 +593,8 @@ procedure mnTPixeledImage.LoadFromBMPFile(const FileName: string);
 var
   BMP: TBitmap;
 begin
+  mnValidateFileExists(FileName);
+
   BMP := TBitmap.Create;
   try
     BMP.LoadFromFile(FileName);
@@ -631,6 +656,12 @@ end;
 procedure mnTPixeledImage.SaveToBMPFile(const FileName: string);
 begin
   SaveToBMPFile(FileName, BoundsRect);
+end;
+
+class function mnTPixeledImage.CreateNewFromBMPFile(const FileName: string): mnTPixeledImage;
+begin
+  Result := mnTPixeledImage.Create;
+  Result.LoadFromBMPFile(FileName);
 end;
 
 function mnTPixeledImage.Compare(AnotherImage: mnTPixeledImage; const Rect, AnotherRect: TRect): Boolean;
@@ -891,6 +922,57 @@ begin
   for i := 0 to Width-1 do
     for j := 0 to Height-1 do
       AnotherImage.Pixels[i, j] := Pixels[i, j];
+end;
+
+{ mnTPixeledImageList }
+
+constructor mnTPixeledImageList.Create;
+begin
+  NamedImages := mnTStrList.Create;
+end;
+
+destructor mnTPixeledImageList.Destroy;
+begin
+  NamedImages.ClearWithObjects(ptObject);
+  NamedImages.Free;
+  inherited Destroy;
+end;
+
+function mnTPixeledImageList.Get(const Name: string): mnTPixeledImage;
+var
+  Index: Integer;
+begin
+  Index := NamedImages.IndexOf(Name);
+  mnCreateErrorIf(Index = -1, SPixeledImageNameNotFound);
+  Result := mnTPixeledImage(NamedImages.Objects[Index]);
+end;
+
+procedure mnTPixeledImageList.AddFromBMPFile(const FileName: string);
+var
+  Name: string;
+  Image: mnTPixeledImage;
+begin
+  mnValidateFileExists(FileName);
+
+  Name := mnExtractFileNoExt(ExtractFileName(FileName));
+  Image := mnTPixeledImage.Create;
+  Image.LoadFromBMPFile(FileName);
+  NamedImages.AddObject(Name, Image);
+end;
+
+procedure mnTPixeledImageList.AddBatchFromBMPPath(const PathName: string);
+var
+  FileNames: mnTStrList;
+  FileName: string;
+begin
+  FileNames := mnTStrList.Create;
+  try
+    mnGetFileList(mnCorrectPath(PathName) + '*.bmp', FileNames, [floIncludePath, floIncludeExt, floFileOnly]);
+    for FileName in FileNames do
+      AddFromBMPFile(FileName);
+  finally
+    FileNames.Free;
+  end;
 end;
 
 end.

@@ -88,6 +88,7 @@ resourcestring
   // in mnGraphics
   SDrawingCanvasNotAssigned = 'DrawingCanvas没有赋值';
   SGraphicListIndexError = 'mnTGraphicList访问内部图像时索引越界: %d（总长度：%d）';
+  SPixeledImageNameNotFound = '没有在mnTPixeledImageList里找到名称';
 
   // in mnMath
   SSectionsTooShort = 'Sections太短了，装不下Ordinal';
@@ -217,6 +218,7 @@ resourcestring
   // in mnGraphics
   SDrawingCanvasNotAssigned = 'DrawingCanvas not assigned';
   SGraphicListIndexError = 'mnTGraphicList index out of bounds: %d of length %d';
+  SPixeledImageNameNotFound = 'Name not found in mnTPixeledImageList';
 
   // in mnMath
   SSectionsTooShort = 'Sections is too short for Ordinal';

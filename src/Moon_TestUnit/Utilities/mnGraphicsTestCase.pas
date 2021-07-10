@@ -18,6 +18,7 @@ type
   TmnGraphicsTestCase = class(TTestCase)
   strict private
     PixeledImage: mnTPixeledImage;
+    PixeledImageList: mnTPixeledImageList;
   public
     procedure SetUp; override;
     procedure TearDown; override;
@@ -36,28 +37,34 @@ type
     procedure testPixeledImage_LoadFromBMPFile;
     procedure testPixeledImage_SaveToBMP;
     procedure testPixeledImage_SaveToBMPFile;
+    procedure testPixeledImage_CreateNewFromBMPFile;
     procedure testPixeledImage_Compare;
     procedure testPixeledImage_CompareSimilarity;
     procedure testPixeledImage_CompareWithMask;
     procedure testPixeledImage_Find;
     procedure testPixeledImage_FindWithMask;
     procedure testPixeledImage_CopyTo;
+
+    procedure testPixeledImageList_Get_AddFromBMPFile;
+    procedure testPixeledImageList_Get_AddBatchFromBMPPath;
   end;
 
 implementation
 
-uses mnDebug, Graphics, mnSystem, mnFile, Types, mnDialog, SysUtils, mnMath;
+uses mnDebug, Graphics, mnSystem, mnFile, Types, mnDialog, SysUtils, mnMath, mnResStrsU;
 
 { TmnGraphicsTestCase }
 
 procedure TmnGraphicsTestCase.SetUp;
 begin
   PixeledImage := mnTPixeledImage.Create;
+  PixeledImageList := mnTPixeledImageList.Create;
 end;
 
 procedure TmnGraphicsTestCase.TearDown;
 begin
   PixeledImage.Free;
+  PixeledImageList.Free;
 end;
 
 procedure TmnGraphicsTestCase.testGetColorSeries;
@@ -478,6 +485,23 @@ begin
   end;
 end;
 
+procedure TmnGraphicsTestCase.testPixeledImage_CreateNewFromBMPFile;
+var
+  PixeledImage: mnTPixeledImage;
+begin
+  PixeledImage := mnTPixeledImage.CreateNewFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMP.bmp'));
+  try
+    CheckEquals(PixeledImage.Width, 20);
+    CheckEquals(PixeledImage.Height, 20);
+    Check(PixeledImage.Pixels[0, 0] = $FF00FF);
+    Check(PixeledImage.Pixels[0, 2] = $848484);
+    Check(PixeledImage.Pixels[19, 18] = $000000);
+    Check(PixeledImage.Pixels[19, 19] = $FF00FF);
+  finally
+    PixeledImage.Free;
+  end;
+end;
+
 procedure TmnGraphicsTestCase.testPixeledImage_Compare;
 var
   PI, PICopy, PIRegion: mnTPixeledImage;
@@ -807,6 +831,56 @@ begin
   finally
     PI.Free;
     PICopy.Free;
+  end;
+end;
+
+procedure TmnGraphicsTestCase.testPixeledImageList_Get_AddFromBMPFile;
+var
+  PI3, PI6: mnTPixeledImage;
+begin
+  PI3 := mnTPixeledImage.CreateNewFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\Numbers\3.bmp'));
+  PI6 := mnTPixeledImage.CreateNewFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\Numbers\6.bmp'));
+  try
+    PixeledImageList.AddFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\Numbers\3.bmp'));
+    PixeledImageList.AddFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\Numbers\6.bmp'));
+    Check(PixeledImageList.Get('3').Compare(PI3));
+    Check(PixeledImageList.Get('6').Compare(PI6));
+
+    try
+      PixeledImageList.Get('1');
+      mnNeverGoesHere;
+    except
+      on E: Exception do
+        CheckEquals(E.Message, SPixeledImageNameNotFound);
+    end;
+  finally
+    PI3.Free;
+    PI6.Free;
+  end;
+end;
+
+procedure TmnGraphicsTestCase.testPixeledImageList_Get_AddBatchFromBMPPath;
+var
+  PIs: array [0..9] of mnTPixeledImage;
+  i: Integer;
+begin
+  for i := Low(PIs) to High(PIs) do
+    PIs[i] := mnTPixeledImage.CreateNewFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\Numbers\' + IntToStr(i) + '.bmp'));
+  try
+    PixeledImageList.AddBatchFromBMPPath(mnTProjectConvention.GetFilesPathSub('Images\Numbers\'));
+    for i := Low(PIs) to High(PIs) do
+      Check(PixeledImageList.Get(IntToStr(i)).Compare(PIs[i]));
+
+    try
+      PixeledImageList.Get('10');
+      mnNeverGoesHere;
+    except
+      on E: Exception do
+        CheckEquals(E.Message, SPixeledImageNameNotFound);
+    end;
+  finally
+    for i := Low(PIs) to High(PIs) do
+      PIs[i].Free;
   end;
 end;
 
