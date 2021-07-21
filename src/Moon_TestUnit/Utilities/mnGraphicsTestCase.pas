@@ -37,7 +37,10 @@ type
     procedure testPixeledImage_LoadFromBMPFile;
     procedure testPixeledImage_SaveToBMP;
     procedure testPixeledImage_SaveToBMPFile;
+    procedure testPixeledImage_LoadFromJPGFile;
+    procedure testPixeledImage_SaveToJPGFile;
     procedure testPixeledImage_CreateNewFromBMPFile;
+    procedure testPixeledImage_CreateNewFromJPGFile;
     procedure testPixeledImage_Compare;
     procedure testPixeledImage_CompareSimilarity;
     procedure testPixeledImage_CompareWithMask;
@@ -485,6 +488,49 @@ begin
   end;
 end;
 
+procedure TmnGraphicsTestCase.testPixeledImage_LoadFromJPGFile;
+begin
+  // JPG is a compressed format, so the color will be changed
+  PixeledImage.Clear(clBlue);
+  PixeledImage.LoadFromJPGFile(mnTProjectConvention.GetFilesPathSub('Images\JPG.jpg'));
+  CheckEquals(PixeledImage.Width, 20);
+  CheckEquals(PixeledImage.Height, 20);
+  Check(PixeledImage.Pixels[0, 0] = $FF00FF);
+  Check(PixeledImage.Pixels[0, 2] = $828484);
+  Check(PixeledImage.Pixels[19, 18] = $000000);
+  Check(PixeledImage.Pixels[19, 19] = $FF01FF);
+end;
+
+procedure TmnGraphicsTestCase.testPixeledImage_SaveToJPGFile;
+var
+  JPGSrcFileName, JPGDstFileName: string;
+  PI: mnTPixeledImage;
+begin
+  // JPG is a compressed format, so the color will be changed
+  JPGSrcFileName := mnTProjectConvention.GetFilesPathSub('Images\JPG.jpg');
+  JPGDstFileName := mnTProjectConvention.GetTestTempPathSub('JPGDst.jpg');
+  PI := mnTPixeledImage.Create;
+  try
+    PixeledImage.LoadFromJPGFile(JPGSrcFileName);
+
+   // overload form 1
+    PixeledImage.SaveToJPGFile(JPGDstFileName, Rect(2, 3, 4, 6));
+    PI.LoadFromJPGFile(JPGDstFileName);
+    CheckEquals(PI.Width, 4-2);
+    CheckEquals(PI.Height, 6-3);
+
+    // overload form 2
+    PixeledImage.SaveToJPGFile(JPGDstFileName);
+    PI.LoadFromJPGFile(JPGDstFileName);
+    CheckEquals(PI.Width, PixeledImage.Width);
+    CheckEquals(PI.Height, PixeledImage.Height);
+
+    mnDeleteFile(JPGDstFileName);
+  finally
+    PI.Free;
+  end;
+end;
+
 procedure TmnGraphicsTestCase.testPixeledImage_CreateNewFromBMPFile;
 var
   PixeledImage: mnTPixeledImage;
@@ -497,6 +543,23 @@ begin
     Check(PixeledImage.Pixels[0, 2] = $848484);
     Check(PixeledImage.Pixels[19, 18] = $000000);
     Check(PixeledImage.Pixels[19, 19] = $FF00FF);
+  finally
+    PixeledImage.Free;
+  end;
+end;
+
+procedure TmnGraphicsTestCase.testPixeledImage_CreateNewFromJPGFile;
+var
+  PixeledImage: mnTPixeledImage;
+begin
+  PixeledImage := mnTPixeledImage.CreateNewFromJPGFile(mnTProjectConvention.GetFilesPathSub('Images\JPG.jpg'));
+  try
+    CheckEquals(PixeledImage.Width, 20);
+    CheckEquals(PixeledImage.Height, 20);
+    Check(PixeledImage.Pixels[0, 0] = $FF00FF);
+    Check(PixeledImage.Pixels[0, 2] = $828484);
+    Check(PixeledImage.Pixels[19, 18] = $000000);
+    Check(PixeledImage.Pixels[19, 19] = $FF01FF);
   finally
     PixeledImage.Free;
   end;

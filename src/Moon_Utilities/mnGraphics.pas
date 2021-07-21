@@ -164,12 +164,20 @@ type
     // 将图片的Rect区域，或整张图片，存入BMP中，BMP大小将设置为同Rect区域大小相等，或同整张图片大小相等
     procedure SaveToBMP(BMP: TBitmap; const Rect: TRect); overload;
     procedure SaveToBMP(BMP: TBitmap); overload;
-    // 将图片的Rect区域，或整张图片，存入BMP文件中，文件中的BMP大小将设置为同Rect区域大小相等，或同整张图片大小相等
+    // 将图片的Rect区域，或整张图片，存入BMP文件中
     procedure SaveToBMPFile(const FileName: string; const Rect: TRect); overload;
     procedure SaveToBMPFile(const FileName: string); overload;
   public
+    // 从一个JPG文件里装载图片，图片大小将设置为同JPG大小相等
+    procedure LoadFromJPGFile(const FileName: string);
+    // 将图片的Rect区域，或整张图片，存入JPG文件中
+    procedure SaveToJPGFile(const FileName: string; const Rect: TRect); overload;
+    procedure SaveToJPGFile(const FileName: string); overload;
+  public
     // 生成一个新的mnTPixeledImage对象，并从一个BMP文件里装载图片，图片大小将设置为同BMP大小相等
     class function CreateNewFromBMPFile(const FileName: string): mnTPixeledImage;
+    // 生成一个新的mnTPixeledImage对象，并从一个JPG文件里装载图片，图片大小将设置为同JPG大小相等
+    class function CreateNewFromJPGFile(const FileName: string): mnTPixeledImage;
   public
     // 判断图片的指定区域，是否和另一张图片的指定区域完全相同，即大小和每个像素（的颜色）都相同
     // 如果两个区域的宽高都是0，则返回相同
@@ -235,7 +243,7 @@ type
 
 implementation
 
-uses SysUtils, mnMath, Math, mnWindows, mnResStrsU, mnDialog, mnFile;
+uses SysUtils, mnMath, Math, mnWindows, mnResStrsU, mnDialog, mnFile, jpeg;
 
 function mnGetColorR(const Color: TColor): Byte; inline;
 begin
@@ -658,10 +666,64 @@ begin
   SaveToBMPFile(FileName, BoundsRect);
 end;
 
+procedure mnTPixeledImage.LoadFromJPGFile(const FileName: string);
+var
+  BMP: TBitmap;
+  JPG: TJpegImage;
+begin
+  mnValidateFileExists(FileName);
+
+  BMP := TBitmap.Create;
+  JPG := TJpegImage.Create;
+  try
+    JPG.LoadFromFile(FileName);
+    BMP.Assign(JPG);
+    SetSize(BMP.Width, BMP.Height);
+    DrawBMP(BMP);
+  finally
+    JPG.Free;
+    BMP.Free;
+  end;
+end;
+
+procedure mnTPixeledImage.SaveToJPGFile(const FileName: string; const Rect: TRect);
+var
+  BMP: TBitmap;
+  JPG: TJpegImage;
+begin
+  BMP := TBitmap.Create;
+  JPG := TJpegImage.Create;
+  try
+    SaveToBMP(BMP, Rect);
+    JPG.Assign(BMP);
+    JPG.CompressionQuality := High(TJPEGQualityRange);
+    JPG.Grayscale := False;
+    JPG.Performance := jpBestQuality;
+    JPG.PixelFormat := jf24Bit;
+    JPG.ProgressiveEncoding := False;
+    JPG.Scale := jsFullSize;
+    JPG.SaveToFile(FileName);
+  finally
+    JPG.Free;
+    BMP.Free;
+  end;
+end;
+
+procedure mnTPixeledImage.SaveToJPGFile(const FileName: string);
+begin
+  SaveToJPGFile(FileName, BoundsRect);
+end;
+
 class function mnTPixeledImage.CreateNewFromBMPFile(const FileName: string): mnTPixeledImage;
 begin
   Result := mnTPixeledImage.Create;
   Result.LoadFromBMPFile(FileName);
+end;
+
+class function mnTPixeledImage.CreateNewFromJPGFile(const FileName: string): mnTPixeledImage;
+begin
+  Result := mnTPixeledImage.Create;
+  Result.LoadFromJPGFile(FileName);
 end;
 
 function mnTPixeledImage.Compare(AnotherImage: mnTPixeledImage; const Rect, AnotherRect: TRect): Boolean;
