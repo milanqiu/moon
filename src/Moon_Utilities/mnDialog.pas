@@ -2,7 +2,7 @@ unit mnDialog;
 
 interface
 
-uses mnSystem, Classes, Dialogs;
+uses mnSystem, Classes, Dialogs, Windows, Graphics, mnGraphics;
 
 {$IFDEF MN_NODIALOG}
 
@@ -113,6 +113,16 @@ procedure mnMemoBox(const Msg: string; const Title: string = ''; const CanSave: 
 procedure mnMMemoBox(const Msg: string; const Title: string = ''; const CanSave: Boolean = False);
 
 {--------------------------------
+  显示一个图片对话框，内容为BMP或PixeledImage，标题为Title。
+  若未指定标题，则缺省为应用程序的标题。
+  另有确定和取消按钮。
+  返回用户是否确认了对话框，即对话框是否返回mrOK。
+  Tested in TestApp.
+ --------------------------------}
+function mnImageBox(BMP: TBitmap;                  const Title: string = ''): Boolean; overload;
+function mnImageBox(PixeledImage: mnTPixeledImage; const Title: string = ''): Boolean; overload;
+
+{--------------------------------
   显示一个对话框，上面有一个编辑框供用户输入。
   Title是对话框的标题，Prompt是对话框上提示用户输入的内容，Default是编辑框初始的缺省值。
   返回用户是否确认了对话框，即对话框是否返回mrOK。如果是，Value将存储编辑框的值。
@@ -157,9 +167,9 @@ procedure mnSetSaveDialogFilter(SaveDialog: TSaveDialog; const DialogFilter: mnT
 
 implementation
 
-uses SysUtils, Variants, Forms, Windows, mnResStrsU, StdCtrls, mnWindows,
+uses SysUtils, Variants, Forms, mnResStrsU, StdCtrls, mnWindows,
   cxTextEdit, cxButtons, mnForm, Controls, cxDropDownEdit, mnControl,
-  cxCheckListBox, mnFile;
+  cxCheckListBox, mnFile, ExtCtrls;
 
 procedure mnInfoBox(const Msg: string;   const Title: string = ''); overload;
 begin
@@ -420,6 +430,87 @@ begin
     MemoDialog.ShowModal;
   finally
     MemoDialog.Free;
+  end;
+end;
+
+function mnImageBox(BMP: TBitmap;                  const Title: string = ''): Boolean; overload;
+{$IFDEF MN_NODIALOG}
+begin
+  mnLastDialogInfo.Kind := 'mnImageBox';
+  mnLastDialogInfo.Msg := '';
+  Result := True;
+end;
+{$ELSE}
+var
+  ImageDialog: TForm;
+  Panel: TPanel;
+begin
+  ImageDialog := TForm.Create(nil);
+  try
+    mnSetStandardFont(ImageDialog);
+
+    with ImageDialog do
+    begin
+      Caption := mnChooseStr(Title = '', Application.Title, Title);
+      BorderStyle := bsDialog;
+      Position := poScreenCenter;
+      Width := Screen.WorkAreaWidth * 2 div 3;
+      Height := Screen.WorkAreaHeight * 2 div 3;
+    end;
+
+    Panel := TPanel.Create(ImageDialog);
+    with Panel do
+    begin
+      Parent := ImageDialog;
+      Align := alTop;
+      Height := ImageDialog.ClientHeight - 45;
+      BevelOuter := bvLowered;
+    end;
+
+    with TImage.Create(ImageDialog) do
+    begin
+      Parent := Panel;
+      Align := alClient;
+      Picture.Bitmap.Assign(BMP);
+    end;
+
+    with TcxButton.Create(ImageDialog) do
+    begin
+      Parent := ImageDialog;
+      Caption := SOK;
+      Left := ImageDialog.ClientWidth div 2 - 10 - Width;
+      Top := ImageDialog.ClientHeight - 10 - Height;
+      ModalResult := mrOK;
+      Default := True;
+    end;
+
+    with TcxButton.Create(ImageDialog) do
+    begin
+      Parent := ImageDialog;
+      Caption := SCancel;
+      Left := ImageDialog.ClientWidth div 2 + 10;
+      Top := ImageDialog.ClientHeight - 10 - Height;
+      ModalResult := mrCancel;
+      Cancel := True;
+    end;
+
+    Result := ImageDialog.ShowModal = mrOK;
+  finally
+    ImageDialog.Free;
+  end;
+end;
+{$ENDIF}
+
+function mnImageBox(PixeledImage: mnTPixeledImage; const Title: string = ''): Boolean; overload;
+var
+  BMP: TBitmap;
+begin
+  BMP := TBitmap.Create;
+  try
+    PixeledImage.SaveToBMP(BMP);
+    Result := mnImageBox(BMP, Title);
+  finally
+    BMP.Free;
   end;
 end;
 

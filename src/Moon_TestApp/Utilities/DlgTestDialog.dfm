@@ -1,14 +1,14 @@
 inherited TestDialogDialog: TTestDialogDialog
-  Left = 691
-  Top = 294
+  Left = 517
+  Top = 87
   Caption = 'TestDialog'
-  ClientHeight = 423
+  ClientHeight = 465
   ClientWidth = 209
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxbtnOK: TcxButton
     Left = 64
-    Top = 384
+    Top = 424
   end
   object btnInfoBox: TButton
     Left = 24
@@ -84,21 +84,21 @@ inherited TestDialogDialog: TTestDialogDialog
   end
   object btnEditDialog: TButton
     Left = 24
-    Top = 192
+    Top = 232
     Width = 75
     Height = 25
     Caption = 'EditDialog'
-    TabOrder = 9
+    TabOrder = 10
     OnClick = btnEditDialogClick
   end
   object cbEditConstraint: TComboBox
     Left = 112
-    Top = 194
+    Top = 234
     Width = 75
     Height = 21
     Style = csDropDownList
     ItemHeight = 13
-    TabOrder = 10
+    TabOrder = 11
     Items.Strings = (
       'scAny'
       'scNotEmpty'
@@ -115,21 +115,21 @@ inherited TestDialogDialog: TTestDialogDialog
   end
   object btnComboBoxDialog: TButton
     Left = 24
-    Top = 232
+    Top = 272
     Width = 121
     Height = 25
     Caption = 'ComboBoxDialog'
-    TabOrder = 11
+    TabOrder = 12
     OnClick = btnComboBoxDialogClick
   end
   object cbDialogFilter: TComboBox
     Left = 72
-    Top = 312
+    Top = 352
     Width = 73
     Height = 21
     Style = csDropDownList
     ItemHeight = 13
-    TabOrder = 12
+    TabOrder = 14
     Items.Strings = (
       'All'
       'Text'
@@ -139,37 +139,46 @@ inherited TestDialogDialog: TTestDialogDialog
   end
   object btnOpenDialog: TButton
     Left = 24
-    Top = 344
+    Top = 384
     Width = 75
     Height = 25
     Caption = 'OpenDialog'
-    TabOrder = 13
+    TabOrder = 15
     OnClick = btnOpenDialogClick
   end
   object btnSaveDialog: TButton
     Left = 112
-    Top = 344
+    Top = 384
     Width = 75
     Height = 25
     Caption = 'SaveDialog'
-    TabOrder = 14
+    TabOrder = 16
     OnClick = btnSaveDialogClick
   end
   object btnCheckListBoxDialog: TButton
     Left = 24
-    Top = 272
+    Top = 312
     Width = 121
     Height = 25
     Caption = 'CheckListBoxDialog'
-    TabOrder = 15
+    TabOrder = 13
     OnClick = btnCheckListBoxDialogClick
+  end
+  object btnImageBox: TButton
+    Left = 24
+    Top = 176
+    Width = 75
+    Height = 25
+    Caption = 'ImageBox'
+    TabOrder = 9
+    OnClick = btnImageBoxClick
   end
   object OpenDialog: TOpenDialog
     Left = 16
-    Top = 384
+    Top = 424
   end
   object SaveDialog: TSaveDialog
     Left = 168
-    Top = 384
+    Top = 424
   end
 end

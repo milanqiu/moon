@@ -24,6 +24,8 @@ type
     OpenDialog: TOpenDialog;
     SaveDialog: TSaveDialog;
     btnCheckListBoxDialog: TButton;
+    btnImageBox: TButton;
+    procedure btnImageBoxClick(Sender: TObject);
     procedure btnCheckListBoxDialogClick(Sender: TObject);
     procedure btnSaveDialogClick(Sender: TObject);
     procedure btnOpenDialogClick(Sender: TObject);
@@ -50,7 +52,7 @@ implementation
 
 {$R *.dfm}
 
-uses mnDialog, UTestConsts, mnSystem, mnDebug;
+uses mnDialog, UTestConsts, mnSystem, mnDebug, mnGraphics;
 
 { TTestDialogDialog }
 
@@ -126,6 +128,22 @@ begin
     mnMemoBox(strs.Text, '', mnConfirmBox('Can Save?'));
   finally
     strs.Free;
+  end;
+end;
+
+procedure TTestDialogDialog.btnImageBoxClick(Sender: TObject);
+var
+  PixeledImage: mnTPixeledImage;
+begin
+  PixeledImage := mnTPixeledImage.Create;
+  try
+    PixeledImage.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\BMP.bmp'));
+    if mnImageBox(PixeledImage) then
+      mnInfoBox('You choose ok')
+    else
+      mnInfoBox('You choose cancel');
+  finally
+    PixeledImage.Free;
   end;
 end;
 
