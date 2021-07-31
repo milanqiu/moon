@@ -109,6 +109,7 @@ end;
 
 procedure mnTDateRange.SetFromDate(const Value: TDateTime);
 begin
+  mnCreateErrorIf(not Assigned(FromDateEdit), SFromDateEditNotAssigned);
   FromDateEdit.Date := Value;
 end;
 
@@ -119,6 +120,7 @@ end;
 
 procedure mnTDateRange.SetToDate(const Value: TDateTime);
 begin
+  mnCreateErrorIf(not Assigned(ToDateEdit), SToDateEditNotAssigned);
   ToDateEdit.Date := Value;
 end;
 
@@ -277,10 +279,13 @@ begin
     end;
   end;
 
-  KindIsChanging := True;
-  FromDate := AFromDate;
-  ToDate := AToDate;
-  KindIsChanging := False;
+  try
+    KindIsChanging := True;
+    FromDate := AFromDate;
+    ToDate := AToDate;
+  finally
+    KindIsChanging := False;
+  end;
 end;
 
 constructor mnTDateRange.Create(AOwner: TComponent);

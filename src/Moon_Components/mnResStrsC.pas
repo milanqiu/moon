@@ -26,6 +26,8 @@ resourcestring
   SSoFarThisMonth = '本月至今';
   SSoFarThisQuarter = '本季度至今';
   SSoFarThisYear = '本年至今';
+  SFromDateEditNotAssigned = 'FromDateEdit没有设置';
+  SToDateEditNotAssigned = 'ToDateEdit没有设置';
 
 {$ELSE}
 
@@ -49,6 +51,8 @@ resourcestring
   SSoFarThisMonth = 'So Far This Month';
   SSoFarThisQuarter = 'So Far This Quarter';
   SSoFarThisYear = 'So Far This Year';
+  SFromDateEditNotAssigned = 'FromDateEdit not assigned';
+  SToDateEditNotAssigned = 'ToDateEdit not assigned';
 
 {$ENDIF}
 
