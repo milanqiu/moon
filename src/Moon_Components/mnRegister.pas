@@ -7,11 +7,12 @@ procedure Register;
 implementation
 
 uses Classes,
-  mnDateRange;
+  mnDateRange, mnFileChooser;
 
 procedure Register;
 begin
   RegisterComponents('Moon', [mnTDateRange]);
+  RegisterComponents('Moon', [mnTFileChooser]);
 end;
 
 end.

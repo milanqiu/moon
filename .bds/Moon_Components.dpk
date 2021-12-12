@@ -40,11 +40,14 @@ requires
   IndyCore,
   IndyProtocols,
   PerlRegExD7,
+  rtl,
+  vclx,
   Moon_Utilities;
 
 contains
   mnRegister in '..\src\Moon_Components\mnRegister.pas',
   mnResStrsC in '..\src\Moon_Components\mnResStrsC.pas',
-  mnDateRange in '..\src\Moon_Components\mnDateRange.pas';
+  mnDateRange in '..\src\Moon_Components\mnDateRange.pas',
+  mnFileChooser in '..\src\Moon_Components\mnFileChooser.pas';
 
 end.
