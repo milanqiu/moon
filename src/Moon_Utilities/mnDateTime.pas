@@ -95,7 +95,7 @@ function mnDateTimeToStrAsFileName(const Value: TDateTime; const MayIgnoreTime: 
   将日期转换为用于文件名的格式的字符串，使用上述的用于文件名的格式。
   Tested in TestUnit.
  --------------------------------}
-function mnDateToStrAsFileName(const Value: TDateTime; const MayIgnoreTime: Boolean = False; const HMOnly: Boolean = False): string;
+function mnDateToStrAsFileName(const Value: TDateTime): string;
 
 {--------------------------------
   将一个FileTime转换为时间格式。
@@ -376,7 +376,7 @@ begin
   Result := FormatDateTime(Format, Value);
 end;
 
-function mnDateToStrAsFileName(const Value: TDateTime; const MayIgnoreTime: Boolean = False; const HMOnly: Boolean = False): string;
+function mnDateToStrAsFileName(const Value: TDateTime): string;
 begin
   Result := FormatDateTime(mnDateAsFileNameFormat, Value);
 end;
