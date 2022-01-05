@@ -6,6 +6,12 @@ uses cxTextEdit, cxListBox, cxDropDownEdit, cxMCListBox, mnSystem, cxCheckComboB
   cxGraphics, Types;
 
 {--------------------------------
+  将一个Json串转换为字符串数组。
+  Tested in TestUnit.
+ --------------------------------}
+function mnParseJsonToStrArray(const JsonStr: string): mnTStrArray;
+
+{--------------------------------
   滚动一个TextEdit到末尾。
   Tested in TestApp.
  --------------------------------}
@@ -68,7 +74,23 @@ procedure mnDrawItemCustom(ComboBox: TcxCustomComboBox; Canvas: TcxCanvas; const
 
 implementation
 
-uses cxCheckBox, Windows;
+uses cxCheckBox, Windows, superobject;
+
+function mnParseJsonToStrArray(const JsonStr: string): mnTStrArray;
+var
+  Obj: ISuperObject;
+  Arr: TSuperArray;
+  i: Integer;
+begin
+  Obj := SO(JsonStr);
+  Arr := Obj.AsArray;
+
+  SetLength(Result, Arr.Length);
+  for i := 0 to Arr.Length-1 do
+  begin
+    Result[i] := Arr[i].AsString;
+  end;
+end;
 
 procedure mnScrollToEnd(TextEdit: TcxCustomTextEdit);
 begin

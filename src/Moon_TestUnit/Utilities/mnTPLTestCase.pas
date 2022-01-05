@@ -21,11 +21,12 @@ type
     procedure SetUp; override;
     procedure TearDown; override;
   published
+    procedure testParseJsonToStrArray;
   end;
 
 implementation
 
-uses mnTPL;
+uses mnTPL, mnSystem, mnDebug;
 
 { TmnTPLTestCase }
 
@@ -35,6 +36,26 @@ end;
 
 procedure TmnTPLTestCase.TearDown;
 begin
+end;
+
+procedure TmnTPLTestCase.testParseJsonToStrArray;
+var
+  Arr: mnTStrArray;
+begin
+  Arr := mnParseJsonToStrArray('["aaa", bbb, 111]');
+  CheckEquals(Length(Arr), 3);
+  CheckEquals(Arr[0], 'aaa');
+  CheckEquals(Arr[1], 'bbb');
+  CheckEquals(Arr[2], '111');
+
+  Arr := mnParseJsonToStrArray('[]');
+  CheckEquals(Length(Arr), 0);
+
+  try
+    Arr := mnParseJsonToStrArray('["aaa"');
+    mnNeverGoesHere;
+  except
+  end;
 end;
 
 initialization
