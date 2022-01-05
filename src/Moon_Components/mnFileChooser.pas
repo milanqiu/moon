@@ -5,6 +5,12 @@ interface
 uses cxMRUEdit, Messages, Classes;
 
 type
+{--------------------------------
+  用于选择文件的编辑框控件。
+  编辑框有两个附加按钮，一个弹出MRU下拉列表，另一个弹出选择文件对话框。
+  也可以将文件拖拽入编辑框。
+  Tested in TestApp.
+ --------------------------------}
   mnTFileChooser = class(TcxMRUEdit)
   private
     procedure WMDropFiles(var Message: TWMDropFiles); message WM_DropFiles;

@@ -18,7 +18,8 @@ uses
   DlgTestSystem in '..\src\Moon_TestApp\Utilities\DlgTestSystem.pas' {TestSystemDialog},
   DlgTestTPL in '..\src\Moon_TestApp\Utilities\DlgTestTPL.pas' {TestTPLDialog},
   DlgTestWindows in '..\src\Moon_TestApp\Utilities\DlgTestWindows.pas' {TestWindowsDialog},
-  DlgTestDateRange in '..\src\Moon_TestApp\Components\DlgTestDateRange.pas' {TestDateRangeDialog};
+  DlgTestDateRange in '..\src\Moon_TestApp\Components\DlgTestDateRange.pas' {TestDateRangeDialog},
+  DlgTestFileChooser in '..\src\Moon_TestApp\Components\DlgTestFileChooser.pas' {TestFileChooserDialog};
 
 {$R *.res}
 
@@ -38,5 +39,6 @@ begin
   Application.CreateForm(TTestTPLDialog, TestTPLDialog);
   Application.CreateForm(TTestWindowsDialog, TestWindowsDialog);
   Application.CreateForm(TTestDateRangeDialog, TestDateRangeDialog);
+  Application.CreateForm(TTestFileChooserDialog, TestFileChooserDialog);
   Application.Run;
 end.
