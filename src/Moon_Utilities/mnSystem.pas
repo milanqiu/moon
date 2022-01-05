@@ -1463,6 +1463,8 @@ type
     constructor Create(ACommandFileName: string; const InDefaultPath: Boolean = True);
     // 基于外部命令文件，新建立一个外部命令的执行进程
     function NewExecution(const CommandName: string; const ArgsStr: string = ''): mnTExternalCommandExecution;
+    // 基于外部命令文件，新建立一个外部命令的执行进程并执行。当成功完成时，返回生成的消息，否则抛出异常
+    class function ExecuteSuccessfully(const CommandFileName, CommandName: string; const ArgsStr: string = ''): string;
   end;
 
 {--------------------------------
@@ -7021,6 +7023,24 @@ end;
 function mnTExternalCommandFile.NewExecution(const CommandName: string; const ArgsStr: string = ''): mnTExternalCommandExecution;
 begin
   Result := mnTExternalCommandExecution.Create(Self, CommandName, ArgsStr);
+end;
+
+class function mnTExternalCommandFile.ExecuteSuccessfully(const CommandFileName, CommandName: string; const ArgsStr: string = ''): string;
+var
+  ECF: mnTExternalCommandFile;
+  ECE: mnTExternalCommandExecution;
+begin
+  ECF := mnTExternalCommandFile.Create(CommandFileName);
+  try
+    ECE := ECF.NewExecution(CommandName, ArgsStr);
+    try
+      Result := ECE.ExecuteSuccessfully;
+    finally
+      ECE.Free;
+    end;
+  finally
+    ECF.Free;
+  end;
 end;
 
 { mnTExternalCommandExecution }

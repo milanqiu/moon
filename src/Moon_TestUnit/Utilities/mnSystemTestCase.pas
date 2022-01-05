@@ -307,6 +307,7 @@ type
     procedure testExternalCommandFile_IsJar;
     procedure testExternalCommandFile_Create;
     procedure testExternalCommandFile_NewExecution;
+    procedure testExternalCommandFile_ExecuteSuccessfully;
     procedure testExternalCommandExecution_DeleteAnnouncementDir;
     procedure testExternalCommandExecution_Execute_Timeout_AutoKillFreeze;
     procedure testExternalCommandExecution_ExecuteSuccessfully_Timeout_AutoKillFreeze;
@@ -7501,6 +7502,12 @@ begin
     ECE.Free;
     ECF.Free;
   end;
+end;
+
+procedure TmnSystemTestCase.testExternalCommandFile_ExecuteSuccessfully;
+begin
+  CheckEquals(mnTExternalCommandFile.ExecuteSuccessfully(GwangmyeongseongConsoleJarName, 'CommandFinished', 'aaa bbb'),
+    'input:aaa,bbb');
 end;
 
 procedure TmnSystemTestCase.testExternalCommandExecution_DeleteAnnouncementDir;
