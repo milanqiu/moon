@@ -1,6 +1,6 @@
 inherited TestGraphicsDialog: TTestGraphicsDialog
-  Left = 972
-  Top = 160
+  Left = 607
+  Top = 197
   Caption = 'TestGraphics'
   ClientHeight = 498
   ClientWidth = 854
@@ -112,28 +112,28 @@ inherited TestGraphicsDialog: TTestGraphicsDialog
       end
       object Label4: TLabel
         Left = 16
-        Top = 244
+        Top = 156
         Width = 23
         Height = 13
         Caption = 'Left:'
       end
       object Label5: TLabel
         Left = 16
-        Top = 268
+        Top = 180
         Width = 22
         Height = 13
         Caption = 'Top:'
       end
       object Label6: TLabel
         Left = 16
-        Top = 292
+        Top = 204
         Width = 32
         Height = 13
         Caption = 'Width:'
       end
       object Label7: TLabel
         Left = 16
-        Top = 316
+        Top = 228
         Width = 35
         Height = 13
         Caption = 'Height:'
@@ -148,7 +148,7 @@ inherited TestGraphicsDialog: TTestGraphicsDialog
       end
       object btnFindWindowByCaptionSub: TButton
         Left = 16
-        Top = 112
+        Top = 104
         Width = 129
         Height = 25
         Caption = 'FindWindowByCaptionSub'
@@ -157,7 +157,7 @@ inherited TestGraphicsDialog: TTestGraphicsDialog
       end
       object btnDrawWindow: TButton
         Left = 16
-        Top = 208
+        Top = 248
         Width = 121
         Height = 25
         Caption = 'DrawWindow'
@@ -166,7 +166,7 @@ inherited TestGraphicsDialog: TTestGraphicsDialog
       end
       object edtLeft: TEdit
         Left = 56
-        Top = 240
+        Top = 152
         Width = 75
         Height = 21
         TabOrder = 3
@@ -174,7 +174,7 @@ inherited TestGraphicsDialog: TTestGraphicsDialog
       end
       object edtTop: TEdit
         Left = 56
-        Top = 264
+        Top = 176
         Width = 75
         Height = 21
         TabOrder = 4
@@ -182,7 +182,7 @@ inherited TestGraphicsDialog: TTestGraphicsDialog
       end
       object edtWidth: TEdit
         Left = 56
-        Top = 288
+        Top = 200
         Width = 75
         Height = 21
         TabOrder = 5
@@ -190,7 +190,7 @@ inherited TestGraphicsDialog: TTestGraphicsDialog
       end
       object edtHeight: TEdit
         Left = 56
-        Top = 312
+        Top = 224
         Width = 75
         Height = 21
         TabOrder = 6
@@ -211,12 +211,30 @@ inherited TestGraphicsDialog: TTestGraphicsDialog
       end
       object btnDrawWindowEx: TButton
         Left = 16
-        Top = 344
+        Top = 280
         Width = 121
         Height = 25
         Caption = 'DrawWindowEx'
         TabOrder = 8
         OnClick = btnDrawWindowExClick
+      end
+      object btnSnapshotWindow: TButton
+        Left = 16
+        Top = 336
+        Width = 121
+        Height = 25
+        Caption = 'SnapshotWindow'
+        TabOrder = 9
+        OnClick = btnSnapshotWindowClick
+      end
+      object btnSnapshotWindowEx: TButton
+        Left = 16
+        Top = 368
+        Width = 121
+        Height = 25
+        Caption = 'SnapshotWindowEx'
+        TabOrder = 10
+        OnClick = btnSnapshotWindowExClick
       end
     end
   end

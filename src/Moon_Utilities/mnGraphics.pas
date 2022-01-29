@@ -156,8 +156,18 @@ type
     // 该区域不一定位于前端，被遮挡或在屏幕外皆可，但不能最小化，也不能被hide
     // 这两个函数的实现方法不同，在实际运行过程中，不一定能成功，取决于操作系统版本、应用程序的界面绘制方式、截取窗口的特征，等等
     // 通常地，如果需要绘制的是应用程序主窗口，适合用DrawWindowEx；如果是子控件窗口，适合用DrawWindow
+    // 调用前需要对窗口的合法性进行校验，函数本身不校验
     procedure DrawWindow  (const WindowRect: TRect; const Window: HWND = 0; const X: Integer = 0; const Y: Integer = 0);
     procedure DrawWindowEx(const WindowRect: TRect; const Window: HWND = 0; const X: Integer = 0; const Y: Integer = 0);
+    // 对指定窗口进行截图
+    // 也就是在图片的(0, 0)处，绘制指定窗口的整个区域。在绘制之前，会把图片大小设置为指定窗口的大小
+    // 若没有指定窗口，则对屏幕进行截图
+    // 该区域不一定位于前端，被遮挡或在屏幕外皆可，但不能最小化，也不能被hide
+    // 这两个函数的实现方法不同，在实际运行过程中，不一定能成功，取决于操作系统版本、应用程序的界面绘制方式、截取窗口的特征，等等
+    // 通常地，如果需要截图的是应用程序主窗口，适合用SnapshotWindowEx；如果是子控件窗口，适合用SnapshotWindow
+    // 调用前需要对窗口的合法性进行校验，函数本身不校验
+    procedure SnapshotWindow  (const Window: HWND = 0);
+    procedure SnapshotWindowEx(const Window: HWND = 0);
   public
     // 从一个BMP文件里装载图片，图片大小将设置为同BMP大小相等
     procedure LoadFromBMPFile(const FileName: string);
@@ -243,7 +253,8 @@ type
 
 implementation
 
-uses SysUtils, mnMath, Math, mnWindows, mnResStrsU, mnDialog, mnFile, jpeg;
+uses SysUtils, mnMath, Math, mnWindows, mnResStrsU, mnDialog, mnFile, jpeg,
+  Forms;
 
 function mnGetColorR(const Color: TColor): Byte; inline;
 begin
@@ -595,6 +606,30 @@ begin
   finally
     BMP.Free;
   end;
+end;
+
+procedure mnTPixeledImage.SnapshotWindow  (const Window: HWND = 0);
+var
+  WindowRect: TRect;
+begin
+  if Window = 0 then
+    WindowRect := Rect(0, 0, Screen.Width, Screen.Height)
+  else
+    GetWindowRect(Window, WindowRect);
+  SetSize(WindowRect);
+  DrawWindow(mnMoveRect(WindowRect), Window);
+end;
+
+procedure mnTPixeledImage.SnapshotWindowEx(const Window: HWND = 0);
+var
+  WindowRect: TRect;
+begin
+  if Window = 0 then
+    WindowRect := Rect(0, 0, Screen.Width, Screen.Height)
+  else
+    GetWindowRect(Window, WindowRect);
+  SetSize(WindowRect);
+  DrawWindowEx(mnMoveRect(WindowRect), Window);
 end;
 
 procedure mnTPixeledImage.LoadFromBMPFile(const FileName: string);

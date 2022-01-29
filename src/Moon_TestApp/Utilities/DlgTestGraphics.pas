@@ -33,6 +33,10 @@ type
     rgHAlign: TRadioGroup;
     rgVAlign: TRadioGroup;
     rgContent: TRadioGroup;
+    btnSnapshotWindow: TButton;
+    btnSnapshotWindowEx: TButton;
+    procedure btnSnapshotWindowExClick(Sender: TObject);
+    procedure btnSnapshotWindowClick(Sender: TObject);
     procedure btnDrawWindowExClick(Sender: TObject);
     procedure btnDrawWindowClick(Sender: TObject);
     procedure btnFindWindowByCaptionSubClick(Sender: TObject);
@@ -213,6 +217,46 @@ begin
   finally
     PixeledImage.Free;
   end;    
+end;
+
+procedure TTestGraphicsDialog.btnSnapshotWindowClick(Sender: TObject);
+var
+  PixeledImage: mnTPixeledImage;
+begin
+  PixeledImage := mnTPixeledImage.Create;
+  try
+    PixeledImage.SnapshotWindow(CurrWindow);
+
+    sbScreen.ScrollBy(-2000, -2000);
+    imgScreen.Left := 0;
+    imgScreen.Top := 0;
+    imgScreen.Width := PixeledImage.Width;
+    imgScreen.Height := PixeledImage.Height;
+
+    PixeledImage.SaveToBMP(imgScreen.Picture.Bitmap);
+  finally
+    PixeledImage.Free;
+  end;
+end;
+
+procedure TTestGraphicsDialog.btnSnapshotWindowExClick(Sender: TObject);
+var
+  PixeledImage: mnTPixeledImage;
+begin
+  PixeledImage := mnTPixeledImage.Create;
+  try
+    PixeledImage.SnapshotWindowEx(CurrWindow);
+
+    sbScreen.ScrollBy(-2000, -2000);
+    imgScreen.Left := 0;
+    imgScreen.Top := 0;
+    imgScreen.Width := PixeledImage.Width;
+    imgScreen.Height := PixeledImage.Height;
+
+    PixeledImage.SaveToBMP(imgScreen.Picture.Bitmap);
+  finally
+    PixeledImage.Free;
+  end;
 end;
 
 end.
