@@ -91,17 +91,33 @@ type
     cbCaptionWholeWordOnly: TCheckBox;
     cbVisibleRequired: TCheckBox;
     btnGetWindowsDescriptions: TButton;
+    btnGetAllWindowsDescriptions: TButton;
     btnFindFirstWindow: TButton;
     btnPostSysVKeyToWindow: TButton;
     cbShowWindow: TCheckBox;
     Label11: TLabel;
+    btnSleepUntilWindowIsPresent: TButton;
+    btnSleepUntilWindowIsAbsent: TButton;
+    btnSleepUntilWindowIsForeground: TButton;
+    btnSleepUntilWindowContainsImage: TButton;
+    btnSleepAndClickUntilWindowContainsImage: TButton;
+    btnSetCursorPosOnWindow: TButton;
+    btnClickWindow: TButton;
     procedure btnSnapWindowExClick(Sender: TObject);
     procedure btnSnapWindowClick(Sender: TObject);
+    procedure btnClickWindowClick(Sender: TObject);
+    procedure btnSetCursorPosOnWindowClick(Sender: TObject);
+    procedure btnSleepAndClickUntilWindowContainsImageClick(Sender: TObject);
+    procedure btnSleepUntilWindowContainsImageClick(Sender: TObject);
+    procedure btnSleepUntilWindowIsForegroundClick(Sender: TObject);
+    procedure btnSleepUntilWindowIsAbsentClick(Sender: TObject);
+    procedure btnSleepUntilWindowIsPresentClick(Sender: TObject);
     procedure btnPostKeyToWindowClick(Sender: TObject);
     procedure btnPostSysVKeyToWindowClick(Sender: TObject);
     procedure btnPostVKeyToWindowClick(Sender: TObject);
     procedure btnGotoCurrWindowLeftTopClick(Sender: TObject);
     procedure btnFindFirstWindowClick(Sender: TObject);
+    procedure btnGetAllWindowsDescriptionsClick(Sender: TObject);
     procedure btnGetWindowsDescriptionsClick(Sender: TObject);
     procedure btnGetWindowsCaptionsClick(Sender: TObject);
     procedure btnGetWindowsClassNamesClick(Sender: TObject);
@@ -154,7 +170,7 @@ implementation
 
 {$R *.dfm}
 
-uses mnDialog, mnSystem, mnFile, mnString;
+uses mnDialog, mnSystem, mnFile, mnString, mnGraphics;
 
 { TTestWindowsDialog }
 
@@ -498,6 +514,14 @@ begin
   mnMemoBox(ppStrs.Text);
 end;
 
+procedure TTestWindowsDialog.btnGetAllWindowsDescriptionsClick(Sender: TObject);
+begin
+  ppStrs.Clear;
+  mnGetAllWindowsDescriptions(ppStrs, cbVisibleRequired.Checked);
+  mnInfoBox(Format('共有%d个窗口', [ppStrs.Count]));
+  mnMemoBox(ppStrs.Text);
+end;
+
 var
   CurrWindow: HWND;
 
@@ -565,6 +589,87 @@ var
 begin
   for i := 1 to Length(cbKey.Text) do
     mnPostKeyToWindow(CurrWindow, cbKey.Text[i]);
+end;
+
+function FindNotepadOption: mnTFindWindowsOption;
+begin
+  Result := mnDefaultFindWindowsOption;
+  Result.ClassName := 'Notepad';
+  Result.ClassNameMatchOptions := [scoCaseSensitive, scoWholeWordOnly];
+end;
+
+procedure TTestWindowsDialog.btnSleepUntilWindowIsPresentClick(Sender: TObject);
+var
+  Window: HWND;
+begin
+  Window := mnSleepUntilWindowIsPresent(FindNotepadOption);
+  mnInfoBox('Notepad is present now: ' + IntToStr(Window));
+end;
+
+procedure TTestWindowsDialog.btnSleepUntilWindowIsAbsentClick(Sender: TObject);
+begin
+  mnSleepUntilWindowIsAbsent(FindNotepadOption);
+  mnInfoBox('Notepad is absent now');
+end;
+
+procedure TTestWindowsDialog.btnSleepUntilWindowIsForegroundClick(
+  Sender: TObject);
+var
+  Window: HWND;
+begin
+  Window := mnFindFirstWindow(FindNotepadOption);
+  mnSleepUntilWindowIsForeground(Window);
+  mnInfoBox('Notepad is foreground now');
+end;
+
+procedure TTestWindowsDialog.btnSleepUntilWindowContainsImageClick(
+  Sender: TObject);
+var
+  NotepadaaaaaaImage: mnTPixeledImage;
+  NotepadWindow: HWND;
+begin
+  NotepadaaaaaaImage := mnTPixeledImage.Create;
+  try
+    NotepadaaaaaaImage.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\Windows\Notepadaaaaaa.bmp'));
+    NotepadWindow := mnFindFirstWindow(FindNotepadOption);
+    mnSleepUntilWindowContainsImage(NotepadWindow, NotepadaaaaaaImage);
+    mnInfoBox('NotepadWindow contains NotepadaaaaaaImage now');
+  finally
+    NotepadaaaaaaImage.Free;
+  end;
+end;
+
+procedure TTestWindowsDialog.btnSleepAndClickUntilWindowContainsImageClick(
+  Sender: TObject);
+var
+  NotepadaaaaaaImage: mnTPixeledImage;
+  NotepadWindow: HWND;
+begin
+  NotepadaaaaaaImage := mnTPixeledImage.Create;
+  try
+    NotepadaaaaaaImage.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\Windows\Notepadaaaaaa.bmp'));
+    NotepadWindow := mnFindFirstWindow(FindNotepadOption);
+    mnSleepAndClickUntilWindowContainsImage(NotepadWindow, NotepadaaaaaaImage);
+    mnInfoBox('NotepadaaaaaaImage has been clicked now');
+  finally
+    NotepadaaaaaaImage.Free;
+  end;
+end;
+
+procedure TTestWindowsDialog.btnSetCursorPosOnWindowClick(Sender: TObject);
+var
+  NotepadWindow: HWND;
+begin
+  NotepadWindow := mnFindFirstWindow(FindNotepadOption);
+  mnSetCursorPosOnWindow(NotepadWindow, 100, 100);
+end;
+
+procedure TTestWindowsDialog.btnClickWindowClick(Sender: TObject);
+var
+  NotepadWindow: HWND;
+begin
+  NotepadWindow := mnFindFirstWindow(FindNotepadOption);
+  mnClickWindow(NotepadWindow, 100, 100);
 end;
 
 procedure TTestWindowsDialog.btnSnapWindowClick(Sender: TObject);

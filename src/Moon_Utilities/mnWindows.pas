@@ -2,7 +2,7 @@ unit mnWindows;
 
 interface
 
-uses Windows, Controls, Graphics, Classes, mnSystem, mnString, Messages;
+uses Windows, Controls, Graphics, Classes, mnSystem, mnString, Messages, mnGraphics;
 
 {--------------------------------
   在Windows环境中创建和关闭Desktop。
@@ -177,7 +177,14 @@ const
   得到指定的多个窗口的描述，描述由窗口句柄ID、类别和标题拼接而成，格式以Format形式传入。
   Tested in TestApp.
  --------------------------------}
-procedure mnGetWindowsDescriptions(const Windows: mnTHWNDArray; Descriptions: TStrings; const DescriptionFormat: string);
+procedure mnGetWindowsDescriptions(const Windows: mnTHWNDArray; Descriptions: TStrings; const DescriptionFormat: string = mnStdWindowDescriptionFormat);
+
+{--------------------------------
+  得到系统里全部窗口的描述，描述由窗口句柄ID、类别和标题拼接而成，格式以Format形式传入。
+  可指定是否只取可见的窗口。
+  Tested in TestApp.
+ --------------------------------}
+procedure mnGetAllWindowsDescriptions(Descriptions: TStrings; const VisibleRequired: Boolean = True; const DescriptionFormat: string = mnStdWindowDescriptionFormat);
 
 type
 {--------------------------------
@@ -212,6 +219,70 @@ function mnFindWindows(const Option: mnTFindWindowsOption): mnTHWNDArray;
   Tested in TestApp.
  --------------------------------}
 function mnFindFirstWindow(const Option: mnTFindWindowsOption): HWND;
+
+{--------------------------------
+  判断一个窗口是否存在。
+  No test.
+ --------------------------------}
+function mnWindowIsPresent(const Window: HWND): Boolean;
+{--------------------------------
+  判断一个窗口是否不存在。
+  No test.
+ --------------------------------}
+function mnWindowIsAbsent(const Window: HWND): Boolean;
+{--------------------------------
+  验证一个窗口的存在，不存在时抛出异常。
+  No test.
+ --------------------------------}
+procedure mnValidateWindowIsPresent(const Window: HWND; const ErrorMsg: string = '');
+
+{--------------------------------
+  应用程序挂起，直到符合指定选项的窗口存在。
+  返回该窗口。
+  Tested in TestApp.
+ --------------------------------}
+function mnSleepUntilWindowIsPresent(const Option: mnTFindWindowsOption; const SleepInterval: Integer = 50): HWND;
+{--------------------------------
+  应用程序挂起，直到符合指定选项的窗口不再存在。
+  Tested in TestApp.
+ --------------------------------}
+procedure mnSleepUntilWindowIsAbsent(const Option: mnTFindWindowsOption; const SleepInterval: Integer = 50); overload;
+{--------------------------------
+  应用程序挂起，直到指定窗口不再存在。
+  No test.
+ --------------------------------}
+procedure mnSleepUntilWindowIsAbsent(const Window: HWND; const SleepInterval: Integer = 50); overload;
+{--------------------------------
+  应用程序挂起，直到指定窗口变成当前焦点窗口。
+  Tested in TestApp.
+ --------------------------------}
+procedure mnSleepUntilWindowIsForeground(const Window: HWND; const SleepInterval: Integer = 50);
+
+{--------------------------------
+  应用程序挂起，直到指定窗口的截图包含指定图片。
+  Tested in TestApp.
+ --------------------------------}
+procedure mnSleepUntilWindowContainsImage(const Window: HWND; const Image: mnTPixeledImage;                    const SleepInterval: Integer = 50); overload;
+procedure mnSleepUntilWindowContainsImage(const Window: HWND; const Image: mnTPixeledImage; var X, Y: Integer; const SleepInterval: Integer = 50); overload;
+
+{--------------------------------
+  应用程序挂起，直到指定窗口的截图包含指定图片，然后鼠标移到指定窗口的图片区域并点击。
+  Tested in TestApp.
+ --------------------------------}
+procedure mnSleepAndClickUntilWindowContainsImage(const Window: HWND; const Image: mnTPixeledImage; const SleepInterval: Integer = 50);
+
+{--------------------------------
+  将鼠标移动到指定窗口的(X, Y)处。
+  (X, Y)坐标以窗口左上角为原点。
+  Tested in TestApp.
+ --------------------------------}
+procedure mnSetCursorPosOnWindow(const Window: HWND; const X, Y: Integer);
+{--------------------------------
+  将鼠标移动到指定窗口的(X, Y)处并点击。
+  (X, Y)坐标以窗口左上角为原点。
+  Tested in TestApp.
+ --------------------------------}
+procedure mnClickWindow(const Window: HWND; const X, Y: Integer);
 
 {--------------------------------
   往指定窗口发送一个Virtual Key。
@@ -623,7 +694,7 @@ function mnGetWindowClassName(const Window: HWND): string;
 var
   ClassName: array [0..255] of Char;
 begin
-  mnCreateErrorIf(not IsWindow(Window), SWindowNotExists);
+  mnCreateErrorIf(mnWindowIsAbsent(Window), SWindowNotExists);
   if GetClassName(Window, ClassName, SizeOf(ClassName)) <> 0 then
     Result := ClassName
   else Result := '';
@@ -633,7 +704,7 @@ function mnGetWindowCaption(const Window: HWND): string;
 var
   Caption: array [0..255] of Char;
 begin
-  mnCreateErrorIf(not IsWindow(Window), SWindowNotExists);
+  mnCreateErrorIf(mnWindowIsAbsent(Window), SWindowNotExists);
   if GetWindowText(Window, Caption, SizeOf(Caption)) <> 0 then
     Result := Caption
   else Result := '';
@@ -657,13 +728,24 @@ begin
     Captions.Append(mnGetWindowCaption(Window));
 end;
 
-procedure mnGetWindowsDescriptions(const Windows: mnTHWNDArray; Descriptions: TStrings; const DescriptionFormat: string);
+procedure mnGetWindowsDescriptions(const Windows: mnTHWNDArray; Descriptions: TStrings; const DescriptionFormat: string = mnStdWindowDescriptionFormat);
 var
   Window: HWND;
 begin
   Descriptions.Capacity := Descriptions.Count + Length(Windows);
   for Window in Windows do
     Descriptions.Append(Format(DescriptionFormat, [Window, mnGetWindowClassName(Window), mnGetWindowCaption(Window)]));
+end;
+
+procedure mnGetAllWindowsDescriptions(Descriptions: TStrings; const VisibleRequired: Boolean = True; const DescriptionFormat: string = mnStdWindowDescriptionFormat);
+var
+  Option: mnTFindWindowsOption;
+  Windows: mnTHWNDArray;
+begin
+  Option := mnDefaultFindWindowsOption;
+  Option.VisibleRequired := VisibleRequired;
+  Windows := mnFindWindows(Option);
+  mnGetWindowsDescriptions(Windows, Descriptions, DescriptionFormat);
 end;
 
 function mnDefaultFindWindowsOption: mnTFindWindowsOption;
@@ -724,14 +806,137 @@ begin
 end;
 
 function mnFindFirstWindow(const Option: mnTFindWindowsOption): HWND;
+type
+  TEnumParam = record
+    Option: mnTFindWindowsOption;
+    Window: HWND;
+  end;
+  PEnumParam = ^TEnumParam;
 var
-  Windows: mnTHWNDArray;
+  P: PEnumParam;
+
+  function EnumWindowsFunc(Window: HWND; lParam: LPARAM): Boolean; stdcall;
+  var
+    P: PEnumParam;
+  begin
+    Result := True;
+    P := PEnumParam(lParam);
+    if (P.Option.ClassName <> '') and not mnCompareStr(mnGetWindowClassName(Window), P.Option.ClassName, P.Option.ClassNameMatchOptions) then
+      Exit;
+    if (P.Option.Caption <> '') and not mnCompareStr(mnGetWindowCaption(Window), P.Option.Caption, P.Option.CaptionMatchOptions) then
+      Exit;
+    if P.Option.VisibleRequired and not IsWindowVisible(Window) then
+      Exit;
+    P.Window := Window;
+    Result := False;
+  end;
+
 begin
-  Windows := mnFindWindows(Option);
-  if Length(Windows) = 0 then
-    Result := 0
-  else
-    Result := Windows[0];
+  New(P);
+  try
+    P.Option := Option;
+    P.Window := 0;
+    if Option.ParentWindow = 0 then
+      EnumWindows(@EnumWindowsFunc, LPARAM(P))
+    else
+      EnumChildWindows(Option.ParentWindow, @EnumWindowsFunc, LPARAM(P));
+    Result := P.Window;
+  finally
+    Dispose(P);
+  end;
+end;
+
+function mnWindowIsPresent(const Window: HWND): Boolean;
+begin
+  Result := (Window <> 0) and IsWindow(Window);
+end;
+
+function mnWindowIsAbsent(const Window: HWND): Boolean;
+begin
+  Result := (Window = 0) or not IsWindow(Window);
+end;
+
+procedure mnValidateWindowIsPresent(const Window: HWND; const ErrorMsg: string = '');
+begin
+  mnCreateErrorIf(mnWindowIsAbsent(Window), mnChooseStr(ErrorMsg = '', SWindowNotExists, ErrorMsg));
+end;
+
+function mnSleepUntilWindowIsPresent(const Option: mnTFindWindowsOption; const SleepInterval: Integer = 50): HWND;
+begin
+  repeat
+    Sleep(SleepInterval);
+    Result := mnFindFirstWindow(Option);
+  until mnWindowIsPresent(Result);
+  Sleep(SleepInterval);
+end;
+
+procedure mnSleepUntilWindowIsAbsent(const Option: mnTFindWindowsOption; const SleepInterval: Integer = 50); overload;
+var
+  Window: HWND;
+begin
+  repeat
+    Sleep(SleepInterval);
+    Window := mnFindFirstWindow(Option);
+  until mnWindowIsAbsent(Window);
+end;
+
+procedure mnSleepUntilWindowIsAbsent(const Window: HWND; const SleepInterval: Integer = 50); overload;
+begin
+  repeat
+    Sleep(SleepInterval);
+  until mnWindowIsAbsent(Window);
+end;
+
+procedure mnSleepUntilWindowIsForeground(const Window: HWND; const SleepInterval: Integer = 50);
+begin
+  repeat
+    Sleep(SleepInterval);
+  until GetForegroundWindow = Window;
+end;
+
+procedure mnSleepUntilWindowContainsImage(const Window: HWND; const Image: mnTPixeledImage;                    const SleepInterval: Integer = 50); overload;
+var
+  X, Y: Integer;
+begin
+  mnSleepUntilWindowContainsImage(Window, Image, X, Y, SleepInterval);
+end;
+
+procedure mnSleepUntilWindowContainsImage(const Window: HWND; const Image: mnTPixeledImage; var X, Y: Integer; const SleepInterval: Integer = 50); overload;
+var
+  WindowImage: mnTPixeledImage;
+begin
+  WindowImage := mnTPixeledImage.Create;
+  try
+    repeat
+      Sleep(SleepInterval);
+      mnCreateErrorIf(mnWindowIsAbsent(Window), SWindowNotExists);
+      WindowImage.SnapshotWindow(Window);
+    until WindowImage.Find(Image, X, Y);
+  finally
+    WindowImage.Free;
+  end;
+end;
+
+procedure mnSleepAndClickUntilWindowContainsImage(const Window: HWND; const Image: mnTPixeledImage; const SleepInterval: Integer = 50);
+var
+  X, Y: Integer;
+begin
+  mnSleepUntilWindowContainsImage(Window, Image, X, Y, SleepInterval);
+  mnClickWindow(Window, X + Image.Width div 2, Y + Image.Height div 2);
+end;
+
+procedure mnSetCursorPosOnWindow(const Window: HWND; const X, Y: Integer);
+var
+  WindowRect: TRect;
+begin
+  GetWindowRect(Window, WindowRect);
+  SetCursorPos(WindowRect.Left+X, WindowRect.Top+Y);
+end;
+
+procedure mnClickWindow(const Window: HWND; const X, Y: Integer);
+begin
+  mnSetCursorPosOnWindow(Window, X, Y);
+  mnMouseClick;
 end;
 
 procedure mnPostVKeyToWindow(const Window: HWND; const VKey: Integer);

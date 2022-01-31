@@ -1,9 +1,9 @@
 inherited TestWindowsDialog: TTestWindowsDialog
-  Left = 657
-  Top = 359
+  Left = 603
+  Top = 236
   Caption = 'TestWindows'
-  ClientHeight = 523
-  ClientWidth = 867
+  ClientHeight = 561
+  ClientWidth = 891
   OnClick = FormClick
   OnCreate = FormCreate
   OnDblClick = FormDblClick
@@ -13,15 +13,15 @@ inherited TestWindowsDialog: TTestWindowsDialog
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxbtnOK: TcxButton
-    Left = 384
-    Top = 488
+    Left = 408
+    Top = 528
   end
   object pcTestWindows: TPageControl
     Left = 16
     Top = 8
-    Width = 833
-    Height = 465
-    ActivePage = tsMisc
+    Width = 857
+    Height = 505
+    ActivePage = tsWindow
     TabOrder = 1
     object tsMisc: TTabSheet
       Caption = 'tsMisc'
@@ -379,21 +379,21 @@ inherited TestWindowsDialog: TTestWindowsDialog
       ImageIndex = 2
       object lbCurrWindow: TLabel
         Left = 24
-        Top = 208
+        Top = 192
         Width = 67
         Height = 13
         Caption = 'lbCurrWindow'
       end
       object lbCurrWindowClassName: TLabel
         Left = 24
-        Top = 232
+        Top = 216
         Width = 119
         Height = 13
         Caption = 'lbCurrWindowClassName'
       end
       object lbCurrWindowCaption: TLabel
         Left = 24
-        Top = 256
+        Top = 240
         Width = 104
         Height = 13
         Caption = 'lbCurrWindowCaption'
@@ -421,7 +421,7 @@ inherited TestWindowsDialog: TTestWindowsDialog
       end
       object btnGetWindowsCaptions: TButton
         Left = 184
-        Top = 112
+        Top = 104
         Width = 150
         Height = 25
         Caption = 'GetWindowsCaptions'
@@ -430,7 +430,7 @@ inherited TestWindowsDialog: TTestWindowsDialog
       end
       object btnGetWindowsClassNames: TButton
         Left = 24
-        Top = 112
+        Top = 104
         Width = 150
         Height = 25
         Caption = 'GetWindowsClassNames'
@@ -439,31 +439,31 @@ inherited TestWindowsDialog: TTestWindowsDialog
       end
       object btnPostVKeyToWindow: TButton
         Left = 24
-        Top = 312
+        Top = 296
         Width = 150
         Height = 25
         Caption = 'PostVKeyToWindow'
-        TabOrder = 13
+        TabOrder = 14
         OnClick = btnPostVKeyToWindowClick
       end
       object btnPostKeyToWindow: TButton
         Left = 24
-        Top = 344
+        Top = 328
         Width = 150
         Height = 25
         Caption = 'PostKeyToWindow'
-        TabOrder = 15
+        TabOrder = 16
         OnClick = btnPostKeyToWindowClick
       end
       object cbVKey: TComboBox
-        Left = 352
-        Top = 314
+        Left = 344
+        Top = 298
         Width = 145
         Height = 21
         Style = csDropDownList
         ItemHeight = 13
         ItemIndex = 0
-        TabOrder = 14
+        TabOrder = 15
         Text = 'VK_F1'
         Items.Strings = (
           'VK_F1'
@@ -479,19 +479,19 @@ inherited TestWindowsDialog: TTestWindowsDialog
       end
       object cbKey: TEdit
         Left = 192
-        Top = 346
+        Top = 330
         Width = 121
         Height = 21
-        TabOrder = 16
+        TabOrder = 17
         Text = 'cbKey'
       end
       object btnGotoCurrWindowLeftTop: TButton
         Left = 24
-        Top = 280
+        Top = 264
         Width = 150
         Height = 25
         Caption = 'GotoCurrWindowLeftTop'
-        TabOrder = 12
+        TabOrder = 13
         OnClick = btnGotoCurrWindowLeftTopClick
       end
       object edtParentWindow: TEdit
@@ -557,7 +557,7 @@ inherited TestWindowsDialog: TTestWindowsDialog
       end
       object btnGetWindowsDescriptions: TButton
         Left = 344
-        Top = 112
+        Top = 104
         Width = 150
         Height = 25
         Caption = 'GetWindowsDescriptions'
@@ -566,21 +566,93 @@ inherited TestWindowsDialog: TTestWindowsDialog
       end
       object btnFindFirstWindow: TButton
         Left = 24
-        Top = 168
+        Top = 152
         Width = 150
         Height = 25
         Caption = 'FindFirstWindow'
-        TabOrder = 11
+        TabOrder = 12
         OnClick = btnFindFirstWindowClick
       end
       object btnPostSysVKeyToWindow: TButton
         Left = 184
-        Top = 312
+        Top = 296
         Width = 150
         Height = 25
         Caption = 'PostSysVKeyToWindow'
-        TabOrder = 17
+        TabOrder = 18
         OnClick = btnPostSysVKeyToWindowClick
+      end
+      object btnSleepUntilWindowIsPresent: TButton
+        Left = 24
+        Top = 376
+        Width = 153
+        Height = 25
+        Caption = 'SleepUntilWindowIsPresent'
+        TabOrder = 19
+        OnClick = btnSleepUntilWindowIsPresentClick
+      end
+      object btnSleepUntilWindowIsAbsent: TButton
+        Left = 184
+        Top = 376
+        Width = 153
+        Height = 25
+        Caption = 'SleepUntilWindowIsAbsent'
+        TabOrder = 20
+        OnClick = btnSleepUntilWindowIsAbsentClick
+      end
+      object btnSleepUntilWindowContainsImage: TButton
+        Left = 24
+        Top = 408
+        Width = 225
+        Height = 25
+        Caption = 'SleepUntilWindowContainsImage'
+        TabOrder = 22
+        OnClick = btnSleepUntilWindowContainsImageClick
+      end
+      object btnSleepAndClickUntilWindowContainsImage: TButton
+        Left = 256
+        Top = 408
+        Width = 225
+        Height = 25
+        Caption = 'SleepAndClickUntilWindowContainsImage'
+        TabOrder = 23
+        OnClick = btnSleepAndClickUntilWindowContainsImageClick
+      end
+      object btnClickWindow: TButton
+        Left = 184
+        Top = 440
+        Width = 153
+        Height = 25
+        Caption = 'ClickWindow'
+        TabOrder = 25
+        OnClick = btnClickWindowClick
+      end
+      object btnSetCursorPosOnWindow: TButton
+        Left = 24
+        Top = 440
+        Width = 153
+        Height = 25
+        Caption = 'SetCursorPosOnWindow'
+        TabOrder = 24
+        OnClick = btnSetCursorPosOnWindowClick
+      end
+      object btnSleepUntilWindowIsForeground: TButton
+        Left = 344
+        Top = 376
+        Width = 177
+        Height = 25
+        Caption = 'SleepUntilWindowIsForeground'
+        TabOrder = 21
+        OnClick = btnSleepUntilWindowIsForegroundClick
+      end
+      object btnGetAllWindowsDescriptions: TButton
+        Left = 504
+        Top = 104
+        Width = 150
+        Height = 25
+        Caption = 'GetAllWindowsDescriptions'
+        TabOrder = 11
+        OnClick = btnGetAllWindowsDescriptionsClick
       end
     end
     object tsSnap: TTabSheet
@@ -705,17 +777,17 @@ inherited TestWindowsDialog: TTestWindowsDialog
     DefaultExt = 'exe'
     Filter = 'Executable Files (*.exe)|*.exe'
     Left = 16
-    Top = 488
+    Top = 520
   end
   object appeTestWindows: TApplicationEvents
     OnMessage = appeTestWindowsMessage
     Left = 48
-    Top = 488
+    Top = 520
   end
   object tmrTestWindows: TTimer
     Interval = 500
     OnTimer = tmrTestWindowsTimer
     Left = 80
-    Top = 488
+    Top = 520
   end
 end
