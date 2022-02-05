@@ -39,16 +39,27 @@ type
 
 type
 {--------------------------------
-  一维字符串数组和Byte数组，用于作为函数参数传递。
+  一维字符串数组、整数数组、Byte数组和DWORD数组，用于作为函数参数传递。
  --------------------------------}
-  mnTStrArray = array of String;
+  mnTStrArray = array of string;
+  mnTIntArray = array of Integer;
   mnTByteArray = array of Byte;
+  mnTDWORDArray = array of DWORD;
 {--------------------------------
   二维Variant数组、字符串数组和整数数组，用于作为函数参数传递。
  --------------------------------}
   mnTVarArrayDim2 = array of array of Variant;
   mnTStrArrayDim2 = array of array of string;
   mnTIntArrayDim2 = array of array of Integer;
+
+{--------------------------------
+  将指针列表转换为一维字符串数组、整数数组、Byte数组和DWORD数组。
+  Tested in TestUnit.
+ --------------------------------}
+function mnListToStrArray(const List: TList): mnTStrArray;
+function mnListToIntArray(const List: TList): mnTIntArray;
+function mnListToByteArray(const List: TList): mnTByteArray;
+function mnListToDWORDArray(const List: TList): mnTDWORDArray;
 
 var
 {--------------------------------
@@ -1594,6 +1605,42 @@ implementation
 
 uses mnResStrsU, Variants, mnString, StrUtils, mnMath, RTLConsts, mnArray, Forms, mnWindows, mnFile,
   mnTPL, DateUtils, mnDebug;
+
+function mnListToStrArray(const List: TList): mnTStrArray;
+var
+  i: Integer;
+begin
+  SetLength(Result, List.Count);
+  for i := 0 to List.Count-1 do
+    Result[i] := PString(List[i])^;
+end;
+
+function mnListToIntArray(const List: TList): mnTIntArray;
+var
+  i: Integer;
+begin
+  SetLength(Result, List.Count);
+  for i := 0 to List.Count-1 do
+    Result[i] := PInteger(List[i])^;
+end;
+
+function mnListToByteArray(const List: TList): mnTByteArray;
+var
+  i: Integer;
+begin
+  SetLength(Result, List.Count);
+  for i := 0 to List.Count-1 do
+    Result[i] := PByte(List[i])^;
+end;
+
+function mnListToDWORDArray(const List: TList): mnTDWORDArray;
+var
+  i: Integer;
+begin
+  SetLength(Result, List.Count);
+  for i := 0 to List.Count-1 do
+    Result[i] := PLongWord(List[i])^;
+end;
 
 function mnAppPathSub(const SubName: string): string; overload;
 begin

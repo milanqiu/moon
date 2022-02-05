@@ -21,6 +21,7 @@ type
     procedure SetUp; override;
     procedure TearDown; override;
   published
+    procedure testListToArraySeries;
     procedure testAppSub;
     procedure testAppPathSub;
 
@@ -333,6 +334,42 @@ end;
 
 procedure TmnSystemTestCase.TearDown;
 begin
+end;
+
+procedure TmnSystemTestCase.testListToArraySeries;
+var
+  List: TList;
+  StrArr: mnTStrArray;
+  IntArr: mnTIntArray;
+begin
+  List := TList.Create;
+  try
+    // mnListToStrArray
+    List.Add(mnNewStrPointer(Str_0));
+    List.Add(mnNewStrPointer(Str_1));
+    List.Add(mnNewStrPointer(Str_2));
+
+    StrArr := mnListToStrArray(List);
+    CheckEquals(Length(StrArr), 3);
+    CheckEquals(StrArr[0], Str_0);
+    CheckEquals(StrArr[1], Str_1);
+    CheckEquals(StrArr[2], Str_2);
+    mnClearList(List, ptString);
+
+    // mnListToIntArray
+    List.Add(mnNewIntPointer(Int_0));
+    List.Add(mnNewIntPointer(Int_1));
+    List.Add(mnNewIntPointer(Int_2));
+
+    IntArr := mnListToIntArray(List);
+    CheckEquals(Length(IntArr), 3);
+    CheckEquals(IntArr[0], Int_0);
+    CheckEquals(IntArr[1], Int_1);
+    CheckEquals(IntArr[2], Int_2);
+    mnClearList(List);
+  finally
+    List.Free;
+  end;
 end;
 
 procedure TmnSystemTestCase.testAppSub;
