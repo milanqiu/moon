@@ -72,6 +72,7 @@ type
     procedure testTreeNodeFullText;
     procedure testArrayToStrings;
     procedure testCounterSeries;
+    procedure testCounter;
     procedure testCircleSeries;
     procedure testCircle;
     procedure testCountdownSeries;
@@ -1554,6 +1555,29 @@ begin
   mnAddCounter(5);
   CheckEquals(mnGetCounter, 8);
   Check(mnCounterReaches(8));
+end;
+
+procedure TmnSystemTestCase.testCounter;
+var
+  Counter: mnTCounter;
+begin
+  Counter := mnTCounter.Create(1);
+  try
+    CheckEquals(Counter.Get, 1);
+
+    Counter.Init(2);
+    CheckEquals(Counter.Get, 2);
+
+    Counter.Add;
+    CheckEquals(Counter.Get, 3);
+    CheckFalse(Counter.Reaches(8));
+
+    Counter.Add(5);
+    CheckEquals(Counter.Get, 8);
+    Check(Counter.Reaches(8));
+  finally
+    Counter.Free;
+  end;
 end;
 
 procedure TmnSystemTestCase.testCircleSeries;
