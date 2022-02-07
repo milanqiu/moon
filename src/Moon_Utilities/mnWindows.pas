@@ -206,7 +206,7 @@ type
   end;
 {--------------------------------
   缺省的查找窗口选项，没有设置任何条件。自定义的条件可以在此基础上修改。
-  Tested in TestApp.
+  No test.
  --------------------------------}
 function mnDefaultFindWindowsOption: mnTFindWindowsOption;
 {--------------------------------
@@ -216,6 +216,7 @@ function mnDefaultFindWindowsOption: mnTFindWindowsOption;
 function mnFindWindows(const Option: mnTFindWindowsOption): mnTHWNDArray;
 {--------------------------------
   查找第一个符合条件选项的窗口。
+  如果没有找到，返回High(HWND)。
   Tested in TestApp.
  --------------------------------}
 function mnFindFirstWindow(const Option: mnTFindWindowsOption): HWND;
@@ -296,6 +297,40 @@ procedure mnPostSysVKeyToWindow(const Window: HWND; const VKey: Integer);
   Tested in TestApp.
  --------------------------------}
 procedure mnPostKeyToWindow(const Window: HWND; const Key: Char);
+
+type
+{--------------------------------
+  用于查找进程时传入参数。
+    ExeFile：需匹配的ExeFile。
+    ExeFileMatchOptions：匹配ExeFile时的比较选项。
+ --------------------------------}
+  mnTFindProcessOption = record
+    ExeFile: string;
+    ExeFileMatchOptions: mnTStrComparisonOptions;
+  end;
+{--------------------------------
+  缺省的查找进程选项，没有设置任何条件。自定义的条件可以在此基础上修改。
+  No test.
+ --------------------------------}
+function mnDefaultFindProcessOption: mnTFindProcessOption;
+
+{--------------------------------
+  查找进程，返回进程ID数组。
+  Tested in TestApp.
+ --------------------------------}
+function mnFindProcesses(const Option: mnTFindProcessOption): mnTDWORDArray;
+{--------------------------------
+  查找第一个符合条件选项的进程。
+  如果没有找到，返回High(DWORD)。
+  Tested in TestApp.
+ --------------------------------}
+function mnFindFirstProcess(const Option: mnTFindProcessOption): DWORD;
+
+{--------------------------------
+  根据进程ID和所需访问权限打开进程，返回进程的句柄。
+  Tested in TestApp.
+ --------------------------------}
+function mnOpenProcess(const ProcessID: DWORD; const DesiredAccess: DWORD = PROCESS_ALL_ACCESS): THandle;
 
 {--------------------------------
   Windows API.
@@ -379,7 +414,7 @@ procedure mnResumeRedraw(AHandle: THandle);
 
 implementation
 
-uses ShellAPI, Forms, mnControl, mnResStrsU, SysUtils, Types;
+uses ShellAPI, Forms, mnControl, mnResStrsU, SysUtils, Types, TLHelp32;
 
 function mnCreateDesktop(const DesktopName: string): HDESK;
 begin
@@ -776,9 +811,9 @@ var
   begin
     Result := True;
     P := PEnumParam(lParam);
-    if (P.Option.ClassName <> '') and not mnCompareStr(mnGetWindowClassName(Window), P.Option.ClassName, P.Option.ClassNameMatchOptions) then
+    if not mnCompareStr(mnGetWindowClassName(Window), P.Option.ClassName, P.Option.ClassNameMatchOptions) then
       Exit;
-    if (P.Option.Caption <> '') and not mnCompareStr(mnGetWindowCaption(Window), P.Option.Caption, P.Option.CaptionMatchOptions) then
+    if not mnCompareStr(mnGetWindowCaption(Window), P.Option.Caption, P.Option.CaptionMatchOptions) then
       Exit;
     if P.Option.VisibleRequired and not IsWindowVisible(Window) then
       Exit;
@@ -821,9 +856,9 @@ var
   begin
     Result := True;
     P := PEnumParam(lParam);
-    if (P.Option.ClassName <> '') and not mnCompareStr(mnGetWindowClassName(Window), P.Option.ClassName, P.Option.ClassNameMatchOptions) then
+    if not mnCompareStr(mnGetWindowClassName(Window), P.Option.ClassName, P.Option.ClassNameMatchOptions) then
       Exit;
-    if (P.Option.Caption <> '') and not mnCompareStr(mnGetWindowCaption(Window), P.Option.Caption, P.Option.CaptionMatchOptions) then
+    if not mnCompareStr(mnGetWindowCaption(Window), P.Option.Caption, P.Option.CaptionMatchOptions) then
       Exit;
     if P.Option.VisibleRequired and not IsWindowVisible(Window) then
       Exit;
@@ -835,7 +870,7 @@ begin
   New(P);
   try
     P.Option := Option;
-    P.Window := 0;
+    P.Window := High(HWND);
     if Option.ParentWindow = 0 then
       EnumWindows(@EnumWindowsFunc, LPARAM(P))
     else
@@ -954,6 +989,69 @@ end;
 procedure mnPostKeyToWindow(const Window: HWND; const Key: Char);
 begin
   PostMessage(Window, WM_CHAR, Ord(Key), 0);
+end;
+
+function mnDefaultFindProcessOption: mnTFindProcessOption;
+begin
+  Result.ExeFile := '';
+  Result.ExeFileMatchOptions := [];
+end;
+
+function mnFindProcesses(const Option: mnTFindProcessOption): mnTDWORDArray;
+var
+  List: TList;
+  Snapshot: THandle;
+  ProcessEntry: TProcessEntry32;
+  P: PLongWord;
+begin
+  List := TList.Create;
+  try
+    Snapshot := CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+    ProcessEntry.dwSize := SizeOf(ProcessEntry);
+    if Process32First(Snapshot, ProcessEntry) then
+    begin
+      repeat
+        if mnCompareStr(ProcessEntry.szExeFile, Option.ExeFile, Option.ExeFileMatchOptions) then
+        begin
+          P := New(PLongWord);
+          P^ := ProcessEntry.th32ProcessID;
+          List.Add(P);
+        end;
+      until not Process32Next(Snapshot, ProcessEntry);
+    end;
+    CloseHandle(Snapshot);
+    Result := mnListToDWORDArray(List);
+    mnClearList(List);
+  finally
+    List.Free;
+  end;
+end;
+
+function mnFindFirstProcess(const Option: mnTFindProcessOption): DWORD;
+var
+  Snapshot: THandle;
+  ProcessEntry: TProcessEntry32;
+begin
+  Snapshot := CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+  ProcessEntry.dwSize := SizeOf(ProcessEntry);
+  if Process32First(Snapshot, ProcessEntry) then
+  begin
+    repeat
+      if mnCompareStr(ProcessEntry.szExeFile, Option.ExeFile, Option.ExeFileMatchOptions) then
+      begin
+        Result := ProcessEntry.th32ProcessID;
+        CloseHandle(Snapshot);
+        Exit;
+      end;
+    until not Process32Next(Snapshot, ProcessEntry);
+  end;
+  Result := High(DWORD);
+  CloseHandle(Snapshot);
+end;
+
+function mnOpenProcess(const ProcessID: DWORD; const DesiredAccess: DWORD = PROCESS_ALL_ACCESS): THandle;
+begin
+  Result := OpenProcess(DesiredAccess, True, ProcessID);
 end;
 
 procedure mnAcceptDropFiles(AHandle: THandle); overload;

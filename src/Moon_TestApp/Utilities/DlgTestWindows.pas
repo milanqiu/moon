@@ -30,6 +30,12 @@ type
     btnReboot: TButton;
     btnLogoff: TButton;
     btnOSLanguage: TButton;
+    Label12: TLabel;
+    edtExeFile: TEdit;
+    cbExeFileCaseSensitive: TCheckBox;
+    cbExeFileWholeWordOnly: TCheckBox;
+    btnFindProcessesAndOpenProcess: TButton;
+    btnFindFirstProcess: TButton;
     tsKeyMouse: TTabSheet;
     lbMouseMsg1: TLabel;
     lbMouseMsg2: TLabel;
@@ -138,6 +144,8 @@ type
     procedure btnMouseClickClick(Sender: TObject);
     procedure tmrTestWindowsTimer(Sender: TObject);
     procedure appeTestWindowsMessage(var Msg: tagMSG; var Handled: Boolean);
+    procedure btnFindFirstProcessClick(Sender: TObject);
+    procedure btnFindProcessesAndOpenProcessClick(Sender: TObject);
     procedure btnOSLanguageClick(Sender: TObject);
     procedure btnLogoffClick(Sender: TObject);
     procedure btnRebootClick(Sender: TObject);
@@ -157,6 +165,7 @@ type
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+    function GetFindProcessOption: mnTFindProcessOption;
     function GetFindWindowsOption: mnTFindWindowsOption;
     procedure WMDropFiles(var Message: TWMDropFiles); message WM_DropFiles;
   public
@@ -316,6 +325,27 @@ begin
   end;
 end;
 
+procedure TTestWindowsDialog.btnFindProcessesAndOpenProcessClick(Sender: TObject);
+var
+  Processes: mnTDWORDArray;
+  Process: DWORD;
+begin
+  Processes := mnFindProcesses(GetFindProcessOption);
+  ppStrs.Clear;
+  for Process in Processes do
+    ppStrs.AppendF('进程ID：%d'#9'进程句柄：%d', [Process, mnOpenProcess(Process)]);
+  mnInfoBox(Format('共有%d个进程', [Length(Processes)]));
+  mnMemoBox(ppStrs.Text);
+end;
+
+procedure TTestWindowsDialog.btnFindFirstProcessClick(Sender: TObject);
+var
+  Process: DWORD;
+begin
+  Process := mnFindFirstProcess(GetFindProcessOption);
+  mnInfoBox(Format('进程ID：%d', [Process]));
+end;
+
 procedure TTestWindowsDialog.WMDropFiles(var Message: TWMDropFiles);
 var
   Point: TPoint;
@@ -455,6 +485,18 @@ begin
   edtTo.SetFocus;
   edtTo.SelectAll;
   mnKeyPress(edtFrom.Text);
+end;
+
+function TTestWindowsDialog.GetFindProcessOption: mnTFindProcessOption;
+begin
+  Result := mnDefaultFindProcessOption;
+
+  Result.ExeFile := edtExeFile.Text;
+  Result.ExeFileMatchOptions := [];
+  if cbExeFileCaseSensitive.Checked then
+    Include(Result.ExeFileMatchOptions, scoCaseSensitive);
+  if cbExeFileWholeWordOnly.Checked then
+    Include(Result.ExeFileMatchOptions, scoWholeWordOnly);
 end;
 
 function TTestWindowsDialog.GetFindWindowsOption: mnTFindWindowsOption;

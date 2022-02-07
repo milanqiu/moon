@@ -21,16 +21,23 @@ inherited TestWindowsDialog: TTestWindowsDialog
     Top = 8
     Width = 857
     Height = 505
-    ActivePage = tsWindow
+    ActivePage = tsMisc
     TabOrder = 1
     object tsMisc: TTabSheet
       Caption = 'tsMisc'
       object Label11: TLabel
         Left = 24
-        Top = 184
+        Top = 216
         Width = 145
         Height = 13
         Caption = 'Drag any file to this window...'
+      end
+      object Label12: TLabel
+        Left = 26
+        Top = 182
+        Width = 38
+        Height = 13
+        Caption = 'ExeFile:'
       end
       object btnCreateDesktop: TButton
         Left = 24
@@ -184,6 +191,47 @@ inherited TestWindowsDialog: TTestWindowsDialog
         Checked = True
         State = cbChecked
         TabOrder = 16
+      end
+      object edtExeFile: TEdit
+        Left = 96
+        Top = 178
+        Width = 121
+        Height = 21
+        TabOrder = 17
+      end
+      object cbExeFileCaseSensitive: TCheckBox
+        Left = 240
+        Top = 180
+        Width = 169
+        Height = 17
+        Caption = 'Exe File Case Sensitive'
+        TabOrder = 18
+      end
+      object cbExeFileWholeWordOnly: TCheckBox
+        Left = 384
+        Top = 180
+        Width = 169
+        Height = 17
+        Caption = 'Exe File Whole Word Only'
+        TabOrder = 19
+      end
+      object btnFindProcessesAndOpenProcess: TButton
+        Left = 544
+        Top = 176
+        Width = 169
+        Height = 25
+        Caption = 'FindProcesses && OpenProcess'
+        TabOrder = 20
+        OnClick = btnFindProcessesAndOpenProcessClick
+      end
+      object btnFindFirstProcess: TButton
+        Left = 720
+        Top = 176
+        Width = 105
+        Height = 25
+        Caption = 'FindFirstProcess'
+        TabOrder = 21
+        OnClick = btnFindFirstProcessClick
       end
     end
     object tsKeyMouse: TTabSheet
