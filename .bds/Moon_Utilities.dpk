@@ -42,6 +42,11 @@ requires
   PerlRegExD7;
 
 contains
+  GIFImage,
+  pngimage,
+  pnglang,
+  pngzlib,
+  superobject,
   mnResStrsU in '..\src\Moon_Utilities\mnResStrsU.pas',
   mnArray in '..\src\Moon_Utilities\mnArray.pas',
   mnChinese in '..\src\Moon_Utilities\mnChinese.pas',
