@@ -755,6 +755,9 @@ begin
   CheckFalse(mnCompareStr('一二三', '欢', []));
   Check(mnCompareStr('aaa', 'aaa', []));
   Check(mnCompareStr('AAA', 'aaa', []));
+
+  Check(mnCompareStr('aaa', '', []));
+  CheckFalse(mnCompareStr('aaa', '', [], False));
 end;
 
 procedure TmnStringTestCase.testCompareStrInNumberStyle;

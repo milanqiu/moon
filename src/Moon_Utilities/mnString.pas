@@ -304,9 +304,10 @@ type
 {--------------------------------
   比较两个字符串，可传入是否大小写敏感或整词匹配的设置。
   如果非整词匹配，则使用SMajor作为主串，SMinor作为子串。
+  ResultWhenMinorIsEmpty表示当子串为空串时，如何返回。
   Tested in TestUnit.
  --------------------------------}
-function mnCompareStr(SMajor, SMinor: string; const Options: mnTStrComparisonOptions): Boolean;
+function mnCompareStr(SMajor, SMinor: string; const Options: mnTStrComparisonOptions; const ResultWhenMinorIsEmpty: Boolean = True): Boolean;
 
 {--------------------------------
   以数字方式比较两个字符串。
@@ -1632,8 +1633,14 @@ begin
   Result := mnExpandLeft(IntToStr(Value), RequiredLength, FillingChar);
 end;
 
-function mnCompareStr(SMajor, SMinor: string; const Options: mnTStrComparisonOptions): Boolean;
+function mnCompareStr(SMajor, SMinor: string; const Options: mnTStrComparisonOptions; const ResultWhenMinorIsEmpty: Boolean = True): Boolean;
 begin
+  if SMinor = '' then
+  begin
+    Result := ResultWhenMinorIsEmpty;
+    Exit;
+  end;
+
   if not (scoCaseSensitive in Options) then
   begin
     SMajor := LowerCase(SMajor);
