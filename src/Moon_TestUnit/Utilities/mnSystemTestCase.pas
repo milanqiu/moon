@@ -7556,7 +7556,7 @@ begin
     Check(StartsStr(mnAppPathSub('ExternalCommandFiles\'), ECE.AnnouncementDir));
     Check(Length(mnRemoveLeft(mnAppPathSub('ExternalCommandFiles\'), ECE.AnnouncementDir)) = 36);
     Check(ECE.AnnouncementFileName = ECE.AnnouncementDir+'\ok');
-    Check(ECE.CompletedArgs = 'Command ' + ECE.AnnouncementDir + ' Arg1 Arg2');
+    Check(ECE.CompletedArgs = 'Command "' + ECE.AnnouncementDir + '" Arg1 Arg2');
     Check(DirectoryExists(ECE.AnnouncementDir));
   finally
     mnDeleteDir(ECE.AnnouncementDir);

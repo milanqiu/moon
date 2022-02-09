@@ -7148,7 +7148,7 @@ begin
 
   FAnnouncementDir := mnAppPathSub('ExternalCommandFiles\' + mnNewGUID);
   FAnnouncementFileName := FAnnouncementDir + '\ok';
-  FCompletedArgs := FCommandName + ' ' + FAnnouncementDir + mnAppendLeftIfNotEmpty(' ', FArgsStr);
+  FCompletedArgs := FCommandName + ' "' + FAnnouncementDir + '"' + mnAppendLeftIfNotEmpty(' ', FArgsStr);
   ForceDirectories(FAnnouncementDir);
 
   FShowWindow := True;
@@ -7209,9 +7209,9 @@ var
   ProcessHandle: THandle;
 begin
   if FCommandFile.IsJar then
-    ProcessHandle := mnCreateProcess('java -jar ' + FCommandFile.CommandFileName + ' ' + FCompletedArgs, FShowWindow)
+    ProcessHandle := mnCreateProcess('java -jar "' + FCommandFile.CommandFileName + '" ' + FCompletedArgs, FShowWindow)
   else
-    ProcessHandle := mnCreateProcess(               FCommandFile.CommandFileName + ' ' + FCompletedArgs, FShowWindow);
+    ProcessHandle := mnCreateProcess(          '"' + FCommandFile.CommandFileName + '" ' + FCompletedArgs, FShowWindow);
   Result := WaitAndParse(ProcessHandle);
   if not FKeepAnnouncementDir then
     DeleteAnnouncementDir;
