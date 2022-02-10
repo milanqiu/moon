@@ -21,13 +21,14 @@ type
     procedure SetUp; override;
     procedure TearDown; override;
   published
+    procedure testAddRemoveWindowMessageFilter;
     procedure testHWNDArrayListConvertors;
     procedure testLoadResAsStr;
   end;
 
 implementation
 
-uses mnWindows, UTestConsts, Classes, mnSystem;
+uses mnWindows, UTestConsts, Classes, mnSystem, Messages;
 
 {$R ..\..\..\files\Strings\TestUnit\TestUnit.res}
 
@@ -39,6 +40,12 @@ end;
 
 procedure TmnWindowsTestCase.TearDown;
 begin
+end;
+
+procedure TmnWindowsTestCase.testAddRemoveWindowMessageFilter;
+begin
+  CheckTrue(mnAddWindowMessageFilter(WM_MOUSEMOVE));
+  CheckTrue(mnRemoveWindowMessageFilter(WM_MOUSEMOVE));
 end;
 
 procedure TmnWindowsTestCase.testHWNDArrayListConvertors;

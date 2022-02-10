@@ -81,6 +81,18 @@ type
 function mnGetOSLanguage: mnTOSLanguage;
 
 {--------------------------------
+  Windows API.
+ --------------------------------}
+function ChangeWindowMessageFilter(message: UINT; dwFlag: DWORD): BOOL; stdcall; external user32;
+
+{--------------------------------
+  从UIPI的消息过滤器中添加或删除一个消息。
+  Tested in TestUnit.
+ --------------------------------}
+function mnAddWindowMessageFilter(const Message: LongWord): Boolean;
+function mnRemoveWindowMessageFilter(const Message: LongWord): Boolean;
+
+{--------------------------------
   检查一个消息是否是鼠标消息。
   Tested in TestApp.
  --------------------------------}
@@ -382,7 +394,7 @@ function mnGetWindowColor(const APoint: TPoint; const Window: HWND = 0): TColor;
 {--------------------------------
   Windows API.
  --------------------------------}
-function PrintWindow(hWnd: HWND; hdcBlt: HDC; nFlags: UINT): BOOL; stdcall; external user32 name 'PrintWindow';
+function PrintWindow(hWnd: HWND; hdcBlt: HDC; nFlags: UINT): BOOL; stdcall; external user32;
 
 {--------------------------------
   以下两个函数的功能都是截取指定窗口中某区域的图像，并绘制到Canvas的(CanvasX, CanvasY)处。
@@ -589,6 +601,16 @@ begin
   else
     Result := olOther;
   end;
+end;
+
+function mnAddWindowMessageFilter(const Message: LongWord): Boolean;
+begin
+  Result := ChangeWindowMessageFilter(Message, 1); // 1 is MSGFLT_ADD
+end;
+
+function mnRemoveWindowMessageFilter(const Message: LongWord): Boolean;
+begin
+  Result := ChangeWindowMessageFilter(Message, 2); // 2 is MSGFLT_REMOVE
 end;
 
 function mnIsMouseMsg(const AMsg: TMsg): Boolean;
