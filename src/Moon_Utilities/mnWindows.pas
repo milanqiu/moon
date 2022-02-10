@@ -1078,11 +1078,15 @@ end;
 
 procedure mnAcceptDropFiles(AHandle: THandle); overload;
 begin
+  mnAddWindowMessageFilter(WM_DROPFILES);
+  mnAddWindowMessageFilter($0049); // $0049 is WM_COPYGLOBALDATA
   DragAcceptFiles(AHandle, True);
 end;
 
 procedure mnAcceptDropFiles(AWinControl: TWinControl); overload;
 begin
+  mnAddWindowMessageFilter(WM_DROPFILES);
+  mnAddWindowMessageFilter($0049); // $0049 is WM_COPYGLOBALDATA
   DragAcceptFiles(AWinControl.Handle, True);
 end;
 
