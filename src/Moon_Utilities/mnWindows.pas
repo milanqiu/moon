@@ -17,7 +17,7 @@ function mnCloseDesktop(const DesktopHandle: HDESK): Boolean;
   通过命令行方式执行任何命令（包括exe），以创建一个进程。
   ShowWindow指示进程运行的程序界面是否可见。
   OwnerDesktopName指示在哪个Desktop中创建。如果为空，则在当前Desktop中创建。
-  如果不是在当前Desktop中创建，进程运行的程序界面将对用户不可见。
+  如果不为空，则在以之为名的Desktop中创建。但该Desktop必须事先已存在。
   返回新创建的进程的句柄。
   Tested in TestApp.
  --------------------------------}
