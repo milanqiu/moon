@@ -189,6 +189,9 @@ type
     // 生成一个新的mnTPixeledImage对象，并从一个JPG文件里装载图片，图片大小将设置为同JPG大小相等
     class function CreateNewFromJPGFile(const FileName: string): mnTPixeledImage;
   public
+    // 从一个TPicture对象里装载图片，图片大小将设置为同Picture大小相等
+    procedure LoadFromPicture(Picture: TPicture);
+  public
     // 判断图片的指定区域，是否和另一张图片的指定区域完全相同，即大小和每个像素（的颜色）都相同
     // 如果两个区域的宽高都是0，则返回相同
     // 在其它重载形式里，如果有图片没有指定区域，则代表比较它的整张图片
@@ -759,6 +762,12 @@ class function mnTPixeledImage.CreateNewFromJPGFile(const FileName: string): mnT
 begin
   Result := mnTPixeledImage.Create;
   Result.LoadFromJPGFile(FileName);
+end;
+
+procedure mnTPixeledImage.LoadFromPicture(Picture: TPicture);
+begin
+  SetSize(Picture.Width, Picture.Height);
+  DrawBMP(Picture.Bitmap);
 end;
 
 function mnTPixeledImage.Compare(AnotherImage: mnTPixeledImage; const Rect, AnotherRect: TRect): Boolean;

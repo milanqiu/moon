@@ -41,6 +41,7 @@ type
     procedure testPixeledImage_SaveToJPGFile;
     procedure testPixeledImage_CreateNewFromBMPFile;
     procedure testPixeledImage_CreateNewFromJPGFile;
+    procedure testPixeledImage_LoadFromPicture;
     procedure testPixeledImage_Compare;
     procedure testPixeledImage_CompareSimilarity;
     procedure testPixeledImage_CompareWithMask;
@@ -562,6 +563,27 @@ begin
     Check(PixeledImage.Pixels[19, 19] = $FF01FF);
   finally
     PixeledImage.Free;
+  end;
+end;
+
+procedure TmnGraphicsTestCase.testPixeledImage_LoadFromPicture;
+var
+  Picture: TPicture;
+begin
+  Picture := TPicture.Create;
+  try
+    Picture.LoadFromFile(mnTProjectConvention.GetFilesPathSub('Images\BMP.bmp'));
+
+    PixeledImage.Clear(clBlue);
+    PixeledImage.LoadFromPicture(Picture);
+    CheckEquals(PixeledImage.Width, 20);
+    CheckEquals(PixeledImage.Height, 20);
+    Check(PixeledImage.Pixels[0, 0] = $FF00FF);
+    Check(PixeledImage.Pixels[0, 2] = $848484);
+    Check(PixeledImage.Pixels[19, 18] = $000000);
+    Check(PixeledImage.Pixels[19, 19] = $FF00FF);
+  finally
+    Picture.Free;
   end;
 end;
 
