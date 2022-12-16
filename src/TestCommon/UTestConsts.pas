@@ -116,7 +116,7 @@ const
   Text_UTF8_WithBOM = #$EF#$BB#$BF + #$E6#$88#$91#$E4#$BB#$AC#$61;
 
 const
-  Host = 'http://test.q2asia.com/gwangmyeongseong-web/';
+  Host = 'http://test.milanqiu.net/gwangmyeongseong-web/';
   Url_Get = Host + 'GetServlet';
   Url_Post = Host + 'PostServlet';
   Url_Fake = Host + 'Fake.html';

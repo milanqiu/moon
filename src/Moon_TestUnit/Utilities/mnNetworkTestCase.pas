@@ -46,7 +46,7 @@ begin
   CheckEquals(mnHTTPGet(Url_Get+Params_Get), Page_Get);
 
   try
-    mnHTTPGet(Url_Fake, 2, 1000);
+    mnHTTPGet(Url_Fake, 3, 500);
     mnNeverGoesHere;
   except
     on E: Exception do
@@ -59,7 +59,7 @@ begin
   CheckEquals(mnHTTPPost(Url_Post, Params_Post), Page_Post);
 
   try
-    mnHTTPPost(Url_Fake, Params_Post, 2, 1000);
+    mnHTTPPost(Url_Fake, Params_Post, 3, 500);
     mnNeverGoesHere;
   except
     on E: Exception do
@@ -72,7 +72,7 @@ begin
   CheckEquals(mnThreadHTTPGet(Url_Get+Params_Get), Page_Get);
 
   try
-    mnThreadHTTPGet(Url_Fake, 2, 1000);
+    mnThreadHTTPGet(Url_Fake, 3, 500);
     mnNeverGoesHere;
   except
     on E: Exception do
@@ -85,7 +85,7 @@ begin
   CheckEquals(mnThreadHTTPPost(Url_Post, Params_Post), Page_Post);
 
   try
-    mnThreadHTTPPost(Url_Fake, Params_Post, 2, 1000);
+    mnThreadHTTPPost(Url_Fake, Params_Post, 3, 500);
     mnNeverGoesHere;
   except
     on E: Exception do
