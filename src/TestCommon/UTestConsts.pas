@@ -118,13 +118,16 @@ const
 const
   Host = 'http://test.milanqiu.net/gwangmyeongseong-web/';
   Url_Get = Host + 'GetServlet';
-  Url_Post = Host + 'PostServlet';
-  Url_Fake = Host + 'Fake.html';
   Params_Get = '?Param1=a1&Param2=%E5%95%8A';
+  Content_Get = 'Method: get<br>Param1: a1<br>Param2: '#$E5#$95#$8A;
+  Url_Post = Host + 'PostServlet';
   Params_Post = 'Param1=a1'#13#10'Param2='#$E5#$95#$8A;
-  Page_Get = 'Method: get<br>Param1: a1<br>Param2: '#$E5#$95#$8A;
-  Page_Post = 'Method: post<br>Param1: a1<br>Param2: '#$E5#$95#$8A;
-  Page_Not_Found = 'HTTP/1.1 404 Not Found';
+  Content_Post = 'Method: post<br>Param1: a1<br>Param2: '#$E5#$95#$8A;
+  Url_Fake_Page = Host + 'Fake.html';
+  Url_Fake_Host = 'http://www.r9odzyuefcpc.com/index.html';
+  Url_Https = 'https://www.12306.cn';
+  Error_Page_Not_Found = 'HTTP/1.1 404 Not Found';
+  Error_Host_Not_Found = 'Socket Error # 11001'#13#10'Host not found.';
 
 implementation
 

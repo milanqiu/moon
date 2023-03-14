@@ -57,14 +57,23 @@ uses
 {$IFDEF MN_DEBUG}
   FastMM4, IdGlobal, IdThreadSafe,
 {$ENDIF}
-  SysUtils, Forms, mnSystem, IdException, ComObj, XMLDoc, mnDebug, mnResStrsU;
+  SysUtils, Forms, mnSystem, IdException, ComObj, XMLDoc, mnDebug, mnResStrsU,
+  IdIOHandler, IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSSLOpenSSL;
 
 var
   UsedHTTP: TIdHTTP;
+  UsedIdSSLIOHandlerSocketOpenSSL: TIdSSLIOHandlerSocketOpenSSL;
 
 procedure CreateUsedHTTP;
 begin
-  if not Assigned(UsedHTTP) then UsedHTTP := TIdHTTP.Create(nil);
+  if not Assigned(UsedHTTP) then
+  begin
+    UsedHTTP := TIdHTTP.Create(nil);
+    UsedHTTP.HTTPOptions := UsedHTTP.HTTPOptions + [hoKeepOrigProtocol];
+    UsedHTTP.ProtocolVersion := pv1_1;
+    UsedHTTP.IOHandler := UsedIdSSLIOHandlerSocketOpenSSL;
+    UsedHTTP.HandleRedirects := True;
+  end;
 end;
 
 procedure FreeUsedHTTP;
@@ -311,9 +320,12 @@ initialization
   RegisterExpectedMemoryLeak(TIdThreadSafeInteger);
   RegisterExpectedMemoryLeak(TIdCriticalSection, 2);
 {$ENDIF}
+  UsedIdSSLIOHandlerSocketOpenSSL := TIdSSLIOHandlerSocketOpenSSL.Create(nil);
+  UsedIdSSLIOHandlerSocketOpenSSL.SSLOptions.Method := sslvTLSv1;
 
 finalization
 
   FreeUsedHTTP;
+  UsedIdSSLIOHandlerSocketOpenSSL.Free;
 
 end.

@@ -43,54 +43,94 @@ end;
 
 procedure TmnNetworkTestCase.testHTTPGet;
 begin
-  CheckEquals(mnHTTPGet(Url_Get+Params_Get), Page_Get);
+  CheckEquals(mnHTTPGet(Url_Get+Params_Get), Content_Get);
 
   try
-    mnHTTPGet(Url_Fake, 3, 500);
+    mnHTTPGet(Url_Fake_Page, 3, 500);
     mnNeverGoesHere;
   except
     on E: Exception do
-      CheckEquals(E.Message, Page_Not_Found);
+      CheckEquals(E.Message, Error_Page_Not_Found);
   end;
+
+  try
+    mnHTTPGet(Url_Fake_Host, 3, 500);
+    mnNeverGoesHere;
+  except
+    on E: Exception do
+      CheckEquals(E.Message, Error_Host_Not_Found);
+  end;
+
+  mnHTTPGet(Url_Https);
 end;
 
 procedure TmnNetworkTestCase.testHTTPPost;
 begin
-  CheckEquals(mnHTTPPost(Url_Post, Params_Post), Page_Post);
+  CheckEquals(mnHTTPPost(Url_Post, Params_Post), Content_Post);
 
   try
-    mnHTTPPost(Url_Fake, Params_Post, 3, 500);
+    mnHTTPPost(Url_Fake_Page, Params_Post, 3, 500);
     mnNeverGoesHere;
   except
     on E: Exception do
-      CheckEquals(E.Message, Page_Not_Found);
+      CheckEquals(E.Message, Error_Page_Not_Found);
   end;
+
+  try
+    mnHTTPPost(Url_Fake_Host, Params_Post, 3, 500);
+    mnNeverGoesHere;
+  except
+    on E: Exception do
+      CheckEquals(E.Message, Error_Host_Not_Found);
+  end;          
+
+  mnHTTPPost(Url_Https, '');
 end;
 
 procedure TmnNetworkTestCase.testThreadHTTPGet;
 begin
-  CheckEquals(mnThreadHTTPGet(Url_Get+Params_Get), Page_Get);
+  CheckEquals(mnThreadHTTPGet(Url_Get+Params_Get), Content_Get);
 
   try
-    mnThreadHTTPGet(Url_Fake, 3, 500);
+    mnThreadHTTPGet(Url_Fake_Page, 3, 500);
     mnNeverGoesHere;
   except
     on E: Exception do
-      CheckEquals(E.Message, Page_Not_Found);
+      CheckEquals(E.Message, Error_Page_Not_Found);
   end;
+
+  try
+    mnThreadHTTPGet(Url_Fake_Host, 3, 500);
+    mnNeverGoesHere;
+  except
+    on E: Exception do
+      CheckEquals(E.Message, Error_Host_Not_Found);
+  end;
+
+  mnThreadHTTPGet(Url_Https);
 end;
 
 procedure TmnNetworkTestCase.testThreadHTTPPost;
 begin
-  CheckEquals(mnThreadHTTPPost(Url_Post, Params_Post), Page_Post);
+  CheckEquals(mnThreadHTTPPost(Url_Post, Params_Post), Content_Post);
 
   try
-    mnThreadHTTPPost(Url_Fake, Params_Post, 3, 500);
+    mnThreadHTTPPost(Url_Fake_Page, Params_Post, 3, 500);
     mnNeverGoesHere;
   except
     on E: Exception do
-      CheckEquals(E.Message, Page_Not_Found);
+      CheckEquals(E.Message, Error_Page_Not_Found);
   end;
+
+  try
+    mnThreadHTTPPost(Url_Fake_Host, Params_Post, 3, 500);
+    mnNeverGoesHere;
+  except
+    on E: Exception do
+      CheckEquals(E.Message, Error_Host_Not_Found);
+  end;
+
+  mnThreadHTTPPost(Url_Https, '');
 end;
 
 initialization

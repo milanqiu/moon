@@ -1,11 +1,13 @@
 inherited TestNetworkDialog: TTestNetworkDialog
+  Left = 759
+  Top = 241
   Caption = 'TestNetwork'
   ClientHeight = 260
-  ClientWidth = 543
+  ClientWidth = 684
   PixelsPerInch = 96
   TextHeight = 13
   inherited cxbtnOK: TcxButton
-    Left = 232
+    Left = 296
     Top = 224
   end
   object btnHTTPGet: TButton
@@ -50,7 +52,7 @@ inherited TestNetworkDialog: TTestNetworkDialog
     Width = 110
     Height = 25
     Caption = 'HTTPPost'
-    TabOrder = 5
+    TabOrder = 6
     OnClick = btnHTTPPostClick
   end
   object btnHTTPPost6: TButton
@@ -59,7 +61,7 @@ inherited TestNetworkDialog: TTestNetworkDialog
     Width = 110
     Height = 25
     Caption = 'HTTPPost6'
-    TabOrder = 6
+    TabOrder = 7
     OnClick = btnHTTPPost6Click
   end
   object btnHTTPPostFail: TButton
@@ -68,7 +70,7 @@ inherited TestNetworkDialog: TTestNetworkDialog
     Width = 110
     Height = 25
     Caption = 'HTTPPostFail'
-    TabOrder = 7
+    TabOrder = 8
     OnClick = btnHTTPPostFailClick
   end
   object btnHTTPPostFail6: TButton
@@ -77,7 +79,7 @@ inherited TestNetworkDialog: TTestNetworkDialog
     Width = 110
     Height = 25
     Caption = 'HTTPPostFail6'
-    TabOrder = 8
+    TabOrder = 9
     OnClick = btnHTTPPostFail6Click
   end
   object btnThreadHTTPGet: TButton
@@ -86,7 +88,7 @@ inherited TestNetworkDialog: TTestNetworkDialog
     Width = 110
     Height = 25
     Caption = 'ThreadHTTPGet'
-    TabOrder = 9
+    TabOrder = 11
     OnClick = btnThreadHTTPGetClick
   end
   object btnThreadHTTPGet6: TButton
@@ -95,7 +97,7 @@ inherited TestNetworkDialog: TTestNetworkDialog
     Width = 110
     Height = 25
     Caption = 'ThreadHTTPGet6'
-    TabOrder = 10
+    TabOrder = 12
     OnClick = btnThreadHTTPGet6Click
   end
   object btnThreadHTTPGetFail: TButton
@@ -104,7 +106,7 @@ inherited TestNetworkDialog: TTestNetworkDialog
     Width = 110
     Height = 25
     Caption = 'ThreadHTTPGetFail'
-    TabOrder = 11
+    TabOrder = 13
     OnClick = btnThreadHTTPGetFailClick
   end
   object btnThreadHTTPGetFail6: TButton
@@ -113,7 +115,7 @@ inherited TestNetworkDialog: TTestNetworkDialog
     Width = 110
     Height = 25
     Caption = 'ThreadHTTPGetFail6'
-    TabOrder = 12
+    TabOrder = 14
     OnClick = btnThreadHTTPGetFail6Click
   end
   object btnThreadHTTPPost: TButton
@@ -122,7 +124,7 @@ inherited TestNetworkDialog: TTestNetworkDialog
     Width = 110
     Height = 25
     Caption = 'ThreadHTTPPost'
-    TabOrder = 13
+    TabOrder = 16
     OnClick = btnThreadHTTPPostClick
   end
   object btnThreadHTTPPost6: TButton
@@ -131,7 +133,7 @@ inherited TestNetworkDialog: TTestNetworkDialog
     Width = 110
     Height = 25
     Caption = 'ThreadHTTPPost6'
-    TabOrder = 14
+    TabOrder = 17
     OnClick = btnThreadHTTPPost6Click
   end
   object btnThreadHTTPPostFail: TButton
@@ -140,7 +142,7 @@ inherited TestNetworkDialog: TTestNetworkDialog
     Width = 110
     Height = 25
     Caption = 'ThreadHTTPPostFail'
-    TabOrder = 15
+    TabOrder = 18
     OnClick = btnThreadHTTPPostFailClick
   end
   object btnThreadHTTPPostFail6: TButton
@@ -149,16 +151,52 @@ inherited TestNetworkDialog: TTestNetworkDialog
     Width = 110
     Height = 25
     Caption = 'ThreadHTTPPostFail6'
-    TabOrder = 16
+    TabOrder = 19
     OnClick = btnThreadHTTPPostFail6Click
   end
   object btnThreadHTTPTerminate: TButton
-    Left = 211
+    Left = 275
     Top = 184
     Width = 120
     Height = 25
     Caption = 'ThreadHTTPTerminate'
-    TabOrder = 17
+    TabOrder = 21
     OnClick = btnThreadHTTPTerminateClick
+  end
+  object btnHTTPGetHTTPS: TButton
+    Left = 536
+    Top = 24
+    Width = 121
+    Height = 25
+    Caption = 'HTTPGetHTTPS'
+    TabOrder = 5
+    OnClick = btnHTTPGetHTTPSClick
+  end
+  object btnHTTPPostHTTPS: TButton
+    Left = 536
+    Top = 64
+    Width = 121
+    Height = 25
+    Caption = 'HTTPPostHTTPS'
+    TabOrder = 10
+    OnClick = btnHTTPPostHTTPSClick
+  end
+  object btnThreadHTTPGetHTTPS: TButton
+    Left = 536
+    Top = 104
+    Width = 121
+    Height = 25
+    Caption = 'ThreadHTTPGetHTTPS'
+    TabOrder = 15
+    OnClick = btnThreadHTTPGetHTTPSClick
+  end
+  object btnThreadHTTPPostHTTPS: TButton
+    Left = 536
+    Top = 144
+    Width = 121
+    Height = 25
+    Caption = 'ThreadHTTPPostHTTPS'
+    TabOrder = 20
+    OnClick = btnThreadHTTPPostHTTPSClick
   end
 end
