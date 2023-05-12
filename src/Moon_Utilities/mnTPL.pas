@@ -13,6 +13,20 @@ function mnParseJsonToStrArray(const JsonStr: string): mnTStrArray; overload;
 function mnParseJsonToStrArray(const JsonArray: TSuperArray): mnTStrArray; overload;
 
 {--------------------------------
+  获取一个Json串或Json对象的所有属性名。
+  Tested in TestUnit.
+ --------------------------------}
+function mnParseJsonObjectNames(const JsonStr: string): mnTStrArray; overload;
+function mnParseJsonObjectNames(const JsonObject: TSuperTableString): mnTStrArray; overload;
+
+{--------------------------------
+  获取一个Json串或Json对象的指定属性的值。
+  Tested in TestUnit.
+ --------------------------------}
+function mnParseJsonObjectValue(const JsonStr: string; const Name: string): string; overload;
+function mnParseJsonObjectValue(const JsonObject: TSuperTableString; const Name: string): string; overload;
+
+{--------------------------------
   滚动一个TextEdit到末尾。
   Tested in TestApp.
  --------------------------------}
@@ -94,6 +108,32 @@ begin
   begin
     Result[i] := JsonArray[i].AsString;
   end;
+end;
+
+function mnParseJsonObjectNames(const JsonStr: string): mnTStrArray; overload;
+var
+  Obj: ISuperObject;
+begin
+  Obj := SO(JsonStr);
+  Result := mnParseJsonObjectNames(Obj.AsObject);
+end;
+
+function mnParseJsonObjectNames(const JsonObject: TSuperTableString): mnTStrArray; overload;
+begin
+  Result := mnParseJsonToStrArray(JsonObject.GetNames.AsArray);
+end;
+
+function mnParseJsonObjectValue(const JsonStr: string; const Name: string): string; overload;
+var
+  Obj: ISuperObject;
+begin
+  Obj := SO(JsonStr);
+  Result := mnParseJsonObjectValue(Obj.AsObject, Name);
+end;
+
+function mnParseJsonObjectValue(const JsonObject: TSuperTableString; const Name: string): string; overload;
+begin
+  Result := JsonObject.S[Name];
 end;
 
 procedure mnScrollToEnd(TextEdit: TcxCustomTextEdit);

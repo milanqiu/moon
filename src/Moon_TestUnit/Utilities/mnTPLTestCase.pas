@@ -22,6 +22,8 @@ type
     procedure TearDown; override;
   published
     procedure testParseJsonToStrArray;
+    procedure testParseJsonObjectNames;
+    procedure testParseJsonObjectValue;
   end;
 
 implementation
@@ -42,7 +44,7 @@ procedure TmnTPLTestCase.testParseJsonToStrArray;
 var
   Arr: mnTStrArray;
 begin
-  // overload form 1
+  // overload form 1 (implicited overload form 2)
   Arr := mnParseJsonToStrArray('["aaa", bbb, 111]');
   CheckEquals(Length(Arr), 3);
   CheckEquals(Arr[0], 'aaa');
@@ -53,7 +55,41 @@ begin
   CheckEquals(Length(Arr), 0);
 
   try
-    Arr := mnParseJsonToStrArray('["aaa"');
+    mnParseJsonToStrArray('["aaa"');
+    mnNeverGoesHere;
+  except
+  end;
+end;
+
+procedure TmnTPLTestCase.testParseJsonObjectNames;
+var
+  Arr: mnTStrArray;
+begin
+  // overload form 1 (implicited overload form 2)
+  Arr := mnParseJsonObjectNames('{Name1:Value1,"Name2":"Value2"}');
+  CheckEquals(Length(Arr), 2);
+  CheckEquals(Arr[0], 'Name2');
+  CheckEquals(Arr[1], 'Name1');
+
+  Arr := mnParseJsonObjectNames('{}');
+  CheckEquals(Length(Arr), 0);
+
+  try
+    mnParseJsonObjectNames('{Name1:Value1');
+    mnNeverGoesHere;
+  except
+  end;
+end;
+
+procedure TmnTPLTestCase.testParseJsonObjectValue;
+begin
+  // overload form 1 (implicited overload form 2)
+  CheckEquals(mnParseJsonObjectValue('{Name1:Value1,"Name2":"Value2"}', 'Name1'), 'Value1');
+  CheckEquals(mnParseJsonObjectValue('{Name1:Value1,"Name2":"Value2"}', 'Name2'), 'Value2');
+  CheckEquals(mnParseJsonObjectValue('{Name1:Value1,"Name2":"Value2"}', 'Name3'), '');
+
+  try
+    mnParseJsonObjectValue('{Name1:Value1', 'Name1');
     mnNeverGoesHere;
   except
   end;
