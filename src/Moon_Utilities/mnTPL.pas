@@ -3,13 +3,14 @@ unit mnTPL;
 interface
 
 uses cxTextEdit, cxListBox, cxDropDownEdit, cxMCListBox, mnSystem, cxCheckComboBox,
-  cxGraphics, Types;
+  cxGraphics, Types, superobject;
 
 {--------------------------------
-  将一个Json串转换为字符串数组。
+  将一个Json串或Json数组对象转换为字符串数组。
   Tested in TestUnit.
  --------------------------------}
-function mnParseJsonToStrArray(const JsonStr: string): mnTStrArray;
+function mnParseJsonToStrArray(const JsonStr: string): mnTStrArray; overload;
+function mnParseJsonToStrArray(const JsonArray: TSuperArray): mnTStrArray; overload;
 
 {--------------------------------
   滚动一个TextEdit到末尾。
@@ -74,21 +75,24 @@ procedure mnDrawItemCustom(ComboBox: TcxCustomComboBox; Canvas: TcxCanvas; const
 
 implementation
 
-uses cxCheckBox, Windows, superobject;
+uses cxCheckBox, Windows;
 
-function mnParseJsonToStrArray(const JsonStr: string): mnTStrArray;
+function mnParseJsonToStrArray(const JsonStr: string): mnTStrArray; overload;
 var
   Obj: ISuperObject;
-  Arr: TSuperArray;
-  i: Integer;
 begin
   Obj := SO(JsonStr);
-  Arr := Obj.AsArray;
+  Result := mnParseJsonToStrArray(Obj.AsArray);
+end;
 
-  SetLength(Result, Arr.Length);
-  for i := 0 to Arr.Length-1 do
+function mnParseJsonToStrArray(const JsonArray: TSuperArray): mnTStrArray; overload;
+var
+  i: Integer;
+begin
+  SetLength(Result, JsonArray.Length);
+  for i := 0 to JsonArray.Length-1 do
   begin
-    Result[i] := Arr[i].AsString;
+    Result[i] := JsonArray[i].AsString;
   end;
 end;
 

@@ -42,6 +42,7 @@ procedure TmnTPLTestCase.testParseJsonToStrArray;
 var
   Arr: mnTStrArray;
 begin
+  // overload form 1
   Arr := mnParseJsonToStrArray('["aaa", bbb, 111]');
   CheckEquals(Length(Arr), 3);
   CheckEquals(Arr[0], 'aaa');
