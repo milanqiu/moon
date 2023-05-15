@@ -30,12 +30,11 @@ function mnFloatGE(const A, B: Extended): Boolean;
 function mnCompareValue2D(const A1, A2, B1, B2: Integer): TValueRelationship;
 
 {--------------------------------
-  对一个浮点数进行四舍五入。
-  使用中国式的四舍五入，有别于国际通用的银行家四舍五入。
+  对一个浮点数进行中国式的四舍五入，有别于国际通用的银行家四舍五入。
   Precision用来作10的幂，指示了四舍五入的精度。
   Tested in TestUnit.
  --------------------------------}
-function mnRound(const Value: Extended; const Precision: Integer = 0): Extended;
+function mnChineseRound(const Value: Extended; const Precision: Integer = 0): Extended;
 
 {--------------------------------
   将一个整数通过计算转化为一位数。
@@ -163,12 +162,12 @@ begin
     Result := EqualsValue;
 end;
 
-function mnRound(const Value: Extended; const Precision: Integer = 0): Extended;
+function mnChineseRound(const Value: Extended; const Precision: Integer = 0): Extended;
 var
   Offset: Extended;
 begin
   if Value < 0 then
-    Result := -mnRound(-Value, Precision)
+    Result := -mnChineseRound(-Value, Precision)
   else if Precision = 0 then
   begin
     Result := Trunc(Value);
@@ -178,7 +177,7 @@ begin
   else
   begin
     Offset := IntPower(10, Precision);
-    Result := mnRound(Value / Offset) * Offset;
+    Result := mnChineseRound(Value / Offset) * Offset;
   end;
 end;
 
