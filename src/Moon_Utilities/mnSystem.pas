@@ -112,22 +112,42 @@ function mnIsDateTime  (const S: string): Boolean;
 function mnIsCurrency  (const S: string): Boolean;
 
 {--------------------------------
-  抛出指定消息和类型的Exception。
+  抛出指定消息的Exception。
   Tested in TestUnit.
  --------------------------------}
 procedure mnCreateError(const Msg: string); overload;
 procedure mnCreateError(const Msg: string; const Args: array of const); overload;
+{--------------------------------
+  抛出指定类型和消息的Exception。
+  Tested in TestUnit.
+ --------------------------------}
 procedure mnCreateError(CustomException: ExceptClass; const Msg: string); overload;
 procedure mnCreateError(CustomException: ExceptClass; const Msg: string; const Args: array of const); overload;
+{--------------------------------
+  将指定Exception的类型作为新Exception的类型，更改其消息并抛出。
+  Tested in TestUnit.
+ --------------------------------}
+procedure mnCreateError(E: Exception; const Msg: string); overload;
+procedure mnCreateError(E: Exception; const Msg: string; const Args: array of const); overload;
 
 {--------------------------------
-  在满足条件的情况下，抛出指定消息和类型的Exception。
+  在满足条件的情况下，抛出指定消息的Exception。
   Tested in TestUnit.
  --------------------------------}
 procedure mnCreateErrorIf(const Condition: Boolean; const Msg: string); overload; inline;
 procedure mnCreateErrorIf(const Condition: Boolean; const Msg: string; const Args: array of const); overload;
+{--------------------------------
+  在满足条件的情况下，抛出指定类型和消息的Exception。
+  Tested in TestUnit.
+ --------------------------------}
 procedure mnCreateErrorIf(const Condition: Boolean; CustomException: ExceptClass; const Msg: string); overload; inline;
 procedure mnCreateErrorIf(const Condition: Boolean; CustomException: ExceptClass; const Msg: string; const Args: array of const); overload;
+{--------------------------------
+  在满足条件的情况下，将指定Exception的类型作为新Exception的类型，更改其消息并抛出。
+  Tested in TestUnit.
+ --------------------------------}
+procedure mnCreateErrorIf(const Condition: Boolean; E: Exception; const Msg: string); overload; inline;
+procedure mnCreateErrorIf(const Condition: Boolean; E: Exception; const Msg: string; const Args: array of const); overload;
 
 type
 {--------------------------------
@@ -1799,6 +1819,16 @@ begin
   mnCreateError(CustomException, Format(Msg, Args));
 end;
 
+procedure mnCreateError(E: Exception; const Msg: string); overload;
+begin
+  raise ExceptClass(E.ClassType).Create(Msg);
+end;
+
+procedure mnCreateError(E: Exception; const Msg: string; const Args: array of const); overload;
+begin
+  mnCreateError(E, Format(Msg, Args));
+end;
+
 procedure mnCreateErrorIf(const Condition: Boolean; const Msg: string); overload; inline;
 begin
   if Condition then mnCreateError(Msg);
@@ -1817,6 +1847,16 @@ end;
 procedure mnCreateErrorIf(const Condition: Boolean; CustomException: ExceptClass; const Msg: string; const Args: array of const); overload;
 begin
   if Condition then mnCreateError(CustomException, Msg, Args);
+end;
+
+procedure mnCreateErrorIf(const Condition: Boolean; E: Exception; const Msg: string); overload; inline;
+begin
+  if Condition then mnCreateError(E, Msg);
+end;
+
+procedure mnCreateErrorIf(const Condition: Boolean; E: Exception; const Msg: string; const Args: array of const); overload;
+begin
+  if Condition then mnCreateError(E, Msg, Args);
 end;
 
 function mnRelationalOpToStr(const RelationalOp: mnTRelationalOp): string;

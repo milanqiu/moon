@@ -324,7 +324,7 @@ implementation
 
 uses mnSystem, SysUtils, mnString, mnDebug, UTestConsts, Variants, mnMath,
   mnResStrsU, ComCtrls, Classes, Windows, mnFile, Math, RTLConsts, Types, Forms,
-  StrUtils;
+  StrUtils, DateUtils;
 
 { TmnSystemTestCase }
 
@@ -493,6 +493,8 @@ type
   ECustomException = class(Exception);
 
 procedure TmnSystemTestCase.testCreateError;
+var
+  n: Integer;
 begin
   // overload form 1
   try
@@ -535,9 +537,55 @@ begin
       CheckEquals(E.Message, '5 custom errors');
     end;
   end;
+
+  // overload form 5
+  n := 100;
+  try
+    n := 1 div Trunc(Today - Today);
+    mnNeverGoesHere;
+  except
+    on OriginalE: Exception do
+    begin
+      try
+        CheckEquals(OriginalE.ClassType, EDivByZero);
+        mnCreateError(OriginalE, 'this is a reraised error - ' + IntToStr(n));
+        mnNeverGoesHere;
+      except
+        on E: Exception do
+        begin
+          CheckEquals(E.ClassType, EDivByZero);
+          CheckEquals(E.Message, 'this is a reraised error - 100');
+        end;
+      end;
+    end;
+  end;
+
+  // overload form 6
+  n := 100;
+  try
+    n := 1 div Trunc(Today - Today);
+    mnNeverGoesHere;
+  except
+    on OriginalE: Exception do
+    begin
+      try
+        CheckEquals(OriginalE.ClassType, EDivByZero);
+        mnCreateError(OriginalE, 'this is a reraised error - %d', [n]);
+        mnNeverGoesHere;
+      except
+        on E: Exception do
+        begin
+          CheckEquals(E.ClassType, EDivByZero);
+          CheckEquals(E.Message, 'this is a reraised error - 100');
+        end;
+      end;
+    end;
+  end;
 end;
 
 procedure TmnSystemTestCase.testCreateErrorIf;
+var
+  n: Integer;
 begin
   // overload form 1
   try
@@ -582,6 +630,52 @@ begin
     begin
       Check(E is ECustomException);
       CheckEquals(E.Message, '5 custom errors');
+    end;
+  end;
+
+  // overload form 5
+  n := 100;
+  try
+    n := 1 div Trunc(Today - Today);
+    mnNeverGoesHere;
+  except
+    on OriginalE: Exception do
+    begin
+      try
+        CheckEquals(OriginalE.ClassType, EDivByZero);
+        mnCreateErrorIf(1=2, OriginalE, 'shouldn''t create - ' + IntToStr(n));
+        mnCreateErrorIf(1=1, OriginalE, 'this is a reraised error - ' + IntToStr(n));
+        mnNeverGoesHere;
+      except
+        on E: Exception do
+        begin
+          CheckEquals(E.ClassType, EDivByZero);
+          CheckEquals(E.Message, 'this is a reraised error - 100');
+        end;
+      end;
+    end;
+  end;
+
+  // overload form 6
+  n := 100;
+  try
+    n := 1 div Trunc(Today - Today);
+    mnNeverGoesHere;
+  except
+    on OriginalE: Exception do
+    begin
+      try
+        CheckEquals(OriginalE.ClassType, EDivByZero);
+        mnCreateErrorIf(1=2, OriginalE, 'shouldn''t create - %d', [n]);
+        mnCreateErrorIf(1=1, OriginalE, 'this is a reraised error - %d', [n]);
+        mnNeverGoesHere;
+      except
+        on E: Exception do
+        begin
+          CheckEquals(E.ClassType, EDivByZero);
+          CheckEquals(E.Message, 'this is a reraised error - 100');
+        end;
+      end;
     end;
   end;
 end;
