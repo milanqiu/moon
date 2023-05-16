@@ -72,6 +72,49 @@ function mnHTMLSimplePage(const Title, Body: string): string;
  --------------------------------}
 function mnHTMLRemoveTags(const HTML: string): string;
 
+type
+{--------------------------------
+  用于编写HTML脚本。
+  Tested in TestUnit.
+ --------------------------------}
+  mnTHTMLWriter = class
+  private
+    HTML: string;
+  private
+    FHasNewLine: Boolean;
+    FIndent: string;
+  public
+    // 脚本是否带有换行，缺省为是
+    property HasNewLine: Boolean read FHasNewLine write FHasNewLine;
+    // 脚本的缩进。缺省为两个空格
+    property Indent: string read FIndent write FIndent;
+  public
+    constructor Create;
+
+    // 输出HTML脚本
+    function ToHTML: string;
+    // 清除当前已写入的HTML脚本
+    procedure Clear;
+
+    // 写文本
+    procedure Write(const Text: string);
+    // 写换行，取决于脚本是否带有换行的属性
+    procedure WriteNewLine;
+    // 写缩进，取决于脚本的缩进属性
+    procedure WriteIndent;
+
+    // 开始一行。可定义tr的Attributes
+    procedure BeginRow(const Attributes: string = '');
+    // 结束一行
+    procedure EndRow;
+    // 开始一个单元格。可定义td的Attributes、ColSpan和RowSpan
+    procedure BeginCell(const Attributes: string = ''; const ColSpan: Integer = 1; const RowSpan: Integer = 1);
+    // 结束一个单元格
+    procedure EndCell;
+    // 写一个单元格。等同于开始单元格->写文本->结束单元格
+    procedure WriteCell(const Text: string; const Attributes: string = ''; const ColSpan: Integer = 1; const RowSpan: Integer = 1);
+  end;
+
 implementation
 
 uses StrUtils, mnString, PerlRegEx, SysUtils, mnSystem;
@@ -155,6 +198,78 @@ begin
   finally
     RegEx.Free;
   end;
+end;
+
+{ mnTHTMLWriter }
+
+constructor mnTHTMLWriter.Create;
+begin
+  FHasNewLine := True;
+  FIndent := '  ';
+
+  HTML := '';
+end;
+
+function mnTHTMLWriter.ToHTML: string;
+begin
+  Result := HTML;
+end;
+
+procedure mnTHTMLWriter.Clear;
+begin
+  HTML := '';
+end;
+
+procedure mnTHTMLWriter.Write(const Text: string);
+begin
+  HTML := HTML + Text;
+end;
+
+procedure mnTHTMLWriter.WriteNewLine;
+begin
+  if HasNewLine then HTML := HTML + mnNewLine;
+end;
+
+procedure mnTHTMLWriter.WriteIndent;
+begin
+  if Indent <> '' then HTML := HTML + Indent;
+end;
+
+procedure mnTHTMLWriter.BeginRow(const Attributes: string = '');
+begin
+  HTML := HTML + '<tr';
+  if Attributes <> '' then HTML := HTML + ' ' + Attributes;
+  HTML := HTML + '>';
+  WriteNewLine;
+end;
+
+procedure mnTHTMLWriter.EndRow;
+begin
+  HTML := HTML + '</tr>';
+  WriteNewLine;
+end;
+
+procedure mnTHTMLWriter.BeginCell(const Attributes: string = ''; const ColSpan: Integer = 1; const RowSpan: Integer = 1);
+begin
+  WriteIndent;
+  HTML := HTML + '<td';
+  if ColSpan <> 1 then HTML := HTML + Format(' colspan="%d"', [ColSpan]);
+  if RowSpan <> 1 then HTML := HTML + Format(' rowspan="%d"', [RowSpan]);
+  if Attributes <> '' then HTML := HTML + ' ' + Attributes;
+  HTML := HTML + '>';
+end;
+
+procedure mnTHTMLWriter.EndCell;
+begin
+  HTML := HTML + '</td>';
+  WriteNewLine;
+end;
+
+procedure mnTHTMLWriter.WriteCell(const Text: string; const Attributes: string = ''; const ColSpan: Integer = 1; const RowSpan: Integer = 1);
+begin
+  BeginCell(Attributes, ColSpan, RowSpan);
+  Write(Text);
+  EndCell;
 end;
 
 end.

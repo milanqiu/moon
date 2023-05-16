@@ -28,6 +28,8 @@ type
     procedure testHTMLSetFontStyle;
     procedure testHTMLSimplePage;
     procedure testHTMLRemoveTags;
+
+    procedure testHTMLWriter_TableSeries;
   end;
 
 implementation
@@ -118,6 +120,34 @@ begin
     'body' + mnNewLine +
     '' + mnNewLine +
     '' + mnNewLine);
+end;
+
+procedure TmnHTMLTestCase.testHTMLWriter_TableSeries;
+var
+  hw: mnTHTMLWriter;
+begin
+  hw := mnTHTMLWriter.Create;
+  try
+    hw.BeginRow('attrR="valueR"');
+    hw.BeginCell('attrC="valueC"', 2, 3);
+    hw.Write('Cell1');
+    hw.EndCell;
+    hw.EndRow;
+
+    hw.HasNewLine := False;
+    hw.Indent := '';
+    hw.BeginRow;
+    hw.WriteCell('Cell2');
+    hw.EndRow;
+
+    CheckEquals(hw.ToHTML,
+      '<tr attrR="valueR">' + mnNewLine +
+      '  <td colspan="2" rowspan="3" attrC="valueC">Cell1</td>' + mnNewLine +
+      '</tr>' + mnNewLine +
+      '<tr><td>Cell2</td></tr>');
+  finally
+    hw.Free;
+  end;
 end;
 
 initialization
