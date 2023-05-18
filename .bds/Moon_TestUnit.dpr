@@ -42,7 +42,8 @@ uses
   mnSystemTestCase in '..\src\Moon_TestUnit\Utilities\mnSystemTestCase.pas',
   mnTPLTestCase in '..\src\Moon_TestUnit\Utilities\mnTPLTestCase.pas',
   mnWindowsTestCase in '..\src\Moon_TestUnit\Utilities\mnWindowsTestCase.pas',
-  mnDateRangeTestCase in '..\src\Moon_TestUnit\Components\mnDateRangeTestCase.pas';
+  mnDateRangeTestCase in '..\src\Moon_TestUnit\Components\mnDateRangeTestCase.pas',
+  mnWaitDialogTestCase in '..\src\Moon_TestUnit\Components\mnWaitDialogTestCase.pas';
 
 {$R *.RES}
 

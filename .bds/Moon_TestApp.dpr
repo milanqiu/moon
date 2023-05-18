@@ -19,7 +19,8 @@ uses
   DlgTestTPL in '..\src\Moon_TestApp\Utilities\DlgTestTPL.pas' {TestTPLDialog},
   DlgTestWindows in '..\src\Moon_TestApp\Utilities\DlgTestWindows.pas' {TestWindowsDialog},
   DlgTestDateRange in '..\src\Moon_TestApp\Components\DlgTestDateRange.pas' {TestDateRangeDialog},
-  DlgTestFileChooser in '..\src\Moon_TestApp\Components\DlgTestFileChooser.pas' {TestFileChooserDialog};
+  DlgTestFileChooser in '..\src\Moon_TestApp\Components\DlgTestFileChooser.pas' {TestFileChooserDialog},
+  DlgTestWaitDialog in '..\src\Moon_TestApp\Components\DlgTestWaitDialog.pas' {TestWaitDialogDialog};
 
 {$R *.res}
 
@@ -40,5 +41,6 @@ begin
   Application.CreateForm(TTestWindowsDialog, TestWindowsDialog);
   Application.CreateForm(TTestDateRangeDialog, TestDateRangeDialog);
   Application.CreateForm(TTestFileChooserDialog, TestFileChooserDialog);
+  Application.CreateForm(TTestWaitDialogDialog, TestWaitDialogDialog);
   Application.Run;
 end.

@@ -26,7 +26,7 @@ type
   用于关联一个开始日期的cxDateEdit，一个结束日期的cxDateEdit。
   用户选择一种日期范围时，开始日期和结束日期会自动转换为该范围对应的结果。
   用户也可以直接设置开始日期和结束日期，此时日期范围为“自定义”。
-  Tested in TestApp.
+  Tested in TestUnit and TestApp.
  --------------------------------}
   mnTDateRange = class(TcxComboBox)
   private

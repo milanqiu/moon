@@ -29,6 +29,16 @@ resourcestring
   SFromDateEditNotAssigned = 'FromDateEdit没有设置';
   SToDateEditNotAssigned = 'ToDateEdit没有设置';
 
+  // in mnWaitDialog
+  SDefaultWaitDialogCaption = 'WaitDialog';
+  SDefaultWaitDialogPrompt = '请等待...';
+  SDefaultMsgConfirmCancel = '确认取消吗？';
+  SDefaultMsgCancelled = '对话框已被取消';
+  SShowVisibleWaitDialog = '尝试显示一个可见的WaitDialog';
+  SCloseInvisibleWaitDialog = '尝试关闭一个不可见的WaitDialog';
+  SChangeHasGaugeWhenVisible = '当WaitDialog可见时，不能改变HasGauge属性';
+  SChangeCanCancelWhenVisible = '当WaitDialog可见时，不能改变CanCancel属性';
+
 {$ELSE}
 
   // in mnDateRange
@@ -53,6 +63,16 @@ resourcestring
   SSoFarThisYear = 'So Far This Year';
   SFromDateEditNotAssigned = 'FromDateEdit not assigned';
   SToDateEditNotAssigned = 'ToDateEdit not assigned';
+
+  // in mnWaitDialog
+  SDefaultWaitDialogCaption = 'WaitDialog';
+  SDefaultWaitDialogPrompt = 'Please wait...';
+  SDefaultMsgConfirmCancel = 'Confirm to cancel?';
+  SDefaultMsgCancelled = 'Dialog has been cancelled';
+  SShowVisibleWaitDialog = 'Try to show a visible WaitDialog';
+  SCloseInvisibleWaitDialog = 'Try to close an invisible WaitDialog';
+  SChangeHasGaugeWhenVisible = 'Can''t change HasGauge property when WaitDialog is visible';
+  SChangeCanCancelWhenVisible = 'Can''t change CanCancel property when WaitDialog is visible';
 
 {$ENDIF}
 

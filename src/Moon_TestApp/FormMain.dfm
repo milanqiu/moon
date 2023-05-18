@@ -42,7 +42,8 @@ object MainForm: TMainForm
       ';mnTPL'
       ';mnWindows'
       'Moon_Components;mnDateRange'
-      ';mnFileChooser')
+      ';mnFileChooser'
+      ';mnWaitDialog')
     TabOrder = 0
     OnDblClick = cxmclbModuleDblClick
   end
