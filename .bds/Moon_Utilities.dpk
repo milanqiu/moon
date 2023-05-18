@@ -39,7 +39,8 @@ requires
   IndySystem,
   IndyCore,
   IndyProtocols,
-  PerlRegExD7;
+  PerlRegExD7,
+  adortl;
 
 contains
   GIFImage,
