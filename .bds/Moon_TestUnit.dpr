@@ -43,7 +43,8 @@ uses
   mnTPLTestCase in '..\src\Moon_TestUnit\Utilities\mnTPLTestCase.pas',
   mnWindowsTestCase in '..\src\Moon_TestUnit\Utilities\mnWindowsTestCase.pas',
   mnDateRangeTestCase in '..\src\Moon_TestUnit\Components\mnDateRangeTestCase.pas',
-  mnWaitDialogTestCase in '..\src\Moon_TestUnit\Components\mnWaitDialogTestCase.pas';
+  mnWaitDialogTestCase in '..\src\Moon_TestUnit\Components\mnWaitDialogTestCase.pas',
+  mnWebBrowserTestCase in '..\src\Moon_TestUnit\Components\mnWebBrowserTestCase.pas';
 
 {$R *.RES}
 

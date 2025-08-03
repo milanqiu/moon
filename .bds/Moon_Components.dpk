@@ -42,14 +42,16 @@ requires
   PerlRegExD7,
   rtl,
   vclx,
-  Moon_Utilities,
-  VclSmp;
+  VclSmp,
+  vclie,
+  Moon_Utilities;
 
 contains
   mnRegister in '..\src\Moon_Components\mnRegister.pas',
   mnResStrsC in '..\src\Moon_Components\mnResStrsC.pas',
   mnDateRange in '..\src\Moon_Components\mnDateRange.pas',
   mnFileChooser in '..\src\Moon_Components\mnFileChooser.pas',
-  mnWaitDialog in '..\src\Moon_Components\mnWaitDialog.pas';
+  mnWaitDialog in '..\src\Moon_Components\mnWaitDialog.pas',
+  mnWebBrowser in '..\src\Moon_Components\mnWebBrowser.pas';
 
 end.
