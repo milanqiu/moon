@@ -295,7 +295,7 @@ procedure mnSetCursorPosOnWindow(const Window: HWND; const X, Y: Integer);
   (X, Y)坐标以窗口左上角为原点。
   Tested in TestApp.
  --------------------------------}
-procedure mnClickWindow(const Window: HWND; const X, Y: Integer);
+procedure mnClickWindow(const Window: HWND; const X, Y: Integer; const SleepInterval: Integer = 50);
 
 {--------------------------------
   往指定窗口发送一个Virtual Key。
@@ -990,9 +990,10 @@ begin
   SetCursorPos(WindowRect.Left+X, WindowRect.Top+Y);
 end;
 
-procedure mnClickWindow(const Window: HWND; const X, Y: Integer);
+procedure mnClickWindow(const Window: HWND; const X, Y: Integer; const SleepInterval: Integer = 50);
 begin
   mnSetCursorPosOnWindow(Window, X, Y);
+  Sleep(SleepInterval);
   mnMouseClick;
 end;
 
