@@ -702,6 +702,15 @@ inherited TestWindowsDialog: TTestWindowsDialog
         TabOrder = 11
         OnClick = btnGetAllWindowsDescriptionsClick
       end
+      object btnSleepAndClickUntilWindowContainsImageWithFocused: TButton
+        Left = 488
+        Top = 408
+        Width = 289
+        Height = 25
+        Caption = 'SleepAndClickUntilWindowContainsImage with Focused'
+        TabOrder = 26
+        OnClick = btnSleepAndClickUntilWindowContainsImageWithFocusedClick
+      end
     end
     object tsSnap: TTabSheet
       Caption = 'tsSnap'

@@ -107,12 +107,15 @@ type
     btnSleepUntilWindowIsForeground: TButton;
     btnSleepUntilWindowContainsImage: TButton;
     btnSleepAndClickUntilWindowContainsImage: TButton;
+    btnSleepAndClickUntilWindowContainsImageWithFocused: TButton;
     btnSetCursorPosOnWindow: TButton;
     btnClickWindow: TButton;
     procedure btnSnapWindowExClick(Sender: TObject);
     procedure btnSnapWindowClick(Sender: TObject);
     procedure btnClickWindowClick(Sender: TObject);
     procedure btnSetCursorPosOnWindowClick(Sender: TObject);
+    procedure btnSleepAndClickUntilWindowContainsImageWithFocusedClick(
+      Sender: TObject);
     procedure btnSleepAndClickUntilWindowContainsImageClick(Sender: TObject);
     procedure btnSleepUntilWindowContainsImageClick(Sender: TObject);
     procedure btnSleepUntilWindowIsForegroundClick(Sender: TObject);
@@ -695,6 +698,26 @@ begin
     mnInfoBox('NotepadaaaaaaImage has been clicked now');
   finally
     NotepadaaaaaaImage.Free;
+  end;
+end;
+
+procedure TTestWindowsDialog.btnSleepAndClickUntilWindowContainsImageWithFocusedClick(
+  Sender: TObject);
+var
+  NotepadaaaaaaImage, FocusedNotepadaaaaaaImage: mnTPixeledImage;
+  NotepadWindow: HWND;
+begin
+  NotepadaaaaaaImage := mnTPixeledImage.Create;
+  FocusedNotepadaaaaaaImage := mnTPixeledImage.Create;
+  try
+    NotepadaaaaaaImage.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\Windows\Notepadaaaaaa.bmp'));
+    FocusedNotepadaaaaaaImage.LoadFromBMPFile(mnTProjectConvention.GetFilesPathSub('Images\Windows\FocusedNotepadaaaaaa.bmp'));
+    NotepadWindow := mnFindFirstWindow(FindNotepadOption);
+    mnSleepAndClickUntilWindowContainsImage(NotepadWindow, NotepadaaaaaaImage, FocusedNotepadaaaaaaImage);
+    mnInfoBox('NotepadaaaaaaImage has been clicked now after focused');
+  finally
+    NotepadaaaaaaImage.Free;
+    FocusedNotepadaaaaaaImage.Free;
   end;
 end;
 

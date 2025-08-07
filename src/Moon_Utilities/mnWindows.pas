@@ -273,6 +273,7 @@ procedure mnSleepUntilWindowIsForeground(const Window: HWND; const SleepInterval
 
 {--------------------------------
   应用程序挂起，直到指定窗口的截图包含指定图片。
+  带X和Y的重载版本，X和Y会返回指定图片的位置。
   Tested in TestApp.
  --------------------------------}
 procedure mnSleepUntilWindowContainsImage(const Window: HWND; const Image: mnTPixeledImage;                    const SleepInterval: Integer = 50); overload;
@@ -280,9 +281,11 @@ procedure mnSleepUntilWindowContainsImage(const Window: HWND; const Image: mnTPi
 
 {--------------------------------
   应用程序挂起，直到指定窗口的截图包含指定图片，然后鼠标移到指定窗口的图片区域并点击。
+  带FocusedImage的重载版本，在鼠标移到指定窗口的图片区域后，图片区域将会变成FocusedImage，程序会检测指定窗口是否包含FocusedImage，并以此作为鼠标移动完成的标志。
   Tested in TestApp.
  --------------------------------}
-procedure mnSleepAndClickUntilWindowContainsImage(const Window: HWND; const Image: mnTPixeledImage; const SleepInterval: Integer = 50);
+procedure mnSleepAndClickUntilWindowContainsImage(const Window: HWND; const Image:               mnTPixeledImage; const SleepInterval: Integer = 50); overload;
+procedure mnSleepAndClickUntilWindowContainsImage(const Window: HWND; const Image, FocusedImage: mnTPixeledImage; const SleepInterval: Integer = 50); overload;
 
 {--------------------------------
   将鼠标移动到指定窗口的(X, Y)处。
@@ -974,12 +977,22 @@ begin
   end;
 end;
 
-procedure mnSleepAndClickUntilWindowContainsImage(const Window: HWND; const Image: mnTPixeledImage; const SleepInterval: Integer = 50);
+procedure mnSleepAndClickUntilWindowContainsImage(const Window: HWND; const Image:               mnTPixeledImage; const SleepInterval: Integer = 50); overload;
 var
   X, Y: Integer;
 begin
   mnSleepUntilWindowContainsImage(Window, Image, X, Y, SleepInterval);
-  mnClickWindow(Window, X + Image.Width div 2, Y + Image.Height div 2);
+  mnClickWindow(Window, X + Image.Width div 2, Y + Image.Height div 2, SleepInterval);
+end;
+
+procedure mnSleepAndClickUntilWindowContainsImage(const Window: HWND; const Image, FocusedImage: mnTPixeledImage; const SleepInterval: Integer = 50); overload;
+var
+  X, Y: Integer;
+begin
+  mnSleepUntilWindowContainsImage(Window, Image, X, Y, SleepInterval);
+  mnSetCursorPosOnWindow(Window, X + Image.Width div 2, Y + Image.Height div 2);
+  mnSleepUntilWindowContainsImage(Window, FocusedImage, SleepInterval);
+  mnMouseClick;
 end;
 
 procedure mnSetCursorPosOnWindow(const Window: HWND; const X, Y: Integer);
