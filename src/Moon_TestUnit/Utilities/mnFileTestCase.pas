@@ -22,7 +22,7 @@ type
     procedure TearDown; override;
   published
     procedure testExtractFileNoExt;
-    procedure testExtractFileNameNoExt;
+    procedure testExtractPureFileName;
     procedure testExtractParentPath;
     procedure testCorrectPath;
     procedure testCorrectDir;
@@ -68,13 +68,13 @@ begin
   CheckEquals(mnExtractFileNoExt('aaa.txt'), 'aaa');
 end;
 
-procedure TmnFileTestCase.testExtractFileNameNoExt;
+procedure TmnFileTestCase.testExtractPureFileName;
 begin
-  CheckEquals(mnExtractFileNameNoExt('C:\aaa\bbb\ccc.txt'), 'ccc');
-  CheckEquals(mnExtractFileNameNoExt('C:\aaa\bbb\'), '');
-  CheckEquals(mnExtractFileNameNoExt('C:\aaa.txt'), 'aaa');
-  CheckEquals(mnExtractFileNameNoExt('C:\aaa'), 'aaa');
-  CheckEquals(mnExtractFileNameNoExt('aaa.txt'), 'aaa');
+  CheckEquals(mnExtractPureFileName('C:\aaa\bbb\ccc.txt'), 'ccc');
+  CheckEquals(mnExtractPureFileName('C:\aaa\bbb\'), '');
+  CheckEquals(mnExtractPureFileName('C:\aaa.txt'), 'aaa');
+  CheckEquals(mnExtractPureFileName('C:\aaa'), 'aaa');
+  CheckEquals(mnExtractPureFileName('aaa.txt'), 'aaa');
 end;
 
 procedure TmnFileTestCase.testExtractParentPath;

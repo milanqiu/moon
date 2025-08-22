@@ -95,7 +95,7 @@ begin
     dbtMySQL, dbtSQLServer:
       Result := DBProfile.DBName;
     dbtAccess, dbtExcel:
-      Result := mnExtractFileNameNoExt(DBProfile.DBFile);
+      Result := mnExtractPureFileName(DBProfile.DBFile);
   end;
 end;
 

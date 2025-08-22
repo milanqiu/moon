@@ -16,7 +16,7 @@ function mnExtractFileNoExt(const FileName: string): string;
   从一个文件名中提取出不含文件路径和扩展名的单纯文件名。
   Tested in TestUnit.
  --------------------------------}
-function mnExtractFileNameNoExt(const FileName: string): string;
+function mnExtractPureFileName(const FileName: string): string;
 
 {--------------------------------
   返回一个路径或文件的父路径。
@@ -182,7 +182,7 @@ begin
   Result := Copy(FileName, 1, Length(FileName) - Length(ExtractFileExt(Filename)));
 end;
 
-function mnExtractFileNameNoExt(const FileName: string): string;
+function mnExtractPureFileName(const FileName: string): string;
 begin
   Result := mnExtractFileNoExt(ExtractFileName(FileName));
 end;
