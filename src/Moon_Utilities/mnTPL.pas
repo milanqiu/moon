@@ -50,6 +50,15 @@ function mnSelectedAttachedInt(ComboBox: TcxComboBox): Integer; overload;
 function mnSelectedAttachedInt(MCListBox: TcxMCListBox): Integer; overload;
 
 {--------------------------------
+  得到一个列表框、下拉选择框或多列列表框的当前选中项的附加的字符串。
+  执行该函数时，应保证传入框的附加对象是一个字符串指针。
+  No test.
+ --------------------------------}
+function mnSelectedAttachedStr(ListBox: TcxListBox): string; overload;
+function mnSelectedAttachedStr(ComboBox: TcxComboBox): string; overload;
+function mnSelectedAttachedStr(MCListBox: TcxMCListBox): string; overload;
+
+{--------------------------------
   在一个列表框、下拉选择框或多列列表框中，查找附加的整数等于指定值的项，返回项的索引。
   如果找不到，返回-1。
   执行该函数时，应保证传入框的附加对象是一个整数指针。
@@ -58,6 +67,16 @@ function mnSelectedAttachedInt(MCListBox: TcxMCListBox): Integer; overload;
 function mnIndexOfAttachedInt(ListBox: TcxListBox; const Value: Integer): Integer; overload;
 function mnIndexOfAttachedInt(ComboBox: TcxComboBox; const Value: Integer): Integer; overload;
 function mnIndexOfAttachedInt(MCListBox: TcxMCListBox; const Value: Integer): Integer; overload;
+
+{--------------------------------
+  在一个列表框、下拉选择框或多列列表框中，查找附加的字符串等于指定值的项，返回项的索引。
+  如果找不到，返回-1。
+  执行该函数时，应保证传入框的附加对象是一个字符串指针。
+  No test.
+ --------------------------------}
+function mnIndexOfAttachedStr(ListBox: TcxListBox; const Value: string): Integer; overload;
+function mnIndexOfAttachedStr(ComboBox: TcxComboBox; const Value: string): Integer; overload;
+function mnIndexOfAttachedStr(MCListBox: TcxMCListBox; const Value: string): Integer; overload;
 
 {--------------------------------
   将一个多选下拉选择框中所有选中项的Tag，存储到指定TIntList里，或联接成字符串。
@@ -171,6 +190,21 @@ begin
   Result := mnReadIntPointer(MCListBox.Items.Objects[MCListBox.ItemIndex]);
 end;
 
+function mnSelectedAttachedStr(ListBox: TcxListBox): string; overload;
+begin
+  Result := mnReadStrPointer(ListBox.Items.Objects[ListBox.ItemIndex]);
+end;
+
+function mnSelectedAttachedStr(ComboBox: TcxComboBox): string; overload;
+begin
+  Result := mnReadStrPointer(ComboBox.Properties.Items.Objects[ComboBox.ItemIndex]);
+end;
+
+function mnSelectedAttachedStr(MCListBox: TcxMCListBox): string; overload;
+begin
+  Result := mnReadStrPointer(MCListBox.Items.Objects[MCListBox.ItemIndex]);
+end;
+
 function mnIndexOfAttachedInt(ListBox: TcxListBox; const Value: Integer): Integer; overload;
 begin
   for Result := 0 to ListBox.Items.Count-1 do
@@ -191,6 +225,30 @@ function mnIndexOfAttachedInt(MCListBox: TcxMCListBox; const Value: Integer): In
 begin
   for Result := 0 to MCListBox.Items.Count-1 do
     if mnReadIntPointer(MCListBox.Items.Objects[Result]) = Value then
+      Exit;
+  Result := -1;
+end;
+
+function mnIndexOfAttachedStr(ListBox: TcxListBox; const Value: string): Integer; overload;
+begin
+  for Result := 0 to ListBox.Items.Count-1 do
+    if mnReadStrPointer(ListBox.Items.Objects[Result]) = Value then
+      Exit;
+  Result := -1;
+end;
+
+function mnIndexOfAttachedStr(ComboBox: TcxComboBox; const Value: string): Integer; overload;
+begin
+  for Result := 0 to ComboBox.Properties.Items.Count-1 do
+    if mnReadStrPointer(ComboBox.Properties.Items.Objects[Result]) = Value then
+      Exit;
+  Result := -1;
+end;
+
+function mnIndexOfAttachedStr(MCListBox: TcxMCListBox; const Value: string): Integer; overload;
+begin
+  for Result := 0 to MCListBox.Items.Count-1 do
+    if mnReadStrPointer(MCListBox.Items.Objects[Result]) = Value then
       Exit;
   Result := -1;
 end;
